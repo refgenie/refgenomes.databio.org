@@ -1,7 +1,7 @@
 config_version: 0.3
 genome_folder: $GENOMES
 genome_archive_folder: $GENOMES/archive
-genome_archive_config: master_archive.yaml
+genome_archive_config: refgenie_config_archive.yaml
 genome_servers: ['http://refgenomes.databio.org']
 genomes:
   rCRSd:
@@ -34,5 +34,49 @@ genomes:
             asset_digest: 59fed5ec3c3a95bc5709b24b8f2cf7bf
             asset_parents: []
         default_tag: default
+      fasta_txome:
+        asset_description: cDNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta_txome
+            seek_keys:
+              fasta_txome: hg38.fa
+              fai: hg38.fa.fai
+              chrom_sizes: hg38.chrom.sizes
+            asset_digest: e452acaa6f4b4f28c29ce6e06beb07e0
+            asset_parents: []
+        default_tag: default
     genome_description: The
     genome_digest: b3422045db2293738bcb9973c1a0acdfabff3a0a3e1830bc
+  hg38_cdna:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: hg38_cdna.fa
+              fai: hg38_cdna.fa.fai
+              chrom_sizes: hg38_cdna.chrom.sizes
+            asset_digest: e452acaa6f4b4f28c29ce6e06beb07e0
+            asset_parents: []
+        default_tag: default
+    genome_description: The
+    genome_digest: b24ad420abde037e4995290ea8fdea2de6aa6576c2c0cc5d
+  hg19:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: hg19.fa
+              fai: hg19.fa.fai
+              chrom_sizes: hg19.chrom.sizes
+            asset_digest: 7ce3b03e30d6ef76af8c3ad09a141dfc
+            asset_parents: []
+        default_tag: default
+    genome_description: The
+    genome_digest: fb7002132265e88a91859e3c743fc7a898a057019fc11456
