@@ -6,8 +6,15 @@ command_template: >
       if [ -f "{sample.input_value[loop.index0]}" ]; then
         cp {sample.input_value[loop.index0]} {sample.local_input + sample.input_id[loop.index0]}
       else
-        { 'wget -nc -O ' + sample.local_input  + sample.input_id[loop.index0] + ' ' + sample.input_value[loop.index0] }; 
-      fi 
+        { 'wget -nc -O ' + sample.local_input + sample.input_id[loop.index0] + ' ' + sample.input_value[loop.index0] }; 
+      fi
+      checksum=`{'md5sum ' + sample.local_input + sample.input_id[loop.index0] + ' | cut -c -32'}`;
+      if [[ "{sample.checksum[loop.index0]}" != $checksum ]]; then
+        echo -e "\e[1;31mERROR: checksums don't match\e[0m: {sample.checksum[loop.index0]}, $checksum"
+        rm {sample.local_input + sample.input_id[loop.index0]}
+        exit 1
+      else
+        echo -e "checksums match: $checksum";
+      fi
     {% endif %}
   {%- endfor -%}
-  
