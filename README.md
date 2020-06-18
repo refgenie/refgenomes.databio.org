@@ -108,7 +108,7 @@ Since the archive process is generally lengthy, it makes sense to submit this jo
 ```
 ba
 export REFGENIE_ARCHIVE=$GENOMES/archive
-looper runp asset_pep/refgenie_build_cfg.yaml -p local
+looper run asset_pep/refgenie_build_cfg.yaml
 
 ```
 
