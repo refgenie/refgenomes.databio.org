@@ -13,7 +13,7 @@ sample_modifiers:
     attributes: ['sample_name', 'local_input']
     sources:
       sn: "{genome}-{asset}"
-      LOCAL_INPUT: "$REFGENIE_RAW/files.{genome}.{asset}."
+      LOCAL_INPUT: "$REFGENIE_RAW/{genome}-{asset}-"
 
 project_modifiers:
   amend:
