@@ -1,0 +1,13 @@
+pipeline_name: download_input_files
+pipeline_type: sample
+command_template: >
+  {%- for itype in sample.input_type -%}
+    {% if itype == 'files' %}
+      if [ -f "{sample.input_value[loop.index0]}" ]; then
+        cp {sample.input_value[loop.index0]} {sample.local_input + sample.input_id[loop.index0]}
+      else
+        { 'wget -nc -O ' + sample.local_input  + sample.input_id[loop.index0] + ' ' + sample.input_value[loop.index0] }; 
+      fi 
+    {% endif %}
+  {%- endfor -%}
+  

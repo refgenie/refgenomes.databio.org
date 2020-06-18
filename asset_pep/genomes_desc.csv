@@ -1,0 +1,19 @@
+hg18,The NCBI36 reference sequence from UCSC. The individual chromosome files were concatenated prior to the asset building.
+hg19,The GRCh37 reference sequence from UCSC
+hg18_cdna,The NCBI36 cDNA reference sequence from Ensembl
+hg19_cdna,The GRCh37 cDNA reference sequence from Ensembl
+hg38_cdna,The GRCh38 cDNA reference sequence from Ensembl
+hg38,The GCA_000001405.15 GRCh38_no_alt_analysis_set from NCBI
+hg38_noalt_decoy,The GRCh38 reference with decoy and without alternative haplotypes from NCBI
+hs38d1,Decoy version 1 for GRCh38 from NCBI
+human_alphasat,"Manually curated human alpha-satellite sequences from GenBank, obtained from ref_decoy"
+human_alu,"Manually curated human ALU repeats from GenBank, obtained from ref_decoy"
+human_rDNA,Human rDNA sequences curated from GenBank
+human_repeats,Manually curated collection of human repeat sequences from GenBank
+mm10,The GCA_000001635.5 seqs_for_alignment_pipelines from NCBI
+mm10_cdna,The GRCm38 cDNA reference sequence from Ensembl
+mouse_chrM2x,"The mouse mitochondrial genome, doubled"
+rCRSd,The revised cambridge reference sequence. This is the human mitochondrial reference genome
+rn6,The GCA_000001895.4_Rnor_6.0_genomic from NCBI
+rn6_cdna,The Rnor_6.0 cDNA reference sequence from Ensembl
+hg38_chr22,Includes only chromosome 22 from the hg38 reference. Useful for testing

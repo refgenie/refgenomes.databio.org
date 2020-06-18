@@ -1,0 +1,38 @@
+config_version: 0.3
+genome_folder: $GENOMES
+genome_archive_folder: $GENOMES/archive
+genome_archive_config: master_archive.yaml
+genome_servers: ['http://refgenomes.databio.org']
+genomes:
+  rCRSd:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: rCRSd.fa
+              fai: rCRSd.fa.fai
+              chrom_sizes: rCRSd.chrom.sizes
+            asset_digest: 4eb430296bc02ed7e4006624f1d5ac53
+            asset_parents: []
+        default_tag: default
+    genome_description: The
+    genome_digest: 32a37a52a377d95bfd4b3d66763e1396a4480f34ab5c318a
+  hg38:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: hg38.fa
+              fai: hg38.fa.fai
+              chrom_sizes: hg38.chrom.sizes
+            asset_digest: 59fed5ec3c3a95bc5709b24b8f2cf7bf
+            asset_parents: []
+        default_tag: default
+    genome_description: The
+    genome_digest: b3422045db2293738bcb9973c1a0acdfabff3a0a3e1830bc

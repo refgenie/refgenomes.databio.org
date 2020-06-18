@@ -1,0 +1,25 @@
+sample_table: assets.csv
+subsample_table: recipe_inputs.csv
+looper:
+  output_dir: $GENOMES
+  pipeline_interfaces: ../pipeline_interfaces/archive_pi.yaml
+
+sample_modifiers:
+  append:
+    local_input: "LOCAL_INPUT"
+    sample_name: "sn"
+    pipeline_interfaces: ../pipeline_interfaces/refgenie_piface.yaml
+  derive:
+    attributes: ['sample_name', 'local_input']
+    sources:
+      sn: "{genome}-{asset}"
+      LOCAL_INPUT: "$REFGENIE_RAW/files.{genome}.{asset}."
+
+project_modifiers:
+  amend:
+    getfiles:
+      sample_modifiers:
+        remove:
+          - pipeline_interfaces
+        append:
+          pipeline_interfaces: ../pipeline_interfaces/wget_piface.yaml

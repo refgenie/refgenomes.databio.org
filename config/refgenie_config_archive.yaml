@@ -1,0 +1,102 @@
+config_version: 0.3
+genome_folder: $GENOMES
+genome_archive_folder: $GENOMES/archive
+genome_archive_config: master_archive.yaml
+genome_servers: ['http://refgenomes.databio.org']
+remote_url_base: http://awspds.refgenie.databio.org/
+genomes:
+  demo1:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: demo1.fa
+              fai: demo1.fa.fai
+              chrom_sizes: demo1.chrom.sizes
+            asset_digest: 178e1ec13ee8b2b53c67e68f618b6dbf
+            asset_parents: []
+            archive_digest: e5985ee8d81f0f1878040b71961a55b9
+            archive_size: 260B
+            asset_size: 5.8KB
+            asset_children: []
+        default_tag: default
+    genome_digest: fa7f432a0ca2a8bb224562f1c2f091e37937c4b0a5f5acf7
+    genome_description: d1
+  demo2:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: demo2.fa
+              fai: demo2.fa.fai
+              chrom_sizes: demo2.chrom.sizes
+            asset_digest: 095c8035e756f9c589a7485c2f465f1c
+            asset_parents: []
+            archive_digest: acf7ca4aca53d9c586f4f9094080e0a4
+            archive_size: 283B
+            asset_size: 5.8KB
+            asset_children: []
+        default_tag: default
+    genome_digest: 6f2e5266e233ef82ae4fa15fb621ed2843b19cbb5f099391
+    genome_description: d2
+  demo3:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: demo3.fa
+              fai: demo3.fa.fai
+              chrom_sizes: demo3.chrom.sizes
+            asset_digest: ba86502af816164011d20f0e8c4de1a7
+            asset_parents: []
+            archive_digest: bec6796fbb1dd71cb70fe654ffd92544
+            archive_size: 275B
+            asset_size: 5.8KB
+            asset_children: []
+        default_tag: default
+    genome_digest: 52c0a74bf4afa6dcfc96531f9f1215f270a014421e0f3852
+  hg38:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        default_tag: default
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: hg38.fa
+              fai: hg38.fa.fai
+              chrom_sizes: hg38.chrom.sizes
+            archive_digest: 01d1538c3b6cc9e2822c6565a8110c3f
+            archive_size: 832.5MB
+            asset_size: 2.9GB
+            asset_parents: []
+            asset_children: []
+            asset_digest: 59fed5ec3c3a95bc5709b24b8f2cf7bf
+  rCRSd:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        default_tag: default
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: rCRSd.fa
+              fai: rCRSd.fa.fai
+              chrom_sizes: rCRSd.chrom.sizes
+            archive_digest: 42c486ac03a81cfb4f91e073176443f4
+            archive_size: 8.6KB
+            asset_size: 38.8KB
+            asset_parents: []
+            asset_children: []
+            asset_digest: 4eb430296bc02ed7e4006624f1d5ac53
