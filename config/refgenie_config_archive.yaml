@@ -1,6 +1,7 @@
 config_version: 0.3
 genome_folder: $GENOMES
 genome_archive_folder: $GENOMES/archive
+remote_url_base: http://awspds.refgenie.databio.org
 genome_archive_config: master_archive.yaml
 genome_servers: ['http://refgenomes.databio.org']
 genomes:
