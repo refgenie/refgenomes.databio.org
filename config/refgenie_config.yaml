@@ -1,7 +1,7 @@
 config_version: 0.3
 genome_folder: $GENOMES
 genome_archive_folder: $GENOMES/archive
-genome_archive_config: master_archive.yaml
+genome_archive_config: refgenie_config_archive.yaml
 genome_servers: ['http://refgenomes.databio.org']
 genomes:
   rCRSd:
