@@ -14,7 +14,7 @@ hg19-fasta_txome,fasta,ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/c
 hg19-gencode_gtf,gencode_gtf,ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_32/GRCh37_mapping/gencode.v32lift37.annotation.gtf.gz,files,9b6f9f5ed80f4d14d4dbe4614db1c2bd
 hg19-refgene_anno,refgene,http://hgdownload.cse.ucsc.edu/goldenpath/hg19/database/refGene.txt.gz,files,1b028ad27b0c66dfdeb1ef73b9e9ddc1
 hg38_cdna-fasta,fasta,ftp://ftp.ensembl.org/pub/release-97/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz,files,b99e0ed778d922c87cd5ab70dfecd544
-hg38_chr22-fasta,fasta,http://big.databio.org/refgenomes/hs38_chr22.fa.gz,files,6da24cadfe7566c501da07bd54555eb2
+hg38_chr22-fasta,fasta,http://big.databio.org/refgenomes/hg38_chr22.fa.gz,files,6da24cadfe7566c501da07bd54555eb2
 hg38_mm10-fasta,fasta,http://big.databio.org/refgenomes/hg38_mm10.fa.gz,files,36a0be3e1c0b29ff1ec173b73a24ef56
 hg38_noalt_decoy-fasta,fasta,http://big.databio.org/refgenomes/hg38_noalt_decoy.fa.gz,files,26bd0879eb24d18fb9dc0b49c5cce9ab
 hg38_primary-fasta,fasta,http://big.databio.org/refgenomes/hg38_primary.fa.gz,files,abce515a04ad837f7c1241508c7f2fd2
