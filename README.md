@@ -119,7 +119,7 @@ Since the archive process is generally lengthy, it makes sense to submit this jo
 ```
 ba
 export REFGENIE_ARCHIVE=$GENOMES/archive
-looper run asset_pep/refgenieserver_archive_cfg.yaml
+looper run asset_pep/refgenieserver_archive_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl fasta 
 ```
 
 Now we'll sync to aws. Use the refgenie credentials (here added with `--profile refgenie`, which should be preconfigured with `aws configure`)
