@@ -1,0 +1,8 @@
+pipeline_name: refgenieserver_archive
+pipeline_type: sample
+command_template: >
+  refgenieserver archive {sample.genome}/{sample.asset} --config $REFGENIE --dbg 
+compute:
+  mem: 8000
+  cores: 8
+  time: 1-00:00:00

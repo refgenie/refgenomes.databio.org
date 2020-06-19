@@ -1,0 +1,13 @@
+pep_version: 2.0.0
+sample_table: assets.csv
+looper:
+  output_dir: $GENOMES/archive_logs
+
+sample_modifiers:
+  append:
+    sample_name: "sn"
+    pipeline_interfaces: ../pipeline_interfaces/archive_piface.yaml
+  derive:
+    attributes: ['sample_name']
+    sources:
+      sn: "{genome}-{asset}"

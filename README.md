@@ -86,13 +86,24 @@ Once files are present locally, we can run `refgenie build` on each asset specif
 
 ```
 export REFGENIE=$BASEDIR/refgenomes.databio.org/config/refgenie_config.yaml
-looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --limit 5
+```
+
+We have to submit fasta assets first:
+
+```
+looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl fasta
 ```
 
 This will create one job for each *asset*. Monitor job progress with: 
 
 ```
-looper check asset_pep/refgenie_build_cfg.yaml  # this doesn't work?
+looper check asset_pep/refgenie_build_cfg.yaml  # this doesn't work? the pipeline doesn't produce flags
+```
+
+To run all the asset types:
+
+```
+looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm
 ```
 
 ## Step 3. Archive assets
