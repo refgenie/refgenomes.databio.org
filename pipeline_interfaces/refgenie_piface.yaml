@@ -2,7 +2,7 @@ pipeline_name: refgenie_build
 pipeline_type: sample
 input_schema: https://schema.databio.org/refgenie/refgenie_build.yaml
 compute:
-  bulker_crate: databio/refgenie:0.7.3
+  bulker_crate: databio/refgenie:0.7.4
   mem: 24000
   cores: 4
   time: 04:00:00
