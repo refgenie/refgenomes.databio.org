@@ -175,13 +175,13 @@ hg38,cellranger_reference,
 hg18,cellranger_reference,
 hg19,cellranger_reference,
 mm10,cellranger_reference,
-hg38_primary,fasta,
-mm10_primary,fasta,
+hg38_primary,fasta,UCSC hg38 assembly with primary chromosomes only
+mm10_primary,fasta,UCSC mm10 assembly with primary chromosomes only
 hg38_primary,bowtie2_index,
 mm10_primary,bowtie2_index,
 hg38_primary,bwa_index,
 mm10_primary,bwa_index,
-hg38_mm10,fasta,
+hg38_mm10,fasta,Merged genome with primary chromosomes of hg38 and mm10 from UCSC.
 hg38_mm10,bowtie2_index,
 hg38_mm10,bwa_index,
-dm6,fasta,
+dm6,fasta,Drosophila reference genome GCF_000001215.4 from NCBI.

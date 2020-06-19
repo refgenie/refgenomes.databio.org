@@ -8,7 +8,7 @@ hg19_cdna-fasta,fasta,ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/cd
 hg19-dbsnp,dbsnp_vcf,ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/common_all_20180423.vcf.gz,files,e28e10364c70c71712c268a1542a6278
 hg19-dbsnp,dbsnp_tbi,ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/common_all_20180423.vcf.gz.tbi,files,29b5ddb6f4da121de8fcfd061dc9000c
 hg19-ensembl_gtf,ensembl_gtf,ftp://ftp.ensembl.org/pub/grch37/current/gtf/homo_sapiens/Homo_sapiens.GRCh37.87.gtf.gz,files,0bcc1531e8f85914f7bba0a242ee2f4c
-hg19-ensembl_rb,ensembl_rb,ftp://ftp.ensembl.org/pub/grch37/current/regulation/homo_sapiens/homo_sapiens.GRCh37.Regulatory_Build.regulatory_features.20180925.gff.gz,files,d41d8cd98f00b204e9800998ecf8427e
+hg19-ensembl_rb,ensembl_rb,ftp://ftp.ensembl.org/pub/grch37/current/regulation/homo_sapiens/homo_sapiens.GRCh37.Regulatory_Build.regulatory_features.20191101.gff.gz,files,d41d8cd98f00b204e9800998ecf8427e
 hg19-fasta,fasta,http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz,files,806c02398f5ac5da8ffd6da2d1d5d1a9
 hg19-fasta_txome,fasta,ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh37.75.cdna.all.fa.gz,files,fdc309998a384129b364ac630b42b54a
 hg19-gencode_gtf,gencode_gtf,ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_32/GRCh37_mapping/gencode.v32lift37.annotation.gtf.gz,files,9b6f9f5ed80f4d14d4dbe4614db1c2bd
