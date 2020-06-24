@@ -121,19 +121,19 @@ looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm
 
 ## Step 3. Archive assets
 
-Assets are built locally now, but to serve them, we must archive them using `refgenieserver`. The general command is `refgenieserver archive -c <path/to/genomes.yaml>`. Since the archive process is generally lengthy, it makes sense to submit this job to the cluster. We can use looper to that.
+Assets are built locally now, but to serve them, we must archive them using `refgenieserver`. The general command is `refgenieserver archive -c <path/to/genomes.yaml>`. Since the archive process is generally lengthy, it makes sense to submit this job to the cluster. We can use looper to that. To start over completely, remove the archive file with: `rm config/refgenie_config_archive.yaml`
 
 ```
 ba
-looper run asset_pep/refgenieserver_archive_cfg.yaml -p local --sel-attr asset --sel-incl fasta --limit 2
+looper run asset_pep/refgenieserver_archive_cfg.yaml -p local --sel-attr asset --sel-incl fasta --limit 1
 looper run asset_pep/refgenieserver_archive_cfg.yaml -p slurm --sel-attr asset --sel-incl fasta 
 ```
 
 Check progress with:
 
 ```
-ll ../genomes/archive/*/*/*/_refgenie_build/*.flag
-cat ../genomes/archive_logs/submission/*.log
+grep Wait ../genomes/archive_logs/submission/*.log
+grep Error ../genomes/archive_logs/submission/*.log
 cat ../genomes/archive_logs/submission/*.log
 ```
 
@@ -146,11 +146,7 @@ aws s3 sync $REFGENIE_ARCHIVE s3://refgenie --profile refgenie
 
 ## Step 4. Deploy server 
 
-```
-refgenieserver serve genomes.yaml
-```
-
-Changes to the refgenie config files with automatically trigger deploy jobs to push the updates to AWS ECS. There's a workflow for each the *master* and *staging* config file; if you change one, it will automatically deploy the correct thing.
+Now everything is ready to deploy. If using refgenieserver directly, you'll run `refgenieserver serve config/refgenieserver_archive_cfg`. We're hosting this repository on AWS and use GitHub Actions to trigger  trigger deploy jobs to push the updates to AWS ECS whenever a change is detected in the config file. 
 
 ```
 ga -A; gcm "Deploy to ECS"; gpoh
