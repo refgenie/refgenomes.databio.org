@@ -55,18 +55,29 @@ eido validate refgenie_build_cfg.yaml -s http://schema.databio.org/refgenie/refg
 
 ## Setup
 
+In this guide we'll use environment variables to keep track of where stuff goes.
+
+- `BASEDIR` points to our parent folder where we'll do all the building/archiving
+- `GENOMES` points to pipeline output (referenced in the project config)
+- `REFGENIE_RAW` points to a folder where the downloaded raw files are kept
+- `REFGENIE` points to the refgenie config file
+- `REFGENIE_ARCHIVE` points to the location where we'll store the actual archives
+
 ```
 #export BASEDIR=$HOME/code/sandbox/refgenie_deploy
 #export REFGENIE_RAW=$BASEDIR/refgenie_raw
-export BASEDIR=$PROJECT/deploy/rg.databio.org
+export BASEDIR=$PROJECT/deploy/refgenomes_primary
+export GENOMES=$BASEDIR/genomes
+export REFGENIE_RAW=/project/shefflab/www/refgenie_raw
+export REFGENIE=$BASEDIR/refgenomes.databio.org/config/refgenie_config.yaml
+export REFGENIE_ARCHIVE=$GENOMES/archive
+```
+
+To start, clone this repository:
+
+```
 cd $BASEDIR
 git clone git@github.com:refgenie/refgenomes.databio.org.git
-```
-
-GENOMES points to pipeline output (referenced in the project config)
-
-```
-export GENOMES=$BASEDIR/genomes
 ```
 
 ## Step 1: Download input files
@@ -75,20 +86,22 @@ Many of the assets require some input files, and we have to make sure we have th
 
 ```
 cd refgenomes.databio.org
-export REFGENIE_RAW=/project/shefflab/www/refgenie_raw
 mkdir -p $REFGENIE_RAW
 looper run asset_pep/refgenie_build_cfg.yaml -p local --amend getfiles
 ```
 
+Make sure there were no errors:
+
+```
+ll ../genomes/*/*/*/_refgenie_build/*.flag
+ll ../genomes/*/*/*/_refgenie_build/*failed.flag
+ll ../genomes/*/*/*/_refgenie_build/*completed.flag
+cat ../genomes/submission/*.log
+```
+
 ## Step 2: Build assets
 
-Once files are present locally, we can run `refgenie build` on each asset specified in the sample_table (`assets.csv`):
-
-```
-export REFGENIE=$BASEDIR/refgenomes.databio.org/config/refgenie_config.yaml
-```
-
-We have to submit fasta assets first:
+Once files are present locally, we can run `refgenie build` on each asset specified in the sample_table (`assets.csv`). We have to submit fasta assets first:
 
 ```
 looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl fasta
@@ -97,7 +110,7 @@ looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --
 This will create one job for each *asset*. Monitor job progress with: 
 
 ```
-looper check asset_pep/refgenie_build_cfg.yaml  # this doesn't work? the pipeline doesn't produce flags
+looper check asset_pep/refgenie_build_cfg.yaml  # TODO: this doesn't work because the pipeline doesn't produce flags...
 ```
 
 To run all the asset types:
@@ -108,24 +121,27 @@ looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm
 
 ## Step 3. Archive assets
 
-Assets are built locally now, but to serve them, we must archive them using `refgenieserver`. The command is simple:
-
-```
-refgenieserver archive -c <path/to/genomes.yaml>
-```
-
-Since the archive process is generally lengthy, it makes sense to submit this job to the cluster. We can use looper to that.
+Assets are built locally now, but to serve them, we must archive them using `refgenieserver`. The general command is `refgenieserver archive -c <path/to/genomes.yaml>`. Since the archive process is generally lengthy, it makes sense to submit this job to the cluster. We can use looper to that.
 
 ```
 ba
-export REFGENIE_ARCHIVE=$GENOMES/archive
-looper run asset_pep/refgenieserver_archive_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl fasta 
+looper run asset_pep/refgenieserver_archive_cfg.yaml -p local --sel-attr asset --sel-incl fasta --limit 2
+looper run asset_pep/refgenieserver_archive_cfg.yaml -p slurm --sel-attr asset --sel-incl fasta 
 ```
 
-Now we'll sync to aws. Use the refgenie credentials (here added with `--profile refgenie`, which should be preconfigured with `aws configure`)
+Check progress with:
 
 ```
-aws s3 sync $REFGENIE_ARCHIVE s3://cloud.databio.org/refgenie --profile refgenie
+ll ../genomes/archive/*/*/*/_refgenie_build/*.flag
+cat ../genomes/archive_logs/submission/*.log
+cat ../genomes/archive_logs/submission/*.log
+```
+
+Now the archives should be built, so we'll sync them to AWS. Use the refgenie credentials (here added with `--profile refgenie`, which should be preconfigured with `aws configure`)
+
+
+```
+aws s3 sync $REFGENIE_ARCHIVE s3://refgenie --profile refgenie
 ```
 
 ## Step 4. Deploy server 
