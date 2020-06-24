@@ -1,9 +1,3 @@
-config_version: 0.3
-genome_folder: $GENOMES
-genome_archive_folder: $GENOMES/archive
-genome_archive_config: refgenie_config_archive.yaml
-remote_url_base: https://refgenie.s3.amazonaws.com
-genome_servers: ['http://refgenomes.databio.org']
 genomes:
   rCRSd:
     assets:
@@ -18,7 +12,7 @@ genomes:
               chrom_sizes: rCRSd.chrom.sizes
             asset_digest: 4eb430296bc02ed7e4006624f1d5ac53
             asset_parents: []
-            archive_digest: 923140fc52ead8bbd46619f122e25dcb
+            archive_digest: fd060731de97bf48cb40922bd6c60da9
             archive_size: 8.6KB
             asset_size: 38.7KB
             asset_children: []
@@ -38,6 +32,10 @@ genomes:
               chrom_sizes: hg38.chrom.sizes
             asset_digest: 59fed5ec3c3a95bc5709b24b8f2cf7bf
             asset_parents: []
+            archive_digest: 999b36427211f99128314a7807246511
+            archive_size: 833.4MB
+            asset_size: 2.9GB
+            asset_children: []
         default_tag: default
       fasta_txome:
         asset_description: cDNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
@@ -113,7 +111,7 @@ genomes:
               chrom_sizes: hg38_cdna.chrom.sizes
             asset_digest: e452acaa6f4b4f28c29ce6e06beb07e0
             asset_parents: []
-            archive_digest: bd9f41d3667e22bc494f9b35885c2dfe
+            archive_digest: 511c0b3278269616645a09fe6ded9980
             archive_size: 69.1MB
             asset_size: 363.9MB
             asset_children: []
@@ -133,6 +131,10 @@ genomes:
               chrom_sizes: hg19.chrom.sizes
             asset_digest: 7ce3b03e30d6ef76af8c3ad09a141dfc
             asset_parents: []
+            archive_digest: c52a7b592124ee12a3cc5f110b0415b7
+            archive_size: 905.3MB
+            asset_size: 3.0GB
+            asset_children: []
         default_tag: default
       gencode_gtf:
         asset_description: GTF annotation asset which provides access to all annotated transcripts which make up an Ensembl gene set.
@@ -206,6 +208,10 @@ genomes:
               chrom_sizes: hg18.chrom.sizes
             asset_digest: 0fc1d00b994befc9a00695b15b048af8
             asset_parents: []
+            archive_digest: 285aca620fb182d1e8b8b2e1b18008dc
+            archive_size: 899.7MB
+            asset_size: 3.0GB
+            asset_children: []
         default_tag: default
     genome_description: The NCBI36 reference sequence from UCSC. The individual chromosome files were concatenated prior to the asset building.
     genome_digest: 637e83a0492a1092720d640d6f7b6c89e05f8a73bff27c48
@@ -260,6 +266,10 @@ genomes:
               chrom_sizes: rn6.chrom.sizes
             asset_digest: 9be5749c2a0a50d5f1a4979da5d9de1a
             asset_parents: []
+            archive_digest: 885f626a459168b2af1c8c03ba593ddc
+            archive_size: 847.3MB
+            asset_size: 2.7GB
+            asset_children: []
         default_tag: default
     genome_description: The GCA_000001895.4_Rnor_6.0_genomic from NCBI
     genome_digest: 0d9edad3addf6abca3bc507d86f06978d51c1b52692370ab
@@ -277,7 +287,7 @@ genomes:
             asset_digest: f197c1ac4b3e4c5dd013bd2021bb32e6
             asset_parents: []
             asset_children: ['hg38_chr22/hisat2_index:default', 'hg38_chr22/star_index:default', 'hg38_chr22/bismark_bt1_index:default', 'hg38_chr22/suffixerator_index:default']
-            archive_digest: 51e2547121ae754193bc11852c442e15
+            archive_digest: fd5b7c35fff616c68e594135ce8685c3
             archive_size: 11.7MB
             asset_size: 41.4MB
         default_tag: default
@@ -355,6 +365,10 @@ genomes:
               chrom_sizes: mm10.chrom.sizes
             asset_digest: 4afce2deeceae65b4c0987b9297cf441
             asset_parents: []
+            archive_digest: f0940fe873e09239dc87e397dea24f62
+            archive_size: 763.4MB
+            asset_size: 2.6GB
+            asset_children: []
         default_tag: default
     genome_description: The GCA_000001635.5 seqs_for_alignment_pipelines from NCBI
     genome_digest: b55fbc8f55f60d69faf2dc9f7f0de3d753b369649ce544f7
@@ -371,6 +385,10 @@ genomes:
               chrom_sizes: mouse_chrM2x.chrom.sizes
             asset_digest: 8dfe402f7d29d5b036dd8937119e4404
             asset_parents: []
+            archive_digest: 224355a44bdc46047e0f3e233292b1d7
+            archive_size: 9.0KB
+            asset_size: 38.4KB
+            asset_children: []
         default_tag: default
     genome_description: The mouse mitochondrial genome, doubled
     genome_digest: e841943da75cb7d907a3f435dc1b7407394797815ae44686
@@ -387,6 +405,10 @@ genomes:
               chrom_sizes: dm6.chrom.sizes
             asset_digest: 8620c745dbe7bfcdab89aacc155077db
             asset_parents: []
+            archive_digest: da1ea8dcfed8fa013264207968562281
+            archive_size: 43.5MB
+            asset_size: 139.0MB
+            asset_children: []
         default_tag: default
     genome_description: Drosophila reference genome GCF_000001215.4 from NCBI.
     genome_digest: ffe91a81e875ed2264151d71d35404cbbea162889ee371d3
@@ -403,7 +425,7 @@ genomes:
               chrom_sizes: hg19_cdna.chrom.sizes
             asset_digest: e146e5c1b8fd57b9f09ab46ec36adbad
             asset_parents: []
-            archive_digest: 7e24f61de7a5992f1a46076bcae80b57
+            archive_digest: 38fc8330555375662ebaa2d691e87cd4
             archive_size: 60.7MB
             asset_size: 315.1MB
             asset_children: []
@@ -423,6 +445,10 @@ genomes:
               chrom_sizes: hg38_noalt_decoy.chrom.sizes
             asset_digest: 3701eaccf6e8b6637a8b8384abfdc052
             asset_parents: []
+            archive_digest: de3ed8b4a32a1deeeb859e8fcf4ed264
+            archive_size: 835.0MB
+            asset_size: 2.9GB
+            asset_children: []
         default_tag: default
     genome_description: The GRCh38 reference with decoy and without alternative haplotypes from NCBI
     genome_digest: 169c49ce7d61068a4dadf3fd6be030b3f6305f3ff8ba4e8d
@@ -439,7 +465,7 @@ genomes:
               chrom_sizes: hg38_mm10.chrom.sizes
             asset_digest: 463540bce12ce47ae485f4430a5dbd29
             asset_parents: []
-            archive_digest: e2dabf05e8c8455136ffe73ebeae8002
+            archive_digest: 681450da57c98026d0515c8c9356243d
             archive_size: 1.7GB
             asset_size: 5.5GB
             asset_children: []
@@ -459,6 +485,10 @@ genomes:
               chrom_sizes: human_alu.chrom.sizes
             asset_digest: 9e8fa06e6125f89be4fb974879cb91a6
             asset_parents: []
+            archive_digest: 2f2fe4fb5d209b568cb4521739b305c2
+            archive_size: 805B
+            asset_size: 9.1KB
+            asset_children: []
         default_tag: default
     genome_description: Manually curated human ALU repeats from GenBank, obtained from ref_decoy
     genome_digest: 90982e6c3ed7a12b81d8ee2f24a565f975009e0816710d0a
@@ -475,6 +505,10 @@ genomes:
               chrom_sizes: human_repeats.chrom.sizes
             asset_digest: 4a749d4e74b057d0efa0c8398ebcb871
             asset_parents: []
+            archive_digest: 3dc291927b9f8772501cc9d9dac6b44c
+            archive_size: 34.1KB
+            asset_size: 153.2KB
+            asset_children: []
         default_tag: default
     genome_description: Manually curated collection of human repeat sequences from GenBank
     genome_digest: 1a849298979dfc209136afaf022967fbad7959beba8f2ee7
@@ -491,6 +525,10 @@ genomes:
               chrom_sizes: hs38d1.chrom.sizes
             asset_digest: eddf5466faa3391a7114e87648466dcb
             asset_parents: []
+            archive_digest: fb4611196fea79c749ff69bb5a89d1c6
+            archive_size: 1.7MB
+            asset_size: 6.0MB
+            asset_children: []
         default_tag: default
     genome_description: Decoy version 1 for GRCh38 from NCBI
     genome_digest: 5dc3e6688b41b347683a4b3fd6dac4bf6b21a5f562548f58
@@ -507,6 +545,10 @@ genomes:
               chrom_sizes: hg18_cdna.chrom.sizes
             asset_digest: 456bf4dd716de36373539acf2595baf3
             asset_parents: []
+            archive_digest: 5d28579306de472ca3f82c6d79fc5d50
+            archive_size: 26.4MB
+            asset_size: 129.8MB
+            asset_children: []
         default_tag: default
     genome_description: The NCBI36 cDNA reference sequence from Ensembl
     genome_digest: 2b0ab75f33466ebba2b87a196a60baff707eed19f8060672
@@ -523,7 +565,7 @@ genomes:
               chrom_sizes: mm10_cdna.chrom.sizes
             asset_digest: 8192beb5916da1fdc5640b529fc7bb97
             asset_parents: []
-            archive_digest: 28a41d7a2ea821d670cbc82285b5b9df
+            archive_digest: 59e761c935469db303df88ede4530d89
             archive_size: 51.6MB
             asset_size: 247.6MB
             asset_children: []
@@ -543,6 +585,10 @@ genomes:
               chrom_sizes: mm10_primary.chrom.sizes
             asset_digest: cbbc1680a4cea8e43f14bbdc39d37162
             asset_parents: []
+            archive_digest: eee83302c5af81a76021fc2769110665
+            archive_size: 828.8MB
+            asset_size: 2.6GB
+            asset_children: []
         default_tag: default
     genome_description: UCSC mm10 assembly with primary chromosomes only
     genome_digest: 7ec88fdeadfce0139622e812f0421c8966d84a28980a1602
@@ -559,7 +605,7 @@ genomes:
               chrom_sizes: hg38_primary.chrom.sizes
             asset_digest: ce4085959123ca656e7059f8b14ffc86
             asset_parents: []
-            archive_digest: e20e64e1baea5a9fbf9ba81a5adce884
+            archive_digest: 52fb34a36ead7b566014a70e69eb526b
             archive_size: 904.6MB
             asset_size: 2.9GB
             asset_children: []
@@ -579,6 +625,10 @@ genomes:
               chrom_sizes: rn6_cdna.chrom.sizes
             asset_digest: b776fbe954753566849d413c5e7d3fed
             asset_parents: []
+            archive_digest: 93347ea090c8bc72691823cee73da52a
+            archive_size: 20.2MB
+            asset_size: 75.4MB
+            asset_children: []
         default_tag: default
     genome_description: The Rnor_6.0 cDNA reference sequence from Ensembl
     genome_digest: c68b7a4673a3e31da2a10ca5b9fc7845381930ddf068367a
@@ -595,6 +645,10 @@ genomes:
               chrom_sizes: human_alphasat.chrom.sizes
             asset_digest: 5b2d2705cff9c9315add79b3f0d793ad
             asset_parents: []
+            archive_digest: 4dc44e8cef112ac6ca4006a6115e8ba1
+            archive_size: 21.5KB
+            asset_size: 107.4KB
+            asset_children: []
         default_tag: default
     genome_description: Manually curated human alpha-satellite sequences from GenBank, obtained from ref_decoy
     genome_digest: b7527871d779e5843e765a2ed94a00a064b7af8bba3a42fd
@@ -611,6 +665,16 @@ genomes:
               chrom_sizes: human_rDNA.chrom.sizes
             asset_digest: e18c0446f55f2584bf58f04076400ce6
             asset_parents: []
+            archive_digest: 8a7ec33fe61a35cc1a3dbada6e90e5c7
+            archive_size: 12.4KB
+            asset_size: 48.9KB
+            asset_children: []
         default_tag: default
     genome_description: Human rDNA sequences curated from GenBank
     genome_digest: c4524d729c745246cd2a47476b46922ce359e9a16fcdae6b
+genome_folder: $GENOMES
+config_version: 0.3
+genome_servers: ['http://refgenomes.databio.org']
+genome_archive_folder: $GENOMES/archive
+genome_archive_config: refgenie_config_archive.yaml
+remote_url_base: https://refgenie.s3.amazonaws.com
