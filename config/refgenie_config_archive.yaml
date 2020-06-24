@@ -5,6 +5,567 @@ genome_archive_config: refgenie_config_archive.yaml
 remote_url_base: https://refgenie.s3.amazonaws.com
 genome_servers: ['http://refgenomes.databio.org']
 genomes:
+  rCRSd:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: rCRSd.fa
+              fai: rCRSd.fa.fai
+              chrom_sizes: rCRSd.chrom.sizes
+            asset_digest: 4eb430296bc02ed7e4006624f1d5ac53
+            asset_parents: []
+            archive_digest: 923140fc52ead8bbd46619f122e25dcb
+            archive_size: 8.6KB
+            asset_size: 38.7KB
+            asset_children: []
+        default_tag: default
+    genome_description: The revised cambridge reference sequence. This is the human mitochondrial reference genome
+    genome_digest: 32a37a52a377d95bfd4b3d66763e1396a4480f34ab5c318a
+  hg38:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: hg38.fa
+              fai: hg38.fa.fai
+              chrom_sizes: hg38.chrom.sizes
+            asset_digest: 59fed5ec3c3a95bc5709b24b8f2cf7bf
+            asset_parents: []
+        default_tag: default
+      fasta_txome:
+        asset_description: cDNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta_txome
+            seek_keys:
+              fasta_txome: hg38.fa
+              fai: hg38.fa.fai
+              chrom_sizes: hg38.chrom.sizes
+            asset_digest: e452acaa6f4b4f28c29ce6e06beb07e0
+            asset_parents: []
+        default_tag: default
+      gencode_gtf:
+        asset_description: GTF annotation asset which provides access to all annotated transcripts which make up an Ensembl gene set.
+        tags:
+          default:
+            asset_path: gencode_gtf
+            seek_keys:
+              gencode_gtf: hg38.gtf.gz
+            asset_digest: 55cad7e24235fa842628a3c1f9542c1f
+            asset_parents: []
+        default_tag: default
+      dbsnp:
+        asset_description: The database of single nucleotide polymorphisms (SNPs) and multiple small-scale variations that include insertions/deletions, microsatellites, and non-polymorphic variants
+        tags:
+          default:
+            asset_path: dbsnp
+            seek_keys:
+              dbsnp: hg38_dbSNP.gz
+              tabix: hg38_dbSNP.gz.tbi
+            asset_digest: b17012507f8600ce2ff715d48368939d
+            asset_parents: []
+        default_tag: default
+      ensembl_gtf:
+        asset_description: Ensembl GTF, TSS, and gene body annotation
+        tags:
+          default:
+            asset_path: ensembl_gtf
+            seek_keys:
+              ensembl_gtf: hg38.gtf.gz
+              ensembl_tss: hg38_ensembl_TSS.bed
+              ensembl_gene_body: hg38_ensembl_gene_body.bed
+            asset_digest: 247fa6fbf98ce6b5773cbed0bdd86fef
+            asset_parents: []
+        default_tag: default
+      refgene_anno:
+        asset_description: gene, TSS, exon, intron, and premature mRNA annotation files
+        tags:
+          default:
+            asset_path: refgene_anno
+            seek_keys:
+              refgene_anno: hg38_refGene.txt.gz
+              refgene_tss: hg38_TSS.bed
+              refgene_exon: hg38_exons.bed
+              refgene_intron: hg38_introns.bed
+              refgene_pre_mRNA: hg38_pre-mRNA.bed
+            asset_digest: 4d0ff5d90ac529a4fffdd5704d8ec6d9
+            asset_parents: []
+        default_tag: default
+    genome_description: The GCA_000001405.15 GRCh38_no_alt_analysis_set from NCBI
+    genome_digest: b3422045db2293738bcb9973c1a0acdfabff3a0a3e1830bc
+  hg38_cdna:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: hg38_cdna.fa
+              fai: hg38_cdna.fa.fai
+              chrom_sizes: hg38_cdna.chrom.sizes
+            asset_digest: e452acaa6f4b4f28c29ce6e06beb07e0
+            asset_parents: []
+            archive_digest: bd9f41d3667e22bc494f9b35885c2dfe
+            archive_size: 69.1MB
+            asset_size: 363.9MB
+            asset_children: []
+        default_tag: default
+    genome_description: The GRCh38 cDNA reference sequence from Ensembl
+    genome_digest: b24ad420abde037e4995290ea8fdea2de6aa6576c2c0cc5d
+  hg19:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: hg19.fa
+              fai: hg19.fa.fai
+              chrom_sizes: hg19.chrom.sizes
+            asset_digest: 7ce3b03e30d6ef76af8c3ad09a141dfc
+            asset_parents: []
+        default_tag: default
+      gencode_gtf:
+        asset_description: GTF annotation asset which provides access to all annotated transcripts which make up an Ensembl gene set.
+        tags:
+          default:
+            asset_path: gencode_gtf
+            seek_keys:
+              gencode_gtf: hg19.gtf.gz
+            asset_digest: 3ecbecc25451ce6ae3557a4011510d73
+            asset_parents: []
+        default_tag: default
+      dbsnp:
+        asset_description: The database of single nucleotide polymorphisms (SNPs) and multiple small-scale variations that include insertions/deletions, microsatellites, and non-polymorphic variants
+        tags:
+          default:
+            asset_path: dbsnp
+            seek_keys:
+              dbsnp: hg19_dbSNP.gz
+              tabix: hg19_dbSNP.gz.tbi
+            asset_digest: 6564a0e963d04c4f6ee34f3d6e27361d
+            asset_parents: []
+        default_tag: default
+      refgene_anno:
+        asset_description: gene, TSS, exon, intron, and premature mRNA annotation files
+        tags:
+          default:
+            asset_path: refgene_anno
+            seek_keys:
+              refgene_anno: hg19_refGene.txt.gz
+              refgene_tss: hg19_TSS.bed
+              refgene_exon: hg19_exons.bed
+              refgene_intron: hg19_introns.bed
+              refgene_pre_mRNA: hg19_pre-mRNA.bed
+            asset_digest: f4e6d4a88c21af08d61443abcb5b7d4b
+            asset_parents: []
+        default_tag: default
+    genome_description: The GRCh37 reference sequence from UCSC
+    genome_digest: fb7002132265e88a91859e3c743fc7a898a057019fc11456
+  hg18:
+    assets:
+      fasta_txome:
+        asset_description: cDNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta_txome
+            seek_keys:
+              fasta_txome: hg18.fa
+              fai: hg18.fa.fai
+              chrom_sizes: hg18.chrom.sizes
+            asset_digest: 456bf4dd716de36373539acf2595baf3
+            asset_parents: []
+        default_tag: default
+      gencode_gtf:
+        asset_description: GTF annotation asset which provides access to all annotated transcripts which make up an Ensembl gene set.
+        tags:
+          default:
+            asset_path: gencode_gtf
+            seek_keys:
+              gencode_gtf: hg18.gtf.gz
+            asset_digest: f08089c9fb04f4d48cb76d703877cb47
+            asset_parents: []
+        default_tag: default
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: hg18.fa
+              fai: hg18.fa.fai
+              chrom_sizes: hg18.chrom.sizes
+            asset_digest: 0fc1d00b994befc9a00695b15b048af8
+            asset_parents: []
+        default_tag: default
+    genome_description: The NCBI36 reference sequence from UCSC. The individual chromosome files were concatenated prior to the asset building.
+    genome_digest: 637e83a0492a1092720d640d6f7b6c89e05f8a73bff27c48
+  rn6:
+    assets:
+      fasta_txome:
+        asset_description: cDNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta_txome
+            seek_keys:
+              fasta_txome: rn6.fa
+              fai: rn6.fa.fai
+              chrom_sizes: rn6.chrom.sizes
+            asset_digest: b776fbe954753566849d413c5e7d3fed
+            asset_parents: []
+        default_tag: default
+      ensembl_gtf:
+        asset_description: Ensembl GTF, TSS, and gene body annotation
+        tags:
+          default:
+            asset_path: ensembl_gtf
+            seek_keys:
+              ensembl_gtf: rn6.gtf.gz
+              ensembl_tss: rn6_ensembl_TSS.bed
+              ensembl_gene_body: rn6_ensembl_gene_body.bed
+            asset_digest: 813146b78037a00e15f4f119ddf0d6d2
+            asset_parents: []
+        default_tag: default
+      refgene_anno:
+        asset_description: gene, TSS, exon, intron, and premature mRNA annotation files
+        tags:
+          default:
+            asset_path: refgene_anno
+            seek_keys:
+              refgene_anno: rn6_refGene.txt.gz
+              refgene_tss: rn6_TSS.bed
+              refgene_exon: rn6_exons.bed
+              refgene_intron: rn6_introns.bed
+              refgene_pre_mRNA: rn6_pre-mRNA.bed
+            asset_digest: 5528f7841879ac0b108194f046a3687d
+            asset_parents: []
+        default_tag: default
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: rn6.fa
+              fai: rn6.fa.fai
+              chrom_sizes: rn6.chrom.sizes
+            asset_digest: 9be5749c2a0a50d5f1a4979da5d9de1a
+            asset_parents: []
+        default_tag: default
+    genome_description: The GCA_000001895.4_Rnor_6.0_genomic from NCBI
+    genome_digest: 0d9edad3addf6abca3bc507d86f06978d51c1b52692370ab
+  hg38_chr22:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: hg38_chr22.fa
+              fai: hg38_chr22.fa.fai
+              chrom_sizes: hg38_chr22.chrom.sizes
+            asset_digest: f197c1ac4b3e4c5dd013bd2021bb32e6
+            asset_parents: []
+            asset_children: ['hg38_chr22/hisat2_index:default', 'hg38_chr22/star_index:default', 'hg38_chr22/bismark_bt1_index:default', 'hg38_chr22/suffixerator_index:default']
+            archive_digest: 51e2547121ae754193bc11852c442e15
+            archive_size: 11.7MB
+            asset_size: 41.4MB
+        default_tag: default
+      hisat2_index:
+        asset_description: Genome index for HISAT2, produced with hisat2-build
+        tags:
+          default:
+            asset_path: hisat2_index
+            seek_keys:
+              hisat2_index: hg38_chr22
+            asset_digest: c24e249f2fdb61a5f364f862eb400ae5
+            asset_parents: ['hg38_chr22/fasta:default']
+        default_tag: default
+      star_index:
+        asset_description: Genome index for STAR RNA-seq aligner, produced with STAR --runMode genomeGenerate
+        tags:
+          default:
+            asset_path: star_index
+            seek_keys:
+              star_index: .
+            asset_digest: 0b2bf0a3543b4bf72584df429c24a63b
+            asset_parents: ['hg38_chr22/fasta:default']
+        default_tag: default
+      bismark_bt2_index:
+        asset_description: Genome index for Bisulfite-Seq applications, produced by bismark_genome_preparation using bowtie2
+        tags:
+          default:
+            asset_path: bismark_bt2_index
+            seek_keys:
+              bismark_bt2_index: .
+            asset_digest: a79889b8cc0e7fbda6d3ca3cd9c6e651
+        default_tag: default
+      bismark_bt1_index:
+        asset_description: Genome index for Bisulfite-Seq applications, produced by bismark_genome_preparation using bowtie1
+        tags:
+          default:
+            asset_path: bismark_bt1_index
+            seek_keys:
+              bismark_bt1_index: .
+            asset_digest: a79889b8cc0e7fbda6d3ca3cd9c6e651
+            asset_parents: ['hg38_chr22/fasta:default']
+        default_tag: default
+      suffixerator_index:
+        asset_description: Enhanced suffix array index for genomes using gt (GenomeTools) suffixerator program
+        tags:
+          default:
+            asset_path: suffixerator_index
+            seek_keys:
+              esa: hg38_chr22.sft
+            asset_digest: b7d672d520ecc6e8f72e057128a6394c
+            asset_parents: ['hg38_chr22/fasta:default']
+        default_tag: default
+    genome_digest: 201be65e4f4598f97a708c14124393e222f47ca609078f4f
+    genome_description: No description
+  mm10:
+    assets:
+      gencode_gtf:
+        asset_description: GTF annotation asset which provides access to all annotated transcripts which make up an Ensembl gene set.
+        tags:
+          default:
+            asset_path: gencode_gtf
+            seek_keys:
+              gencode_gtf: mm10.gtf.gz
+            asset_digest: 83a765227a92b2bfa774378eacf9b660
+            asset_parents: []
+        default_tag: default
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: mm10.fa
+              fai: mm10.fa.fai
+              chrom_sizes: mm10.chrom.sizes
+            asset_digest: 4afce2deeceae65b4c0987b9297cf441
+            asset_parents: []
+        default_tag: default
+    genome_description: The GCA_000001635.5 seqs_for_alignment_pipelines from NCBI
+    genome_digest: b55fbc8f55f60d69faf2dc9f7f0de3d753b369649ce544f7
+  mouse_chrM2x:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: mouse_chrM2x.fa
+              fai: mouse_chrM2x.fa.fai
+              chrom_sizes: mouse_chrM2x.chrom.sizes
+            asset_digest: 8dfe402f7d29d5b036dd8937119e4404
+            asset_parents: []
+        default_tag: default
+    genome_description: The mouse mitochondrial genome, doubled
+    genome_digest: e841943da75cb7d907a3f435dc1b7407394797815ae44686
+  dm6:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: dm6.fa
+              fai: dm6.fa.fai
+              chrom_sizes: dm6.chrom.sizes
+            asset_digest: 8620c745dbe7bfcdab89aacc155077db
+            asset_parents: []
+        default_tag: default
+    genome_description: Drosophila reference genome GCF_000001215.4 from NCBI.
+    genome_digest: ffe91a81e875ed2264151d71d35404cbbea162889ee371d3
+  hg19_cdna:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: hg19_cdna.fa
+              fai: hg19_cdna.fa.fai
+              chrom_sizes: hg19_cdna.chrom.sizes
+            asset_digest: e146e5c1b8fd57b9f09ab46ec36adbad
+            asset_parents: []
+            archive_digest: 7e24f61de7a5992f1a46076bcae80b57
+            archive_size: 60.7MB
+            asset_size: 315.1MB
+            asset_children: []
+        default_tag: default
+    genome_description: The GRCh37 cDNA reference sequence from Ensembl
+    genome_digest: 6b45ad5e3dfce38b39712e19008a4ff79e91c18769fe146b
+  hg38_noalt_decoy:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: hg38_noalt_decoy.fa
+              fai: hg38_noalt_decoy.fa.fai
+              chrom_sizes: hg38_noalt_decoy.chrom.sizes
+            asset_digest: 3701eaccf6e8b6637a8b8384abfdc052
+            asset_parents: []
+        default_tag: default
+    genome_description: The GRCh38 reference with decoy and without alternative haplotypes from NCBI
+    genome_digest: 169c49ce7d61068a4dadf3fd6be030b3f6305f3ff8ba4e8d
+  hg38_mm10:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: hg38_mm10.fa
+              fai: hg38_mm10.fa.fai
+              chrom_sizes: hg38_mm10.chrom.sizes
+            asset_digest: 463540bce12ce47ae485f4430a5dbd29
+            asset_parents: []
+            archive_digest: e2dabf05e8c8455136ffe73ebeae8002
+            archive_size: 1.7GB
+            asset_size: 5.5GB
+            asset_children: []
+        default_tag: default
+    genome_description: Merged genome with primary chromosomes of hg38 and mm10 from UCSC.
+    genome_digest: 7c8264246d3987b56b7a8bca2fb90bc5bf780d54c898a4e0
+  human_alu:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: human_alu.fa
+              fai: human_alu.fa.fai
+              chrom_sizes: human_alu.chrom.sizes
+            asset_digest: 9e8fa06e6125f89be4fb974879cb91a6
+            asset_parents: []
+        default_tag: default
+    genome_description: Manually curated human ALU repeats from GenBank, obtained from ref_decoy
+    genome_digest: 90982e6c3ed7a12b81d8ee2f24a565f975009e0816710d0a
+  human_repeats:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: human_repeats.fa
+              fai: human_repeats.fa.fai
+              chrom_sizes: human_repeats.chrom.sizes
+            asset_digest: 4a749d4e74b057d0efa0c8398ebcb871
+            asset_parents: []
+        default_tag: default
+    genome_description: Manually curated collection of human repeat sequences from GenBank
+    genome_digest: 1a849298979dfc209136afaf022967fbad7959beba8f2ee7
+  hs38d1:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: hs38d1.fa
+              fai: hs38d1.fa.fai
+              chrom_sizes: hs38d1.chrom.sizes
+            asset_digest: eddf5466faa3391a7114e87648466dcb
+            asset_parents: []
+        default_tag: default
+    genome_description: Decoy version 1 for GRCh38 from NCBI
+    genome_digest: 5dc3e6688b41b347683a4b3fd6dac4bf6b21a5f562548f58
+  hg18_cdna:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: hg18_cdna.fa
+              fai: hg18_cdna.fa.fai
+              chrom_sizes: hg18_cdna.chrom.sizes
+            asset_digest: 456bf4dd716de36373539acf2595baf3
+            asset_parents: []
+        default_tag: default
+    genome_description: The NCBI36 cDNA reference sequence from Ensembl
+    genome_digest: 2b0ab75f33466ebba2b87a196a60baff707eed19f8060672
+  mm10_cdna:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: mm10_cdna.fa
+              fai: mm10_cdna.fa.fai
+              chrom_sizes: mm10_cdna.chrom.sizes
+            asset_digest: 8192beb5916da1fdc5640b529fc7bb97
+            asset_parents: []
+            archive_digest: 28a41d7a2ea821d670cbc82285b5b9df
+            archive_size: 51.6MB
+            asset_size: 247.6MB
+            asset_children: []
+        default_tag: default
+    genome_description: The GRCm38 cDNA reference sequence from Ensembl
+    genome_digest: 065b46b4f1ce13f3e2c511d757e9f59a6f51202de996e661
+  mm10_primary:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: mm10_primary.fa
+              fai: mm10_primary.fa.fai
+              chrom_sizes: mm10_primary.chrom.sizes
+            asset_digest: cbbc1680a4cea8e43f14bbdc39d37162
+            asset_parents: []
+        default_tag: default
+    genome_description: UCSC mm10 assembly with primary chromosomes only
+    genome_digest: 7ec88fdeadfce0139622e812f0421c8966d84a28980a1602
+  hg38_primary:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            seek_keys:
+              fasta: hg38_primary.fa
+              fai: hg38_primary.fa.fai
+              chrom_sizes: hg38_primary.chrom.sizes
+            asset_digest: ce4085959123ca656e7059f8b14ffc86
+            asset_parents: []
+            archive_digest: e20e64e1baea5a9fbf9ba81a5adce884
+            archive_size: 904.6MB
+            asset_size: 2.9GB
+            asset_children: []
+        default_tag: default
+    genome_description: UCSC hg38 assembly with primary chromosomes only
+    genome_digest: 7ee3bbe319f527577d136246607f3b6004f4b5bf21ba25f1
   rn6_cdna:
     assets:
       fasta:
@@ -18,340 +579,13 @@ genomes:
               chrom_sizes: rn6_cdna.chrom.sizes
             asset_digest: b776fbe954753566849d413c5e7d3fed
             asset_parents: []
-            archive_digest: 855117f90769e31ccce3de2454106561
-            archive_size: 20.2MB
-            asset_size: 75.4MB
-            asset_children: []
         default_tag: default
-    genome_description: The
+    genome_description: The Rnor_6.0 cDNA reference sequence from Ensembl
     genome_digest: c68b7a4673a3e31da2a10ca5b9fc7845381930ddf068367a
-  mm10_cdna:
-    genome_description: No description
-    genome_digest: No digest
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: mm10_cdna.fa
-              fai: mm10_cdna.fa.fai
-              chrom_sizes: mm10_cdna.chrom.sizes
-            archive_digest: 5c435044a56ebc92b145b092d559c5be
-            archive_size: 51.6MB
-            asset_size: 247.6MB
-            asset_parents: []
-            asset_children: []
-            asset_digest: 8192beb5916da1fdc5640b529fc7bb97
-  hg38:
-    genome_description: The
-    genome_digest: b3422045db2293738bcb9973c1a0acdfabff3a0a3e1830bc
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: hg38.fa
-              fai: hg38.fa.fai
-              chrom_sizes: hg38.chrom.sizes
-            archive_digest: 8404fe8a04b8c07d311a65ae48aebd1c
-            archive_size: 833.4MB
-            asset_size: 2.9GB
-            asset_parents: []
-            asset_children: []
-            asset_digest: 59fed5ec3c3a95bc5709b24b8f2cf7bf
-  hg38_mm10:
-    assets:
-      fasta:
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: hg38_mm10.fa
-              fai: hg38_mm10.fa.fai
-              chrom_sizes: hg38_mm10.chrom.sizes
-            archive_digest: c9bd68f6a5680fec7473e82ba414af93
-            archive_size: 1.7GB
-            asset_size: 5.5GB
-            asset_parents: []
-            asset_children: []
-            asset_digest: 463540bce12ce47ae485f4430a5dbd29
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-    genome_description: Merged
-    genome_digest: 7c8264246d3987b56b7a8bca2fb90bc5bf780d54c898a4e0
-  rCRSd:
-    genome_description: The
-    genome_digest: 32a37a52a377d95bfd4b3d66763e1396a4480f34ab5c318a
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: rCRSd.fa
-              fai: rCRSd.fa.fai
-              chrom_sizes: rCRSd.chrom.sizes
-            archive_digest: 51498eeda39efbd8841f1a5eec37cffd
-            archive_size: 8.6KB
-            asset_size: 41.4KB
-            asset_parents: []
-            asset_children: []
-            asset_digest: 4eb430296bc02ed7e4006624f1d5ac53
-  hg38_cdna:
-    genome_description: The
-    genome_digest: b24ad420abde037e4995290ea8fdea2de6aa6576c2c0cc5d
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: hg38_cdna.fa
-              fai: hg38_cdna.fa.fai
-              chrom_sizes: hg38_cdna.chrom.sizes
-            archive_digest: 899cd0a02c73b1b89cc31412d23c51e7
-            archive_size: 69.1MB
-            asset_size: 363.9MB
-            asset_parents: []
-            asset_children: []
-            asset_digest: e452acaa6f4b4f28c29ce6e06beb07e0
-  hg19:
-    genome_description: The
-    genome_digest: fb7002132265e88a91859e3c743fc7a898a057019fc11456
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: hg19.fa
-              fai: hg19.fa.fai
-              chrom_sizes: hg19.chrom.sizes
-            archive_digest: 3a7e4d5115f634d5c0f07cda643fefc5
-            archive_size: 905.3MB
-            asset_size: 3.0GB
-            asset_parents: []
-            asset_children: []
-            asset_digest: 7ce3b03e30d6ef76af8c3ad09a141dfc
-  hg19_cdna:
-    genome_description: The
-    genome_digest: 6b45ad5e3dfce38b39712e19008a4ff79e91c18769fe146b
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: hg19_cdna.fa
-              fai: hg19_cdna.fa.fai
-              chrom_sizes: hg19_cdna.chrom.sizes
-            archive_digest: 3d9e4d502a062d8dcdbf1684466cdc51
-            archive_size: 60.7MB
-            asset_size: 315.1MB
-            asset_parents: []
-            asset_children: []
-            asset_digest: e146e5c1b8fd57b9f09ab46ec36adbad
-  hg18:
-    genome_description: The
-    genome_digest: 637e83a0492a1092720d640d6f7b6c89e05f8a73bff27c48
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: hg18.fa
-              fai: hg18.fa.fai
-              chrom_sizes: hg18.chrom.sizes
-            archive_digest: 2bf495ba948bff870d675d2c89ccadd1
-            archive_size: 899.7MB
-            asset_size: 3.0GB
-            asset_parents: []
-            asset_children: []
-            asset_digest: 0fc1d00b994befc9a00695b15b048af8
-  hg18_cdna:
-    genome_description: The
-    genome_digest: 2b0ab75f33466ebba2b87a196a60baff707eed19f8060672
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: hg18_cdna.fa
-              fai: hg18_cdna.fa.fai
-              chrom_sizes: hg18_cdna.chrom.sizes
-            archive_digest: 3ac82aadf5c15ed5077c5d2083e2b53a
-            archive_size: 26.4MB
-            asset_size: 129.8MB
-            asset_parents: []
-            asset_children: []
-            asset_digest: 456bf4dd716de36373539acf2595baf3
-  mm10:
-    genome_description: No description
-    genome_digest: No digest
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: mm10.fa
-              fai: mm10.fa.fai
-              chrom_sizes: mm10.chrom.sizes
-            archive_digest: a0fe060f81c55ffffbe0ec4bc5f8fd85
-            archive_size: 763.4MB
-            asset_size: 2.6GB
-            asset_parents: []
-            asset_children: []
-            asset_digest: 4afce2deeceae65b4c0987b9297cf441
-  rn6:
-    genome_description: The
-    genome_digest: 0d9edad3addf6abca3bc507d86f06978d51c1b52692370ab
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: rn6.fa
-              fai: rn6.fa.fai
-              chrom_sizes: rn6.chrom.sizes
-            archive_digest: cc9281ca5edbe52b2013131dc109a4d3
-            archive_size: 847.3MB
-            asset_size: 2.7GB
-            asset_parents: []
-            asset_children: []
-            asset_digest: 9be5749c2a0a50d5f1a4979da5d9de1a
-  hs38d1:
-    genome_description: Decoy
-    genome_digest: 5dc3e6688b41b347683a4b3fd6dac4bf6b21a5f562548f58
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: hs38d1.fa
-              fai: hs38d1.fa.fai
-              chrom_sizes: hs38d1.chrom.sizes
-            archive_digest: 2c92b7a93e5c76b72f24d69ebc476c51
-            archive_size: 1.7MB
-            asset_size: 6.0MB
-            asset_parents: []
-            asset_children: []
-            asset_digest: eddf5466faa3391a7114e87648466dcb
-  hg38_noalt_decoy:
-    genome_description: The
-    genome_digest: 169c49ce7d61068a4dadf3fd6be030b3f6305f3ff8ba4e8d
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: hg38_noalt_decoy.fa
-              fai: hg38_noalt_decoy.fa.fai
-              chrom_sizes: hg38_noalt_decoy.chrom.sizes
-            archive_digest: e56750df8427dfba575290a1955656a9
-            archive_size: 835.0MB
-            asset_size: 2.9GB
-            asset_parents: []
-            asset_children: []
-            asset_digest: 3701eaccf6e8b6637a8b8384abfdc052
-  hg38_chr22:
-    genome_description: No description
-    genome_digest: 201be65e4f4598f97a708c14124393e222f47ca609078f4f
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: hg38_chr22.fa
-              fai: hg38_chr22.fa.fai
-              chrom_sizes: hg38_chr22.chrom.sizes
-            archive_digest: a309e06fe76507ebd609fa5a7295ec68
-            archive_size: 11.7MB
-            asset_size: 41.4MB
-            asset_parents: []
-            asset_children: ['hg38_chr22/hisat2_index:default', 'hg38_chr22/star_index:default', 'hg38_chr22/bismark_bt1_index:default', 'hg38_chr22/suffixerator_index:default']
-            asset_digest: f197c1ac4b3e4c5dd013bd2021bb32e6
-  human_repeats:
-    genome_description: Manually
-    genome_digest: 1a849298979dfc209136afaf022967fbad7959beba8f2ee7
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: human_repeats.fa
-              fai: human_repeats.fa.fai
-              chrom_sizes: human_repeats.chrom.sizes
-            archive_digest: ec92e73b574e18e837dcd43e663527d6
-            archive_size: 34.1KB
-            asset_size: 153.2KB
-            asset_parents: []
-            asset_children: []
-            asset_digest: 4a749d4e74b057d0efa0c8398ebcb871
-  human_alu:
-    genome_description: Manually
-    genome_digest: 90982e6c3ed7a12b81d8ee2f24a565f975009e0816710d0a
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: human_alu.fa
-              fai: human_alu.fa.fai
-              chrom_sizes: human_alu.chrom.sizes
-            archive_digest: 40ae14bf8f1beffc03f4725d873b844c
-            archive_size: 798B
-            asset_size: 9.1KB
-            asset_parents: []
-            asset_children: []
-            asset_digest: 9e8fa06e6125f89be4fb974879cb91a6
   human_alphasat:
-    genome_description: Manually
-    genome_digest: b7527871d779e5843e765a2ed94a00a064b7af8bba3a42fd
     assets:
       fasta:
         asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
         tags:
           default:
             asset_path: fasta
@@ -359,19 +593,15 @@ genomes:
               fasta: human_alphasat.fa
               fai: human_alphasat.fa.fai
               chrom_sizes: human_alphasat.chrom.sizes
-            archive_digest: 265b51ffb0b7919b2027ef29ac28785b
-            archive_size: 21.5KB
-            asset_size: 107.4KB
-            asset_parents: []
-            asset_children: []
             asset_digest: 5b2d2705cff9c9315add79b3f0d793ad
+            asset_parents: []
+        default_tag: default
+    genome_description: Manually curated human alpha-satellite sequences from GenBank, obtained from ref_decoy
+    genome_digest: b7527871d779e5843e765a2ed94a00a064b7af8bba3a42fd
   human_rDNA:
-    genome_description: No description
-    genome_digest: No digest
     assets:
       fasta:
         asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
         tags:
           default:
             asset_path: fasta
@@ -379,89 +609,8 @@ genomes:
               fasta: human_rDNA.fa
               fai: human_rDNA.fa.fai
               chrom_sizes: human_rDNA.chrom.sizes
-            archive_digest: 68d15a3320b4cfc609b82af474484565
-            archive_size: 12.4KB
-            asset_size: 48.7KB
+            asset_digest: e18c0446f55f2584bf58f04076400ce6
             asset_parents: []
-            asset_children: []
-            asset_digest: null
-  mouse_chrM2x:
-    genome_description: The
-    genome_digest: e841943da75cb7d907a3f435dc1b7407394797815ae44686
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
         default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: mouse_chrM2x.fa
-              fai: mouse_chrM2x.fa.fai
-              chrom_sizes: mouse_chrM2x.chrom.sizes
-            archive_digest: 1c0eece368284942191e24f9e6e3daa8
-            archive_size: 9.0KB
-            asset_size: 38.3KB
-            asset_parents: []
-            asset_children: []
-            asset_digest: 8dfe402f7d29d5b036dd8937119e4404
-  hg38_primary:
-    genome_description: No description
-    genome_digest: No digest
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: hg38_primary.fa
-              fai: hg38_primary.fa.fai
-              chrom_sizes: hg38_primary.chrom.sizes
-            archive_digest: 17ce2ed0bd4b4f2abe261fafcbaa2e14
-            archive_size: 904.6MB
-            asset_size: 2.9GB
-            asset_parents: []
-            asset_children: []
-            asset_digest: ce4085959123ca656e7059f8b14ffc86
-  mm10_primary:
-    genome_description: UCSC
-    genome_digest: 7ec88fdeadfce0139622e812f0421c8966d84a28980a1602
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: mm10_primary.fa
-              fai: mm10_primary.fa.fai
-              chrom_sizes: mm10_primary.chrom.sizes
-            archive_digest: d1a050971782a05adb17cdf177148d31
-            archive_size: 828.8MB
-            asset_size: 2.6GB
-            asset_parents: []
-            asset_children: []
-            asset_digest: cbbc1680a4cea8e43f14bbdc39d37162
-  dm6:
-    genome_description: Drosophila
-    genome_digest: ffe91a81e875ed2264151d71d35404cbbea162889ee371d3
-    assets:
-      fasta:
-        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
-        default_tag: default
-        tags:
-          default:
-            asset_path: fasta
-            seek_keys:
-              fasta: dm6.fa
-              fai: dm6.fa.fai
-              chrom_sizes: dm6.chrom.sizes
-            archive_digest: 8c94512b577f9de399c8c4bd2eb9719e
-            archive_size: 43.5MB
-            asset_size: 139.0MB
-            asset_parents: []
-            asset_children: []
-            asset_digest: 8620c745dbe7bfcdab89aacc155077db
+    genome_description: Human rDNA sequences curated from GenBank
+    genome_digest: c4524d729c745246cd2a47476b46922ce359e9a16fcdae6b

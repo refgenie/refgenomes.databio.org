@@ -1,0 +1,7 @@
+config_version: 0.3
+genome_folder: $GENOMES
+genome_archive_folder: $GENOMES/archive
+genome_archive_config: refgenie_config_archive.yaml
+remote_url_base: https://refgenie.s3.amazonaws.com
+genome_servers: ['http://refgenomes.databio.org']
+genomes: null
