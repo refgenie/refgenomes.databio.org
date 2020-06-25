@@ -90,13 +90,9 @@ mkdir -p $REFGENIE_RAW
 looper run asset_pep/refgenie_build_cfg.yaml -p local --amend getfiles
 ```
 
-Make sure there were no errors:
-
+Check for errors here:
 ```
-ll ../genomes/*/*/*/_refgenie_build/*.flag
-ll ../genomes/*/*/*/_refgenie_build/*failed.flag
-ll ../genomes/*/*/*/_refgenie_build/*completed.flag
-cat ../genomes/submission/*.log
+grep checksum ../genomes/submission/*.log
 ```
 
 ## Step 2: Build assets
@@ -105,13 +101,44 @@ Once files are present locally, we can run `refgenie build` on each asset specif
 
 ```
 looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl fasta
+
+looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl dbsnp
+
+
+looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl gencode_gtf ensembl_gtf ensembl_rb refgene_anno dbnsfp fasta_txome
+
+looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl bowtie2_index bwa_index bismark_bt2_index bismark_bt1_index
+
+looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl feat_annotation suffixerator_index tallymer_index 
+
+looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl salmon_sa_index salmon_partial_sa_index salmon_index kallisto_index star_index hisat2_index cellranger_reference
+
+
+
+
+
+
+
+
+
+
 ```
 
 This will create one job for each *asset*. Monitor job progress with: 
 
 ```
 looper check asset_pep/refgenie_build_cfg.yaml  # TODO: this doesn't work because the pipeline doesn't produce flags...
+
+ll ../genomes/*/*/*/_refgenie_build/*.flag
+ll ../genomes/*/*/*/_refgenie_build/*failed.flag
+ll ../genomes/*/*/*/_refgenie_build/*completed.flag
+ll ../genomes/*/*/*/_refgenie_build/*running.flag
+ll ../genomes/*/*/*/_refgenie_build/*completed.flag | wc -l
+cat ../genomes/submission/*.log
 ```
+
+
+
 
 To run all the asset types:
 
