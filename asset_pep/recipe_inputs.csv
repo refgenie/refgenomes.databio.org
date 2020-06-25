@@ -47,6 +47,6 @@ rn6-ensembl_gtf,ensembl_gtf,ftp://ftp.ensembl.org/pub/release-97/gtf/rattus_norv
 rn6-fasta,fasta,ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/895/GCA_000001895.4_Rnor_6.0/GCA_000001895.4_Rnor_6.0_genomic.fna.gz,files,b999f2e4c3b90d46c19d37149484971b
 rn6-fasta_txome,fasta,ftp://ftp.ensembl.org/pub/release-97/fasta/rattus_norvegicus/cdna/Rattus_norvegicus.Rnor_6.0.cdna.all.fa.gz,files,49422984447dee3fca93c970f58ee09b
 rn6-refgene_anno,refgene,http://hgdownload.cse.ucsc.edu/goldenpath/rn6/database/refGene.txt.gz,files,9763ea1fffeeb8603951c67b198fb0aa
-dm6_ensembl_gtf,ensembl_gtf,ftp://ftp.ensembl.org/pub/release-89/gtf/drosophila_melanogaster/Drosophila_melanogaster.BDGP6.89.gtf.gz,files,7b443a8475980e09c4c190ce958a7b9a
+dm6-ensembl_gtf,ensembl_gtf,ftp://ftp.ensembl.org/pub/release-89/gtf/drosophila_melanogaster/Drosophila_melanogaster.BDGP6.89.gtf.gz,files,7b443a8475980e09c4c190ce958a7b9a
 dm6-gencode_gtf,gencode_gtf,ftp://ftp.flybase.net/../genomes/Drosophila_melanogaster/dmel_r6.34_FB2020_03/gtf/dmel-all-r6.34.gtf.gz,files,671102dba0e821891e20c4c29ed8359e
 dm6-refgene_anno,refgene,http://hgdownload.soe.ucsc.edu/goldenPath/dm6/database/refGene.txt.gz,files,ff0a971b846adf14d45d52f822a87042
