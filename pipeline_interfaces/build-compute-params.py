@@ -5,7 +5,7 @@ from argparse import ArgumentParser
 
 parser = ArgumentParser(description="Refgenie build params")
 
-parser.add_argument("-s", "--size", help="size", required=True)
+parser.add_argument("-s", "--size", help="size", required=False)
 parser.add_argument("-a", "--asset", type=str, help="asset", required=True)
 
 args = parser.parse_args()
