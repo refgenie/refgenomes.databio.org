@@ -11,7 +11,7 @@ parser.add_argument("-a", "--asset", type=str, help="asset", required=True)
 args = parser.parse_args()
 
 params =   {
-	"bulker_crate": "databio/refgenie:0.7.5",
+	"bulker_crate": "databio/refgenie:0.7.6",
 	"mem": "24000",
 	"cores": "1",
 	"partition": "largemem",
@@ -22,9 +22,11 @@ if args.asset == 'bowtie2_index':
 
 if args.asset == 'bismark_bt2_index':
 		params['mem'] = "64000"
+		params["time"] = "08:00:00"
 
 if args.asset == 'bismark_bt1_index':
 		params['mem'] = "64000"
+		params["time"] = "08:00:00"
 
 if args.asset == 'salmon_partial_sa_index':
 		params['mem'] = "96000"
