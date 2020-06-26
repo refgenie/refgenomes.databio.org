@@ -20,6 +20,7 @@ params =   {
 if args.asset == 'bowtie2_index':
 		params['mem'] = "64000"
 
+
 if args.asset == 'bismark_bt2_index':
 		params['mem'] = "64000"
 		params["time"] = "08:00:00"
@@ -30,6 +31,7 @@ if args.asset == 'bismark_bt1_index':
 
 if args.asset == 'salmon_partial_sa_index':
 		params['mem'] = "96000"
+		params["time"] = "06:00:00"
 
 if args.asset == 'salmon_sa_index':
 		params['mem'] = "72000"

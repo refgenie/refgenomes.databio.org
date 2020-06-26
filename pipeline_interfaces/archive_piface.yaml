@@ -3,7 +3,7 @@ pipeline_type: sample
 command_template: >
   refgenieserver archive {sample.genome}/{sample.asset} --config $REFGENIE --dbg 
 compute:
-  bulker_crate: databio/refgenie:0.7.4
+  bulker_crate: databio/refgenie:0.7.6
   mem: 6000
-  cores: 4
+  cores: 1
   time: 02:00:00
