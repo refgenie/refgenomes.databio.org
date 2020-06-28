@@ -28,7 +28,7 @@ if args.asset in fast_assets:
     params['time'] = "00:30:00"
 
 if args.asset in slow_assets:
-    params['time'] = "08:00:00"
+    params['time'] = "12:00:00"
 
 
 if args.asset == 'bowtie2_index':
