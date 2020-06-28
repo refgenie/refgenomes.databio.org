@@ -104,24 +104,25 @@ looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --
 
 looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl dbsnp
 
-
 looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl gencode_gtf ensembl_gtf ensembl_rb refgene_anno dbnsfp fasta_txome
+```
+
+Once the basic assets are built, we can build all the assets that are derived from them.
+
+```
+looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl suffixerator_index 
+
+looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl feat_annotation
 
 looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl bowtie2_index bwa_index bismark_bt2_index bismark_bt1_index
 
-looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl feat_annotation suffixerator_index tallymer_index 
-
 looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl salmon_sa_index salmon_partial_sa_index salmon_index kallisto_index star_index hisat2_index cellranger_reference
+```
 
+Layer 3: tallymer_index depends on suffixerator_index (which depends on fasta)
 
-
-
-
-
-
-
-
-
+```
+looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl tallymer_index 
 ```
 
 This will create one job for each *asset*. Monitor job progress with: 
@@ -137,9 +138,6 @@ ll ../genomes/*/*/*/_refgenie_build/*completed.flag | wc -l
 cat ../genomes/submission/*.log
 ```
 
-
-
-
 To run all the asset types:
 
 ```
@@ -153,7 +151,7 @@ Assets are built locally now, but to serve them, we must archive them using `ref
 ```
 ba
 looper run asset_pep/refgenieserver_archive_cfg.yaml -p local --sel-attr asset --sel-incl fasta --limit 1
-looper run asset_pep/refgenieserver_archive_cfg.yaml -p slurm --sel-attr asset --sel-incl fasta 
+looper run asset_pep/refgenieserver_archive_cfg.yaml -p slurm -t 1 -c partition=standard -d
 ```
 
 Check progress with:
