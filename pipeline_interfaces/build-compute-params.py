@@ -19,7 +19,7 @@ params =   {
 
 # These are ones that go quick
 fast_assets = ["fasta", "gencode_gtf", "ensembl_gtf", "ensembl_rb",
-               "refgene_anno", "dbnsfp", "fasta_txome"]
+               "refgene_anno", "fasta_txome"]
 
 slow_assets = ["suffixerator_index", "salmon_partial_sa_index"]
 
