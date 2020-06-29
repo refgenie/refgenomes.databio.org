@@ -28,8 +28,10 @@ if args.asset in fast_assets:
     params['time'] = "00:30:00"
 
 if args.asset in slow_assets:
-    params['time'] = "12:00:00"
+    params['time'] = "8:00:00"
 
+if args.asset == 'suffixerator_index':
+    params['mem'] = "32000"
 
 if args.asset == 'bowtie2_index':
     params['mem'] = "64000"
