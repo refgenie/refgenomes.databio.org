@@ -110,7 +110,7 @@ looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --
 Once the basic assets are built, we can build all the assets that are derived from them.
 
 ```
-looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl suffixerator_index 
+looper rerun asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl suffixerator_index -d
 
 looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl feat_annotation
 
@@ -130,6 +130,7 @@ This will create one job for each *asset*. Monitor job progress with:
 ```
 looper check asset_pep/refgenie_build_cfg.yaml  # TODO: this doesn't work because the pipeline doesn't produce flags...
 
+grep CANCELLED ../genomes/submission/*.log
 ll ../genomes/*/*/*/_refgenie_build/*.flag
 ll ../genomes/*/*/*/_refgenie_build/*failed.flag
 ll ../genomes/*/*/*/_refgenie_build/*completed.flag
@@ -151,7 +152,7 @@ Assets are built locally now, but to serve them, we must archive them using `ref
 ```
 ba
 looper run asset_pep/refgenieserver_archive_cfg.yaml -p local --sel-attr asset --sel-incl fasta --limit 1
-looper run asset_pep/refgenieserver_archive_cfg.yaml -p slurm -t 1 -c partition=standard -d
+looper run asset_pep/refgenieserver_archive_cfg.yaml -p slurm -t 0.1 -c partition=standard
 ```
 
 Check progress with:

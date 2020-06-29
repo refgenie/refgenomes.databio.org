@@ -21,7 +21,7 @@ params =   {
 fast_assets = ["fasta", "gencode_gtf", "ensembl_gtf", "ensembl_rb",
                "refgene_anno", "fasta_txome"]
 
-slow_assets = ["suffixerator_index", "salmon_partial_sa_index"]
+slow_assets = ["bismark_bt2_index", "bismark_bt1_index", "salmon_partial_sa_index"]
 
 
 if args.asset in fast_assets:
@@ -38,11 +38,9 @@ if args.asset == 'bowtie2_index':
 
 if args.asset == 'bismark_bt2_index':
     params['mem'] = "64000"
-    params["time"] = "08:00:00"
 
 if args.asset == 'bismark_bt1_index':
     params['mem'] = "64000"
-    params["time"] = "08:00:00"
 
 if args.asset == 'salmon_partial_sa_index':
     params['mem'] = "96000"
