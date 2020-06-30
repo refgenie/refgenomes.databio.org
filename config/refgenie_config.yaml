@@ -95,7 +95,7 @@ genomes:
               chrom_sizes: hg38.chrom.sizes
             asset_digest: 59fed5ec3c3a95bc5709b24b8f2cf7bf
             asset_parents: []
-            asset_children: ['hg38/bowtie2_index:default', 'hg38/cellranger_reference:default', 'hg38/hisat2_index:default', 'hg38/bwa_index:default', 'hg38/bismark_bt1_index:default', 'hg38/bismark_bt2_index:default', 'hg38/star_index:default', 'hg38/salmon_sa_index:default']
+            asset_children: ['hg38/bowtie2_index:default', 'hg38/cellranger_reference:default', 'hg38/hisat2_index:default', 'hg38/bwa_index:default', 'hg38/bismark_bt1_index:default', 'hg38/bismark_bt2_index:default', 'hg38/star_index:default', 'hg38/salmon_sa_index:default', 'hg38/suffixerator_index:default', 'hg38/tallymer_index:default']
         default_tag: default
       fasta_txome:
         asset_description: cDNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
@@ -143,6 +143,7 @@ genomes:
               ensembl_gene_body: hg38_ensembl_gene_body.bed
             asset_digest: 247fa6fbf98ce6b5773cbed0bdd86fef
             asset_parents: []
+            asset_children: ['hg38/feat_annotation:default']
         default_tag: default
       refgene_anno:
         asset_description: gene, TSS, exon, intron, and premature mRNA annotation files
@@ -173,7 +174,7 @@ genomes:
         tags:
           default:
             asset_path: cellranger_reference
-            asset_digest: 299a7cd67e9d85179178db3946c9a2d4
+            asset_digest: a17e1397c1809630609e7d0d77c0e11a
             seek_keys:
               cellranger_reference: ref
             asset_parents: ['hg38/gencode_gtf:default', 'hg38/fasta:default']
@@ -249,6 +250,49 @@ genomes:
               tabix: hg38_dbNSFP.txt.gz.tbi
             asset_parents: []
         default_tag: default
+      suffixerator_index:
+        asset_description: Enhanced suffix array index for genomes using gt (GenomeTools) suffixerator program
+        tags:
+          default:
+            asset_path: suffixerator_index
+            asset_digest: 0beb1c0cc07fbae60234540864fdf4dc
+            seek_keys:
+              esa: hg38.sft
+            asset_parents: ['hg38/fasta:default']
+            asset_children: ['hg38/tallymer_index:default']
+        default_tag: default
+      tallymer_index:
+        asset_description: Indexed k-mers for a given enhanced suffix array at a fixed value of k
+        tags:
+          default:
+            asset_path: tallymer_index
+            asset_digest: 592b54f9f33b8e282036014a152c2efb
+            seek_keys:
+              tindex: hg38.tal_30
+              search_file: hg38.tal_30.gtTxt
+            asset_parents: ['hg38/suffixerator_index:default', 'hg38/fasta:default']
+        default_tag: default
+      ensembl_rb:
+        asset_description: A regulatory annotation file
+        tags:
+          default:
+            asset_path: ensembl_rb
+            asset_digest: d743c316efe1e13ce8a2546fbe3adf69
+            seek_keys:
+              ensembl_rb: hg38.gff.gz
+            asset_parents: []
+            asset_children: ['hg38/feat_annotation:default']
+        default_tag: default
+      feat_annotation:
+        asset_description: Combined genomic feature annotation created using an Ensembl GTF annotation asset and an Ensembl regulatory build annotation asset
+        tags:
+          default:
+            asset_path: feat_annotation
+            asset_digest: 61c60a74ae8fd6c42f46765bd7380cd6
+            seek_keys:
+              feat_annotation: hg38_annotations.bed.gz
+            asset_parents: ['hg38/ensembl_gtf:default', 'hg38/ensembl_rb:default']
+        default_tag: default
     genome_description: The GCA_000001405.15 GRCh38_no_alt_analysis_set from NCBI
     genome_digest: b3422045db2293738bcb9973c1a0acdfabff3a0a3e1830bc
   hg38_cdna:
@@ -281,7 +325,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_index
-            asset_digest: 701b8acb52c38c0b6068df9f3d7ccd1b
+            asset_digest: 39bd7665cffd546934b6833b4c4b3f42
             seek_keys:
               salmon_index: .
             asset_parents: ['hg38_cdna/fasta:default']
@@ -301,7 +345,7 @@ genomes:
               chrom_sizes: hg19.chrom.sizes
             asset_digest: 7ce3b03e30d6ef76af8c3ad09a141dfc
             asset_parents: []
-            asset_children: ['hg19/bowtie2_index:default', 'hg19/cellranger_reference:default', 'hg19/bwa_index:default', 'hg19/hisat2_index:default', 'hg19/bismark_bt1_index:default', 'hg19/bismark_bt2_index:default', 'hg19/star_index:default', 'hg19/salmon_sa_index:default']
+            asset_children: ['hg19/bowtie2_index:default', 'hg19/cellranger_reference:default', 'hg19/bwa_index:default', 'hg19/hisat2_index:default', 'hg19/bismark_bt1_index:default', 'hg19/bismark_bt2_index:default', 'hg19/star_index:default', 'hg19/salmon_sa_index:default', 'hg19/suffixerator_index:default', 'hg19/tallymer_index:default']
         default_tag: default
       gencode_gtf:
         asset_description: GTF annotation asset which provides access to all annotated transcripts which make up an Ensembl gene set.
@@ -350,6 +394,7 @@ genomes:
               ensembl_tss: hg19_ensembl_TSS.bed
               ensembl_gene_body: hg19_ensembl_gene_body.bed
             asset_parents: []
+            asset_children: ['hg19/feat_annotation:default']
         default_tag: default
       fasta_txome:
         asset_description: cDNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
@@ -379,7 +424,7 @@ genomes:
         tags:
           default:
             asset_path: cellranger_reference
-            asset_digest: f0985b0d7bc3efe86883773950068079
+            asset_digest: 17c921934e5e5415f725ace2bd6eaf07
             seek_keys:
               cellranger_reference: ref
             asset_parents: ['hg19/fasta:default', 'hg19/gencode_gtf:default']
@@ -439,10 +484,53 @@ genomes:
         tags:
           default:
             asset_path: salmon_sa_index
-            asset_digest: 0e76c193930c47d3e26c5e6e7827bef2
+            asset_digest: fa217134a7b2fbc9e50bcdd5a81687f9
             seek_keys:
               salmon_sa_index: .
             asset_parents: ['hg19/fasta:default', 'hg19/fasta_txome:default']
+        default_tag: default
+      suffixerator_index:
+        asset_description: Enhanced suffix array index for genomes using gt (GenomeTools) suffixerator program
+        tags:
+          default:
+            asset_path: suffixerator_index
+            asset_digest: e2d79b38045e66efd65903bdbf6b4e09
+            seek_keys:
+              esa: hg19.sft
+            asset_parents: ['hg19/fasta:default']
+            asset_children: ['hg19/tallymer_index:default']
+        default_tag: default
+      tallymer_index:
+        asset_description: Indexed k-mers for a given enhanced suffix array at a fixed value of k
+        tags:
+          default:
+            asset_path: tallymer_index
+            asset_digest: d88c93df278e2a6bd8aaa5cf76bb854a
+            seek_keys:
+              tindex: hg19.tal_30
+              search_file: hg19.tal_30.gtTxt
+            asset_parents: ['hg19/suffixerator_index:default', 'hg19/fasta:default']
+        default_tag: default
+      ensembl_rb:
+        asset_description: A regulatory annotation file
+        tags:
+          default:
+            asset_path: ensembl_rb
+            asset_digest: 78f1eee3e054f029677d93f782235c87
+            seek_keys:
+              ensembl_rb: hg19.gff.gz
+            asset_parents: []
+            asset_children: ['hg19/feat_annotation:default']
+        default_tag: default
+      feat_annotation:
+        asset_description: Combined genomic feature annotation created using an Ensembl GTF annotation asset and an Ensembl regulatory build annotation asset
+        tags:
+          default:
+            asset_path: feat_annotation
+            asset_digest: ba474c16ba96d4cdee4db44eddcbeab1
+            seek_keys:
+              feat_annotation: hg19_annotations.bed.gz
+            asset_parents: ['hg19/ensembl_rb:default', 'hg19/ensembl_gtf:default']
         default_tag: default
     genome_description: The GRCh37 reference sequence from UCSC
     genome_digest: fb7002132265e88a91859e3c743fc7a898a057019fc11456
@@ -482,14 +570,14 @@ genomes:
               chrom_sizes: hg18.chrom.sizes
             asset_digest: 0fc1d00b994befc9a00695b15b048af8
             asset_parents: []
-            asset_children: ['hg18/cellranger_reference:default', 'hg18/bowtie2_index:default', 'hg18/bwa_index:default', 'hg18/hisat2_index:default', 'hg18/bismark_bt2_index:default', 'hg18/star_index:default']
+            asset_children: ['hg18/cellranger_reference:default', 'hg18/bowtie2_index:default', 'hg18/bwa_index:default', 'hg18/hisat2_index:default', 'hg18/bismark_bt2_index:default', 'hg18/star_index:default', 'hg18/bismark_bt1_index:default', 'hg18/suffixerator_index:default', 'hg18/tallymer_index:default']
         default_tag: default
       cellranger_reference:
         asset_description: Cell Ranger custom genome reference for read alignment and gene expression quantification
         tags:
           default:
             asset_path: cellranger_reference
-            asset_digest: d1d2ea8f5a407bea75356921d1195b28
+            asset_digest: d968aa4f7d524524e85fa62acb0f7ee4
             seek_keys:
               cellranger_reference: ref
             asset_parents: ['hg18/fasta:default', 'hg18/gencode_gtf:default']
@@ -543,6 +631,38 @@ genomes:
             seek_keys:
               star_index: .
             asset_parents: ['hg18/fasta:default']
+        default_tag: default
+      bismark_bt1_index:
+        asset_description: Genome index for Bisulfite-Seq applications, produced by bismark_genome_preparation using bowtie1
+        tags:
+          default:
+            asset_path: bismark_bt1_index
+            asset_digest: 68c9fc012afea08096464d3f5dafe0d4
+            seek_keys:
+              bismark_bt1_index: .
+            asset_parents: ['hg18/fasta:default']
+        default_tag: default
+      suffixerator_index:
+        asset_description: Enhanced suffix array index for genomes using gt (GenomeTools) suffixerator program
+        tags:
+          default:
+            asset_path: suffixerator_index
+            asset_digest: cf20fce2d343fc650f41da6d3997f614
+            seek_keys:
+              esa: hg18.sft
+            asset_parents: ['hg18/fasta:default']
+            asset_children: ['hg18/tallymer_index:default']
+        default_tag: default
+      tallymer_index:
+        asset_description: Indexed k-mers for a given enhanced suffix array at a fixed value of k
+        tags:
+          default:
+            asset_path: tallymer_index
+            asset_digest: 8578db306a871086128800b1a8889a66
+            seek_keys:
+              tindex: hg18.tal_30
+              search_file: hg18.tal_30.gtTxt
+            asset_parents: ['hg18/fasta:default', 'hg18/suffixerator_index:default']
         default_tag: default
     genome_description: The NCBI36 reference sequence from UCSC. The individual chromosome files were concatenated prior to the asset building.
     genome_digest: 637e83a0492a1092720d640d6f7b6c89e05f8a73bff27c48
@@ -599,7 +719,7 @@ genomes:
               chrom_sizes: rn6.chrom.sizes
             asset_digest: 9be5749c2a0a50d5f1a4979da5d9de1a
             asset_parents: []
-            asset_children: ['rn6/hisat2_index:default', 'rn6/bowtie2_index:default', 'rn6/salmon_sa_index:default', 'rn6/bwa_index:default', 'rn6/bismark_bt2_index:default', 'rn6/star_index:default', 'rn6/salmon_partial_sa_index:default', 'rn6/bismark_bt1_index:default']
+            asset_children: ['rn6/hisat2_index:default', 'rn6/bowtie2_index:default', 'rn6/salmon_sa_index:default', 'rn6/bwa_index:default', 'rn6/bismark_bt2_index:default', 'rn6/star_index:default', 'rn6/salmon_partial_sa_index:default', 'rn6/bismark_bt1_index:default', 'rn6/suffixerator_index:default', 'rn6/tallymer_index:default']
         default_tag: default
       hisat2_index:
         asset_description: Genome index for HISAT2, produced with hisat2-build
@@ -626,7 +746,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_sa_index
-            asset_digest: 0b16a91fd138a5c541eb6748f1555d26
+            asset_digest: 615a6680407efc45ad78eb173fe8a43a
             seek_keys:
               salmon_sa_index: .
             asset_parents: ['rn6/fasta_txome:default', 'rn6/fasta:default']
@@ -666,7 +786,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_partial_sa_index
-            asset_digest: be69d04ea84fbb9e28ed010e9de11e22
+            asset_digest: c7a7f7abb1892f93a09c8f66d19b5367
             seek_keys:
               salmon_partial_sa_index: .
             asset_parents: ['rn6/fasta:default', 'rn6/ensembl_gtf:default', 'rn6/fasta_txome:default']
@@ -680,6 +800,28 @@ genomes:
             seek_keys:
               bismark_bt1_index: .
             asset_parents: ['rn6/fasta:default']
+        default_tag: default
+      suffixerator_index:
+        asset_description: Enhanced suffix array index for genomes using gt (GenomeTools) suffixerator program
+        tags:
+          default:
+            asset_path: suffixerator_index
+            asset_digest: aefbd5b176f45db7bfeeadd81f4f4383
+            seek_keys:
+              esa: rn6.sft
+            asset_parents: ['rn6/fasta:default']
+            asset_children: ['rn6/tallymer_index:default']
+        default_tag: default
+      tallymer_index:
+        asset_description: Indexed k-mers for a given enhanced suffix array at a fixed value of k
+        tags:
+          default:
+            asset_path: tallymer_index
+            asset_digest: 38189cec8daab63a8f7a9c7117ede7ac
+            seek_keys:
+              tindex: rn6.tal_30
+              search_file: rn6.tal_30.gtTxt
+            asset_parents: ['rn6/fasta:default', 'rn6/suffixerator_index:default']
         default_tag: default
     genome_description: The GCA_000001895.4_Rnor_6.0_genomic from NCBI
     genome_digest: 0d9edad3addf6abca3bc507d86f06978d51c1b52692370ab
@@ -696,7 +838,7 @@ genomes:
               chrom_sizes: hg38_chr22.chrom.sizes
             asset_digest: f197c1ac4b3e4c5dd013bd2021bb32e6
             asset_parents: []
-            asset_children: ['hg38_chr22/hisat2_index:default', 'hg38_chr22/star_index:default', 'hg38_chr22/bismark_bt1_index:default', 'hg38_chr22/suffixerator_index:default', 'hg38_chr22/bowtie2_index:default', 'hg38_chr22/bwa_index:default', 'hg38_chr22/bismark_bt2_index:default']
+            asset_children: ['hg38_chr22/hisat2_index:default', 'hg38_chr22/star_index:default', 'hg38_chr22/bismark_bt1_index:default', 'hg38_chr22/suffixerator_index:default', 'hg38_chr22/bowtie2_index:default', 'hg38_chr22/bwa_index:default', 'hg38_chr22/bismark_bt2_index:default', 'hg38_chr22/tallymer_index:default']
         default_tag: default
       hisat2_index:
         asset_description: Genome index for HISAT2, produced with hisat2-build
@@ -745,8 +887,9 @@ genomes:
             asset_path: suffixerator_index
             seek_keys:
               esa: hg38_chr22.sft
-            asset_digest: b7d672d520ecc6e8f72e057128a6394c
+            asset_digest: 249fac398e1bedcfb1f51d3bdd12b075
             asset_parents: ['hg38_chr22/fasta:default']
+            asset_children: ['hg38_chr22/tallymer_index:default']
         default_tag: default
       bowtie2_index:
         asset_description: Genome index for bowtie, produced with bowtie-build
@@ -767,6 +910,17 @@ genomes:
             seek_keys:
               bwa_index: hg38_chr22.fa
             asset_parents: ['hg38_chr22/fasta:default']
+        default_tag: default
+      tallymer_index:
+        asset_description: Indexed k-mers for a given enhanced suffix array at a fixed value of k
+        tags:
+          default:
+            asset_path: tallymer_index
+            asset_digest: b107371ac7490a5c31eaee5059934b59
+            seek_keys:
+              tindex: hg38_chr22.tal_30
+              search_file: hg38_chr22.tal_30.gtTxt
+            asset_parents: ['hg38_chr22/fasta:default', 'hg38_chr22/suffixerator_index:default']
         default_tag: default
     genome_digest: 201be65e4f4598f97a708c14124393e222f47ca609078f4f
   mm10:
@@ -793,7 +947,7 @@ genomes:
               chrom_sizes: mm10.chrom.sizes
             asset_digest: 4afce2deeceae65b4c0987b9297cf441
             asset_parents: []
-            asset_children: ['mm10/cellranger_reference:default', 'mm10/hisat2_index:default', 'mm10/bowtie2_index:default', 'mm10/bwa_index:default', 'mm10/star_index:default', 'mm10/bismark_bt2_index:default', 'mm10/bismark_bt1_index:default', 'mm10/salmon_sa_index:default']
+            asset_children: ['mm10/cellranger_reference:default', 'mm10/hisat2_index:default', 'mm10/bowtie2_index:default', 'mm10/bwa_index:default', 'mm10/star_index:default', 'mm10/bismark_bt2_index:default', 'mm10/bismark_bt1_index:default', 'mm10/salmon_sa_index:default', 'mm10/suffixerator_index:default', 'mm10/tallymer_index:default']
         default_tag: default
       ensembl_gtf:
         asset_description: Ensembl GTF, TSS, and gene body annotation
@@ -806,6 +960,7 @@ genomes:
               ensembl_tss: mm10_ensembl_TSS.bed
               ensembl_gene_body: mm10_ensembl_gene_body.bed
             asset_parents: []
+            asset_children: ['mm10/feat_annotation:default']
         default_tag: default
       refgene_anno:
         asset_description: gene, TSS, exon, intron, and premature mRNA annotation files
@@ -839,7 +994,7 @@ genomes:
         tags:
           default:
             asset_path: cellranger_reference
-            asset_digest: 0b7ea9f4d75050abb302a083763654cd
+            asset_digest: fcd8e174bb84884589c6a77d75932f22
             seek_keys:
               cellranger_reference: ref
             asset_parents: ['mm10/gencode_gtf:default', 'mm10/fasta:default']
@@ -909,10 +1064,53 @@ genomes:
         tags:
           default:
             asset_path: salmon_sa_index
-            asset_digest: b75d81f65f33bdada41d4c7503e3de8a
+            asset_digest: b1184ae2364bc8fc980614fe4c6c8309
             seek_keys:
               salmon_sa_index: .
             asset_parents: ['mm10/fasta:default', 'mm10/fasta_txome:default']
+        default_tag: default
+      suffixerator_index:
+        asset_description: Enhanced suffix array index for genomes using gt (GenomeTools) suffixerator program
+        tags:
+          default:
+            asset_path: suffixerator_index
+            asset_digest: a44dcf39c3e1812ef55dbaa1da96bb22
+            seek_keys:
+              esa: mm10.sft
+            asset_parents: ['mm10/fasta:default']
+            asset_children: ['mm10/tallymer_index:default']
+        default_tag: default
+      tallymer_index:
+        asset_description: Indexed k-mers for a given enhanced suffix array at a fixed value of k
+        tags:
+          default:
+            asset_path: tallymer_index
+            asset_digest: 960d72229d13c26dd15405713c6b8408
+            seek_keys:
+              tindex: mm10.tal_30
+              search_file: mm10.tal_30.gtTxt
+            asset_parents: ['mm10/suffixerator_index:default', 'mm10/fasta:default']
+        default_tag: default
+      ensembl_rb:
+        asset_description: A regulatory annotation file
+        tags:
+          default:
+            asset_path: ensembl_rb
+            asset_digest: 4f9b9daa7b8d2f60ec4814f39630f494
+            seek_keys:
+              ensembl_rb: mm10.gff.gz
+            asset_parents: []
+            asset_children: ['mm10/feat_annotation:default']
+        default_tag: default
+      feat_annotation:
+        asset_description: Combined genomic feature annotation created using an Ensembl GTF annotation asset and an Ensembl regulatory build annotation asset
+        tags:
+          default:
+            asset_path: feat_annotation
+            asset_digest: 8f1b008f297ab1aa54aa1ee2d29ff93b
+            seek_keys:
+              feat_annotation: mm10_annotations.bed.gz
+            asset_parents: ['mm10/ensembl_gtf:default', 'mm10/ensembl_rb:default']
         default_tag: default
     genome_description: The GCA_000001635.5 seqs_for_alignment_pipelines from NCBI
     genome_digest: b55fbc8f55f60d69faf2dc9f7f0de3d753b369649ce544f7
@@ -929,7 +1127,7 @@ genomes:
               chrom_sizes: mouse_chrM2x.chrom.sizes
             asset_digest: 8dfe402f7d29d5b036dd8937119e4404
             asset_parents: []
-            asset_children: ['mouse_chrM2x/bowtie2_index:default', 'mouse_chrM2x/bismark_bt2_index:default', 'mouse_chrM2x/bwa_index:default', 'mouse_chrM2x/bismark_bt1_index:default', 'mouse_chrM2x/hisat2_index:default', 'mouse_chrM2x/star_index:default']
+            asset_children: ['mouse_chrM2x/bowtie2_index:default', 'mouse_chrM2x/bismark_bt2_index:default', 'mouse_chrM2x/bwa_index:default', 'mouse_chrM2x/bismark_bt1_index:default', 'mouse_chrM2x/hisat2_index:default', 'mouse_chrM2x/star_index:default', 'mouse_chrM2x/suffixerator_index:default', 'mouse_chrM2x/tallymer_index:default']
         default_tag: default
       bowtie2_index:
         asset_description: Genome index for bowtie, produced with bowtie-build
@@ -991,6 +1189,28 @@ genomes:
               star_index: .
             asset_parents: ['mouse_chrM2x/fasta:default']
         default_tag: default
+      suffixerator_index:
+        asset_description: Enhanced suffix array index for genomes using gt (GenomeTools) suffixerator program
+        tags:
+          default:
+            asset_path: suffixerator_index
+            asset_digest: 358eab370b06d92edc2d44e0881ae828
+            seek_keys:
+              esa: mouse_chrM2x.sft
+            asset_parents: ['mouse_chrM2x/fasta:default']
+            asset_children: ['mouse_chrM2x/tallymer_index:default']
+        default_tag: default
+      tallymer_index:
+        asset_description: Indexed k-mers for a given enhanced suffix array at a fixed value of k
+        tags:
+          default:
+            asset_path: tallymer_index
+            asset_digest: b59767d82a24a79f9d74f765e5230b59
+            seek_keys:
+              tindex: mouse_chrM2x.tal_30
+              search_file: mouse_chrM2x.tal_30.gtTxt
+            asset_parents: ['mouse_chrM2x/suffixerator_index:default', 'mouse_chrM2x/fasta:default']
+        default_tag: default
     genome_description: The mouse mitochondrial genome, doubled
     genome_digest: e841943da75cb7d907a3f435dc1b7407394797815ae44686
   dm6:
@@ -1043,7 +1263,7 @@ genomes:
               ensembl_gene_body: dm6_ensembl_gene_body.bed
             asset_parents: []
         default_tag: default
-    genome_description: Drosophila GTF flile from Flybase
+    genome_description: GTF file from Ensembl
     genome_digest: ffe91a81e875ed2264151d71d35404cbbea162889ee371d3
   hg19_cdna:
     assets:
@@ -1058,6 +1278,27 @@ genomes:
               chrom_sizes: hg19_cdna.chrom.sizes
             asset_digest: e146e5c1b8fd57b9f09ab46ec36adbad
             asset_parents: []
+            asset_children: ['hg19_cdna/kallisto_index:default', 'hg19_cdna/salmon_index:default']
+        default_tag: default
+      kallisto_index:
+        asset_description: Genome index for kallisto, produced with kallisto index
+        tags:
+          default:
+            asset_path: kallisto_index
+            asset_digest: 02e8e0e2fd7e6675fec9eaf4781aa532
+            seek_keys:
+              kallisto_index: .
+            asset_parents: ['hg19_cdna/fasta:default']
+        default_tag: default
+      salmon_index:
+        asset_description: Transcriptome index for salmon, produced with salmon index
+        tags:
+          default:
+            asset_path: salmon_index
+            asset_digest: 8616f5bcf8207ee4485797c2bb12e796
+            seek_keys:
+              salmon_index: .
+            asset_parents: ['hg19_cdna/fasta:default']
         default_tag: default
     genome_description: The GRCh37 cDNA reference sequence from Ensembl
     genome_digest: 6b45ad5e3dfce38b39712e19008a4ff79e91c18769fe146b
@@ -1074,7 +1315,7 @@ genomes:
               chrom_sizes: hg38_noalt_decoy.chrom.sizes
             asset_digest: 3701eaccf6e8b6637a8b8384abfdc052
             asset_parents: []
-            asset_children: ['hg38_noalt_decoy/bowtie2_index:default', 'hg38_noalt_decoy/hisat2_index:default', 'hg38_noalt_decoy/bwa_index:default', 'hg38_noalt_decoy/bismark_bt1_index:default', 'hg38_noalt_decoy/bismark_bt2_index:default', 'hg38_noalt_decoy/star_index:default']
+            asset_children: ['hg38_noalt_decoy/bowtie2_index:default', 'hg38_noalt_decoy/hisat2_index:default', 'hg38_noalt_decoy/bwa_index:default', 'hg38_noalt_decoy/bismark_bt1_index:default', 'hg38_noalt_decoy/bismark_bt2_index:default', 'hg38_noalt_decoy/star_index:default', 'hg38_noalt_decoy/suffixerator_index:default', 'hg38_noalt_decoy/tallymer_index:default']
         default_tag: default
       bowtie2_index:
         asset_description: Genome index for bowtie, produced with bowtie-build
@@ -1136,6 +1377,28 @@ genomes:
               star_index: .
             asset_parents: ['hg38_noalt_decoy/fasta:default']
         default_tag: default
+      suffixerator_index:
+        asset_description: Enhanced suffix array index for genomes using gt (GenomeTools) suffixerator program
+        tags:
+          default:
+            asset_path: suffixerator_index
+            asset_digest: 7515859cdf13122a9c16179ad5892fa1
+            seek_keys:
+              esa: hg38_noalt_decoy.sft
+            asset_parents: ['hg38_noalt_decoy/fasta:default']
+            asset_children: ['hg38_noalt_decoy/tallymer_index:default']
+        default_tag: default
+      tallymer_index:
+        asset_description: Indexed k-mers for a given enhanced suffix array at a fixed value of k
+        tags:
+          default:
+            asset_path: tallymer_index
+            asset_digest: 930b420131223483019fd4c05607ed9c
+            seek_keys:
+              tindex: hg38_noalt_decoy.tal_30
+              search_file: hg38_noalt_decoy.tal_30.gtTxt
+            asset_parents: ['hg38_noalt_decoy/suffixerator_index:default', 'hg38_noalt_decoy/fasta:default']
+        default_tag: default
     genome_description: The GRCh38 reference with decoy and without alternative haplotypes from NCBI
     genome_digest: 169c49ce7d61068a4dadf3fd6be030b3f6305f3ff8ba4e8d
   hg38_mm10:
@@ -1188,7 +1451,7 @@ genomes:
               chrom_sizes: human_alu.chrom.sizes
             asset_digest: 9e8fa06e6125f89be4fb974879cb91a6
             asset_parents: []
-            asset_children: ['human_alu/bowtie2_index:default', 'human_alu/bwa_index:default', 'human_alu/bismark_bt1_index:default', 'human_alu/hisat2_index:default', 'human_alu/bismark_bt2_index:default']
+            asset_children: ['human_alu/bowtie2_index:default', 'human_alu/bwa_index:default', 'human_alu/bismark_bt1_index:default', 'human_alu/hisat2_index:default', 'human_alu/bismark_bt2_index:default', 'human_alu/suffixerator_index:default', 'human_alu/tallymer_index:default']
         default_tag: default
       bowtie2_index:
         asset_description: Genome index for bowtie, produced with bowtie-build
@@ -1240,6 +1503,28 @@ genomes:
               bismark_bt2_index: .
             asset_parents: ['human_alu/fasta:default']
         default_tag: default
+      suffixerator_index:
+        asset_description: Enhanced suffix array index for genomes using gt (GenomeTools) suffixerator program
+        tags:
+          default:
+            asset_path: suffixerator_index
+            asset_digest: a600ba8b3c9be3c14e9fc96a104fb608
+            seek_keys:
+              esa: human_alu.sft
+            asset_parents: ['human_alu/fasta:default']
+            asset_children: ['human_alu/tallymer_index:default']
+        default_tag: default
+      tallymer_index:
+        asset_description: Indexed k-mers for a given enhanced suffix array at a fixed value of k
+        tags:
+          default:
+            asset_path: tallymer_index
+            asset_digest: 4a9018a2fcd2667a9faf27c50e26952b
+            seek_keys:
+              tindex: human_alu.tal_30
+              search_file: human_alu.tal_30.gtTxt
+            asset_parents: ['human_alu/fasta:default', 'human_alu/suffixerator_index:default']
+        default_tag: default
     genome_description: Manually curated human ALU repeats from GenBank, obtained from ref_decoy
     genome_digest: 90982e6c3ed7a12b81d8ee2f24a565f975009e0816710d0a
   human_repeats:
@@ -1255,7 +1540,7 @@ genomes:
               chrom_sizes: human_repeats.chrom.sizes
             asset_digest: 4a749d4e74b057d0efa0c8398ebcb871
             asset_parents: []
-            asset_children: ['human_repeats/bowtie2_index:default', 'human_repeats/bwa_index:default', 'human_repeats/bismark_bt2_index:default', 'human_repeats/bismark_bt1_index:default', 'human_repeats/hisat2_index:default', 'human_repeats/star_index:default']
+            asset_children: ['human_repeats/bowtie2_index:default', 'human_repeats/bwa_index:default', 'human_repeats/bismark_bt2_index:default', 'human_repeats/bismark_bt1_index:default', 'human_repeats/hisat2_index:default', 'human_repeats/star_index:default', 'human_repeats/suffixerator_index:default', 'human_repeats/tallymer_index:default']
         default_tag: default
       bowtie2_index:
         asset_description: Genome index for bowtie, produced with bowtie-build
@@ -1317,6 +1602,28 @@ genomes:
               star_index: .
             asset_parents: ['human_repeats/fasta:default']
         default_tag: default
+      suffixerator_index:
+        asset_description: Enhanced suffix array index for genomes using gt (GenomeTools) suffixerator program
+        tags:
+          default:
+            asset_path: suffixerator_index
+            asset_digest: bab7662403a2e1bcc1ea7f72adfbd582
+            seek_keys:
+              esa: human_repeats.sft
+            asset_parents: ['human_repeats/fasta:default']
+            asset_children: ['human_repeats/tallymer_index:default']
+        default_tag: default
+      tallymer_index:
+        asset_description: Indexed k-mers for a given enhanced suffix array at a fixed value of k
+        tags:
+          default:
+            asset_path: tallymer_index
+            asset_digest: d64cacb43cd6ff5fa11afe3cd7b4862c
+            seek_keys:
+              tindex: human_repeats.tal_30
+              search_file: human_repeats.tal_30.gtTxt
+            asset_parents: ['human_repeats/fasta:default', 'human_repeats/suffixerator_index:default']
+        default_tag: default
     genome_description: Manually curated collection of human repeat sequences from GenBank
     genome_digest: 1a849298979dfc209136afaf022967fbad7959beba8f2ee7
   hs38d1:
@@ -1332,7 +1639,7 @@ genomes:
               chrom_sizes: hs38d1.chrom.sizes
             asset_digest: eddf5466faa3391a7114e87648466dcb
             asset_parents: []
-            asset_children: ['hs38d1/bowtie2_index:default', 'hs38d1/bwa_index:default', 'hs38d1/bismark_bt1_index:default', 'hs38d1/bismark_bt2_index:default', 'hs38d1/hisat2_index:default', 'hs38d1/star_index:default']
+            asset_children: ['hs38d1/bowtie2_index:default', 'hs38d1/bwa_index:default', 'hs38d1/bismark_bt1_index:default', 'hs38d1/bismark_bt2_index:default', 'hs38d1/hisat2_index:default', 'hs38d1/star_index:default', 'hs38d1/suffixerator_index:default', 'hs38d1/tallymer_index:default']
         default_tag: default
       bowtie2_index:
         asset_description: Genome index for bowtie, produced with bowtie-build
@@ -1394,6 +1701,28 @@ genomes:
               star_index: .
             asset_parents: ['hs38d1/fasta:default']
         default_tag: default
+      suffixerator_index:
+        asset_description: Enhanced suffix array index for genomes using gt (GenomeTools) suffixerator program
+        tags:
+          default:
+            asset_path: suffixerator_index
+            asset_digest: 82e62fc85236a8ed5ae2bc5217c8ab67
+            seek_keys:
+              esa: hs38d1.sft
+            asset_parents: ['hs38d1/fasta:default']
+            asset_children: ['hs38d1/tallymer_index:default']
+        default_tag: default
+      tallymer_index:
+        asset_description: Indexed k-mers for a given enhanced suffix array at a fixed value of k
+        tags:
+          default:
+            asset_path: tallymer_index
+            asset_digest: c9eccc698a89ac09ce3f403ed759bd88
+            seek_keys:
+              tindex: hs38d1.tal_30
+              search_file: hs38d1.tal_30.gtTxt
+            asset_parents: ['hs38d1/suffixerator_index:default', 'hs38d1/fasta:default']
+        default_tag: default
     genome_description: Decoy version 1 for GRCh38 from NCBI
     genome_digest: 5dc3e6688b41b347683a4b3fd6dac4bf6b21a5f562548f58
   hg18_cdna:
@@ -1409,6 +1738,17 @@ genomes:
               chrom_sizes: hg18_cdna.chrom.sizes
             asset_digest: 456bf4dd716de36373539acf2595baf3
             asset_parents: []
+            asset_children: ['hg18_cdna/kallisto_index:default']
+        default_tag: default
+      kallisto_index:
+        asset_description: Genome index for kallisto, produced with kallisto index
+        tags:
+          default:
+            asset_path: kallisto_index
+            asset_digest: 20a2b3c7397738cfa7049c8bb5141384
+            seek_keys:
+              kallisto_index: .
+            asset_parents: ['hg18_cdna/fasta:default']
         default_tag: default
     genome_description: The NCBI36 cDNA reference sequence from Ensembl
     genome_digest: 2b0ab75f33466ebba2b87a196a60baff707eed19f8060672
@@ -1442,7 +1782,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_index
-            asset_digest: 3e7494bb49889cca7a7ec8c90d65b9d6
+            asset_digest: c932b38c0950428c6581485319a1109a
             seek_keys:
               salmon_index: .
             asset_parents: ['mm10_cdna/fasta:default']
@@ -1553,7 +1893,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_index
-            asset_digest: 8fb23862867415ebd24b4880ce1d3f00
+            asset_digest: 4b13b43ffd11d5f3231389353a5e92ef
             seek_keys:
               salmon_index: .
             asset_parents: ['rn6_cdna/fasta:default']
@@ -1573,7 +1913,7 @@ genomes:
               chrom_sizes: human_alphasat.chrom.sizes
             asset_digest: 5b2d2705cff9c9315add79b3f0d793ad
             asset_parents: []
-            asset_children: ['human_alphasat/bowtie2_index:default', 'human_alphasat/bwa_index:default', 'human_alphasat/hisat2_index:default', 'human_alphasat/star_index:default', 'human_alphasat/bismark_bt1_index:default', 'human_alphasat/bismark_bt2_index:default']
+            asset_children: ['human_alphasat/bowtie2_index:default', 'human_alphasat/bwa_index:default', 'human_alphasat/hisat2_index:default', 'human_alphasat/star_index:default', 'human_alphasat/bismark_bt1_index:default', 'human_alphasat/bismark_bt2_index:default', 'human_alphasat/suffixerator_index:default', 'human_alphasat/tallymer_index:default']
         default_tag: default
       bowtie2_index:
         asset_description: Genome index for bowtie, produced with bowtie-build
@@ -1635,6 +1975,28 @@ genomes:
               bismark_bt2_index: .
             asset_parents: ['human_alphasat/fasta:default']
         default_tag: default
+      suffixerator_index:
+        asset_description: Enhanced suffix array index for genomes using gt (GenomeTools) suffixerator program
+        tags:
+          default:
+            asset_path: suffixerator_index
+            asset_digest: 771e9d4276a0747e2f208dbe786b742c
+            seek_keys:
+              esa: human_alphasat.sft
+            asset_parents: ['human_alphasat/fasta:default']
+            asset_children: ['human_alphasat/tallymer_index:default']
+        default_tag: default
+      tallymer_index:
+        asset_description: Indexed k-mers for a given enhanced suffix array at a fixed value of k
+        tags:
+          default:
+            asset_path: tallymer_index
+            asset_digest: 5d51d66872f7f74aeb1b4ebc4611251c
+            seek_keys:
+              tindex: human_alphasat.tal_30
+              search_file: human_alphasat.tal_30.gtTxt
+            asset_parents: ['human_alphasat/suffixerator_index:default', 'human_alphasat/fasta:default']
+        default_tag: default
     genome_description: Manually curated human alpha-satellite sequences from GenBank, obtained from ref_decoy
     genome_digest: b7527871d779e5843e765a2ed94a00a064b7af8bba3a42fd
   human_rDNA:
@@ -1650,7 +2012,7 @@ genomes:
               chrom_sizes: human_rDNA.chrom.sizes
             asset_digest: e18c0446f55f2584bf58f04076400ce6
             asset_parents: []
-            asset_children: ['human_rDNA/bowtie2_index:default', 'human_rDNA/bwa_index:default', 'human_rDNA/bismark_bt1_index:default', 'human_rDNA/hisat2_index:default', 'human_rDNA/star_index:default', 'human_rDNA/bismark_bt2_index:default']
+            asset_children: ['human_rDNA/bowtie2_index:default', 'human_rDNA/bwa_index:default', 'human_rDNA/bismark_bt1_index:default', 'human_rDNA/hisat2_index:default', 'human_rDNA/star_index:default', 'human_rDNA/bismark_bt2_index:default', 'human_rDNA/suffixerator_index:default', 'human_rDNA/tallymer_index:default']
         default_tag: default
       bowtie2_index:
         asset_description: Genome index for bowtie, produced with bowtie-build
@@ -1711,6 +2073,28 @@ genomes:
             seek_keys:
               bismark_bt2_index: .
             asset_parents: ['human_rDNA/fasta:default']
+        default_tag: default
+      suffixerator_index:
+        asset_description: Enhanced suffix array index for genomes using gt (GenomeTools) suffixerator program
+        tags:
+          default:
+            asset_path: suffixerator_index
+            asset_digest: a20bdc5ea298ea4eef08ea2a33c808b1
+            seek_keys:
+              esa: human_rDNA.sft
+            asset_parents: ['human_rDNA/fasta:default']
+            asset_children: ['human_rDNA/tallymer_index:default']
+        default_tag: default
+      tallymer_index:
+        asset_description: Indexed k-mers for a given enhanced suffix array at a fixed value of k
+        tags:
+          default:
+            asset_path: tallymer_index
+            asset_digest: 880008591f4fd2e1d3b8f5dbc97d7564
+            seek_keys:
+              tindex: human_rDNA.tal_30
+              search_file: human_rDNA.tal_30.gtTxt
+            asset_parents: ['human_rDNA/fasta:default', 'human_rDNA/suffixerator_index:default']
         default_tag: default
     genome_description: Human rDNA sequences curated from GenBank
     genome_digest: c4524d729c745246cd2a47476b46922ce359e9a16fcdae6b
