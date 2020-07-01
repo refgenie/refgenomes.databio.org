@@ -17,7 +17,7 @@ rn6,fasta_txome,
 rn6_cdna,fasta,The Rnor_6.0 cDNA reference sequence from Ensembl
 hs38d1,fasta,Decoy version 1 for GRCh38 from NCBI
 hg38_noalt_decoy,fasta,The GRCh38 reference with decoy and without alternative haplotypes from NCBI
-hg38_chr22,fasta,
+hg38_chr22,fasta,Chromosome 22 from the hg38 reference. Useful for testing
 human_repeats,fasta,Manually curated collection of human repeat sequences from GenBank
 human_alu,fasta,"Manually curated human ALU repeats from GenBank, obtained from ref_decoy"
 human_alphasat,fasta,"Manually curated human alpha-satellite sequences from GenBank, obtained from ref_decoy"
