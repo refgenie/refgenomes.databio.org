@@ -45,7 +45,11 @@ if args.asset == 'bismark_bt1_index':
     params['mem'] = "64000"
 
 if args.asset == 'salmon_partial_sa_index':
-    params['mem'] = "96000"
+    params['mem'] = "112000"
+    params['time'] = "6:00:00"
+    params['cores'] = "8"
+
+if args.asset == 'dbsfnp':
     params['time'] = "12:00:00"
 
 if args.asset == 'salmon_sa_index':
