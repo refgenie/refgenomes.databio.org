@@ -19,7 +19,7 @@ genomes:
             asset_digest: 4eb430296bc02ed7e4006624f1d5ac53
             asset_parents: []
             asset_children: ['rCRSd/bowtie2_index:default', 'rCRSd/bwa_index:default', 'rCRSd/bismark_bt2_index:default', 'rCRSd/bismark_bt1_index:default', 'rCRSd/hisat2_index:default', 'rCRSd/star_index:default']
-            archive_digest: 0dd2e192da995d2e60433d5f416c3e87
+            archive_digest: e04aa37098740a1af0e781e4aba7057e
             archive_size: 8.6KB
             asset_size: 38.7KB
         default_tag: default
@@ -32,7 +32,7 @@ genomes:
             seek_keys:
               bowtie2_index: rCRSd
             asset_parents: ['rCRSd/fasta:default']
-            archive_digest: 8a6c71ad504eb47207527ed04daf189c
+            archive_digest: cca213c3d05b6d59417e468ea558d14e
             archive_size: 116.7KB
             asset_size: 8.1MB
             asset_children: []
@@ -46,7 +46,7 @@ genomes:
             seek_keys:
               bwa_index: rCRSd.fa
             asset_parents: ['rCRSd/fasta:default']
-            archive_digest: d97f602b4a6d18404c5cefe877581a4c
+            archive_digest: afa1a2575c86bb1ebb3f018eb2b56385
             archive_size: 33.3KB
             asset_size: 61.9KB
             asset_children: []
@@ -60,7 +60,7 @@ genomes:
             seek_keys:
               bismark_bt2_index: .
             asset_parents: ['rCRSd/fasta:default']
-            archive_digest: 7d066d4b5fa5785f866e14765c24c23e
+            archive_digest: eba9faf0e3bbe89c0474d6d0f3b5d492
             archive_size: 193.4KB
             asset_size: 16.2MB
             asset_children: []
@@ -74,7 +74,7 @@ genomes:
             seek_keys:
               bismark_bt1_index: .
             asset_parents: ['rCRSd/fasta:default']
-            archive_digest: 2399ead270d8f558b8e77d2cc0e4369f
+            archive_digest: 4a9ec906a2949716293a21b385742eaf
             archive_size: 193.4KB
             asset_size: 16.2MB
             asset_children: []
@@ -88,7 +88,7 @@ genomes:
             seek_keys:
               hisat2_index: rCRSd
             asset_parents: ['rCRSd/fasta:default']
-            archive_digest: 0ff2802a791c45a5b0bb0d2944a533c8
+            archive_digest: 96995cba2d65e8cfdc099f9635b63c56
             archive_size: 78.4KB
             asset_size: 4.1MB
             asset_children: []
@@ -102,7 +102,7 @@ genomes:
             seek_keys:
               star_index: .
             asset_parents: ['rCRSd/fasta:default']
-            archive_digest: e351eba72807ca2ce6c160ec95b126c5
+            archive_digest: 09e5f581b53630cc10873dbe26012326
             archive_size: 8.7MB
             asset_size: 1.5GB
             asset_children: []
@@ -122,8 +122,8 @@ genomes:
               chrom_sizes: hg38.chrom.sizes
             asset_digest: 59fed5ec3c3a95bc5709b24b8f2cf7bf
             asset_parents: []
-            asset_children: ['hg38/bowtie2_index:default', 'hg38/cellranger_reference:default', 'hg38/hisat2_index:default', 'hg38/bwa_index:default', 'hg38/bismark_bt1_index:default', 'hg38/bismark_bt2_index:default', 'hg38/star_index:default', 'hg38/salmon_sa_index:default', 'hg38/suffixerator_index:default', 'hg38/tallymer_index:default']
-            archive_digest: 32f8448da439ab2500ae8f784a25b914
+            asset_children: ['hg38/bowtie2_index:default', 'hg38/cellranger_reference:default', 'hg38/hisat2_index:default', 'hg38/bwa_index:default', 'hg38/bismark_bt1_index:default', 'hg38/bismark_bt2_index:default', 'hg38/star_index:default', 'hg38/salmon_sa_index:default', 'hg38/suffixerator_index:default', 'hg38/tallymer_index:default', 'hg38/salmon_partial_sa_index:default']
+            archive_digest: 4c77fd1569b186b2bcdeed2feedfc48b
             archive_size: 833.4MB
             asset_size: 2.9GB
         default_tag: default
@@ -138,7 +138,10 @@ genomes:
               chrom_sizes: hg38.chrom.sizes
             asset_digest: e452acaa6f4b4f28c29ce6e06beb07e0
             asset_parents: []
-            asset_children: ['hg38/salmon_sa_index:default']
+            asset_children: ['hg38/salmon_sa_index:default', 'hg38/salmon_partial_sa_index:default']
+            archive_digest: 1d0365692ae09e53ad7c00c83b9dce12
+            archive_size: 69.1MB
+            asset_size: 363.9MB
         default_tag: default
       gencode_gtf:
         asset_description: GTF annotation asset which provides access to all annotated transcripts which make up an Ensembl gene set.
@@ -150,7 +153,7 @@ genomes:
             asset_digest: 55cad7e24235fa842628a3c1f9542c1f
             asset_parents: []
             asset_children: ['hg38/cellranger_reference:default']
-            archive_digest: 4ddfc4b45d8c1b8f13ab93d7fbc49f6b
+            archive_digest: 457ccbe88ea9fa9a8ab9b92e8afe5a94
             archive_size: 36.7MB
             asset_size: 37.6MB
         default_tag: default
@@ -180,10 +183,10 @@ genomes:
               ensembl_gene_body: hg38_ensembl_gene_body.bed
             asset_digest: 247fa6fbf98ce6b5773cbed0bdd86fef
             asset_parents: []
-            archive_digest: 2a8c4f3ffd93597423b722ea88acd1cf
+            archive_digest: f8b6f07502f7ac453d17f2ad6043fc37
             archive_size: 46.6MB
             asset_size: 56.4MB
-            asset_children: []
+            asset_children: ['hg38/feat_annotation:default', 'hg38/salmon_partial_sa_index:default']
         default_tag: default
       refgene_anno:
         asset_description: gene, TSS, exon, intron, and premature mRNA annotation files
@@ -198,7 +201,7 @@ genomes:
               refgene_pre_mRNA: hg38_pre-mRNA.bed
             asset_digest: 4d0ff5d90ac529a4fffdd5704d8ec6d9
             asset_parents: []
-            archive_digest: 28d3d1375b9ed44046e54f62651c851e
+            archive_digest: 9d5cf83e59d63248c1405b0429643d3a
             archive_size: 13.7MB
             asset_size: 27.9MB
             asset_children: []
@@ -212,7 +215,7 @@ genomes:
             seek_keys:
               bowtie2_index: hg38
             asset_parents: ['hg38/fasta:default']
-            archive_digest: f922e262c3c48a1e0d3cc284d68b8c86
+            archive_digest: 79ec257754f58d6d93f91cca2cfcc3e8
             archive_size: 3.5GB
             asset_size: 3.9GB
             asset_children: []
@@ -226,7 +229,7 @@ genomes:
             seek_keys:
               cellranger_reference: ref
             asset_parents: ['hg38/gencode_gtf:default', 'hg38/fasta:default']
-            archive_digest: 5ac890019c7f007f82b2e0966c08f2e6
+            archive_digest: cb187e3a35380c43e947af2f39359fd1
             archive_size: 10.7GB
             asset_size: 17.7GB
             asset_children: []
@@ -240,7 +243,7 @@ genomes:
             seek_keys:
               hisat2_index: hg38
             asset_parents: ['hg38/fasta:default']
-            archive_digest: 8481d933f18afe56d19621384d98086d
+            archive_digest: 918846ae4cde2a8edae843240038452d
             archive_size: 3.9GB
             asset_size: 4.2GB
             asset_children: []
@@ -254,7 +257,7 @@ genomes:
             seek_keys:
               bwa_index: hg38.fa
             asset_parents: ['hg38/fasta:default']
-            archive_digest: 64711ca689cfcbd5a4acc29cef3056ba
+            archive_digest: 20cfa900745646e7006e4f1fc9725672
             archive_size: 3.2GB
             asset_size: 5.1GB
             asset_children: []
@@ -268,7 +271,7 @@ genomes:
             seek_keys:
               bismark_bt1_index: .
             asset_parents: ['hg38/fasta:default']
-            archive_digest: b5d1d1858d5cd98cda66c429d7a4915e
+            archive_digest: dce4b61f64038f666c9ebdfb356426a2
             archive_size: 7.5GB
             asset_size: 13.6GB
             asset_children: []
@@ -282,7 +285,7 @@ genomes:
             seek_keys:
               bismark_bt2_index: .
             asset_parents: ['hg38/fasta:default']
-            archive_digest: 5d7ab4a80b0f869d24fcf43cb28b0dcc
+            archive_digest: 4224254a4e0f17c0cfad2e19387d4f09
             archive_size: 7.5GB
             asset_size: 13.6GB
             asset_children: []
@@ -296,7 +299,7 @@ genomes:
             seek_keys:
               star_index: .
             asset_parents: ['hg38/fasta:default']
-            archive_digest: ec14ba0ad35f5eba966a985ecafa438a
+            archive_digest: 22eab830a1f5a552c71256e76d24b502
             archive_size: 24.3GB
             asset_size: 26.9GB
             asset_children: []
@@ -343,11 +346,39 @@ genomes:
               tindex: hg38.tal_30
               search_file: hg38.tal_30.gtTxt
             asset_parents: ['hg38/suffixerator_index:default', 'hg38/fasta:default']
-            archive_digest: 844afe194e02fd5e1e814c2f2830d007
+            archive_digest: edbdbe104cf3ddddb9a8acc52df26403
             archive_size: 2.2GB
             asset_size: 10.3GB
             asset_children: []
         default_tag: default
+      ensembl_rb:
+        asset_description: A regulatory annotation file
+        default_tag: default
+        tags:
+          default:
+            asset_path: ensembl_rb
+            seek_keys:
+              ensembl_rb: hg38.gff.gz
+            archive_digest: d0f48951f80eaa69939faa49ac8f77af
+            archive_size: 9.9MB
+            asset_size: 10.7MB
+            asset_parents: []
+            asset_children: ['hg38/feat_annotation:default']
+            asset_digest: d743c316efe1e13ce8a2546fbe3adf69
+      salmon_partial_sa_index:
+        asset_description: Transcriptome index for salmon, produced with salmon index using partial selective alignment method. Preparation includes transcriptome mapping to the genome and extraction of the relevant portion out from the genome and indexing it along with the transcriptome. Recipe source -- https://github.com/COMBINE-lab/SalmonTools/blob/master/scripts/generateDecoyTranscriptome.sh
+        default_tag: default
+        tags:
+          default:
+            asset_path: salmon_partial_sa_index
+            seek_keys:
+              salmon_partial_sa_index: .
+            archive_digest: 0502583da7ec138fdd4e75e5c614a3cc
+            archive_size: 943.4MB
+            asset_size: 2.5GB
+            asset_parents: ['hg38/ensembl_gtf:default', 'hg38/fasta:default', 'hg38/fasta_txome:default']
+            asset_children: []
+            asset_digest: 832adf900ec3ee455ef04fbd0931d2a9
     genome_description: The GCA_000001405.15 GRCh38_no_alt_analysis_set from NCBI
     genome_digest: b3422045db2293738bcb9973c1a0acdfabff3a0a3e1830bc
   hg38_cdna:
@@ -364,7 +395,7 @@ genomes:
             asset_digest: e452acaa6f4b4f28c29ce6e06beb07e0
             asset_parents: []
             asset_children: ['hg38_cdna/kallisto_index:default', 'hg38_cdna/salmon_index:default']
-            archive_digest: 1f4102d9d6266241b8867fa4868c33e2
+            archive_digest: 362eb7bcd21d67217e736607a6bf5c42
             archive_size: 69.1MB
             asset_size: 363.9MB
         default_tag: default
@@ -377,7 +408,7 @@ genomes:
             seek_keys:
               kallisto_index: .
             asset_parents: ['hg38_cdna/fasta:default']
-            archive_digest: 49ac74e5ddddfb8832e56e1edeb82ea1
+            archive_digest: 7f32f15dff810f14719d1f8900d7ab8f
             archive_size: 1.7GB
             asset_size: 2.3GB
             asset_children: []
@@ -391,7 +422,7 @@ genomes:
             seek_keys:
               salmon_index: .
             asset_parents: ['hg38_cdna/fasta:default']
-            archive_digest: 6c5adb9b85f7db5f3aeb9d1f57da6242
+            archive_digest: a4ca9d7e28c968b997212061aa299139
             archive_size: 525.8MB
             asset_size: 617.9MB
             asset_children: []
@@ -411,8 +442,8 @@ genomes:
               chrom_sizes: hg19.chrom.sizes
             asset_digest: 7ce3b03e30d6ef76af8c3ad09a141dfc
             asset_parents: []
-            asset_children: ['hg19/bowtie2_index:default', 'hg19/cellranger_reference:default', 'hg19/bwa_index:default', 'hg19/hisat2_index:default', 'hg19/bismark_bt1_index:default', 'hg19/bismark_bt2_index:default', 'hg19/star_index:default', 'hg19/salmon_sa_index:default', 'hg19/suffixerator_index:default', 'hg19/tallymer_index:default']
-            archive_digest: 3087f087cb5b40eeab8849999fd1a9ce
+            asset_children: ['hg19/bowtie2_index:default', 'hg19/cellranger_reference:default', 'hg19/bwa_index:default', 'hg19/hisat2_index:default', 'hg19/bismark_bt1_index:default', 'hg19/bismark_bt2_index:default', 'hg19/star_index:default', 'hg19/salmon_sa_index:default', 'hg19/suffixerator_index:default', 'hg19/tallymer_index:default', 'hg19/salmon_partial_sa_index:default']
+            archive_digest: e20bff15919c599a84ede6ebe3094301
             archive_size: 905.3MB
             asset_size: 3.0GB
         default_tag: default
@@ -426,9 +457,9 @@ genomes:
             asset_digest: 3ecbecc25451ce6ae3557a4011510d73
             asset_parents: []
             asset_children: ['hg19/cellranger_reference:default']
-            archive_digest: cda83bd30c6b778c9732440f548a8dec
+            archive_digest: 79c11f000960522c3644910bd8fc4035
             archive_size: 52.3MB
-            asset_size: 53.9MB
+            asset_size: 54.0MB
         default_tag: default
       dbsnp:
         asset_description: The database of single nucleotide polymorphisms (SNPs) and multiple small-scale variations that include insertions/deletions, microsatellites, and non-polymorphic variants
@@ -458,7 +489,7 @@ genomes:
               refgene_pre_mRNA: hg19_pre-mRNA.bed
             asset_digest: f4e6d4a88c21af08d61443abcb5b7d4b
             asset_parents: []
-            archive_digest: c3859eea078c2abc4dc8185e5ddca435
+            archive_digest: cb65fa3a1be7a58e06532e17f74eefcc
             archive_size: 12.7MB
             asset_size: 25.3MB
             asset_children: []
@@ -474,10 +505,10 @@ genomes:
               ensembl_tss: hg19_ensembl_TSS.bed
               ensembl_gene_body: hg19_ensembl_gene_body.bed
             asset_parents: []
-            archive_digest: 4914f443f37f7826a7a4bae5dc27ea51
+            archive_digest: 81ac9f68964938a9c980cd85c98b2af6
             archive_size: 42.5MB
             asset_size: 51.3MB
-            asset_children: []
+            asset_children: ['hg19/feat_annotation:default', 'hg19/salmon_partial_sa_index:default']
         default_tag: default
       fasta_txome:
         asset_description: cDNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
@@ -490,8 +521,8 @@ genomes:
               fai: hg19.fa.fai
               chrom_sizes: hg19.chrom.sizes
             asset_parents: []
-            asset_children: ['hg19/salmon_sa_index:default']
-            archive_digest: 293db91ac3866e5ba99da1ed159d62fb
+            asset_children: ['hg19/salmon_sa_index:default', 'hg19/salmon_partial_sa_index:default']
+            archive_digest: 596f53bfea98bb404912dbf7c6e8fb06
             archive_size: 60.7MB
             asset_size: 315.1MB
         default_tag: default
@@ -504,6 +535,10 @@ genomes:
             seek_keys:
               bowtie2_index: hg19
             asset_parents: ['hg19/fasta:default']
+            archive_digest: a28f1f75e1208c037a5edcb18530f03c
+            archive_size: 3.5GB
+            asset_size: 3.8GB
+            asset_children: []
         default_tag: default
       cellranger_reference:
         asset_description: Cell Ranger custom genome reference for read alignment and gene expression quantification
@@ -514,7 +549,7 @@ genomes:
             seek_keys:
               cellranger_reference: ref
             asset_parents: ['hg19/fasta:default', 'hg19/gencode_gtf:default']
-            archive_digest: 154ba698fe8c18a9dfac37858a72a565
+            archive_digest: c326199ccacb7830cefbd715f7b96b0e
             archive_size: 10.7GB
             asset_size: 18.4GB
             asset_children: []
@@ -528,7 +563,7 @@ genomes:
             seek_keys:
               bwa_index: hg19.fa
             asset_parents: ['hg19/fasta:default']
-            archive_digest: 1cd069008addf910267436e54b637fa2
+            archive_digest: e4184e1e54e9242c8930be9d643921fb
             archive_size: 3.2GB
             asset_size: 5.1GB
             asset_children: []
@@ -542,7 +577,7 @@ genomes:
             seek_keys:
               hisat2_index: hg19
             asset_parents: ['hg19/fasta:default']
-            archive_digest: 0233c66ec4cf02987fe3c4d6ac033363
+            archive_digest: 23ab2967f1eb0a85f5c5c66eb5a5aea1
             archive_size: 3.9GB
             asset_size: 4.1GB
             asset_children: []
@@ -556,7 +591,7 @@ genomes:
             seek_keys:
               bismark_bt1_index: .
             asset_parents: ['hg19/fasta:default']
-            archive_digest: 7b51ab25daa80354bc744704b3d87fed
+            archive_digest: 1597e75ca50aefa227fc6d139049def6
             archive_size: 7.5GB
             asset_size: 13.6GB
             asset_children: []
@@ -570,7 +605,7 @@ genomes:
             seek_keys:
               bismark_bt2_index: .
             asset_parents: ['hg19/fasta:default']
-            archive_digest: ef1a05b3151bcaec881ef4d9f088d312
+            archive_digest: ae86f91efea46dd74dc35ed2066d9644
             archive_size: 7.5GB
             asset_size: 13.6GB
             asset_children: []
@@ -584,7 +619,7 @@ genomes:
             seek_keys:
               star_index: .
             asset_parents: ['hg19/fasta:default']
-            archive_digest: ab494b1cea1ff6d852e6f6c481b1170a
+            archive_digest: a07b312e44f8176d4346f9abcefcd042
             archive_size: 24.0GB
             asset_size: 26.7GB
             asset_children: []
@@ -598,7 +633,7 @@ genomes:
             seek_keys:
               salmon_sa_index: .
             asset_parents: ['hg19/fasta:default', 'hg19/fasta_txome:default']
-            archive_digest: 4bc11c54a5bf6c725bffde0bc8ea9e08
+            archive_digest: 5e93481c80e5cfa2f0c77adf413d55a1
             archive_size: 14.3GB
             asset_size: 16.5GB
             asset_children: []
@@ -624,11 +659,39 @@ genomes:
               tindex: hg19.tal_30
               search_file: hg19.tal_30.gtTxt
             asset_parents: ['hg19/suffixerator_index:default', 'hg19/fasta:default']
-            archive_digest: e8dccf4bb3cae2da59162ace416650a1
+            archive_digest: 0e86914f26256d3873700f1ac1cff175
             archive_size: 2.1GB
             asset_size: 9.7GB
             asset_children: []
         default_tag: default
+      ensembl_rb:
+        asset_description: A regulatory annotation file
+        default_tag: default
+        tags:
+          default:
+            asset_path: ensembl_rb
+            seek_keys:
+              ensembl_rb: hg19.gff.gz
+            archive_digest: 5c3b5c24a3ad0c9a864a19a85e411f0d
+            archive_size: 8.1MB
+            asset_size: 8.8MB
+            asset_parents: []
+            asset_children: ['hg19/feat_annotation:default']
+            asset_digest: 78f1eee3e054f029677d93f782235c87
+      salmon_partial_sa_index:
+        asset_description: Transcriptome index for salmon, produced with salmon index using partial selective alignment method. Preparation includes transcriptome mapping to the genome and extraction of the relevant portion out from the genome and indexing it along with the transcriptome. Recipe source -- https://github.com/COMBINE-lab/SalmonTools/blob/master/scripts/generateDecoyTranscriptome.sh
+        default_tag: default
+        tags:
+          default:
+            asset_path: salmon_partial_sa_index
+            seek_keys:
+              salmon_partial_sa_index: .
+            archive_digest: 2fff6c31d41d689b53d5f316809273af
+            archive_size: 879.5MB
+            asset_size: 2.4GB
+            asset_parents: ['hg19/fasta_txome:default', 'hg19/ensembl_gtf:default', 'hg19/fasta:default']
+            asset_children: []
+            asset_digest: c56987719887ffb61a260a27b8aa3a12
     genome_description: The GRCh37 reference sequence from UCSC
     genome_digest: fb7002132265e88a91859e3c743fc7a898a057019fc11456
   hg18:
@@ -644,7 +707,7 @@ genomes:
               chrom_sizes: hg18.chrom.sizes
             asset_digest: 456bf4dd716de36373539acf2595baf3
             asset_parents: []
-            archive_digest: 91498bbd4928f167770f5964c61c8446
+            archive_digest: 79fac39160cd9b204cd5c004e16fb048
             archive_size: 26.4MB
             asset_size: 129.8MB
             asset_children: []
@@ -659,7 +722,7 @@ genomes:
             asset_digest: f08089c9fb04f4d48cb76d703877cb47
             asset_parents: []
             asset_children: ['hg18/cellranger_reference:default']
-            archive_digest: 0f7b64ad46333105651dce9f5e9af39b
+            archive_digest: 6ca4462742ff6a0b39a0e8b8fe343bb6
             archive_size: 17.2MB
             asset_size: 18.7MB
         default_tag: default
@@ -675,7 +738,7 @@ genomes:
             asset_digest: 0fc1d00b994befc9a00695b15b048af8
             asset_parents: []
             asset_children: ['hg18/cellranger_reference:default', 'hg18/bowtie2_index:default', 'hg18/bwa_index:default', 'hg18/hisat2_index:default', 'hg18/bismark_bt2_index:default', 'hg18/star_index:default', 'hg18/bismark_bt1_index:default', 'hg18/suffixerator_index:default', 'hg18/tallymer_index:default']
-            archive_digest: ef1df2d443cc45db8b39f3227d2d4e6b
+            archive_digest: 277f00118f6f3366786dce86b36c6edf
             archive_size: 899.7MB
             asset_size: 3.0GB
         default_tag: default
@@ -688,7 +751,7 @@ genomes:
             seek_keys:
               cellranger_reference: ref
             asset_parents: ['hg18/fasta:default', 'hg18/gencode_gtf:default']
-            archive_digest: 8d93ecb749b386ae2a29ab3fb61b00a2
+            archive_digest: b9d0f5557df8d0ddf5c0a84f89bc10c3
             archive_size: 10.4GB
             asset_size: 16.5GB
             asset_children: []
@@ -702,6 +765,10 @@ genomes:
             seek_keys:
               bowtie2_index: hg18
             asset_parents: ['hg18/fasta:default']
+            archive_digest: c05156b8145d1ba9b753a93f209daccb
+            archive_size: 3.5GB
+            asset_size: 3.8GB
+            asset_children: []
         default_tag: default
       bwa_index:
         asset_description: Genome index for Burrows-Wheeler Alignment Tool, produced with bwa index
@@ -712,7 +779,7 @@ genomes:
             seek_keys:
               bwa_index: hg18.fa
             asset_parents: ['hg18/fasta:default']
-            archive_digest: 92c2b9fce7fc4979db735e0b557c6148
+            archive_digest: e8123cdaf113f55be7c7ca24291242aa
             archive_size: 3.2GB
             asset_size: 5.1GB
             asset_children: []
@@ -726,7 +793,7 @@ genomes:
             seek_keys:
               hisat2_index: hg18
             asset_parents: ['hg18/fasta:default']
-            archive_digest: b102d61d77f33158ae79fa38de259e94
+            archive_digest: 76e23307546bbed193de40b8f06a2810
             archive_size: 3.9GB
             asset_size: 4.1GB
             asset_children: []
@@ -740,7 +807,7 @@ genomes:
             seek_keys:
               bismark_bt2_index: .
             asset_parents: ['hg18/fasta:default']
-            archive_digest: 001e5e1959837b1d8645bccf45759639
+            archive_digest: de371b8cf511c586f164b76fe7b22982
             archive_size: 7.5GB
             asset_size: 13.5GB
             asset_children: []
@@ -754,7 +821,7 @@ genomes:
             seek_keys:
               star_index: .
             asset_parents: ['hg18/fasta:default']
-            archive_digest: 6ea2ef4f2e1c0f92c868021f801d90b4
+            archive_digest: b3efbf83234a0a79f821a50101c0137c
             archive_size: 23.9GB
             asset_size: 26.5GB
             asset_children: []
@@ -768,7 +835,7 @@ genomes:
             seek_keys:
               bismark_bt1_index: .
             asset_parents: ['hg18/fasta:default']
-            archive_digest: 868644635a09170d08b5ac59f69f2b21
+            archive_digest: 59bc7fff83e9cbf640c7cae4eaaf90d6
             archive_size: 7.5GB
             asset_size: 13.5GB
             asset_children: []
@@ -794,7 +861,7 @@ genomes:
               tindex: hg18.tal_30
               search_file: hg18.tal_30.gtTxt
             asset_parents: ['hg18/fasta:default', 'hg18/suffixerator_index:default']
-            archive_digest: 36dec268e5184768897e2fc50366adc5
+            archive_digest: e4b99aea889fb0fec967b2427f5f0c50
             archive_size: 2.1GB
             asset_size: 9.8GB
             asset_children: []
@@ -815,7 +882,7 @@ genomes:
             asset_digest: b776fbe954753566849d413c5e7d3fed
             asset_parents: []
             asset_children: ['rn6/salmon_sa_index:default', 'rn6/salmon_partial_sa_index:default']
-            archive_digest: dde60ba6dc165b04be44da3b16bba896
+            archive_digest: 7796dcc7fe6793433ddbfad4ad9b01b4
             archive_size: 20.2MB
             asset_size: 75.4MB
         default_tag: default
@@ -831,7 +898,7 @@ genomes:
             asset_digest: 813146b78037a00e15f4f119ddf0d6d2
             asset_parents: []
             asset_children: ['rn6/salmon_partial_sa_index:default']
-            archive_digest: 3496a699292c17191a734076a05fcc7d
+            archive_digest: eeba1070213cba67fe52931eb567180c
             archive_size: 11.7MB
             asset_size: 14.9MB
         default_tag: default
@@ -848,7 +915,7 @@ genomes:
               refgene_pre_mRNA: rn6_pre-mRNA.bed
             asset_digest: 5528f7841879ac0b108194f046a3687d
             asset_parents: []
-            archive_digest: 4e3be87cd7945e4ffc0cf5dc143f74c5
+            archive_digest: 7a70f22e025cd381d95953baf32a20fd
             archive_size: 5.4MB
             asset_size: 13.1MB
             asset_children: []
@@ -865,7 +932,7 @@ genomes:
             asset_digest: 9be5749c2a0a50d5f1a4979da5d9de1a
             asset_parents: []
             asset_children: ['rn6/hisat2_index:default', 'rn6/bowtie2_index:default', 'rn6/salmon_sa_index:default', 'rn6/bwa_index:default', 'rn6/bismark_bt2_index:default', 'rn6/star_index:default', 'rn6/salmon_partial_sa_index:default', 'rn6/bismark_bt1_index:default', 'rn6/suffixerator_index:default', 'rn6/tallymer_index:default']
-            archive_digest: dbea564cc8be27efe4e1d2dce6281c55
+            archive_digest: 27b5f807263edc11048dc0d357512732
             archive_size: 847.3MB
             asset_size: 2.7GB
         default_tag: default
@@ -878,7 +945,7 @@ genomes:
             seek_keys:
               hisat2_index: rn6
             asset_parents: ['rn6/fasta:default']
-            archive_digest: a4e75b406db696c0d6686454b12ae1cd
+            archive_digest: 72587db6d693c361b59ee9242e363b1d
             archive_size: 3.7GB
             asset_size: 3.9GB
             asset_children: []
@@ -892,6 +959,10 @@ genomes:
             seek_keys:
               bowtie2_index: rn6
             asset_parents: ['rn6/fasta:default']
+            archive_digest: 3da7912fd1566bd5d20d47269946af52
+            archive_size: 3.3GB
+            asset_size: 3.6GB
+            asset_children: []
         default_tag: default
       salmon_sa_index:
         asset_description: Transcriptome index for salmon, produced with salmon index using selective alignment method. Improves quantification accuracy compared to the regular index.
@@ -902,7 +973,7 @@ genomes:
             seek_keys:
               salmon_sa_index: .
             asset_parents: ['rn6/fasta_txome:default', 'rn6/fasta:default']
-            archive_digest: 3881ccc20e801a59ab420dccf85c32be
+            archive_digest: fc3dce00677582536f0aafadbbf96aa3
             archive_size: 12.5GB
             asset_size: 14.4GB
             asset_children: []
@@ -916,7 +987,7 @@ genomes:
             seek_keys:
               bwa_index: rn6.fa
             asset_parents: ['rn6/fasta:default']
-            archive_digest: 807fcd2430a8f54b78edb85f738b9380
+            archive_digest: febad5f094181f61091c94d80a98df6f
             archive_size: 3.0GB
             asset_size: 4.7GB
             asset_children: []
@@ -930,7 +1001,7 @@ genomes:
             seek_keys:
               bismark_bt2_index: .
             asset_parents: ['rn6/fasta:default']
-            archive_digest: 950381aee48025f5db8e85e0be28cd2a
+            archive_digest: 0f44334f09dc39439467b7d1c441697c
             archive_size: 7.0GB
             asset_size: 12.6GB
             asset_children: []
@@ -944,7 +1015,7 @@ genomes:
             seek_keys:
               star_index: .
             asset_parents: ['rn6/fasta:default']
-            archive_digest: 1a16d9b6f0492438224fab9b8021080c
+            archive_digest: 59209506e83cc6ed1a2b677281e7fa79
             archive_size: 22.7GB
             asset_size: 25.3GB
             asset_children: []
@@ -954,11 +1025,11 @@ genomes:
         tags:
           default:
             asset_path: salmon_partial_sa_index
-            asset_digest: c7a7f7abb1892f93a09c8f66d19b5367
+            asset_digest: f997b75e4f2d59fe512087d5d2de02d8
             seek_keys:
               salmon_partial_sa_index: .
             asset_parents: ['rn6/fasta:default', 'rn6/ensembl_gtf:default', 'rn6/fasta_txome:default']
-            archive_digest: 5458cf99ddfa5ba7e962c96aa6c4874d
+            archive_digest: ac86964ee4174b0577d38eea844fef9b
             archive_size: 408.3MB
             asset_size: 797.1MB
             asset_children: []
@@ -972,7 +1043,7 @@ genomes:
             seek_keys:
               bismark_bt1_index: .
             asset_parents: ['rn6/fasta:default']
-            archive_digest: 2c1e09aa807674ab94d3fce216bd24b7
+            archive_digest: b2a3f60067f9f904b5d35bf39301a9ee
             archive_size: 7.0GB
             asset_size: 12.6GB
             asset_children: []
@@ -1001,7 +1072,7 @@ genomes:
               tindex: rn6.tal_30
               search_file: rn6.tal_30.gtTxt
             asset_parents: ['rn6/fasta:default', 'rn6/suffixerator_index:default']
-            archive_digest: 18ccd3412e71c818e9f33d2946118725
+            archive_digest: 8c23629a728307d80bb338ad347ce16a
             archive_size: 2.7GB
             asset_size: 12.0GB
             asset_children: []
@@ -1022,7 +1093,7 @@ genomes:
             asset_digest: f197c1ac4b3e4c5dd013bd2021bb32e6
             asset_parents: []
             asset_children: ['hg38_chr22/hisat2_index:default', 'hg38_chr22/star_index:default', 'hg38_chr22/bismark_bt1_index:default', 'hg38_chr22/suffixerator_index:default', 'hg38_chr22/bowtie2_index:default', 'hg38_chr22/bwa_index:default', 'hg38_chr22/bismark_bt2_index:default', 'hg38_chr22/tallymer_index:default']
-            archive_digest: f7ca472206c224bb5dc1e61088e864b3
+            archive_digest: 4b1884af44ddaa285bf410137483205f
             archive_size: 11.7MB
             asset_size: 41.4MB
         default_tag: default
@@ -1035,7 +1106,7 @@ genomes:
               hisat2_index: hg38_chr22
             asset_digest: fcfb9237ec19cc3c414add5ace4b5659
             asset_parents: ['hg38_chr22/fasta:default']
-            archive_digest: 6981074fe61bf28c24fb610bd2fc2fac
+            archive_digest: 494bb4f5a01efac48779d4a34dad9585
             archive_size: 58.3MB
             asset_size: 66.4MB
             asset_children: []
@@ -1049,7 +1120,7 @@ genomes:
               star_index: .
             asset_digest: 3cac7a9ecfc786d7e0504745d51cf837
             asset_parents: ['hg38_chr22/fasta:default']
-            archive_digest: c08213e5d0d9422bd601c4edac8c55cd
+            archive_digest: 7d653ebffa67085b8466778a4d12f738
             archive_size: 862.4MB
             asset_size: 1.8GB
             asset_children: []
@@ -1063,7 +1134,7 @@ genomes:
               bismark_bt2_index: .
             asset_digest: a79889b8cc0e7fbda6d3ca3cd9c6e651
             asset_parents: ['hg38_chr22/fasta:default']
-            archive_digest: 4ffeeeabce9d4e62b0ce346fc45ba69f
+            archive_digest: 06ec3c4c03f030001666b30fc2d22a5c
             archive_size: 106.8MB
             asset_size: 214.1MB
             asset_children: []
@@ -1077,7 +1148,7 @@ genomes:
               bismark_bt1_index: .
             asset_digest: a79889b8cc0e7fbda6d3ca3cd9c6e651
             asset_parents: ['hg38_chr22/fasta:default']
-            archive_digest: 1dc4761702e02a67ca6fcfaf11651dc3
+            archive_digest: 15c80685b6b8bb01405744699bac766b
             archive_size: 106.8MB
             asset_size: 214.1MB
             asset_children: []
@@ -1105,7 +1176,7 @@ genomes:
             seek_keys:
               bowtie2_index: hg38_chr22
             asset_parents: ['hg38_chr22/fasta:default']
-            archive_digest: bab37121eeb520783aa57e36a7265d76
+            archive_digest: 0dc14ba1ffee936442c13739c1b99e01
             archive_size: 52.6MB
             asset_size: 65.7MB
             asset_children: []
@@ -1119,7 +1190,7 @@ genomes:
             seek_keys:
               bwa_index: hg38_chr22.fa
             asset_parents: ['hg38_chr22/fasta:default']
-            archive_digest: 1a83d76addc946f96f391d6bcbee8095
+            archive_digest: 511888fca9d88ec87e4b9cb0deb0c754
             archive_size: 43.7MB
             asset_size: 71.4MB
             asset_children: []
@@ -1134,7 +1205,7 @@ genomes:
               tindex: hg38_chr22.tal_30
               search_file: hg38_chr22.tal_30.gtTxt
             asset_parents: ['hg38_chr22/fasta:default', 'hg38_chr22/suffixerator_index:default']
-            archive_digest: 575409936cc623d99040c66c2b540a68
+            archive_digest: 378604318125fe44c47c60b59ab3e751
             archive_size: 48.1MB
             asset_size: 181.3MB
             asset_children: []
@@ -1153,7 +1224,7 @@ genomes:
             asset_digest: 83a765227a92b2bfa774378eacf9b660
             asset_parents: []
             asset_children: ['mm10/cellranger_reference:default']
-            archive_digest: 7eb3cefe24493ae26fddb98b32c552fe
+            archive_digest: 8ac5466d49ce9bfe97cfdb225649f5a7
             archive_size: 26.2MB
             asset_size: 27.0MB
         default_tag: default
@@ -1168,8 +1239,8 @@ genomes:
               chrom_sizes: mm10.chrom.sizes
             asset_digest: 4afce2deeceae65b4c0987b9297cf441
             asset_parents: []
-            asset_children: ['mm10/cellranger_reference:default', 'mm10/hisat2_index:default', 'mm10/bowtie2_index:default', 'mm10/bwa_index:default', 'mm10/star_index:default', 'mm10/bismark_bt2_index:default', 'mm10/bismark_bt1_index:default', 'mm10/salmon_sa_index:default', 'mm10/suffixerator_index:default', 'mm10/tallymer_index:default']
-            archive_digest: 3b2e02f632fc1c44b7c5b4b0ad39cc2f
+            asset_children: ['mm10/cellranger_reference:default', 'mm10/hisat2_index:default', 'mm10/bowtie2_index:default', 'mm10/bwa_index:default', 'mm10/star_index:default', 'mm10/bismark_bt2_index:default', 'mm10/bismark_bt1_index:default', 'mm10/salmon_sa_index:default', 'mm10/suffixerator_index:default', 'mm10/tallymer_index:default', 'mm10/salmon_partial_sa_index:default']
+            archive_digest: ead3a62196cb809b5efce651068f00f6
             archive_size: 763.4MB
             asset_size: 2.6GB
         default_tag: default
@@ -1184,10 +1255,10 @@ genomes:
               ensembl_tss: mm10_ensembl_TSS.bed
               ensembl_gene_body: mm10_ensembl_gene_body.bed
             asset_parents: []
-            archive_digest: 60b7516cdaa0b30e6674d8ba8418d917
+            archive_digest: 7a3edf7a3718089c86ba50cb97d8b2c9
             archive_size: 30.5MB
             asset_size: 37.8MB
-            asset_children: []
+            asset_children: ['mm10/feat_annotation:default', 'mm10/salmon_partial_sa_index:default']
         default_tag: default
       refgene_anno:
         asset_description: gene, TSS, exon, intron, and premature mRNA annotation files
@@ -1202,7 +1273,7 @@ genomes:
               refgene_intron: mm10_introns.bed
               refgene_pre_mRNA: mm10_pre-mRNA.bed
             asset_parents: []
-            archive_digest: 4626fcac3865b8486b238f12aa4f869e
+            archive_digest: bcb5fb6437e8782a79fd9b41cb4ba1de
             archive_size: 9.2MB
             asset_size: 19.7MB
             asset_children: []
@@ -1218,8 +1289,8 @@ genomes:
               fai: mm10.fa.fai
               chrom_sizes: mm10.chrom.sizes
             asset_parents: []
-            asset_children: ['mm10/salmon_sa_index:default']
-            archive_digest: 8b3c3410e3a9469f71b4254875cc15bd
+            asset_children: ['mm10/salmon_sa_index:default', 'mm10/salmon_partial_sa_index:default']
+            archive_digest: 49c4c4bb31e6d0a1f98e1e1c77b5fcd7
             archive_size: 51.6MB
             asset_size: 247.6MB
         default_tag: default
@@ -1232,7 +1303,7 @@ genomes:
             seek_keys:
               cellranger_reference: ref
             asset_parents: ['mm10/gencode_gtf:default', 'mm10/fasta:default']
-            archive_digest: b008915c1ebce96a6363426321b79aec
+            archive_digest: 8b530b3422ec9ecf52e1d1e374b146f8
             archive_size: 9.6GB
             asset_size: 15.5GB
             asset_children: []
@@ -1246,7 +1317,7 @@ genomes:
             seek_keys:
               hisat2_index: mm10
             asset_parents: ['mm10/fasta:default']
-            archive_digest: efc85d32a6706d00742f9e03a9c4e04a
+            archive_digest: 1293e75b9123b42d395268fd1698dc74
             archive_size: 3.5GB
             asset_size: 3.8GB
             asset_children: []
@@ -1260,6 +1331,10 @@ genomes:
             seek_keys:
               bowtie2_index: mm10
             asset_parents: ['mm10/fasta:default']
+            archive_digest: 547fb9d09bc970888d19335aa0b08cda
+            archive_size: 3.1GB
+            asset_size: 3.5GB
+            asset_children: []
         default_tag: default
       bwa_index:
         asset_description: Genome index for Burrows-Wheeler Alignment Tool, produced with bwa index
@@ -1270,7 +1345,7 @@ genomes:
             seek_keys:
               bwa_index: mm10.fa
             asset_parents: ['mm10/fasta:default']
-            archive_digest: 95ac5453892e654864bcacb91c832446
+            archive_digest: 7bbb5aa05173aae8ddedd32a9c984e04
             archive_size: 2.8GB
             asset_size: 4.5GB
             asset_children: []
@@ -1284,7 +1359,7 @@ genomes:
             seek_keys:
               star_index: .
             asset_parents: ['mm10/fasta:default']
-            archive_digest: 581b919b69eca709e991f142db48c4db
+            archive_digest: 7d974ef358940cf89ea90e5919070756
             archive_size: 22.0GB
             asset_size: 24.4GB
             asset_children: []
@@ -1298,7 +1373,7 @@ genomes:
             seek_keys:
               bismark_bt2_index: .
             asset_parents: ['mm10/fasta:default']
-            archive_digest: 70752ff240408404ad66e19dba989923
+            archive_digest: 4687880a53a059c34648cace25235856
             archive_size: 6.8GB
             asset_size: 12.2GB
             asset_children: []
@@ -1312,7 +1387,7 @@ genomes:
             seek_keys:
               bismark_bt1_index: .
             asset_parents: ['mm10/fasta:default']
-            archive_digest: f116d20b4ac8da9a1ef1ead5d24c1db2
+            archive_digest: 4744733b0395a4997c692e9f42dff688
             archive_size: 6.8GB
             asset_size: 12.2GB
             asset_children: []
@@ -1326,7 +1401,7 @@ genomes:
             seek_keys:
               salmon_sa_index: .
             asset_parents: ['mm10/fasta:default', 'mm10/fasta_txome:default']
-            archive_digest: a5711a5201f22e16752374db5bfa6b59
+            archive_digest: 924ebde9568a1174e042e6e30e66676c
             archive_size: 12.1GB
             asset_size: 14.3GB
             asset_children: []
@@ -1355,11 +1430,39 @@ genomes:
               tindex: mm10.tal_30
               search_file: mm10.tal_30.gtTxt
             asset_parents: ['mm10/suffixerator_index:default', 'mm10/fasta:default']
-            archive_digest: 215abf36992603c0ef1db19f318375dc
+            archive_digest: 768a85e09d683e858628bacf2d1fa2b2
             archive_size: 2.3GB
             asset_size: 11.2GB
             asset_children: []
         default_tag: default
+      ensembl_rb:
+        asset_description: A regulatory annotation file
+        default_tag: default
+        tags:
+          default:
+            asset_path: ensembl_rb
+            seek_keys:
+              ensembl_rb: mm10.gff.gz
+            archive_digest: 84f11f474ceb020047ee183b62c1de0e
+            archive_size: 9.8MB
+            asset_size: 9.8MB
+            asset_parents: []
+            asset_children: ['mm10/feat_annotation:default']
+            asset_digest: 4f9b9daa7b8d2f60ec4814f39630f494
+      salmon_partial_sa_index:
+        asset_description: Transcriptome index for salmon, produced with salmon index using partial selective alignment method. Preparation includes transcriptome mapping to the genome and extraction of the relevant portion out from the genome and indexing it along with the transcriptome. Recipe source -- https://github.com/COMBINE-lab/SalmonTools/blob/master/scripts/generateDecoyTranscriptome.sh
+        default_tag: default
+        tags:
+          default:
+            asset_path: salmon_partial_sa_index
+            seek_keys:
+              salmon_partial_sa_index: .
+            archive_digest: cace35c2b4786daad1340507aa67868e
+            archive_size: 802.1MB
+            asset_size: 1.9GB
+            asset_parents: ['mm10/ensembl_gtf:default', 'mm10/fasta_txome:default', 'mm10/fasta:default']
+            asset_children: []
+            asset_digest: 2f7b7f83191be31b9aa047c2a0847186
     genome_description: The GCA_000001635.5 seqs_for_alignment_pipelines from NCBI
     genome_digest: b55fbc8f55f60d69faf2dc9f7f0de3d753b369649ce544f7
   mouse_chrM2x:
@@ -1376,7 +1479,7 @@ genomes:
             asset_digest: 8dfe402f7d29d5b036dd8937119e4404
             asset_parents: []
             asset_children: ['mouse_chrM2x/bowtie2_index:default', 'mouse_chrM2x/bismark_bt2_index:default', 'mouse_chrM2x/bwa_index:default', 'mouse_chrM2x/bismark_bt1_index:default', 'mouse_chrM2x/hisat2_index:default', 'mouse_chrM2x/star_index:default', 'mouse_chrM2x/suffixerator_index:default', 'mouse_chrM2x/tallymer_index:default']
-            archive_digest: 2fa3765eaac0b45621f6b66476ef08f1
+            archive_digest: bceb817ae35a51613aacc27cf81f945e
             archive_size: 9.0KB
             asset_size: 38.7KB
         default_tag: default
@@ -1389,7 +1492,7 @@ genomes:
             seek_keys:
               bowtie2_index: mouse_chrM2x
             asset_parents: ['mouse_chrM2x/fasta:default']
-            archive_digest: 06ded4e69c1b95e0274e1a7104390ecc
+            archive_digest: 3cb0b863855ed78da2c74ef75b896410
             archive_size: 120.1KB
             asset_size: 8.1MB
             asset_children: []
@@ -1403,7 +1506,7 @@ genomes:
             seek_keys:
               bismark_bt2_index: .
             asset_parents: ['mouse_chrM2x/fasta:default']
-            archive_digest: 7d1f4cc6d1e1f8673857e1e8560736ef
+            archive_digest: 684f697c7e57f452263efde71abf38ec
             archive_size: 196.6KB
             asset_size: 16.2MB
             asset_children: []
@@ -1417,7 +1520,7 @@ genomes:
             seek_keys:
               bwa_index: mouse_chrM2x.fa
             asset_parents: ['mouse_chrM2x/fasta:default']
-            archive_digest: f81e8f650ec35c1293697eeab1b5b8e5
+            archive_digest: 7dbc2daf27d86b11e4aca293fcafadb7
             archive_size: 31.8KB
             asset_size: 61.3KB
             asset_children: []
@@ -1431,7 +1534,7 @@ genomes:
             seek_keys:
               bismark_bt1_index: .
             asset_parents: ['mouse_chrM2x/fasta:default']
-            archive_digest: e79869bf37aa3abe6eb2166dd5f7e93f
+            archive_digest: fc1c74fa81d8ede68b55b85be47aad42
             archive_size: 196.6KB
             asset_size: 16.2MB
             asset_children: []
@@ -1445,7 +1548,7 @@ genomes:
             seek_keys:
               hisat2_index: mouse_chrM2x
             asset_parents: ['mouse_chrM2x/fasta:default']
-            archive_digest: c3ce6572851ef9144d871ba5789ad02c
+            archive_digest: 516bcde82f3d60a81f304be46c232a0f
             archive_size: 85.7KB
             asset_size: 4.1MB
             asset_children: []
@@ -1459,7 +1562,7 @@ genomes:
             seek_keys:
               star_index: .
             asset_parents: ['mouse_chrM2x/fasta:default']
-            archive_digest: 87d634cf42158f16d302520c4aee81d1
+            archive_digest: a31617f356143c24596dd60b57590ec1
             archive_size: 8.6MB
             asset_size: 1.5GB
             asset_children: []
@@ -1488,7 +1591,7 @@ genomes:
               tindex: mouse_chrM2x.tal_30
               search_file: mouse_chrM2x.tal_30.gtTxt
             asset_parents: ['mouse_chrM2x/suffixerator_index:default', 'mouse_chrM2x/fasta:default']
-            archive_digest: e136b58257d959c6282c76111a0389f2
+            archive_digest: 4d986ca372c0c0a4718a2601dca80fd1
             archive_size: 160.9KB
             asset_size: 427.5KB
             asset_children: []
@@ -1508,7 +1611,7 @@ genomes:
               chrom_sizes: dm6.chrom.sizes
             asset_digest: 8620c745dbe7bfcdab89aacc155077db
             asset_parents: []
-            archive_digest: 633309c931a491bb11a5fd672788caaa
+            archive_digest: c01540b4121c0985504f2397eb4bf798
             archive_size: 43.5MB
             asset_size: 139.0MB
             asset_children: []
@@ -1522,7 +1625,7 @@ genomes:
             seek_keys:
               gencode_gtf: dm6.gtf.gz
             asset_parents: []
-            archive_digest: e9458f06976b6b426d0a93bda096064b
+            archive_digest: 78bd31a3ff31e1f8632e97a415d7ecd7
             archive_size: 3.6MB
             asset_size: 3.8MB
             asset_children: []
@@ -1540,7 +1643,7 @@ genomes:
               refgene_intron: dm6_introns.bed
               refgene_pre_mRNA: dm6_pre-mRNA.bed
             asset_parents: []
-            archive_digest: b3df5d8c41d1bd4885f61b058b045da9
+            archive_digest: 7498d90e7269af9a72496f621a6d5b2c
             archive_size: 3.3MB
             asset_size: 6.7MB
             asset_children: []
@@ -1556,7 +1659,7 @@ genomes:
               ensembl_tss: dm6_ensembl_TSS.bed
               ensembl_gene_body: dm6_ensembl_gene_body.bed
             asset_parents: []
-            archive_digest: 93869aaad8a50f7203a02fd6f572c417
+            archive_digest: 304c752a739331d36ce259920706e883
             archive_size: 5.8MB
             asset_size: 7.4MB
             asset_children: []
@@ -1577,7 +1680,7 @@ genomes:
             asset_digest: e146e5c1b8fd57b9f09ab46ec36adbad
             asset_parents: []
             asset_children: ['hg19_cdna/kallisto_index:default', 'hg19_cdna/salmon_index:default']
-            archive_digest: 310211758b7b2bf61384adfc4da484e6
+            archive_digest: 658d3fc70baaec23ef98e9d44552c5e2
             archive_size: 60.7MB
             asset_size: 315.1MB
         default_tag: default
@@ -1590,7 +1693,7 @@ genomes:
             seek_keys:
               kallisto_index: .
             asset_parents: ['hg19_cdna/fasta:default']
-            archive_digest: 75b29740d835fbd3f2cb4e822d87833f
+            archive_digest: de274c4e6cff041c6555acbc9fbf05cc
             archive_size: 1.6GB
             asset_size: 2.1GB
             asset_children: []
@@ -1604,7 +1707,7 @@ genomes:
             seek_keys:
               salmon_index: .
             asset_parents: ['hg19_cdna/fasta:default']
-            archive_digest: 075eae0be5a8bb0fa549955ace7bcc28
+            archive_digest: ebdeffbca128b1fdd213bd1a12a105e3
             archive_size: 470.4MB
             asset_size: 550.4MB
             asset_children: []
@@ -1625,7 +1728,7 @@ genomes:
             asset_digest: 3701eaccf6e8b6637a8b8384abfdc052
             asset_parents: []
             asset_children: ['hg38_noalt_decoy/bowtie2_index:default', 'hg38_noalt_decoy/hisat2_index:default', 'hg38_noalt_decoy/bwa_index:default', 'hg38_noalt_decoy/bismark_bt1_index:default', 'hg38_noalt_decoy/bismark_bt2_index:default', 'hg38_noalt_decoy/star_index:default', 'hg38_noalt_decoy/suffixerator_index:default', 'hg38_noalt_decoy/tallymer_index:default']
-            archive_digest: 780965a1b66c72eea13bedb388d871a9
+            archive_digest: 1b63f0b64f61c85f1b9a162dc294d816
             archive_size: 835.0MB
             asset_size: 2.9GB
         default_tag: default
@@ -1638,6 +1741,10 @@ genomes:
             seek_keys:
               bowtie2_index: hg38_noalt_decoy
             asset_parents: ['hg38_noalt_decoy/fasta:default']
+            archive_digest: 9ab1efc57331f1600426493c3772df81
+            archive_size: 3.5GB
+            asset_size: 3.9GB
+            asset_children: []
         default_tag: default
       hisat2_index:
         asset_description: Genome index for HISAT2, produced with hisat2-build
@@ -1648,7 +1755,7 @@ genomes:
             seek_keys:
               hisat2_index: hg38_noalt_decoy
             asset_parents: ['hg38_noalt_decoy/fasta:default']
-            archive_digest: 26334597ff8ff2ab1820650eb375157d
+            archive_digest: 74c972eb8463fdfcc2413b2bb93b33a5
             archive_size: 3.9GB
             asset_size: 4.2GB
             asset_children: []
@@ -1662,7 +1769,7 @@ genomes:
             seek_keys:
               bwa_index: hg38_noalt_decoy.fa
             asset_parents: ['hg38_noalt_decoy/fasta:default']
-            archive_digest: 6f882a7ea2994ab470669b56a00c1818
+            archive_digest: 602d775a397d6cf558293d47ad7f51da
             archive_size: 3.2GB
             asset_size: 5.1GB
             asset_children: []
@@ -1676,7 +1783,7 @@ genomes:
             seek_keys:
               bismark_bt1_index: .
             asset_parents: ['hg38_noalt_decoy/fasta:default']
-            archive_digest: e7ba341808683b319e54290a4ce88cd9
+            archive_digest: 8b7fa86891e0bcafc12e77614142565b
             archive_size: 7.5GB
             asset_size: 13.6GB
             asset_children: []
@@ -1690,7 +1797,7 @@ genomes:
             seek_keys:
               bismark_bt2_index: .
             asset_parents: ['hg38_noalt_decoy/fasta:default']
-            archive_digest: 8af4e87d4989d7bb89689d1784c33b7d
+            archive_digest: cb93a8d28d229cf59dd2897e38bb8ceb
             archive_size: 7.5GB
             asset_size: 13.6GB
             asset_children: []
@@ -1704,7 +1811,7 @@ genomes:
             seek_keys:
               star_index: .
             asset_parents: ['hg38_noalt_decoy/fasta:default']
-            archive_digest: 5ca030f8357f06910f375df331fb85bd
+            archive_digest: a02bdf557e0b6c308e844b9032e2ba20
             archive_size: 24.3GB
             asset_size: 27.6GB
             asset_children: []
@@ -1730,7 +1837,7 @@ genomes:
               tindex: hg38_noalt_decoy.tal_30
               search_file: hg38_noalt_decoy.tal_30.gtTxt
             asset_parents: ['hg38_noalt_decoy/suffixerator_index:default', 'hg38_noalt_decoy/fasta:default']
-            archive_digest: 681398511f9636d7aca359e0c9b07dfa
+            archive_digest: 630908727300e8919d4209759ebd309a
             archive_size: 2.2GB
             asset_size: 10.3GB
             asset_children: []
@@ -1751,7 +1858,7 @@ genomes:
             asset_digest: 463540bce12ce47ae485f4430a5dbd29
             asset_parents: []
             asset_children: ['hg38_mm10/bwa_index:default', 'hg38_mm10/bowtie2_index:default']
-            archive_digest: 4723267ea507b57832652391b23739be
+            archive_digest: a412000087433741814c11243e63719b
             archive_size: 1.7GB
             asset_size: 5.5GB
         default_tag: default
@@ -1764,7 +1871,7 @@ genomes:
             seek_keys:
               bwa_index: hg38_mm10.fa
             asset_parents: ['hg38_mm10/fasta:default']
-            archive_digest: e3a9cae0ca8ac81e603370a6b304c371
+            archive_digest: d7369366dde4b603d20848471f3856e7
             archive_size: 6.1GB
             asset_size: 9.5GB
             asset_children: []
@@ -1778,7 +1885,7 @@ genomes:
             seek_keys:
               bowtie2_index: hg38_mm10
             asset_parents: ['hg38_mm10/fasta:default']
-            archive_digest: e62be780053ad2638fa0fa0716e325e7
+            archive_digest: 9f1bbc8959684c050a359396d5df7c38
             archive_size: 7.1GB
             asset_size: 10.0GB
             asset_children: []
@@ -1799,7 +1906,7 @@ genomes:
             asset_digest: 9e8fa06e6125f89be4fb974879cb91a6
             asset_parents: []
             asset_children: ['human_alu/bowtie2_index:default', 'human_alu/bwa_index:default', 'human_alu/bismark_bt1_index:default', 'human_alu/hisat2_index:default', 'human_alu/bismark_bt2_index:default', 'human_alu/suffixerator_index:default', 'human_alu/tallymer_index:default']
-            archive_digest: 6d3be57374cf08449a7d9bcd98c25f92
+            archive_digest: ba15d1a5901130186bdd86a04244978c
             archive_size: 801B
             asset_size: 9.7KB
         default_tag: default
@@ -1812,7 +1919,7 @@ genomes:
             seek_keys:
               bowtie2_index: human_alu
             asset_parents: ['human_alu/fasta:default']
-            archive_digest: 7a08dfa2ef1407d8645a289351de84cc
+            archive_digest: 1e046ce9fcc6a26468b4cd2e06f18474
             archive_size: 16.8KB
             asset_size: 8.0MB
             asset_children: []
@@ -1826,7 +1933,7 @@ genomes:
             seek_keys:
               bwa_index: human_alu.fa
             asset_parents: ['human_alu/fasta:default']
-            archive_digest: 18ad418b40a3db177b7fb9f01759ef9a
+            archive_digest: fc4a4fb5a2edd870ee2d81595a42d5e0
             archive_size: 2.6KB
             asset_size: 9.9KB
             asset_children: []
@@ -1840,7 +1947,7 @@ genomes:
             seek_keys:
               bismark_bt1_index: .
             asset_parents: ['human_alu/fasta:default']
-            archive_digest: 75d4cab246a7513f1b3856b7fb2817e4
+            archive_digest: 93af3d34370988c7a300dfe00340e56e
             archive_size: 31.7KB
             asset_size: 16.0MB
             asset_children: []
@@ -1854,7 +1961,7 @@ genomes:
             seek_keys:
               hisat2_index: human_alu
             asset_parents: ['human_alu/fasta:default']
-            archive_digest: b07729ca4c16d21defc9826345ab9d83
+            archive_digest: 572c1ed5ad47e83a75ac5eb4cbb83b2d
             archive_size: 14.4KB
             asset_size: 4.1MB
             asset_children: []
@@ -1868,7 +1975,7 @@ genomes:
             seek_keys:
               bismark_bt2_index: .
             asset_parents: ['human_alu/fasta:default']
-            archive_digest: 5a08cfb48df3bd5638cde7acac713e8e
+            archive_digest: 1b4d785e47f0639f89da60779dcc178a
             archive_size: 31.7KB
             asset_size: 16.0MB
             asset_children: []
@@ -1897,7 +2004,7 @@ genomes:
               tindex: human_alu.tal_30
               search_file: human_alu.tal_30.gtTxt
             asset_parents: ['human_alu/fasta:default', 'human_alu/suffixerator_index:default']
-            archive_digest: 26b7c4cbbce31ea41255fa9f77efeef7
+            archive_digest: b57342bef00234120ce4a7a3caf65b57
             archive_size: 4.6KB
             asset_size: 17.6KB
             asset_children: []
@@ -1918,7 +2025,7 @@ genomes:
             asset_digest: 4a749d4e74b057d0efa0c8398ebcb871
             asset_parents: []
             asset_children: ['human_repeats/bowtie2_index:default', 'human_repeats/bwa_index:default', 'human_repeats/bismark_bt2_index:default', 'human_repeats/bismark_bt1_index:default', 'human_repeats/hisat2_index:default', 'human_repeats/star_index:default', 'human_repeats/suffixerator_index:default', 'human_repeats/tallymer_index:default']
-            archive_digest: 7ea10d3dfbcae9066a1ebaf87591e18f
+            archive_digest: 8bd1f69bcc6dfb4d60f1f6e4cd71fc32
             archive_size: 34.1KB
             asset_size: 153.4KB
         default_tag: default
@@ -1931,7 +2038,7 @@ genomes:
             seek_keys:
               bowtie2_index: human_repeats
             asset_parents: ['human_repeats/fasta:default']
-            archive_digest: e5bd38929a00f38001b3a45f41d4987c
+            archive_digest: a15c3caf0edc7240b9b91bf03bb1a6c3
             archive_size: 415.1KB
             asset_size: 8.2MB
             asset_children: []
@@ -1945,7 +2052,7 @@ genomes:
             seek_keys:
               bwa_index: human_repeats.fa
             asset_parents: ['human_repeats/fasta:default']
-            archive_digest: 6964a68e34cf4597a362449674e9fb86
+            archive_digest: ecd8614f6751ebb3361258995c67b440
             archive_size: 130.7KB
             asset_size: 252.0KB
             asset_children: []
@@ -1959,7 +2066,7 @@ genomes:
             seek_keys:
               bismark_bt2_index: .
             asset_parents: ['human_repeats/fasta:default']
-            archive_digest: 5b40410835aff3e811326e1d11f40d29
+            archive_digest: 9899a4c7cebf6ec89e03b8e579a2e2d3
             archive_size: 554.7KB
             asset_size: 16.7MB
             asset_children: []
@@ -1973,7 +2080,7 @@ genomes:
             seek_keys:
               bismark_bt1_index: .
             asset_parents: ['human_repeats/fasta:default']
-            archive_digest: 7fbc1b9e8a06378fe2f54a108ba402c4
+            archive_digest: 17249e7214a53050841dc9eeb70fa4c7
             archive_size: 554.7KB
             asset_size: 16.7MB
             asset_children: []
@@ -1987,6 +2094,10 @@ genomes:
             seek_keys:
               hisat2_index: human_repeats
             asset_parents: ['human_repeats/fasta:default']
+            archive_digest: c5891cb519d45a17060b2a45a186c946
+            archive_size: 348.5KB
+            asset_size: 4.6MB
+            asset_children: []
         default_tag: default
       star_index:
         asset_description: Genome index for STAR RNA-seq aligner, produced with STAR --runMode genomeGenerate
@@ -1997,7 +2108,7 @@ genomes:
             seek_keys:
               star_index: .
             asset_parents: ['human_repeats/fasta:default']
-            archive_digest: be4c2cd437d8c73e6c649f8258ce2049
+            archive_digest: 9a7ed7545f54bf8cba3529ba6b56e5a1
             archive_size: 17.1MB
             asset_size: 1.5GB
             asset_children: []
@@ -2026,7 +2137,7 @@ genomes:
               tindex: human_repeats.tal_30
               search_file: human_repeats.tal_30.gtTxt
             asset_parents: ['human_repeats/fasta:default', 'human_repeats/suffixerator_index:default']
-            archive_digest: 332216a84ac4590244e998f79cb7cca0
+            archive_digest: 994beb337fd0ebfe24fd76cf20e5db13
             archive_size: 245.1KB
             asset_size: 792.9KB
             asset_children: []
@@ -2047,7 +2158,7 @@ genomes:
             asset_digest: eddf5466faa3391a7114e87648466dcb
             asset_parents: []
             asset_children: ['hs38d1/bowtie2_index:default', 'hs38d1/bwa_index:default', 'hs38d1/bismark_bt1_index:default', 'hs38d1/bismark_bt2_index:default', 'hs38d1/hisat2_index:default', 'hs38d1/star_index:default', 'hs38d1/suffixerator_index:default', 'hs38d1/tallymer_index:default']
-            archive_digest: 57166710a44b3b39e7a45f20c7097a21
+            archive_digest: c1eca4997875be08039b5c3507b1929d
             archive_size: 1.7MB
             asset_size: 6.0MB
         default_tag: default
@@ -2060,7 +2171,7 @@ genomes:
             seek_keys:
               bowtie2_index: hs38d1
             asset_parents: ['hs38d1/fasta:default']
-            archive_digest: a620afe9f2b59e2d865795dc8da951c3
+            archive_digest: 7fe134fd81ddca4231a123e9d19ac421
             archive_size: 8.8MB
             asset_size: 16.4MB
             asset_children: []
@@ -2074,7 +2185,7 @@ genomes:
             seek_keys:
               bwa_index: hs38d1.fa
             asset_parents: ['hs38d1/fasta:default']
-            archive_digest: 281bcd8f467395b5b01a3c1359816aff
+            archive_digest: 89b490c30f6be79999d093655a040f22
             archive_size: 5.7MB
             asset_size: 9.9MB
             asset_children: []
@@ -2088,7 +2199,7 @@ genomes:
             seek_keys:
               bismark_bt2_index: .
             asset_parents: ['hs38d1/fasta:default']
-            archive_digest: d7e9d2de2e749ac095c6c4740ba9e6b4
+            archive_digest: 03bc288db177c555a0d576153f7f7264
             archive_size: 14.3MB
             asset_size: 43.4MB
             asset_children: []
@@ -2102,7 +2213,7 @@ genomes:
             seek_keys:
               bismark_bt1_index: .
             asset_parents: ['hs38d1/fasta:default']
-            archive_digest: 073d53c942015c40954227e596a2c77c
+            archive_digest: e059061b5acec563ee47a4b48162e48f
             archive_size: 14.3MB
             asset_size: 43.4MB
             asset_children: []
@@ -2116,7 +2227,7 @@ genomes:
             seek_keys:
               hisat2_index: hs38d1
             asset_parents: ['hs38d1/fasta:default']
-            archive_digest: 3491977ef18128fe56d61920169a6421
+            archive_digest: 1af9401320f40e20fe6ea86bb91e0416
             archive_size: 12.2MB
             asset_size: 30.7MB
             asset_children: []
@@ -2130,7 +2241,7 @@ genomes:
             seek_keys:
               star_index: .
             asset_parents: ['hs38d1/fasta:default']
-            archive_digest: 62faf215d78bcdb1e274c0d175b7ee9c
+            archive_digest: 6e938defacb8ba414bfae6699d49de05
             archive_size: 244.3MB
             asset_size: 2.1GB
             asset_children: []
@@ -2159,7 +2270,7 @@ genomes:
               tindex: hs38d1.tal_30
               search_file: hs38d1.tal_30.gtTxt
             asset_parents: ['hs38d1/suffixerator_index:default', 'hs38d1/fasta:default']
-            archive_digest: 3d1165cfbfc6199eaf24f1cf6588e849
+            archive_digest: ecea3ca29d9d7f427744c44b25288b13
             archive_size: 5.8MB
             asset_size: 20.1MB
             asset_children: []
@@ -2180,7 +2291,7 @@ genomes:
             asset_digest: 456bf4dd716de36373539acf2595baf3
             asset_parents: []
             asset_children: ['hg18_cdna/kallisto_index:default']
-            archive_digest: 5a5f177aff915e17c9c780b01dfbffcb
+            archive_digest: 6678857bdb888ea74b4ae3661ec5fca6
             archive_size: 26.4MB
             asset_size: 129.8MB
         default_tag: default
@@ -2193,7 +2304,7 @@ genomes:
             seek_keys:
               kallisto_index: .
             asset_parents: ['hg18_cdna/fasta:default']
-            archive_digest: 75ca5fd97e734c9b82eeb389e383caf8
+            archive_digest: e2530854375c31016afebbaf5bd450ab
             archive_size: 973.2MB
             asset_size: 1.2GB
             asset_children: []
@@ -2214,7 +2325,7 @@ genomes:
             asset_digest: 8192beb5916da1fdc5640b529fc7bb97
             asset_parents: []
             asset_children: ['mm10_cdna/kallisto_index:default', 'mm10_cdna/salmon_index:default']
-            archive_digest: 1d59b6787a38e574f83b951a4fc8409c
+            archive_digest: ec9f37f956065b155e734091b83a2fba
             archive_size: 51.6MB
             asset_size: 247.6MB
         default_tag: default
@@ -2227,7 +2338,7 @@ genomes:
             seek_keys:
               kallisto_index: .
             asset_parents: ['mm10_cdna/fasta:default']
-            archive_digest: 5481455102f243ab6ab9f7639f3a3bc5
+            archive_digest: c5b914fb422f0521d67b824c0c83a699
             archive_size: 1.6GB
             asset_size: 2.1GB
             asset_children: []
@@ -2241,7 +2352,7 @@ genomes:
             seek_keys:
               salmon_index: .
             asset_parents: ['mm10_cdna/fasta:default']
-            archive_digest: 5de9f2def76d21c533382a1d9104e3dc
+            archive_digest: e1d1f6442745114172a6648a6ed10f0c
             archive_size: 452.6MB
             asset_size: 515.0MB
             asset_children: []
@@ -2262,7 +2373,7 @@ genomes:
             asset_digest: cbbc1680a4cea8e43f14bbdc39d37162
             asset_parents: []
             asset_children: ['mm10_primary/bowtie2_index:default', 'mm10_primary/bwa_index:default']
-            archive_digest: 8ac36d24d1dc098cc0324b68fe9bb6dd
+            archive_digest: 8942ff4abce5ef05aed74bc8c6d1cb6b
             archive_size: 828.8MB
             asset_size: 2.6GB
         default_tag: default
@@ -2275,6 +2386,10 @@ genomes:
             seek_keys:
               bowtie2_index: mm10_primary
             asset_parents: ['mm10_primary/fasta:default']
+            archive_digest: c66a1f560ca352d65ab0f50c238e0033
+            archive_size: 3.1GB
+            asset_size: 3.5GB
+            asset_children: []
         default_tag: default
       bwa_index:
         asset_description: Genome index for Burrows-Wheeler Alignment Tool, produced with bwa index
@@ -2285,7 +2400,7 @@ genomes:
             seek_keys:
               bwa_index: mm10_primary.fa
             asset_parents: ['mm10_primary/fasta:default']
-            archive_digest: 3987ce440dd5a700430b5bdc990045ac
+            archive_digest: 2be1727ce83e6c246e086c156307827b
             archive_size: 2.8GB
             asset_size: 4.4GB
             asset_children: []
@@ -2306,7 +2421,7 @@ genomes:
             asset_digest: ce4085959123ca656e7059f8b14ffc86
             asset_parents: []
             asset_children: ['hg38_primary/bowtie2_index:default', 'hg38_primary/bwa_index:default']
-            archive_digest: 927a9db432925704829c5536597bf393
+            archive_digest: 104dcfe0cd19b8091e6e67c576233f15
             archive_size: 904.6MB
             asset_size: 2.9GB
         default_tag: default
@@ -2319,7 +2434,7 @@ genomes:
             seek_keys:
               bowtie2_index: hg38_primary
             asset_parents: ['hg38_primary/fasta:default']
-            archive_digest: 0b57cc040ee86b3a0578114ada369e78
+            archive_digest: 8f69d8e23847973f7fe932556503531a
             archive_size: 3.5GB
             asset_size: 3.9GB
             asset_children: []
@@ -2333,7 +2448,7 @@ genomes:
             seek_keys:
               bwa_index: hg38_primary.fa
             asset_parents: ['hg38_primary/fasta:default']
-            archive_digest: 7f9d8c48c7cb7fac320e08c292f41c97
+            archive_digest: 39baefbdc4dd8fbed99b38400689bc50
             archive_size: 3.2GB
             asset_size: 5.0GB
             asset_children: []
@@ -2354,7 +2469,7 @@ genomes:
             asset_digest: b776fbe954753566849d413c5e7d3fed
             asset_parents: []
             asset_children: ['rn6_cdna/kallisto_index:default', 'rn6_cdna/salmon_index:default']
-            archive_digest: 73801718148cde9ebc28f023e5e10632
+            archive_digest: 7e7539cddd0b5987b2540f6860e88abc
             archive_size: 20.2MB
             asset_size: 75.4MB
         default_tag: default
@@ -2367,7 +2482,7 @@ genomes:
             seek_keys:
               kallisto_index: .
             asset_parents: ['rn6_cdna/fasta:default']
-            archive_digest: 93c5fb6a920a083ce1c81528962936bd
+            archive_digest: d87259e726184d8a62611c211776df9d
             archive_size: 785.8MB
             asset_size: 1016.0MB
             asset_children: []
@@ -2381,7 +2496,7 @@ genomes:
             seek_keys:
               salmon_index: .
             asset_parents: ['rn6_cdna/fasta:default']
-            archive_digest: 395e21fe028183c7d7e1574aafaa7ddd
+            archive_digest: 893459077c20fb40178e75db1e398eaa
             archive_size: 207.7MB
             asset_size: 227.3MB
             asset_children: []
@@ -2402,7 +2517,7 @@ genomes:
             asset_digest: 5b2d2705cff9c9315add79b3f0d793ad
             asset_parents: []
             asset_children: ['human_alphasat/bowtie2_index:default', 'human_alphasat/bwa_index:default', 'human_alphasat/hisat2_index:default', 'human_alphasat/star_index:default', 'human_alphasat/bismark_bt1_index:default', 'human_alphasat/bismark_bt2_index:default', 'human_alphasat/suffixerator_index:default', 'human_alphasat/tallymer_index:default']
-            archive_digest: bc9d9e3c7fe338202cf49d99164062f0
+            archive_digest: b0230667de68a054a3011d6308d35944
             archive_size: 21.5KB
             asset_size: 108.5KB
         default_tag: default
@@ -2415,7 +2530,7 @@ genomes:
             seek_keys:
               bowtie2_index: human_alphasat
             asset_parents: ['human_alphasat/fasta:default']
-            archive_digest: 1b5384683e02521df95e902438fea4c8
+            archive_digest: 4c88e72489a7ab225391088fb7b17f08
             archive_size: 232.1KB
             asset_size: 8.1MB
             asset_children: []
@@ -2429,7 +2544,7 @@ genomes:
             seek_keys:
               bwa_index: human_alphasat.fa
             asset_parents: ['human_alphasat/fasta:default']
-            archive_digest: ad2cc8ad68572364b6d8ec62d75ca8ac
+            archive_digest: e3b2fd53451c1b8fb41ae59b01f42e06
             archive_size: 82.0KB
             asset_size: 173.8KB
             asset_children: []
@@ -2443,7 +2558,7 @@ genomes:
             seek_keys:
               hisat2_index: human_alphasat
             asset_parents: ['human_alphasat/fasta:default']
-            archive_digest: e90dd4aeaa10274fd808f43e735324b5
+            archive_digest: 11f416ade2cac423566100cc1ee715c0
             archive_size: 216.5KB
             asset_size: 4.5MB
             asset_children: []
@@ -2457,7 +2572,7 @@ genomes:
             seek_keys:
               star_index: .
             asset_parents: ['human_alphasat/fasta:default']
-            archive_digest: f988b31a5e2bca261eefbbfab55c6d20
+            archive_digest: 888b8d0286eb563c962f4755ed1d6be6
             archive_size: 10.8MB
             asset_size: 1.5GB
             asset_children: []
@@ -2471,7 +2586,7 @@ genomes:
             seek_keys:
               bismark_bt1_index: .
             asset_parents: ['human_alphasat/fasta:default']
-            archive_digest: 5e9a10c1629afe43bc330f3a2ca6358f
+            archive_digest: 2cca1aecb59db1730a341f68abf9938b
             archive_size: 348.3KB
             asset_size: 16.5MB
             asset_children: []
@@ -2485,7 +2600,7 @@ genomes:
             seek_keys:
               bismark_bt2_index: .
             asset_parents: ['human_alphasat/fasta:default']
-            archive_digest: 465fcf0b915d210c3325a077aa6b7ba8
+            archive_digest: d8aca994b6120ab686afcb07dcf9ff54
             archive_size: 348.3KB
             asset_size: 16.5MB
             asset_children: []
@@ -2514,7 +2629,7 @@ genomes:
               tindex: human_alphasat.tal_30
               search_file: human_alphasat.tal_30.gtTxt
             asset_parents: ['human_alphasat/suffixerator_index:default', 'human_alphasat/fasta:default']
-            archive_digest: c5bf84b510c864da6a3e567c7262ba8b
+            archive_digest: dc93386915c94c9597b69e9f7ebbd2cf
             archive_size: 219.5KB
             asset_size: 717.1KB
             asset_children: []
@@ -2535,7 +2650,7 @@ genomes:
             asset_digest: e18c0446f55f2584bf58f04076400ce6
             asset_parents: []
             asset_children: ['human_rDNA/bowtie2_index:default', 'human_rDNA/bwa_index:default', 'human_rDNA/bismark_bt1_index:default', 'human_rDNA/hisat2_index:default', 'human_rDNA/star_index:default', 'human_rDNA/bismark_bt2_index:default', 'human_rDNA/suffixerator_index:default', 'human_rDNA/tallymer_index:default']
-            archive_digest: 49c60b7f711854a63220647c75602aaa
+            archive_digest: ba05d15032aaa531ddc847842035fe62
             archive_size: 12.4KB
             asset_size: 49.2KB
         default_tag: default
@@ -2548,7 +2663,7 @@ genomes:
             seek_keys:
               bowtie2_index: human_rDNA
             asset_parents: ['human_rDNA/fasta:default']
-            archive_digest: 408c61d2fe0d898453b4de9107eac9ec
+            archive_digest: 5ba35e49b555470805dc368bb7bdd5a1
             archive_size: 203.3KB
             asset_size: 8.1MB
             asset_children: []
@@ -2562,7 +2677,7 @@ genomes:
             seek_keys:
               bwa_index: human_rDNA.fa
             asset_parents: ['human_rDNA/fasta:default']
-            archive_digest: bcf8f498d6ef796d43af972b4cfceaa9
+            archive_digest: 4b60c5aa56f07e84e1d12a699fdc02c7
             archive_size: 44.7KB
             asset_size: 79.1KB
             asset_children: []
@@ -2576,7 +2691,7 @@ genomes:
             seek_keys:
               bismark_bt1_index: .
             asset_parents: ['human_rDNA/fasta:default']
-            archive_digest: fc6dc643d8ae2c2eb757a09b84fb74ab
+            archive_digest: c918f42cf59c747d2ae2109b3508200b
             archive_size: 283.4KB
             asset_size: 16.2MB
             asset_children: []
@@ -2590,7 +2705,7 @@ genomes:
             seek_keys:
               hisat2_index: human_rDNA
             asset_parents: ['human_rDNA/fasta:default']
-            archive_digest: 2ac951be27e439934940e89c040f35c6
+            archive_digest: b15c51220483f99aa5f71d6200ac578b
             archive_size: 136.7KB
             asset_size: 4.1MB
             asset_children: []
@@ -2604,7 +2719,7 @@ genomes:
             seek_keys:
               star_index: .
             asset_parents: ['human_rDNA/fasta:default']
-            archive_digest: 5ba0173fb925265158b7aeec2e9c331a
+            archive_digest: 43ccc9db7a995c5e4e1b945e554df37e
             archive_size: 11.7MB
             asset_size: 1.5GB
             asset_children: []
@@ -2618,7 +2733,7 @@ genomes:
             seek_keys:
               bismark_bt2_index: .
             asset_parents: ['human_rDNA/fasta:default']
-            archive_digest: 33b4aa5894e0867c357d5544fe58009a
+            archive_digest: eb64c63fd87b7ce29da48fd9f551c15f
             archive_size: 283.4KB
             asset_size: 16.2MB
             asset_children: []
@@ -2647,7 +2762,7 @@ genomes:
               tindex: human_rDNA.tal_30
               search_file: human_rDNA.tal_30.gtTxt
             asset_parents: ['human_rDNA/fasta:default', 'human_rDNA/suffixerator_index:default']
-            archive_digest: 3c6bd023f5edcce363a77e67ae104b73
+            archive_digest: 77debdbc07777c0aab2860b794ae0b0b
             archive_size: 22.1KB
             asset_size: 66.5KB
             asset_children: []
