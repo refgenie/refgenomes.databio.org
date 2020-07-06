@@ -943,6 +943,7 @@ genomes:
             asset_parents: ['hg38_chr22/fasta:default', 'hg38_chr22/suffixerator_index:default']
         default_tag: default
     genome_digest: 201be65e4f4598f97a708c14124393e222f47ca609078f4f
+    genome_description: Chromosome 22 from the hg38 reference. Useful for testing
   mm10:
     assets:
       gencode_gtf:
@@ -1293,7 +1294,7 @@ genomes:
               ensembl_gene_body: dm6_ensembl_gene_body.bed
             asset_parents: []
         default_tag: default
-    genome_description: GTF file from Ensembl
+    genome_description: Drosophila reference genome GCF_000001215.4 from NCBI
     genome_digest: ffe91a81e875ed2264151d71d35404cbbea162889ee371d3
   hg19_cdna:
     assets:
