@@ -95,7 +95,7 @@ genomes:
               chrom_sizes: hg38.chrom.sizes
             asset_digest: 59fed5ec3c3a95bc5709b24b8f2cf7bf
             asset_parents: []
-            asset_children: ['hg38/bowtie2_index:default', 'hg38/cellranger_reference:default', 'hg38/hisat2_index:default', 'hg38/bwa_index:default', 'hg38/bismark_bt1_index:default', 'hg38/bismark_bt2_index:default', 'hg38/star_index:default', 'hg38/salmon_sa_index:default', 'hg38/suffixerator_index:default', 'hg38/tallymer_index:default']
+            asset_children: ['hg38/bowtie2_index:default', 'hg38/cellranger_reference:default', 'hg38/hisat2_index:default', 'hg38/bwa_index:default', 'hg38/bismark_bt1_index:default', 'hg38/bismark_bt2_index:default', 'hg38/star_index:default', 'hg38/salmon_sa_index:default', 'hg38/suffixerator_index:default', 'hg38/tallymer_index:default', 'hg38/salmon_partial_sa_index:default']
         default_tag: default
       fasta_txome:
         asset_description: cDNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
@@ -108,7 +108,7 @@ genomes:
               chrom_sizes: hg38.chrom.sizes
             asset_digest: e452acaa6f4b4f28c29ce6e06beb07e0
             asset_parents: []
-            asset_children: ['hg38/salmon_sa_index:default']
+            asset_children: ['hg38/salmon_sa_index:default', 'hg38/salmon_partial_sa_index:default']
         default_tag: default
       gencode_gtf:
         asset_description: GTF annotation asset which provides access to all annotated transcripts which make up an Ensembl gene set.
@@ -143,7 +143,7 @@ genomes:
               ensembl_gene_body: hg38_ensembl_gene_body.bed
             asset_digest: 247fa6fbf98ce6b5773cbed0bdd86fef
             asset_parents: []
-            asset_children: ['hg38/feat_annotation:default']
+            asset_children: ['hg38/feat_annotation:default', 'hg38/salmon_partial_sa_index:default']
         default_tag: default
       refgene_anno:
         asset_description: gene, TSS, exon, intron, and premature mRNA annotation files
@@ -293,6 +293,16 @@ genomes:
               feat_annotation: hg38_annotations.bed.gz
             asset_parents: ['hg38/ensembl_gtf:default', 'hg38/ensembl_rb:default']
         default_tag: default
+      salmon_partial_sa_index:
+        asset_description: Transcriptome index for salmon, produced with salmon index using partial selective alignment method. Preparation includes transcriptome mapping to the genome and extraction of the relevant portion out from the genome and indexing it along with the transcriptome. Recipe source -- https://github.com/COMBINE-lab/SalmonTools/blob/master/scripts/generateDecoyTranscriptome.sh
+        tags:
+          default:
+            asset_path: salmon_partial_sa_index
+            asset_digest: 832adf900ec3ee455ef04fbd0931d2a9
+            seek_keys:
+              salmon_partial_sa_index: .
+            asset_parents: ['hg38/ensembl_gtf:default', 'hg38/fasta:default', 'hg38/fasta_txome:default']
+        default_tag: default
     genome_description: The GCA_000001405.15 GRCh38_no_alt_analysis_set from NCBI
     genome_digest: b3422045db2293738bcb9973c1a0acdfabff3a0a3e1830bc
   hg38_cdna:
@@ -345,7 +355,7 @@ genomes:
               chrom_sizes: hg19.chrom.sizes
             asset_digest: 7ce3b03e30d6ef76af8c3ad09a141dfc
             asset_parents: []
-            asset_children: ['hg19/bowtie2_index:default', 'hg19/cellranger_reference:default', 'hg19/bwa_index:default', 'hg19/hisat2_index:default', 'hg19/bismark_bt1_index:default', 'hg19/bismark_bt2_index:default', 'hg19/star_index:default', 'hg19/salmon_sa_index:default', 'hg19/suffixerator_index:default', 'hg19/tallymer_index:default']
+            asset_children: ['hg19/bowtie2_index:default', 'hg19/cellranger_reference:default', 'hg19/bwa_index:default', 'hg19/hisat2_index:default', 'hg19/bismark_bt1_index:default', 'hg19/bismark_bt2_index:default', 'hg19/star_index:default', 'hg19/salmon_sa_index:default', 'hg19/suffixerator_index:default', 'hg19/tallymer_index:default', 'hg19/salmon_partial_sa_index:default']
         default_tag: default
       gencode_gtf:
         asset_description: GTF annotation asset which provides access to all annotated transcripts which make up an Ensembl gene set.
@@ -394,7 +404,7 @@ genomes:
               ensembl_tss: hg19_ensembl_TSS.bed
               ensembl_gene_body: hg19_ensembl_gene_body.bed
             asset_parents: []
-            asset_children: ['hg19/feat_annotation:default']
+            asset_children: ['hg19/feat_annotation:default', 'hg19/salmon_partial_sa_index:default']
         default_tag: default
       fasta_txome:
         asset_description: cDNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
@@ -407,7 +417,7 @@ genomes:
               fai: hg19.fa.fai
               chrom_sizes: hg19.chrom.sizes
             asset_parents: []
-            asset_children: ['hg19/salmon_sa_index:default']
+            asset_children: ['hg19/salmon_sa_index:default', 'hg19/salmon_partial_sa_index:default']
         default_tag: default
       bowtie2_index:
         asset_description: Genome index for bowtie, produced with bowtie-build
@@ -531,6 +541,16 @@ genomes:
             seek_keys:
               feat_annotation: hg19_annotations.bed.gz
             asset_parents: ['hg19/ensembl_rb:default', 'hg19/ensembl_gtf:default']
+        default_tag: default
+      salmon_partial_sa_index:
+        asset_description: Transcriptome index for salmon, produced with salmon index using partial selective alignment method. Preparation includes transcriptome mapping to the genome and extraction of the relevant portion out from the genome and indexing it along with the transcriptome. Recipe source -- https://github.com/COMBINE-lab/SalmonTools/blob/master/scripts/generateDecoyTranscriptome.sh
+        tags:
+          default:
+            asset_path: salmon_partial_sa_index
+            asset_digest: c56987719887ffb61a260a27b8aa3a12
+            seek_keys:
+              salmon_partial_sa_index: .
+            asset_parents: ['hg19/fasta_txome:default', 'hg19/ensembl_gtf:default', 'hg19/fasta:default']
         default_tag: default
     genome_description: The GRCh37 reference sequence from UCSC
     genome_digest: fb7002132265e88a91859e3c743fc7a898a057019fc11456
@@ -786,7 +806,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_partial_sa_index
-            asset_digest: c7a7f7abb1892f93a09c8f66d19b5367
+            asset_digest: f997b75e4f2d59fe512087d5d2de02d8
             seek_keys:
               salmon_partial_sa_index: .
             asset_parents: ['rn6/fasta:default', 'rn6/ensembl_gtf:default', 'rn6/fasta_txome:default']
@@ -923,6 +943,7 @@ genomes:
             asset_parents: ['hg38_chr22/fasta:default', 'hg38_chr22/suffixerator_index:default']
         default_tag: default
     genome_digest: 201be65e4f4598f97a708c14124393e222f47ca609078f4f
+    genome_description: Chromosome 22 from the hg38 reference. Useful for testing
   mm10:
     assets:
       gencode_gtf:
@@ -947,7 +968,7 @@ genomes:
               chrom_sizes: mm10.chrom.sizes
             asset_digest: 4afce2deeceae65b4c0987b9297cf441
             asset_parents: []
-            asset_children: ['mm10/cellranger_reference:default', 'mm10/hisat2_index:default', 'mm10/bowtie2_index:default', 'mm10/bwa_index:default', 'mm10/star_index:default', 'mm10/bismark_bt2_index:default', 'mm10/bismark_bt1_index:default', 'mm10/salmon_sa_index:default', 'mm10/suffixerator_index:default', 'mm10/tallymer_index:default']
+            asset_children: ['mm10/cellranger_reference:default', 'mm10/hisat2_index:default', 'mm10/bowtie2_index:default', 'mm10/bwa_index:default', 'mm10/star_index:default', 'mm10/bismark_bt2_index:default', 'mm10/bismark_bt1_index:default', 'mm10/salmon_sa_index:default', 'mm10/suffixerator_index:default', 'mm10/tallymer_index:default', 'mm10/salmon_partial_sa_index:default']
         default_tag: default
       ensembl_gtf:
         asset_description: Ensembl GTF, TSS, and gene body annotation
@@ -960,7 +981,7 @@ genomes:
               ensembl_tss: mm10_ensembl_TSS.bed
               ensembl_gene_body: mm10_ensembl_gene_body.bed
             asset_parents: []
-            asset_children: ['mm10/feat_annotation:default']
+            asset_children: ['mm10/feat_annotation:default', 'mm10/salmon_partial_sa_index:default']
         default_tag: default
       refgene_anno:
         asset_description: gene, TSS, exon, intron, and premature mRNA annotation files
@@ -987,7 +1008,7 @@ genomes:
               fai: mm10.fa.fai
               chrom_sizes: mm10.chrom.sizes
             asset_parents: []
-            asset_children: ['mm10/salmon_sa_index:default']
+            asset_children: ['mm10/salmon_sa_index:default', 'mm10/salmon_partial_sa_index:default']
         default_tag: default
       cellranger_reference:
         asset_description: Cell Ranger custom genome reference for read alignment and gene expression quantification
@@ -1111,6 +1132,16 @@ genomes:
             seek_keys:
               feat_annotation: mm10_annotations.bed.gz
             asset_parents: ['mm10/ensembl_gtf:default', 'mm10/ensembl_rb:default']
+        default_tag: default
+      salmon_partial_sa_index:
+        asset_description: Transcriptome index for salmon, produced with salmon index using partial selective alignment method. Preparation includes transcriptome mapping to the genome and extraction of the relevant portion out from the genome and indexing it along with the transcriptome. Recipe source -- https://github.com/COMBINE-lab/SalmonTools/blob/master/scripts/generateDecoyTranscriptome.sh
+        tags:
+          default:
+            asset_path: salmon_partial_sa_index
+            asset_digest: 2f7b7f83191be31b9aa047c2a0847186
+            seek_keys:
+              salmon_partial_sa_index: .
+            asset_parents: ['mm10/ensembl_gtf:default', 'mm10/fasta_txome:default', 'mm10/fasta:default']
         default_tag: default
     genome_description: The GCA_000001635.5 seqs_for_alignment_pipelines from NCBI
     genome_digest: b55fbc8f55f60d69faf2dc9f7f0de3d753b369649ce544f7
@@ -1263,7 +1294,7 @@ genomes:
               ensembl_gene_body: dm6_ensembl_gene_body.bed
             asset_parents: []
         default_tag: default
-    genome_description: GTF file from Ensembl
+    genome_description: Drosophila reference genome GCF_000001215.4 from NCBI
     genome_digest: ffe91a81e875ed2264151d71d35404cbbea162889ee371d3
   hg19_cdna:
     assets:

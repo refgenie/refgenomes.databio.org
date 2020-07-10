@@ -56,3 +56,4 @@ hg19-suffixerator_index,memlimit,32GB,params,
 hg38-suffixerator_index,memlimit,32GB,params,
 hg38_noalt_decoy-suffixerator_index,memlimit,32GB,params,
 rn6-suffixerator_index,memlimit,32GB,params,
+t7-fasta,fasta,http://big.databio.org/refgenomes/t7.fa.gz,files,9d87b4924b17c031ea55895359a1e140
