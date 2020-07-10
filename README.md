@@ -71,12 +71,12 @@ export GENOMES=$BASEDIR/genomes
 export REFGENIE_RAW=/project/shefflab/www/refgenie_raw
 export REFGENIE=$BASEDIR/refgenomes.databio.org/config/refgenie_config.yaml
 export REFGENIE_ARCHIVE=$GENOMES/archive
+cd $BASEDIR
 ```
 
 To start, clone this repository:
 
 ```
-cd $BASEDIR
 git clone git@github.com:refgenie/refgenomes.databio.org.git
 ```
 
@@ -105,6 +105,7 @@ looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --
 looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl dbsnp
 
 looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl gencode_gtf ensembl_gtf ensembl_rb refgene_anno dbnsfp fasta_txome
+
 ```
 
 Once the basic assets are built, we can build all the assets that are derived from them.
@@ -151,13 +152,17 @@ Assets are built locally now, but to serve them, we must archive them using `ref
 
 ```
 ba
-looper run asset_pep/refgenieserver_archive_cfg.yaml -p local --sel-attr asset --sel-incl fasta --limit 1
+looper run asset_pep/refgenieserver_archive_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl fasta
+looper run asset_pep/refgenieserver_archive_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl gencode_gtf ensembl_gtf ensembl_rb refgene_anno dbnsfp fasta_txome
+looper run asset_pep/refgenieserver_archive_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl bowtie2_index bwa_index bismark_bt2_index bismark_bt1_index salmon_sa_index salmon_partial_sa_index salmon_index kallisto_index star_index hisat2_index cellranger_reference
+
 looper run asset_pep/refgenieserver_archive_cfg.yaml -p slurm -t 0.1 -c partition=standard
 ```
 
 Check progress with:
 
 ```
+ll ../genomes/archive_logs/submission/*.log
 grep Wait ../genomes/archive_logs/submission/*.log
 grep Error ../genomes/archive_logs/submission/*.log
 cat ../genomes/archive_logs/submission/*.log
@@ -167,7 +172,7 @@ Now the archives should be built, so we'll sync them to AWS. Use the refgenie cr
 
 
 ```
-aws s3 sync $REFGENIE_ARCHIVE s3://refgenie --profile refgenie
+aws s3 sync $REFGENIE_ARCHIVE s3://awspds.refgenie.databio.org --profile refgenie
 ```
 
 ## Step 4. Deploy server 

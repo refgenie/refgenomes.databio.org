@@ -188,3 +188,4 @@ dm6,fasta,Drosophila reference genome GCF_000001215.4 from NCBI.
 dm6,ensembl_gtf,GTF file from Ensembl
 dm6,gencode_gtf,Drosophila GTF flile from Flybase
 dm6,refgene_anno,UCSC refgene annotation
+dm6,bowtie2_index,
