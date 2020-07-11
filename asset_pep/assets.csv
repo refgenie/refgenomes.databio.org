@@ -171,9 +171,9 @@ hg38_mm10,fasta,Merged genome with primary chromosomes of hg38 and mm10 from UCS
 hg38_mm10,bowtie2_index,
 hg38_mm10,bwa_index,
 dm6,fasta,Drosophila reference genome GCF_000001215.4 from NCBI.
-dm6,ensembl_gtf,GTF file from Ensembl
-dm6,gencode_gtf,Drosophila GTF flile from Flybase
-dm6,refgene_anno,UCSC refgene annotation
+dm6,ensembl_gtf,
+dm6,gencode_gtf,
+dm6,refgene_anno,
 dm6,bowtie2_index,
 t7,fasta,"Genome of T7 phage, V01146.1 from GenBank"
 t7,bowtie2_index,
