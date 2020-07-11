@@ -174,7 +174,7 @@ genomes:
         tags:
           default:
             asset_path: cellranger_reference
-            asset_digest: a17e1397c1809630609e7d0d77c0e11a
+            asset_digest: af20f674465af303d0b669eee5fb6efc
             seek_keys:
               cellranger_reference: ref
             asset_parents: ['hg38/gencode_gtf:default', 'hg38/fasta:default']
@@ -234,7 +234,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_sa_index
-            asset_digest: f699ff9cda69c124006c89114ea28028
+            asset_digest: b1a06beb3a212ef6a03ef4546012b34d
             seek_keys:
               salmon_sa_index: .
             asset_parents: ['hg38/fasta:default', 'hg38/fasta_txome:default']
@@ -288,7 +288,7 @@ genomes:
         tags:
           default:
             asset_path: feat_annotation
-            asset_digest: 61c60a74ae8fd6c42f46765bd7380cd6
+            asset_digest: 2067bef561a54bd79bff8d31c2fb96b4
             seek_keys:
               feat_annotation: hg38_annotations.bed.gz
             asset_parents: ['hg38/ensembl_gtf:default', 'hg38/ensembl_rb:default']
@@ -298,7 +298,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_partial_sa_index
-            asset_digest: 832adf900ec3ee455ef04fbd0931d2a9
+            asset_digest: 71fa07acdcd0c410484bf80f52033fdc
             seek_keys:
               salmon_partial_sa_index: .
             asset_parents: ['hg38/ensembl_gtf:default', 'hg38/fasta:default', 'hg38/fasta_txome:default']
@@ -335,7 +335,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_index
-            asset_digest: 39bd7665cffd546934b6833b4c4b3f42
+            asset_digest: a730ba6883b51b8a59f66629cd575655
             seek_keys:
               salmon_index: .
             asset_parents: ['hg38_cdna/fasta:default']
@@ -434,7 +434,7 @@ genomes:
         tags:
           default:
             asset_path: cellranger_reference
-            asset_digest: 17c921934e5e5415f725ace2bd6eaf07
+            asset_digest: d972beb0fcbc0e8b1fd5c8fd6846b039
             seek_keys:
               cellranger_reference: ref
             asset_parents: ['hg19/fasta:default', 'hg19/gencode_gtf:default']
@@ -494,7 +494,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_sa_index
-            asset_digest: fa217134a7b2fbc9e50bcdd5a81687f9
+            asset_digest: 3d50b421b523942df6a7e432341f55a3
             seek_keys:
               salmon_sa_index: .
             asset_parents: ['hg19/fasta:default', 'hg19/fasta_txome:default']
@@ -537,7 +537,7 @@ genomes:
         tags:
           default:
             asset_path: feat_annotation
-            asset_digest: ba474c16ba96d4cdee4db44eddcbeab1
+            asset_digest: c05936fd5e0ed5b3c62822023db39327
             seek_keys:
               feat_annotation: hg19_annotations.bed.gz
             asset_parents: ['hg19/ensembl_rb:default', 'hg19/ensembl_gtf:default']
@@ -547,7 +547,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_partial_sa_index
-            asset_digest: c56987719887ffb61a260a27b8aa3a12
+            asset_digest: b1ce106637e9e9aebb6326582efe4fd5
             seek_keys:
               salmon_partial_sa_index: .
             asset_parents: ['hg19/fasta_txome:default', 'hg19/ensembl_gtf:default', 'hg19/fasta:default']
@@ -597,7 +597,7 @@ genomes:
         tags:
           default:
             asset_path: cellranger_reference
-            asset_digest: d968aa4f7d524524e85fa62acb0f7ee4
+            asset_digest: 816a2e4327552d45c53fb3ab5aaa8a8e
             seek_keys:
               cellranger_reference: ref
             asset_parents: ['hg18/fasta:default', 'hg18/gencode_gtf:default']
@@ -766,7 +766,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_sa_index
-            asset_digest: 615a6680407efc45ad78eb173fe8a43a
+            asset_digest: cb66613d5b7443a8c283787b0edda50c
             seek_keys:
               salmon_sa_index: .
             asset_parents: ['rn6/fasta_txome:default', 'rn6/fasta:default']
@@ -806,7 +806,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_partial_sa_index
-            asset_digest: f997b75e4f2d59fe512087d5d2de02d8
+            asset_digest: d86247042595c4073c885f0275102040
             seek_keys:
               salmon_partial_sa_index: .
             asset_parents: ['rn6/fasta:default', 'rn6/ensembl_gtf:default', 'rn6/fasta_txome:default']
@@ -1015,7 +1015,7 @@ genomes:
         tags:
           default:
             asset_path: cellranger_reference
-            asset_digest: fcd8e174bb84884589c6a77d75932f22
+            asset_digest: a6caa82c273392098e5fd262e8db48cb
             seek_keys:
               cellranger_reference: ref
             asset_parents: ['mm10/gencode_gtf:default', 'mm10/fasta:default']
@@ -1085,7 +1085,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_sa_index
-            asset_digest: b1184ae2364bc8fc980614fe4c6c8309
+            asset_digest: 0e7d11fa57c669ba860df37cb06391fe
             seek_keys:
               salmon_sa_index: .
             asset_parents: ['mm10/fasta:default', 'mm10/fasta_txome:default']
@@ -1128,7 +1128,7 @@ genomes:
         tags:
           default:
             asset_path: feat_annotation
-            asset_digest: 8f1b008f297ab1aa54aa1ee2d29ff93b
+            asset_digest: 7d00c75d11fe3bf273ecf5e381ccb00b
             seek_keys:
               feat_annotation: mm10_annotations.bed.gz
             asset_parents: ['mm10/ensembl_gtf:default', 'mm10/ensembl_rb:default']
@@ -1138,7 +1138,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_partial_sa_index
-            asset_digest: 2f7b7f83191be31b9aa047c2a0847186
+            asset_digest: 54eaa08685e5a43a5004ed083c893255
             seek_keys:
               salmon_partial_sa_index: .
             asset_parents: ['mm10/ensembl_gtf:default', 'mm10/fasta_txome:default', 'mm10/fasta:default']
@@ -1257,6 +1257,7 @@ genomes:
               chrom_sizes: dm6.chrom.sizes
             asset_digest: 8620c745dbe7bfcdab89aacc155077db
             asset_parents: []
+            asset_children: ['dm6/bowtie2_index:default']
         default_tag: default
       gencode_gtf:
         asset_description: GTF annotation asset which provides access to all annotated transcripts which make up an Ensembl gene set.
@@ -1294,7 +1295,17 @@ genomes:
               ensembl_gene_body: dm6_ensembl_gene_body.bed
             asset_parents: []
         default_tag: default
-    genome_description: Drosophila reference genome GCF_000001215.4 from NCBI
+      bowtie2_index:
+        asset_description: Genome index for bowtie, produced with bowtie-build
+        tags:
+          default:
+            asset_path: bowtie2_index
+            asset_digest: 3e3c651f1aca155b3498cade39a3694a
+            seek_keys:
+              bowtie2_index: dm6
+            asset_parents: ['dm6/fasta:default']
+        default_tag: default
+    genome_description: UCSC refgene annotation
     genome_digest: ffe91a81e875ed2264151d71d35404cbbea162889ee371d3
   hg19_cdna:
     assets:
@@ -1326,7 +1337,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_index
-            asset_digest: 8616f5bcf8207ee4485797c2bb12e796
+            asset_digest: 5d78a56bbf565a06abe1ddfbaa9f3fd1
             seek_keys:
               salmon_index: .
             asset_parents: ['hg19_cdna/fasta:default']
@@ -1813,7 +1824,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_index
-            asset_digest: c932b38c0950428c6581485319a1109a
+            asset_digest: 2a24ac3249499a6f0bb40a239da7c8ae
             seek_keys:
               salmon_index: .
             asset_parents: ['mm10_cdna/fasta:default']
@@ -1924,7 +1935,7 @@ genomes:
         tags:
           default:
             asset_path: salmon_index
-            asset_digest: 4b13b43ffd11d5f3231389353a5e92ef
+            asset_digest: 17be132830088a8c60e04182ba2ecb2d
             seek_keys:
               salmon_index: .
             asset_parents: ['rn6_cdna/fasta:default']
@@ -2129,3 +2140,30 @@ genomes:
         default_tag: default
     genome_description: Human rDNA sequences curated from GenBank
     genome_digest: c4524d729c745246cd2a47476b46922ce359e9a16fcdae6b
+  t7:
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 51a58ef25e4f1d7e76f226fd5655754f
+            seek_keys:
+              fasta: t7.fa
+              fai: t7.fa.fai
+              chrom_sizes: t7.chrom.sizes
+            asset_parents: []
+            asset_children: ['t7/bowtie2_index:default']
+        default_tag: default
+      bowtie2_index:
+        asset_description: Genome index for bowtie, produced with bowtie-build
+        tags:
+          default:
+            asset_path: bowtie2_index
+            asset_digest: 40a7b72a358850f722b6734a836b0fa8
+            seek_keys:
+              bowtie2_index: t7
+            asset_parents: ['t7/fasta:default']
+        default_tag: default
+    genome_description: Genome of T7 phage, V01146.1 from GenBank
+    genome_digest: 44fec33ae3bafd90d49ed45024ec4ad7743ad1a56a9915d2
