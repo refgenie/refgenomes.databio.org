@@ -111,7 +111,7 @@ looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --
 Once the basic assets are built, we can build all the assets that are derived from them.
 
 ```
-looper rerun asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl suffixerator_index -d
+looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl suffixerator_index
 
 looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl feat_annotation
 
@@ -156,7 +156,7 @@ looper run asset_pep/refgenieserver_archive_cfg.yaml -p bulker_slurm --sel-attr 
 looper run asset_pep/refgenieserver_archive_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl gencode_gtf ensembl_gtf ensembl_rb refgene_anno dbnsfp fasta_txome
 looper run asset_pep/refgenieserver_archive_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl bowtie2_index bwa_index bismark_bt2_index bismark_bt1_index salmon_sa_index salmon_partial_sa_index salmon_index kallisto_index star_index hisat2_index cellranger_reference feat_annotation
 
-looper run asset_pep/refgenieserver_archive_cfg.yaml -p slurm -t 0.1 -c partition=standard
+<!-- looper run asset_pep/refgenieserver_archive_cfg.yaml -p slurm -t 0.1 -c partition=standard -->
 ```
 
 Check progress with:
