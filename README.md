@@ -64,11 +64,14 @@ In this guide we'll use environment variables to keep track of where stuff goes.
 - `REFGENIE_ARCHIVE` points to the location where we'll store the actual archives
 
 ```
-#export BASEDIR=$HOME/code/sandbox/refgenie_deploy
-#export REFGENIE_RAW=$BASEDIR/refgenie_raw
+export BASEDIR=$HOME/garage/refgenie_deploy/refgenomes.databio.org
+export REFGENIE_RAW=$BASEDIR/refgenie_raw
+mkdir -p $BASEDIR
+
 export BASEDIR=$PROJECT/deploy/refgenomes_primary
-export GENOMES=$BASEDIR/genomes
 export REFGENIE_RAW=/project/shefflab/www/refgenie_raw
+
+export GENOMES=$BASEDIR/genomes
 export REFGENIE=$BASEDIR/refgenomes.databio.org/config/refgenie_config.yaml
 export REFGENIE_ARCHIVE=$GENOMES/archive
 cd $BASEDIR
@@ -148,13 +151,16 @@ looper run asset_pep/refgenie_build_cfg.yaml -p bulker_slurm
 
 ## Step 3. Archive assets
 
-Assets are built locally now, but to serve them, we must archive them using `refgenieserver`. The general command is `refgenieserver archive -c <path/to/genomes.yaml>`. Since the archive process is generally lengthy, it makes sense to submit this job to the cluster. We can use looper to that. To start over completely, remove the archive file with: `rm config/refgenie_config_archive.yaml`
+Assets are built locally now, but to serve them, we must archive them using `refgenieserver`. The general command is `refgenieserver archive -c <path/to/genomes.yaml>`. Since the archive process is generally lengthy, it makes sense to submit this job to the cluster. We can use looper to that. To start over completely, remove the archive config file with: `rm config/refgenie_config_archive.yaml`
 
 ```
 ba
 looper run asset_pep/refgenieserver_archive_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl fasta
 looper run asset_pep/refgenieserver_archive_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl gencode_gtf ensembl_gtf ensembl_rb refgene_anno dbnsfp fasta_txome
 looper run asset_pep/refgenieserver_archive_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl bowtie2_index bwa_index bismark_bt2_index bismark_bt1_index salmon_sa_index salmon_partial_sa_index salmon_index kallisto_index star_index hisat2_index cellranger_reference feat_annotation
+
+looper run asset_pep/refgenieserver_archive_cfg.yaml -p bulker_slurm --sel-attr asset --sel-incl suffixerator_index tallymer_index
+
 
 <!-- looper run asset_pep/refgenieserver_archive_cfg.yaml -p slurm -t 0.1 -c partition=standard -->
 ```

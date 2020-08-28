@@ -1,0 +1,2395 @@
+config_version: 0.4
+genome_folder: /project/shefflab//deploy/plantref/genomes
+genome_archive_folder: $GENOMES/archive
+genome_archive_config: refgenie_config_archive.yaml
+remote_url_base: https://refgenie.s3.amazonaws.com
+genome_servers: ['http://refgenomes.databio.org']
+genomes:
+  bed9a56007cab79a914a435cfaedbfd3c1a6890bad3eab99:
+    aliases: ['Arabidopsis_lyrata__JGI_v2_1', 'Arabidopsis_lyrata_JGI_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: a82e8c7f52a215a9689bbee8b2ed33e3
+            seek_keys:
+              fasta: bed9a56007cab79a914a435cfaedbfd3c1a6890bad3eab99.fa
+              fai: bed9a56007cab79a914a435cfaedbfd3c1a6890bad3eab99.fa.fai
+              chrom_sizes: bed9a56007cab79a914a435cfaedbfd3c1a6890bad3eab99.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Arabidopsis lyrata JGI v1.0
+  8896c6055e807561a37a5a7b95ff6b1eebaff8ff87a1a8ba:
+    aliases: ['Asparagus_officinalis_v1_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 527f0f55cfeab7dc154eab06a7aab0dd
+            seek_keys:
+              fasta: 8896c6055e807561a37a5a7b95ff6b1eebaff8ff87a1a8ba.fa
+              fai: 8896c6055e807561a37a5a7b95ff6b1eebaff8ff87a1a8ba.fa.fai
+              chrom_sizes: 8896c6055e807561a37a5a7b95ff6b1eebaff8ff87a1a8ba.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Asparagus officinalis v1.1
+  0b4d487cce53921b38e8d1e2a922076d2e2efb01ce6fdefb:
+    aliases: ['Arachis_ipaensis__Peanut_Base_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 8cca11c4bd154de92894a9b8d0b80405
+            seek_keys:
+              fasta: 0b4d487cce53921b38e8d1e2a922076d2e2efb01ce6fdefb.fa
+              fai: 0b4d487cce53921b38e8d1e2a922076d2e2efb01ce6fdefb.fa.fai
+              chrom_sizes: 0b4d487cce53921b38e8d1e2a922076d2e2efb01ce6fdefb.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Arachis ipaensis  Peanut Base v1.0
+  a04927989a138483fe4e2ab06e12f710f79d95932dac38a3:
+    aliases: ['Aureococcus_anophagefferens_JGI_1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: b962bd1ee2f7cb5f162d297cc9192675
+            seek_keys:
+              fasta: a04927989a138483fe4e2ab06e12f710f79d95932dac38a3.fa
+              fai: a04927989a138483fe4e2ab06e12f710f79d95932dac38a3.fa.fai
+              chrom_sizes: a04927989a138483fe4e2ab06e12f710f79d95932dac38a3.chrom.sizes
+            asset_parents: []
+            archive_digest: b3f79263dcbdeb9e2466a866664b0ded
+            archive_size: 14.3MB
+            asset_size: 54.9MB
+            asset_children: []
+        default_tag: default
+    genome_description: Aureococcus anophagefferens JGI 1.0
+  c4b1700fd6eaace3b1ce0625c527c9c3c6efe11719447a24:
+    aliases: ['Auxenochlorella_protothecoides_Beijing_Genomics_Institute_1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 148a1cbfee2a4fc08077f8f40edd60d2
+            seek_keys:
+              fasta: c4b1700fd6eaace3b1ce0625c527c9c3c6efe11719447a24.fa
+              fai: c4b1700fd6eaace3b1ce0625c527c9c3c6efe11719447a24.fa.fai
+              chrom_sizes: c4b1700fd6eaace3b1ce0625c527c9c3c6efe11719447a24.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Auxenochlorella protothecoides Beijing Genomics Institute 1.0
+  3209b8ef20b0c4d9fd60fa066b9a5eea93dd2d75db7c1ef8:
+    aliases: ['Asterochloris_sp__Cgr_DA1pho_v2_0_JGI_7_45_13']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 1f4d38c7b10cc463ab7f5d18416c660e
+            seek_keys:
+              fasta: 3209b8ef20b0c4d9fd60fa066b9a5eea93dd2d75db7c1ef8.fa
+              fai: 3209b8ef20b0c4d9fd60fa066b9a5eea93dd2d75db7c1ef8.fa.fai
+              chrom_sizes: 3209b8ef20b0c4d9fd60fa066b9a5eea93dd2d75db7c1ef8.chrom.sizes
+            asset_parents: []
+            archive_digest: 4b6ee5eb05703d38cf3e7ac27705bd13
+            archive_size: 16.1MB
+            asset_size: 53.9MB
+            asset_children: []
+        default_tag: default
+    genome_description: Asterochloris sp. Cgr/DA1pho v2.0 JGI 7.45.13
+  5980fd629d5a4b4418e42ba50f756ad0a0b29ea880ed67bf:
+    aliases: ['Ananas_comosus_JGI_v3_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: f2ba1255298f89a6a4c0bcf94ac24404
+            seek_keys:
+              fasta: 5980fd629d5a4b4418e42ba50f756ad0a0b29ea880ed67bf.fa
+              fai: 5980fd629d5a4b4418e42ba50f756ad0a0b29ea880ed67bf.fa.fai
+              chrom_sizes: 5980fd629d5a4b4418e42ba50f756ad0a0b29ea880ed67bf.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Ananas comosus JGI v3.0
+  338f522651776e82efd3997cc89dd009c1b6c5c9ffba0914:
+    aliases: ['Apostasia_shenzhenica_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 94318ced24fcb4eaa9c77d3ecc288f50
+            seek_keys:
+              fasta: 338f522651776e82efd3997cc89dd009c1b6c5c9ffba0914.fa
+              fai: 338f522651776e82efd3997cc89dd009c1b6c5c9ffba0914.fa.fai
+              chrom_sizes: 338f522651776e82efd3997cc89dd009c1b6c5c9ffba0914.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Apostasia shenzhenica v1.0
+  01139a772b15031670b3517b4b81cb26cc3eeba98b9699ab:
+    aliases: ['Actinidia_chinensis__FEI_Lab_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 106fa000639f165a16bedcf76ef29d93
+            seek_keys:
+              fasta: 01139a772b15031670b3517b4b81cb26cc3eeba98b9699ab.fa
+              fai: 01139a772b15031670b3517b4b81cb26cc3eeba98b9699ab.fa.fai
+              chrom_sizes: 01139a772b15031670b3517b4b81cb26cc3eeba98b9699ab.chrom.sizes
+            asset_parents: []
+            archive_digest: ebfdbb0b6bfb9c387f9d7217704cde0f
+            archive_size: 173.4MB
+            asset_size: 609.7MB
+            asset_children: []
+        default_tag: default
+    genome_description: Actinidia chinensis  FEI Lab v1.0
+  9cf5edd81ab9ff66eee0e51eac0e19dcfbb5ee4df014d5e8:
+    aliases: ['Bathycoccus_prasinos_Ghent_University']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: b5a9642f4373c4f4301b02cec2615acc
+            seek_keys:
+              fasta: 9cf5edd81ab9ff66eee0e51eac0e19dcfbb5ee4df014d5e8.fa
+              fai: 9cf5edd81ab9ff66eee0e51eac0e19dcfbb5ee4df014d5e8.fa.fai
+              chrom_sizes: 9cf5edd81ab9ff66eee0e51eac0e19dcfbb5ee4df014d5e8.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Bathycoccus prasinos Ghent University
+  9f1c349e07231cd71d5cf2426ebe876578a2f562799c60ac:
+    aliases: ['Arabidopsis_thaliana_COL-0_Araport11']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: c86f58f613f1fb7a6dbf1fe0badf13ea
+            seek_keys:
+              fasta: 9f1c349e07231cd71d5cf2426ebe876578a2f562799c60ac.fa
+              fai: 9f1c349e07231cd71d5cf2426ebe876578a2f562799c60ac.fa.fai
+              chrom_sizes: 9f1c349e07231cd71d5cf2426ebe876578a2f562799c60ac.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Arabidopsis thaliana COL-0 Araport11
+  0cded27d0804e9054ac0972bd2e0e2ade507e43a663327a6:
+    aliases: ['Amborella_trichopoda__JGI_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 0042ebe95e755f11daa2b07da550b3a6
+            seek_keys:
+              fasta: 0cded27d0804e9054ac0972bd2e0e2ade507e43a663327a6.fa
+              fai: 0cded27d0804e9054ac0972bd2e0e2ade507e43a663327a6.fa.fai
+              chrom_sizes: 0cded27d0804e9054ac0972bd2e0e2ade507e43a663327a6.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Amborella trichopoda  JGI v1.0
+  0edb4c903bae208b1aec15e84d98383bf7b06003e67cee8b:
+    aliases: ['Brachypodium_distachyon_JGI_v3_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 2630e4de9208f51cbf74e1aca0f3e564
+            seek_keys:
+              fasta: 0edb4c903bae208b1aec15e84d98383bf7b06003e67cee8b.fa
+              fai: 0edb4c903bae208b1aec15e84d98383bf7b06003e67cee8b.fa.fai
+              chrom_sizes: 0edb4c903bae208b1aec15e84d98383bf7b06003e67cee8b.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Brachypodium distachyon JGI v3.1
+  c45cb418aab15833a00b5f9a30cea801ab6245071649cb28:
+    aliases: ['Amborella_trichopoda_Amborella_V1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: ddae9d3152e284b817ff38803ecaeedf
+            seek_keys:
+              fasta: c45cb418aab15833a00b5f9a30cea801ab6245071649cb28.fa
+              fai: c45cb418aab15833a00b5f9a30cea801ab6245071649cb28.fa.fai
+              chrom_sizes: c45cb418aab15833a00b5f9a30cea801ab6245071649cb28.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Amborella trichopoda Amborella V1.0
+  88907d8dcdbebcae36aee6e3577aec10f0945506bad2dd0a:
+    aliases: ['Amborella_trichopoda_Amborella_v1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 7d2d335cc6801d7dc81d8ada442c948f
+            seek_keys:
+              fasta: 88907d8dcdbebcae36aee6e3577aec10f0945506bad2dd0a.fa
+              fai: 88907d8dcdbebcae36aee6e3577aec10f0945506bad2dd0a.fa.fai
+              chrom_sizes: 88907d8dcdbebcae36aee6e3577aec10f0945506bad2dd0a.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Amborella trichopoda Amborella v1
+  8cf7a4e78273b480e57b9a7f28f2b911b506105d24f05c1b:
+    aliases: ['Brachypodium_distachyon_MIPS_1_2']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 39ebb71508e74a492cf4fd2c5968b122
+            seek_keys:
+              fasta: 8cf7a4e78273b480e57b9a7f28f2b911b506105d24f05c1b.fa
+              fai: 8cf7a4e78273b480e57b9a7f28f2b911b506105d24f05c1b.fa.fai
+              chrom_sizes: 8cf7a4e78273b480e57b9a7f28f2b911b506105d24f05c1b.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Brachypodium distachyon MIPS 1.2
+  ecd5f46a558421bf92c9df0b6d792d61ea8689b6ffe72bec:
+    aliases: ['Arabidopsis_thaliana_COL-0_TAIR10']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: a27f96e7cbddb1be891060d85b8cccc8
+            seek_keys:
+              fasta: ecd5f46a558421bf92c9df0b6d792d61ea8689b6ffe72bec.fa
+              fai: ecd5f46a558421bf92c9df0b6d792d61ea8689b6ffe72bec.fa.fai
+              chrom_sizes: ecd5f46a558421bf92c9df0b6d792d61ea8689b6ffe72bec.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Arabidopsis thaliana COL-0 TAIR10
+  a6c0302daffea04330b64089fbc9ff2ae37e1671e6014512:
+    aliases: ['Brassica_rapa_Annotation_v1_2_on_assembly_v1_1_Phytozome_9_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: bc221e86ba300d09d278f91598c6b8e7
+            seek_keys:
+              fasta: a6c0302daffea04330b64089fbc9ff2ae37e1671e6014512.fa
+              fai: a6c0302daffea04330b64089fbc9ff2ae37e1671e6014512.fa.fai
+              chrom_sizes: a6c0302daffea04330b64089fbc9ff2ae37e1671e6014512.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Brassica rapa Annotation v1.2 on assembly v1.1 (Phytozome 9.1)
+  243de8bc6f991557ce5c60b77e713ce1a8ecc3b4edc4363e:
+    aliases: ['Brassica_oleracea__Ensembl_Genomes_v2_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 55a565cd12654567397e1989d3161a87
+            seek_keys:
+              fasta: 243de8bc6f991557ce5c60b77e713ce1a8ecc3b4edc4363e.fa
+              fai: 243de8bc6f991557ce5c60b77e713ce1a8ecc3b4edc4363e.fa.fai
+              chrom_sizes: 243de8bc6f991557ce5c60b77e713ce1a8ecc3b4edc4363e.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Brassica oleracea  Ensembl Genomes v2.1
+  65ca6fd7be1e6e73e851d6ab5359dbb56949bcd31e23f473:
+    aliases: ['Cicer_arietinum__LIS_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: b0cd2fdf5d4a7350514be929de5293ce
+            seek_keys:
+              fasta: 65ca6fd7be1e6e73e851d6ab5359dbb56949bcd31e23f473.fa
+              fai: 65ca6fd7be1e6e73e851d6ab5359dbb56949bcd31e23f473.fa.fai
+              chrom_sizes: 65ca6fd7be1e6e73e851d6ab5359dbb56949bcd31e23f473.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Cicer arietinum  LIS v1.0
+  999e81bf72346608f9688cdea35d7d4c3eab532cda483cad:
+    aliases: ['Caenorhabditis_elegans_ENSEMBL_release_81']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: b3a47545e3507bddda85060c7288bc26
+            seek_keys:
+              fasta: 999e81bf72346608f9688cdea35d7d4c3eab532cda483cad.fa
+              fai: 999e81bf72346608f9688cdea35d7d4c3eab532cda483cad.fa.fai
+              chrom_sizes: 999e81bf72346608f9688cdea35d7d4c3eab532cda483cad.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Caenorhabditis elegans ENSEMBL release 81
+  916ef29c66cd739e1aeae199c4cd9f266b86b1b3e5013d9f:
+    aliases: ['Chondrus_crispus_ENSEMBL_protists__release_28']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: d244449fcf65555d70bd057305ea1e8b
+            seek_keys:
+              fasta: 916ef29c66cd739e1aeae199c4cd9f266b86b1b3e5013d9f.fa
+              fai: 916ef29c66cd739e1aeae199c4cd9f266b86b1b3e5013d9f.fa.fai
+              chrom_sizes: 916ef29c66cd739e1aeae199c4cd9f266b86b1b3e5013d9f.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Chondrus crispus ENSEMBL protists  release 28
+  75ff11017c451b4251cb800c4b9634eba5d27e3e1db4b8f4:
+    aliases: ['Chlamydomonas_reinhardtii__JGI_v5_5']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: cd1d7cca529c00076c86bae8e95c1d98
+            seek_keys:
+              fasta: 75ff11017c451b4251cb800c4b9634eba5d27e3e1db4b8f4.fa
+              fai: 75ff11017c451b4251cb800c4b9634eba5d27e3e1db4b8f4.fa.fai
+              chrom_sizes: 75ff11017c451b4251cb800c4b9634eba5d27e3e1db4b8f4.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Chlamydomonas reinhardtii  JGI v5.5
+  fdca8d561c704c5a71d01ef3a3795a7cd62f71459a43a1eb:
+    aliases: ['Chlamydomonas_reinhardtii_JGI_v5_0_assembly_annot_v5_3_1_based_on_Augustus_u11_6']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 26ccfc52a8d57d82897c88bc4526aebd
+            seek_keys:
+              fasta: fdca8d561c704c5a71d01ef3a3795a7cd62f71459a43a1eb.fa
+              fai: fdca8d561c704c5a71d01ef3a3795a7cd62f71459a43a1eb.fa.fai
+              chrom_sizes: fdca8d561c704c5a71d01ef3a3795a7cd62f71459a43a1eb.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Chlamydomonas reinhardtii JGI v5.0 assembly- annot v5.3.1 based on Augustus u11.6
+  ef33e90ffbea83632505d9bd7bb36e0349176ff37f2baa55:
+    aliases: ['Capsella_rubella__JGI_v1_0', 'Capsella_rubella_JGI_annotation_v1_0_on_assembly_v1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 78814c058e61fffbbd852c6cddb972d3
+            seek_keys:
+              fasta: ef33e90ffbea83632505d9bd7bb36e0349176ff37f2baa55.fa
+              fai: ef33e90ffbea83632505d9bd7bb36e0349176ff37f2baa55.fa.fai
+              chrom_sizes: ef33e90ffbea83632505d9bd7bb36e0349176ff37f2baa55.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Capsella rubella JGI annotation v1.0 on assembly v1
+  38326803554e8544d18d12d472d09b78cd59e850be39b1e1:
+    aliases: ['Cyanidioschyzon_merolae_Tokyo_University']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: dfb8d9a3cb8dea724526e7deea0fe8fb
+            seek_keys:
+              fasta: 38326803554e8544d18d12d472d09b78cd59e850be39b1e1.fa
+              fai: 38326803554e8544d18d12d472d09b78cd59e850be39b1e1.fa.fai
+              chrom_sizes: 38326803554e8544d18d12d472d09b78cd59e850be39b1e1.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Cyanidioschyzon merolae Tokyo University
+  75ed1b056a5ba021b127c8a948efed115d5f14b804f98774:
+    aliases: ['Coccomyxa_subellipsoidea_C-169_JGI_2_0_Phytozome_10_2']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: aacd6047cdbf5cd98b0ac241eddb4b00
+            seek_keys:
+              fasta: 75ed1b056a5ba021b127c8a948efed115d5f14b804f98774.fa
+              fai: 75ed1b056a5ba021b127c8a948efed115d5f14b804f98774.fa.fai
+              chrom_sizes: 75ed1b056a5ba021b127c8a948efed115d5f14b804f98774.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Coccomyxa subellipsoidea C-169 JGI 2.0 (Phytozome 10.2)
+  bf0deddb13d6a5430e1220950dbc7f26193768a2e7cd7dcf:
+    aliases: ['Fragilariopsis_cylindrus_JGI_1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: f2fff5f59c7d7ca8a51a8771ef693ea5
+            seek_keys:
+              fasta: bf0deddb13d6a5430e1220950dbc7f26193768a2e7cd7dcf.fa
+              fai: bf0deddb13d6a5430e1220950dbc7f26193768a2e7cd7dcf.fa.fai
+              chrom_sizes: bf0deddb13d6a5430e1220950dbc7f26193768a2e7cd7dcf.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Fragilariopsis cylindrus JGI 1.0
+  49e3bc088253e4f6a86559760e9135b4794b0c27a5eb0116:
+    aliases: ['Chlorella_sp_NC64A_JGI_1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 150105456b1edbb5cd9421d87376db4f
+            seek_keys:
+              fasta: 49e3bc088253e4f6a86559760e9135b4794b0c27a5eb0116.fa
+              fai: 49e3bc088253e4f6a86559760e9135b4794b0c27a5eb0116.fa.fai
+              chrom_sizes: 49e3bc088253e4f6a86559760e9135b4794b0c27a5eb0116.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Chlorella sp NC64A JGI 1.0
+  15418c3ef8234056bd4cdfc1c067dd775d702b209b80fba9:
+    aliases: ['Citrullus_lanatus_Cucurbit_Genomics_Database']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: f7b5aebbaf2155b2de9b24ea5363ec0c
+            seek_keys:
+              fasta: 15418c3ef8234056bd4cdfc1c067dd775d702b209b80fba9.fa
+              fai: 15418c3ef8234056bd4cdfc1c067dd775d702b209b80fba9.fa.fai
+              chrom_sizes: 15418c3ef8234056bd4cdfc1c067dd775d702b209b80fba9.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Citrullus lanatus Cucurbit Genomics Database
+  bcd32a091fd83b19f9df935618196efc2af302c0a9e3eac8:
+    aliases: ['Erythranthe_guttata__JGI_v2_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 434c32133e74658cb0379f187cc97ece
+            seek_keys:
+              fasta: bcd32a091fd83b19f9df935618196efc2af302c0a9e3eac8.fa
+              fai: bcd32a091fd83b19f9df935618196efc2af302c0a9e3eac8.fa.fai
+              chrom_sizes: bcd32a091fd83b19f9df935618196efc2af302c0a9e3eac8.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Erythranthe guttata  JGI v2.0
+  1342fe0b5366064be512ce42495c84a595654d23ad6e1104:
+    aliases: ['Cucumis_sativus_L___JGI_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 15f125270dd8f3f743ec75ed6029de6c
+            seek_keys:
+              fasta: 1342fe0b5366064be512ce42495c84a595654d23ad6e1104.fa
+              fai: 1342fe0b5366064be512ce42495c84a595654d23ad6e1104.fa.fai
+              chrom_sizes: 1342fe0b5366064be512ce42495c84a595654d23ad6e1104.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Cucumis sativus L.  JGI v1.0
+  f30f63b417809e772833c3be01ee0847b48ff1782f06214c:
+    aliases: ['Micromonas_sp_RCC299_JGI_3_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 94839dc096922d4da547dfbac01436d2
+            seek_keys:
+              fasta: f30f63b417809e772833c3be01ee0847b48ff1782f06214c.fa
+              fai: f30f63b417809e772833c3be01ee0847b48ff1782f06214c.fa.fai
+              chrom_sizes: f30f63b417809e772833c3be01ee0847b48ff1782f06214c.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Micromonas sp RCC299 JGI 3.0
+  eb6163b8ac63dcd113acb1932df0a41936d2ac2adb97c325:
+    aliases: ['Brassica_rapa__JGI_FPsc1_3']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: adc3b49e7780c9dbae8ba138db6d3642
+            seek_keys:
+              fasta: eb6163b8ac63dcd113acb1932df0a41936d2ac2adb97c325.fa
+              fai: eb6163b8ac63dcd113acb1932df0a41936d2ac2adb97c325.fa.fai
+              chrom_sizes: eb6163b8ac63dcd113acb1932df0a41936d2ac2adb97c325.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Brassica rapa  JGI FPsc1.3
+  328101688cb6186cae77d01db368a86257eeefd0e485fdb5:
+    aliases: ['Ostreococcus_mediterraneus_Ghent_University']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 14a2eb2a1372e6daf879b2d747ba2da7
+            seek_keys:
+              fasta: 328101688cb6186cae77d01db368a86257eeefd0e485fdb5.fa
+              fai: 328101688cb6186cae77d01db368a86257eeefd0e485fdb5.fa.fai
+              chrom_sizes: 328101688cb6186cae77d01db368a86257eeefd0e485fdb5.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Ostreococcus mediterraneus Ghent University
+  9edb5e4b197fe74cc7e6dbd565546e6cb3d901362ed1b9e5:
+    aliases: ['Micromonas_pusilla_strain_CCMP1545_Ghent_University']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 157e69d961b775eb105a870bceb163a4
+            seek_keys:
+              fasta: 9edb5e4b197fe74cc7e6dbd565546e6cb3d901362ed1b9e5.fa
+              fai: 9edb5e4b197fe74cc7e6dbd565546e6cb3d901362ed1b9e5.fa.fai
+              chrom_sizes: 9edb5e4b197fe74cc7e6dbd565546e6cb3d901362ed1b9e5.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Micromonas pusilla strain CCMP1545 Ghent University
+  2c973960f3a6a0e70f9186e859b09250e3ec07f2e5273391:
+    aliases: ['Helicosporidium_sp___Illinois_University_1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 2f2b4fc99692a683751354330947930b
+            seek_keys:
+              fasta: 2c973960f3a6a0e70f9186e859b09250e3ec07f2e5273391.fa
+              fai: 2c973960f3a6a0e70f9186e859b09250e3ec07f2e5273391.fa.fai
+              chrom_sizes: 2c973960f3a6a0e70f9186e859b09250e3ec07f2e5273391.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Helicosporidium sp.  Illinois University 1.0
+  bf4a82f8328546c711d24cb321d56d8b323428b97f61fa69:
+    aliases: ['Medicago_truncatula_JCVI_4_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 8e1ed4a5c52e5442c62ee35e6199cf92
+            seek_keys:
+              fasta: bf4a82f8328546c711d24cb321d56d8b323428b97f61fa69.fa
+              fai: bf4a82f8328546c711d24cb321d56d8b323428b97f61fa69.fa.fai
+              chrom_sizes: bf4a82f8328546c711d24cb321d56d8b323428b97f61fa69.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Medicago truncatula JCVI 4.0
+  51ddf1898fade480d46299ae2fa8028abe6221da53ae7141:
+    aliases: ['Emiliania_huxleyi__ENSEMBL_protist_release_28']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 30cfca2cf97872881c1c655b3e33b46d
+            seek_keys:
+              fasta: 51ddf1898fade480d46299ae2fa8028abe6221da53ae7141.fa
+              fai: 51ddf1898fade480d46299ae2fa8028abe6221da53ae7141.fa.fai
+              chrom_sizes: 51ddf1898fade480d46299ae2fa8028abe6221da53ae7141.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Emiliania huxleyi  ENSEMBL protist release 28
+  e8be2b89269eae7bd2d06746228f17babf69d67bb6aa4346:
+    aliases: ['Oropetium_thomaeum_JGI_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 2f0a9fe4edd09f68cf76e7dfc233ebe9
+            seek_keys:
+              fasta: e8be2b89269eae7bd2d06746228f17babf69d67bb6aa4346.fa
+              fai: e8be2b89269eae7bd2d06746228f17babf69d67bb6aa4346.fa.fai
+              chrom_sizes: e8be2b89269eae7bd2d06746228f17babf69d67bb6aa4346.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Oropetium thomaeum JGI v1.0
+  21b18dc8e6ae284c62b6d6a77b6d1a4409546f51ff4fbbd5:
+    aliases: ['Gossypium_raimondii_JGI_annotation_v2_1_on_assembly_v2_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 835ff30c6cc6960295ac44f794c5a449
+            seek_keys:
+              fasta: 21b18dc8e6ae284c62b6d6a77b6d1a4409546f51ff4fbbd5.fa
+              fai: 21b18dc8e6ae284c62b6d6a77b6d1a4409546f51ff4fbbd5.fa.fai
+              chrom_sizes: 21b18dc8e6ae284c62b6d6a77b6d1a4409546f51ff4fbbd5.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Gossypium raimondii JGI annotation v2.1 on assembly v2.0
+  1df21ea327d7b37b1f132943751bc1d81b7642152fe77b5a:
+    aliases: ['Musa_acuminata_Banana_Genome_v2_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 27055cee5fd2515b90f53b35c00b7b2d
+            seek_keys:
+              fasta: 1df21ea327d7b37b1f132943751bc1d81b7642152fe77b5a.fa
+              fai: 1df21ea327d7b37b1f132943751bc1d81b7642152fe77b5a.fa.fai
+              chrom_sizes: 1df21ea327d7b37b1f132943751bc1d81b7642152fe77b5a.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Musa acuminata Banana Genome v2.0
+  09caecc78ed519cf256668505641345c9d1b7011426f66ba:
+    aliases: ['Carica_papaya__JGI_ASGPB0_4']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 1b2c5311e5b0a926934f49e937ae463d
+            seek_keys:
+              fasta: 09caecc78ed519cf256668505641345c9d1b7011426f66ba.fa
+              fai: 09caecc78ed519cf256668505641345c9d1b7011426f66ba.fa.fai
+              chrom_sizes: 09caecc78ed519cf256668505641345c9d1b7011426f66ba.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Carica papaya  JGI ASGPB0.4
+  4591f237dfa34c1b426f6596e2ce5bb5cb92581dc5ea883c:
+    aliases: ['Musa_acuminata_Genescope-Cirad']
+  6caf68ac9d45756c70f6ba179dc233ff50ba8633422ab164:
+    aliases: ['Chenopodium_quinoa__JGI_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: ac6c8c700399568e77265e1d5fc4e5c5
+            seek_keys:
+              fasta: 6caf68ac9d45756c70f6ba179dc233ff50ba8633422ab164.fa
+              fai: 6caf68ac9d45756c70f6ba179dc233ff50ba8633422ab164.fa.fai
+              chrom_sizes: 6caf68ac9d45756c70f6ba179dc233ff50ba8633422ab164.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Chenopodium quinoa  JGI v1.0
+  ed34b3c16cacdd46578f82f2fd9b5f790461e5a4fdb7d2d5:
+    aliases: ['Musa_acuminata_Banana_Genome_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 15805750bd184ef859dd72121ff5c36d
+            seek_keys:
+              fasta: ed34b3c16cacdd46578f82f2fd9b5f790461e5a4fdb7d2d5.fa
+              fai: ed34b3c16cacdd46578f82f2fd9b5f790461e5a4fdb7d2d5.fa.fai
+              chrom_sizes: ed34b3c16cacdd46578f82f2fd9b5f790461e5a4fdb7d2d5.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Musa acuminata Banana Genome v1.0
+  c0770ea58976888c6a18be52776291b0fa26a1d85ec4ec25:
+    aliases: ['Oryza_brachyantha_Ensembl_Plants_v1_4b']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 55223ab03fc6bf12a23b49ea5ac661ab
+            seek_keys:
+              fasta: c0770ea58976888c6a18be52776291b0fa26a1d85ec4ec25.fa
+              fai: c0770ea58976888c6a18be52776291b0fa26a1d85ec4ec25.fa.fai
+              chrom_sizes: c0770ea58976888c6a18be52776291b0fa26a1d85ec4ec25.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Oryza brachyantha Ensembl Plants v1.4b
+  97c165c0b7dba2a9fa9eed9a9d4b9a05009461105d64618b:
+    aliases: ['Citrus_sinensis_JGI_v1_assembly_and_v1_0_annotation']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 90b18b04aa5e96a5a142766739820b9c
+            seek_keys:
+              fasta: 97c165c0b7dba2a9fa9eed9a9d4b9a05009461105d64618b.fa
+              fai: 97c165c0b7dba2a9fa9eed9a9d4b9a05009461105d64618b.fa.fai
+              chrom_sizes: 97c165c0b7dba2a9fa9eed9a9d4b9a05009461105d64618b.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Citrus sinensis JGI v1 assembly and v1.0 annotation
+  6e0b195ac8e649a0a9e5bcd10c494a09e24bcc118de48801:
+    aliases: ['Picochlorum_sp__SENEW3_SE3_Rutgers_University_1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: e5f4b5fa2ec8e5bfa0ef4db9ca96d962
+            seek_keys:
+              fasta: 6e0b195ac8e649a0a9e5bcd10c494a09e24bcc118de48801.fa
+              fai: 6e0b195ac8e649a0a9e5bcd10c494a09e24bcc118de48801.fa.fai
+              chrom_sizes: 6e0b195ac8e649a0a9e5bcd10c494a09e24bcc118de48801.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Picochlorum sp. SENEW3 (SE3) Rutgers University 1.0
+  7e447ca48b9bd149910c17766822270fefe17af3f672608a:
+    aliases: ['Chlamydomonas_reinhardtii_JGI_5_5_Phytozome_10_2']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: c9e9fa60b119215006c16f46fbb35a39
+            seek_keys:
+              fasta: 7e447ca48b9bd149910c17766822270fefe17af3f672608a.fa
+              fai: 7e447ca48b9bd149910c17766822270fefe17af3f672608a.fa.fai
+              chrom_sizes: 7e447ca48b9bd149910c17766822270fefe17af3f672608a.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Chlamydomonas reinhardtii JGI 5.5 (Phytozome 10.2)
+  8c743e254e912ae28f0ea085d85b948e9b94eec295bdf476:
+    aliases: ['Lotus_japonicus_Kazusa_2_5']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 311101b28df8949769c84aad0b874f69
+            seek_keys:
+              fasta: 8c743e254e912ae28f0ea085d85b948e9b94eec295bdf476.fa
+              fai: 8c743e254e912ae28f0ea085d85b948e9b94eec295bdf476.fa.fai
+              chrom_sizes: 8c743e254e912ae28f0ea085d85b948e9b94eec295bdf476.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Lotus japonicus Kazusa 2.5
+  aa940fa6e513d077da6bd58e82da06cfffd1bd206ec09b71:
+    aliases: ['Manihot_esculenta__JGI_v6_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 1f359187e6112f62564335173123078e
+            seek_keys:
+              fasta: aa940fa6e513d077da6bd58e82da06cfffd1bd206ec09b71.fa
+              fai: aa940fa6e513d077da6bd58e82da06cfffd1bd206ec09b71.fa.fai
+              chrom_sizes: aa940fa6e513d077da6bd58e82da06cfffd1bd206ec09b71.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Manihot esculenta  JGI v6.1
+  32de476952a893f76708defdd83e2fb5beec66797d303c67:
+    aliases: ['Calamus_simplicifolius_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: c5888f1b007bc8b92142fd5f8fa8d9bd
+            seek_keys:
+              fasta: 32de476952a893f76708defdd83e2fb5beec66797d303c67.fa
+              fai: 32de476952a893f76708defdd83e2fb5beec66797d303c67.fa.fai
+              chrom_sizes: 32de476952a893f76708defdd83e2fb5beec66797d303c67.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Calamus simplicifolius v1.0
+  39d214f28ba2161abd27e6a41ac2ae945ad823accfad9415:
+    aliases: ['Beta_vulgaris__RefBeet_v1_2']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 3f849226edef910368d04196117c2585
+            seek_keys:
+              fasta: 39d214f28ba2161abd27e6a41ac2ae945ad823accfad9415.fa
+              fai: 39d214f28ba2161abd27e6a41ac2ae945ad823accfad9415.fa.fai
+              chrom_sizes: 39d214f28ba2161abd27e6a41ac2ae945ad823accfad9415.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Beta vulgaris  RefBeet v1.2
+  6ed4fd4aceb648e63b8f2689b0888dc31e8943e1574e0d4c:
+    aliases: ['Beta_vulgaris_RefBeet_1_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 69948790748facd3cd7354ccb7d6d2db
+            seek_keys:
+              fasta: 6ed4fd4aceb648e63b8f2689b0888dc31e8943e1574e0d4c.fa
+              fai: 6ed4fd4aceb648e63b8f2689b0888dc31e8943e1574e0d4c.fa.fai
+              chrom_sizes: 6ed4fd4aceb648e63b8f2689b0888dc31e8943e1574e0d4c.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Beta vulgaris RefBeet 1.1
+  3ecd2f582bcb7c262cf3a0c228681ea9d030095e0d580d1d:
+    aliases: ['Prunus_persica__JGI_v2_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: e1cad546988d977bd0eb51488c37d0c7
+            seek_keys:
+              fasta: 3ecd2f582bcb7c262cf3a0c228681ea9d030095e0d580d1d.fa
+              fai: 3ecd2f582bcb7c262cf3a0c228681ea9d030095e0d580d1d.fa.fai
+              chrom_sizes: 3ecd2f582bcb7c262cf3a0c228681ea9d030095e0d580d1d.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Prunus persica  JGI v2.1
+  c0cc9804e43d0e05b1266f52a29e701958975ec136ef863f:
+    aliases: ['Nelumbo_nucifera__LOTUS-DB_v1_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: c5fdc7ca06748a020d0e369092e7ae82
+            seek_keys:
+              fasta: c0cc9804e43d0e05b1266f52a29e701958975ec136ef863f.fa
+              fai: c0cc9804e43d0e05b1266f52a29e701958975ec136ef863f.fa.fai
+              chrom_sizes: c0cc9804e43d0e05b1266f52a29e701958975ec136ef863f.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Nelumbo nucifera  LOTUS-DB v1.1
+  2c8f45a3775351cebfb338a6db2edec07f8c3533afaafe9f:
+    aliases: ['Physcomitrella_patens_Phytozome_9_1_v1_6']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: d594fe12f88c9dcc8912c45299d68b15
+            seek_keys:
+              fasta: 2c8f45a3775351cebfb338a6db2edec07f8c3533afaafe9f.fa
+              fai: 2c8f45a3775351cebfb338a6db2edec07f8c3533afaafe9f.fa.fai
+              chrom_sizes: 2c8f45a3775351cebfb338a6db2edec07f8c3533afaafe9f.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Physcomitrella patens Phytozome 9.1 (v1.6)
+  9370d51cc11f3e943ae662e05ec2b4b189225f3be66000bf:
+    aliases: ['Ectocarpus_siliculosus_Ghent_University']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: bea9d4da2529323f07e2decd79b7621a
+            seek_keys:
+              fasta: 9370d51cc11f3e943ae662e05ec2b4b189225f3be66000bf.fa
+              fai: 9370d51cc11f3e943ae662e05ec2b4b189225f3be66000bf.fa.fai
+              chrom_sizes: 9370d51cc11f3e943ae662e05ec2b4b189225f3be66000bf.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Ectocarpus siliculosus Ghent University
+  bbeffc686b8ecca6b50fe1c974ed0add0cb5a08167e0c7ee:
+    aliases: ['Oryza_sativa_MSU_RGAP_7']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 28df78923e4b2dc6522fe0f34c66e67d
+            seek_keys:
+              fasta: bbeffc686b8ecca6b50fe1c974ed0add0cb5a08167e0c7ee.fa
+              fai: bbeffc686b8ecca6b50fe1c974ed0add0cb5a08167e0c7ee.fa.fai
+              chrom_sizes: bbeffc686b8ecca6b50fe1c974ed0add0cb5a08167e0c7ee.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Oryza sativa MSU RGAP 7
+  96d9032c870fc1a4dd412735bd490fa476a8cdc58f139e9d:
+    aliases: ['Paramecium_tetraurelia__ENSEMBL_protist_release_28']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 46a45a3838db2c7c785c3feb06e09c5e
+            seek_keys:
+              fasta: 96d9032c870fc1a4dd412735bd490fa476a8cdc58f139e9d.fa
+              fai: 96d9032c870fc1a4dd412735bd490fa476a8cdc58f139e9d.fa.fai
+              chrom_sizes: 96d9032c870fc1a4dd412735bd490fa476a8cdc58f139e9d.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Paramecium tetraurelia  ENSEMBL protist release 28
+  1e76bca0f5ed1f6af9b78333cfd974de9cbc93bd238aacd0:
+    aliases: ['Physcomitrella_patens__JGI_v3_3']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 0df559c80d20f36c1e9dc5637cbf27e4
+            seek_keys:
+              fasta: 1e76bca0f5ed1f6af9b78333cfd974de9cbc93bd238aacd0.fa
+              fai: 1e76bca0f5ed1f6af9b78333cfd974de9cbc93bd238aacd0.fa.fai
+              chrom_sizes: 1e76bca0f5ed1f6af9b78333cfd974de9cbc93bd238aacd0.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Physcomitrella patens  JGI v3.3
+  b126875e1ce2219562c7fccbcdaad9fac432747c597896d4:
+    aliases: ['Populus_trichocarpa_JGI_assembly_release_v3_0_annotation_v3_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: c612b6a27e5b83fc97fd7244175eb1a0
+            seek_keys:
+              fasta: b126875e1ce2219562c7fccbcdaad9fac432747c597896d4.fa
+              fai: b126875e1ce2219562c7fccbcdaad9fac432747c597896d4.fa.fai
+              chrom_sizes: b126875e1ce2219562c7fccbcdaad9fac432747c597896d4.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Populus trichocarpa JGI assembly release v3.0- annotation v3.0
+  30c7c27fbc04385376d394d0eb7311b6a3ed9844cb4819cf:
+    aliases: ['Dictyostelium_discoideum__ENSEMBL_protist_release_28']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 5304da3f043945216d9e0098452798c7
+            seek_keys:
+              fasta: 30c7c27fbc04385376d394d0eb7311b6a3ed9844cb4819cf.fa
+              fai: 30c7c27fbc04385376d394d0eb7311b6a3ed9844cb4819cf.fa.fai
+              chrom_sizes: 30c7c27fbc04385376d394d0eb7311b6a3ed9844cb4819cf.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Dictyostelium discoideum  ENSEMBL protist release 28
+  ccc07422055094a0f8f9fd14652f3817f0f0cc9c5c0a3e5a:
+    aliases: ['Physcomitrella_patens_JGI_assembly_release_v1_1_and_COSMOSS_annotation_v1_6']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 0fdd6d4dc4c3ea4340954b77f2d36650
+            seek_keys:
+              fasta: ccc07422055094a0f8f9fd14652f3817f0f0cc9c5c0a3e5a.fa
+              fai: ccc07422055094a0f8f9fd14652f3817f0f0cc9c5c0a3e5a.fa.fai
+              chrom_sizes: ccc07422055094a0f8f9fd14652f3817f0f0cc9c5c0a3e5a.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Physcomitrella patens JGI assembly release v1.1 and COSMOSS annotation v1.6
+  1796110785276b4c1e5e9e9a821371ac2a4faad6ca79e179:
+    aliases: ['Ostreococcus_sp_RCC809_JGI_2_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: cba2585299a473550b580e83719eeb6b
+            seek_keys:
+              fasta: 1796110785276b4c1e5e9e9a821371ac2a4faad6ca79e179.fa
+              fai: 1796110785276b4c1e5e9e9a821371ac2a4faad6ca79e179.fa.fai
+              chrom_sizes: 1796110785276b4c1e5e9e9a821371ac2a4faad6ca79e179.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Ostreococcus sp RCC809 JGI 2.0
+  4ad31ecfa345dc0837ce4f683a37f94ba9ab7506a25708a7:
+    aliases: ['Phaeodactylum_tricornutum_ASM15095v2']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 568ab3d09fc042043f7b002e4314d890
+            seek_keys:
+              fasta: 4ad31ecfa345dc0837ce4f683a37f94ba9ab7506a25708a7.fa
+              fai: 4ad31ecfa345dc0837ce4f683a37f94ba9ab7506a25708a7.fa.fai
+              chrom_sizes: 4ad31ecfa345dc0837ce4f683a37f94ba9ab7506a25708a7.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Phaeodactylum tricornutum ASM15095v2
+  c1e1639e59337dec9e0bd1e585de0608ba2a804f06476403:
+    aliases: ['Ostreococcus_lucimarinus_JGI_2_0', 'Ostreococcus_lucimarinus_JGI_v2_0_assembly_and_annotation']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: ff87ca929cff350aecbde6c39a87aedd
+            seek_keys:
+              fasta: c1e1639e59337dec9e0bd1e585de0608ba2a804f06476403.fa
+              fai: c1e1639e59337dec9e0bd1e585de0608ba2a804f06476403.fa.fai
+              chrom_sizes: c1e1639e59337dec9e0bd1e585de0608ba2a804f06476403.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Ostreococcus lucimarinus JGI v2.0 assembly and annotation
+  834180d647e3470353f02fdfd86011d0926fddb15cebab9f:
+    aliases: ['Daucus_carota__JGI_v2_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 971bc3a7d86f89cb90183d2960736165
+            seek_keys:
+              fasta: 834180d647e3470353f02fdfd86011d0926fddb15cebab9f.fa
+              fai: 834180d647e3470353f02fdfd86011d0926fddb15cebab9f.fa.fai
+              chrom_sizes: 834180d647e3470353f02fdfd86011d0926fddb15cebab9f.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Daucus carota  JGI v2.0
+  c0d892efbd8f2deeda7cbf051f847c7dbef77b035a3ecb64:
+    aliases: ['Oryza_sativa_ssp__japonica_MSU_RGAP_7']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: d5e7db08e33509e4aa00f32bb5b877fa
+            seek_keys:
+              fasta: c0d892efbd8f2deeda7cbf051f847c7dbef77b035a3ecb64.fa
+              fai: c0d892efbd8f2deeda7cbf051f847c7dbef77b035a3ecb64.fa.fai
+              chrom_sizes: c0d892efbd8f2deeda7cbf051f847c7dbef77b035a3ecb64.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Oryza sativa ssp. japonica MSU RGAP 7
+  902626177f8b30f1523088c58962fe8dc38085f11a636ac7:
+    aliases: ['Cucumis_melo__Melonomics_v3_5']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: fe857359a9f0e22cfa28fc9d32b099d4
+            seek_keys:
+              fasta: 902626177f8b30f1523088c58962fe8dc38085f11a636ac7.fa
+              fai: 902626177f8b30f1523088c58962fe8dc38085f11a636ac7.fa.fai
+              chrom_sizes: 902626177f8b30f1523088c58962fe8dc38085f11a636ac7.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Cucumis melo  Melonomics v3.5
+  8c7d6efaebcb490a96beae6f73fe4e9d71b1c9ad334b30f2:
+    aliases: ['Citrullus_lanatus__Cucurbit_Genomics_Database_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 5ab5cfaafcfe8eacaf586059628139de
+            seek_keys:
+              fasta: 8c7d6efaebcb490a96beae6f73fe4e9d71b1c9ad334b30f2.fa
+              fai: 8c7d6efaebcb490a96beae6f73fe4e9d71b1c9ad334b30f2.fa.fai
+              chrom_sizes: 8c7d6efaebcb490a96beae6f73fe4e9d71b1c9ad334b30f2.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Citrullus lanatus  Cucurbit Genomics Database v1.0
+  1258e73be2ff116bdc2afb09628344b6c71ec92e5ea76159:
+    aliases: ['Phytophtora_sojae__ENSEMBL_protist_release_28']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: d8089ed6ef0375af560bad91a3ae88e7
+            seek_keys:
+              fasta: 1258e73be2ff116bdc2afb09628344b6c71ec92e5ea76159.fa
+              fai: 1258e73be2ff116bdc2afb09628344b6c71ec92e5ea76159.fa.fai
+              chrom_sizes: 1258e73be2ff116bdc2afb09628344b6c71ec92e5ea76159.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Phytophtora sojae  ENSEMBL protist release 28
+  5c4b1c6db7adc2e56eefda511971c62f7c78b503b55f1e7f:
+    aliases: ['Nannochloropsis_gaditana__ENSEMBL_protist_release_28']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: dcdd85c5a4224a583a5d77f6d7797993
+            seek_keys:
+              fasta: 5c4b1c6db7adc2e56eefda511971c62f7c78b503b55f1e7f.fa
+              fai: 5c4b1c6db7adc2e56eefda511971c62f7c78b503b55f1e7f.fa.fai
+              chrom_sizes: 5c4b1c6db7adc2e56eefda511971c62f7c78b503b55f1e7f.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Nannochloropsis gaditana  ENSEMBL protist release 28
+  a92ec5d11a8c5f1703013e9a0e045ccf9977ec281d18e781:
+    aliases: ['Eucalyptus_grandis_JGI_assembly_v1_0_annotation_v1_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: e3fddf07f23e065c0944702999f15360
+            seek_keys:
+              fasta: a92ec5d11a8c5f1703013e9a0e045ccf9977ec281d18e781.fa
+              fai: a92ec5d11a8c5f1703013e9a0e045ccf9977ec281d18e781.fa.fai
+              chrom_sizes: a92ec5d11a8c5f1703013e9a0e045ccf9977ec281d18e781.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Eucalyptus grandis JGI assembly v1.0- annotation v1.1
+  c109fe40f635da9a93d8a94c652adfbabbe264b87e9470d9:
+    aliases: ['Drosophila_melanogaster_ENSEMBL_release_81']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 371bc7cf1023e673af687e8fb7877eac
+            seek_keys:
+              fasta: c109fe40f635da9a93d8a94c652adfbabbe264b87e9470d9.fa
+              fai: c109fe40f635da9a93d8a94c652adfbabbe264b87e9470d9.fa.fai
+              chrom_sizes: c109fe40f635da9a93d8a94c652adfbabbe264b87e9470d9.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Drosophila melanogaster ENSEMBL release 81
+  b8baa0a86215cf87b1b547af738dc2cc4392bb305ef5a627:
+    aliases: ['Selaginella_moellendorffii__JGI_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 45f6fee0d7d578cb0e47f272e96e1105
+            seek_keys:
+              fasta: b8baa0a86215cf87b1b547af738dc2cc4392bb305ef5a627.fa
+              fai: b8baa0a86215cf87b1b547af738dc2cc4392bb305ef5a627.fa.fai
+              chrom_sizes: b8baa0a86215cf87b1b547af738dc2cc4392bb305ef5a627.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Selaginella moellendorffii  JGI v1.0
+  acd8ae5f8fe5e1fffbb2329fd050f0f81c06ce4f6dd97930:
+    aliases: ['Cenchrus_americanus_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 26aefe9f59c466d11572254d9d8d3260
+            seek_keys:
+              fasta: acd8ae5f8fe5e1fffbb2329fd050f0f81c06ce4f6dd97930.fa
+              fai: acd8ae5f8fe5e1fffbb2329fd050f0f81c06ce4f6dd97930.fa.fai
+              chrom_sizes: acd8ae5f8fe5e1fffbb2329fd050f0f81c06ce4f6dd97930.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Cenchrus americanus v1.0
+  abac709d485d41085afef4f52e4a773c7436d7254581f96f:
+    aliases: ['Micromonas_commoda__JGI_v3_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: bbc161b497b69afaf627660c89b11566
+            seek_keys:
+              fasta: abac709d485d41085afef4f52e4a773c7436d7254581f96f.fa
+              fai: abac709d485d41085afef4f52e4a773c7436d7254581f96f.fa.fai
+              chrom_sizes: abac709d485d41085afef4f52e4a773c7436d7254581f96f.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Micromonas commoda  JGI v3.0
+  01a975db35ee06014068ba54db15fa81a3d4ee3091686222:
+    aliases: ['Ostreococcus_tauri_Ghent_University_v2_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: c68454326d2567c4444093a6eef654dc
+            seek_keys:
+              fasta: 01a975db35ee06014068ba54db15fa81a3d4ee3091686222.fa
+              fai: 01a975db35ee06014068ba54db15fa81a3d4ee3091686222.fa.fai
+              chrom_sizes: 01a975db35ee06014068ba54db15fa81a3d4ee3091686222.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Ostreococcus tauri Ghent University v2.0
+  fa91552e74efaeabf81203ae4d6c5c991df9f154789e83a1:
+    aliases: ['Elaeis_guineensis_EG5_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 78d289947dc29dd4ab5be0b1523159e4
+            seek_keys:
+              fasta: fa91552e74efaeabf81203ae4d6c5c991df9f154789e83a1.fa
+              fai: fa91552e74efaeabf81203ae4d6c5c991df9f154789e83a1.fa.fai
+              chrom_sizes: fa91552e74efaeabf81203ae4d6c5c991df9f154789e83a1.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Elaeis guineensis EG5.1
+  01c8bb31d74078c221f9a8cd395bcc2a0d37fe5b5be0ed84:
+    aliases: ['Ricinus_communis_JCVI_1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 65b7e493e658aaaaf59fbf9087df36a0
+            seek_keys:
+              fasta: 01c8bb31d74078c221f9a8cd395bcc2a0d37fe5b5be0ed84.fa
+              fai: 01c8bb31d74078c221f9a8cd395bcc2a0d37fe5b5be0ed84.fa.fai
+              chrom_sizes: 01c8bb31d74078c221f9a8cd395bcc2a0d37fe5b5be0ed84.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Ricinus communis JCVI 1.0
+  096bd7519f078a6a5c0fca459980a603ec6086596bba602b:
+    aliases: ['Populus_trichocarpa__JGI_v3_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 604a2a194a8bb2b91036524d57443488
+            seek_keys:
+              fasta: 096bd7519f078a6a5c0fca459980a603ec6086596bba602b.fa
+              fai: 096bd7519f078a6a5c0fca459980a603ec6086596bba602b.fa.fai
+              chrom_sizes: 096bd7519f078a6a5c0fca459980a603ec6086596bba602b.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Populus trichocarpa  JGI v3.1
+  eb0baec1671c8d62bbf4257127770e1847db3e108e07d155:
+    aliases: ['Spirodela_polyrhiza_JGI_v2_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: a8e2efafdfdc7a1c14173b12aebf7d32
+            seek_keys:
+              fasta: eb0baec1671c8d62bbf4257127770e1847db3e108e07d155.fa
+              fai: eb0baec1671c8d62bbf4257127770e1847db3e108e07d155.fa.fai
+              chrom_sizes: eb0baec1671c8d62bbf4257127770e1847db3e108e07d155.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Spirodela polyrhiza JGI v2.0
+  0897ba6d2ae4f01e8f43ec03d883ecbfa08c9c60159da6f5:
+    aliases: ['Thalassiosira_pseudonana_JGI_3_0']
+  9c4068c3042573d0e54a82aec236f457932e8b385e8a3751:
+    aliases: ['Homo_sapiens_ENSEMBL_release_81']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 330ceb15dc02dd185be4364bf8924086
+            seek_keys:
+              fasta: 9c4068c3042573d0e54a82aec236f457932e8b385e8a3751.fa
+              fai: 9c4068c3042573d0e54a82aec236f457932e8b385e8a3751.fa.fai
+              chrom_sizes: 9c4068c3042573d0e54a82aec236f457932e8b385e8a3751.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Homo sapiens ENSEMBL release 81
+  b3014a14314c8af6e4edbc1934719545243355cdcc7803b3:
+    aliases: ['Solanum_lycopersicum_ITAG_2_3']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 3dfbfaa1164b4734f9a9cfbd0ae1a2e7
+            seek_keys:
+              fasta: b3014a14314c8af6e4edbc1934719545243355cdcc7803b3.fa
+              fai: b3014a14314c8af6e4edbc1934719545243355cdcc7803b3.fa.fai
+              chrom_sizes: b3014a14314c8af6e4edbc1934719545243355cdcc7803b3.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Solanum lycopersicum ITAG 2.3
+  3514f35435e4e2adb1f9bd8852ecc80ef6e7a4a811fd299c:
+    aliases: ['Ricinus_communis__JGI_v0_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: de966796883e290d90a48fc078222008
+            seek_keys:
+              fasta: 3514f35435e4e2adb1f9bd8852ecc80ef6e7a4a811fd299c.fa
+              fai: 3514f35435e4e2adb1f9bd8852ecc80ef6e7a4a811fd299c.fa.fai
+              chrom_sizes: 3514f35435e4e2adb1f9bd8852ecc80ef6e7a4a811fd299c.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Ricinus communis  JGI v0.1
+  5a6f13fafd349ac316b38dc3c1c4c0245fd9fc6020d63e21:
+    aliases: ['Pyrus_bretschneideri__Pear_Genome_Project_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: dd7f83f0c304943a6fd1d13a99b2c790
+            seek_keys:
+              fasta: 5a6f13fafd349ac316b38dc3c1c4c0245fd9fc6020d63e21.fa
+              fai: 5a6f13fafd349ac316b38dc3c1c4c0245fd9fc6020d63e21.fa.fai
+              chrom_sizes: 5a6f13fafd349ac316b38dc3c1c4c0245fd9fc6020d63e21.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Pyrus bretschneideri  Pear Genome Project v1.0
+  ab0b398bdbae544f6af6c8631ca695e7d418b53bb5dbacca:
+    aliases: ['Schizosaccharomyces_pombe__ENSEMBL_fungi_release_28']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 68a9a76dfffdb1cbdedf61f78667f11f
+            seek_keys:
+              fasta: ab0b398bdbae544f6af6c8631ca695e7d418b53bb5dbacca.fa
+              fai: ab0b398bdbae544f6af6c8631ca695e7d418b53bb5dbacca.fa.fai
+              chrom_sizes: ab0b398bdbae544f6af6c8631ca695e7d418b53bb5dbacca.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Schizosaccharomyces pombe  ENSEMBL fungi release 28
+  3fb7a899abc9dec2ba795e1ab7477503c80fdb0552a8e1ea:
+    aliases: ['Coffea_canephora__Coffee_Genome_Hub_v1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: f33a0e8b8eb7d823cb27165bdeb6b92a
+            seek_keys:
+              fasta: 3fb7a899abc9dec2ba795e1ab7477503c80fdb0552a8e1ea.fa
+              fai: 3fb7a899abc9dec2ba795e1ab7477503c80fdb0552a8e1ea.fa.fai
+              chrom_sizes: 3fb7a899abc9dec2ba795e1ab7477503c80fdb0552a8e1ea.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Coffea canephora  Coffee Genome Hub v1
+  9d5f052c463a389c5e6bdeda5276bbf189fc1f4db61f29f9:
+    aliases: ['Thellungiella_parvula_TpV84']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 32a52a4c6fc730b58972be6b9da1c158
+            seek_keys:
+              fasta: 9d5f052c463a389c5e6bdeda5276bbf189fc1f4db61f29f9.fa
+              fai: 9d5f052c463a389c5e6bdeda5276bbf189fc1f4db61f29f9.fa.fai
+              chrom_sizes: 9d5f052c463a389c5e6bdeda5276bbf189fc1f4db61f29f9.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Thellungiella parvula TpV84
+  b31e58d022a690e829e7a17fe4e1e58afd8a0f852e71e9d4:
+    aliases: ['Schrenkiella_parvula__Thellungiella_v2_0_TpV84']
+  fc33ddeda3b7b2ee914a946ad1e7803f1a08140d2bdcc2f0:
+    aliases: ['Utricularia_gibba__CoGe_v4']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 6057ac4d31ff559d7687591a2e05df47
+            seek_keys:
+              fasta: fc33ddeda3b7b2ee914a946ad1e7803f1a08140d2bdcc2f0.fa
+              fai: fc33ddeda3b7b2ee914a946ad1e7803f1a08140d2bdcc2f0.fa.fai
+              chrom_sizes: fc33ddeda3b7b2ee914a946ad1e7803f1a08140d2bdcc2f0.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Utricularia gibba  CoGe v4
+  fb25fbc81ee9a512bde6be1faaf5ae4878602994d594394c:
+    aliases: ['Tarenaya_hassleriana__RefSeq_v1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 11f9b24381e80dd275c3a39f1b60ddf1
+            seek_keys:
+              fasta: fb25fbc81ee9a512bde6be1faaf5ae4878602994d594394c.fa
+              fai: fb25fbc81ee9a512bde6be1faaf5ae4878602994d594394c.fa.fai
+              chrom_sizes: fb25fbc81ee9a512bde6be1faaf5ae4878602994d594394c.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Tarenaya hassleriana  RefSeq v1
+  31ecbfb00eec24813ea2830ddb5556cc3bab9594b2fdac00:
+    aliases: ['Saccharomyces_cerevisiae_strain_S288C_ENSEMBL_release_81']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 1a3437464bacc4c18089aed9fa76f4f6
+            seek_keys:
+              fasta: 31ecbfb00eec24813ea2830ddb5556cc3bab9594b2fdac00.fa
+              fai: 31ecbfb00eec24813ea2830ddb5556cc3bab9594b2fdac00.fa.fai
+              chrom_sizes: 31ecbfb00eec24813ea2830ddb5556cc3bab9594b2fdac00.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Saccharomyces cerevisiae strain S288C ENSEMBL release 81
+  7e2ebbe8f76f6bd55c331826fbe87c31890f8ef78c07ff39:
+    aliases: ['Solanum_tuberosum__JGI_v4_03']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 9b9b5851e84c99abcd850eb0c6274933
+            seek_keys:
+              fasta: 7e2ebbe8f76f6bd55c331826fbe87c31890f8ef78c07ff39.fa
+              fai: 7e2ebbe8f76f6bd55c331826fbe87c31890f8ef78c07ff39.fa.fai
+              chrom_sizes: 7e2ebbe8f76f6bd55c331826fbe87c31890f8ef78c07ff39.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Solanum tuberosum  JGI v4.03
+  2aa5f7feed38c775fb5ef0b8aceb3ba6c49287fcd2f9888f:
+    aliases: ['Prunus_persica_JGI_release_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: bdd1f28930c070ecdfe659570a69e5e6
+            seek_keys:
+              fasta: 2aa5f7feed38c775fb5ef0b8aceb3ba6c49287fcd2f9888f.fa
+              fai: 2aa5f7feed38c775fb5ef0b8aceb3ba6c49287fcd2f9888f.fa.fai
+              chrom_sizes: 2aa5f7feed38c775fb5ef0b8aceb3ba6c49287fcd2f9888f.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Prunus persica JGI release v1.0
+  ee639682e1cfab5b6f4eea28ee91db31f39dedbaf0b25011:
+    aliases: ['Volvox_carteri_JGI_2_0_Phtyozome_10_2']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: ce9819b3c0e3efb97abb5ba81860283c
+            seek_keys:
+              fasta: ee639682e1cfab5b6f4eea28ee91db31f39dedbaf0b25011.fa
+              fai: ee639682e1cfab5b6f4eea28ee91db31f39dedbaf0b25011.fa.fai
+              chrom_sizes: ee639682e1cfab5b6f4eea28ee91db31f39dedbaf0b25011.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Volvox carteri JGI 2.0 (Phtyozome 10.2)
+  85c2eef998eb77b896ab56a36440a80d400583227712137d:
+    aliases: ['Galdieria_sulphuraria_ENSEMBL_protists__release_28']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 5cc1c71ffc943b46967bc9289a4790c9
+            seek_keys:
+              fasta: 85c2eef998eb77b896ab56a36440a80d400583227712137d.fa
+              fai: 85c2eef998eb77b896ab56a36440a80d400583227712137d.fa.fai
+              chrom_sizes: 85c2eef998eb77b896ab56a36440a80d400583227712137d.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Galdieria sulphuraria ENSEMBL protists  release 28
+  450527cc8d238d1c3b8529f85e158903c00fc997930254f2:
+    aliases: ['Medicago_truncatula__JGI_Mt4_0v1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 2b80d63e9c6875d6916f33234ddc668c
+            seek_keys:
+              fasta: 450527cc8d238d1c3b8529f85e158903c00fc997930254f2.fa
+              fai: 450527cc8d238d1c3b8529f85e158903c00fc997930254f2.fa.fai
+              chrom_sizes: 450527cc8d238d1c3b8529f85e158903c00fc997930254f2.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Medicago truncatula  JGI Mt4.0v1
+  d85b8f29cf28b3fd90cc6bd0d25f57ddfe639bdbd1b1e2ac:
+    aliases: ['Sorghum_bicolor_JGI_v3_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: e3730345a6336b6f2c7416cc461b2478
+            seek_keys:
+              fasta: d85b8f29cf28b3fd90cc6bd0d25f57ddfe639bdbd1b1e2ac.fa
+              fai: d85b8f29cf28b3fd90cc6bd0d25f57ddfe639bdbd1b1e2ac.fa.fai
+              chrom_sizes: d85b8f29cf28b3fd90cc6bd0d25f57ddfe639bdbd1b1e2ac.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Sorghum bicolor JGI v3.1
+  bfcde5bf37c156d5015b99d01d5261ced78768a05aee6a8b:
+    aliases: ['Solanum_tuberosum_ITAG_001']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: d16c799593f19bddbcb4267b78ef3f83
+            seek_keys:
+              fasta: bfcde5bf37c156d5015b99d01d5261ced78768a05aee6a8b.fa
+              fai: bfcde5bf37c156d5015b99d01d5261ced78768a05aee6a8b.fa.fai
+              chrom_sizes: bfcde5bf37c156d5015b99d01d5261ced78768a05aee6a8b.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Solanum tuberosum ITAG 001
+  daaa7e3a1ab020655ac0554dc36493a3b04308a661052667:
+    aliases: ['Eucalyptus_grandis__JGI_v2_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 57d4d8b92cd8bd510dfccdab9a377460
+            seek_keys:
+              fasta: daaa7e3a1ab020655ac0554dc36493a3b04308a661052667.fa
+              fai: daaa7e3a1ab020655ac0554dc36493a3b04308a661052667.fa.fai
+              chrom_sizes: daaa7e3a1ab020655ac0554dc36493a3b04308a661052667.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Eucalyptus grandis  JGI v2.0
+  29a88f49c7143ea925b62e5fc17be0c4c5b16d4e0800fccc:
+    aliases: ['Solanum_lycopersicum__Sol_Genomics_itag2_4']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: c763c5e207b5db1af72606e6e247a1e2
+            seek_keys:
+              fasta: 29a88f49c7143ea925b62e5fc17be0c4c5b16d4e0800fccc.fa
+              fai: 29a88f49c7143ea925b62e5fc17be0c4c5b16d4e0800fccc.fa.fai
+              chrom_sizes: 29a88f49c7143ea925b62e5fc17be0c4c5b16d4e0800fccc.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Solanum lycopersicum  Sol Genomics itag2.4
+  17691bbe9a2634f58f11869951dab8df85ef377623d9bf9c:
+    aliases: ['Malus_domestica__Penguin_Genomics_v2']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 1a2d285e1a3415bd824da21b0e61ea6d
+            seek_keys:
+              fasta: 17691bbe9a2634f58f11869951dab8df85ef377623d9bf9c.fa
+              fai: 17691bbe9a2634f58f11869951dab8df85ef377623d9bf9c.fa.fai
+              chrom_sizes: 17691bbe9a2634f58f11869951dab8df85ef377623d9bf9c.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Malus domestica  Penguin Genomics v2
+  d8f55d9ccdf3ec851bb963e382432db70a2700632a8fdfda:
+    aliases: ['Petunia_axillaris__Sol_Genomics_v1_6_2']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: d0b01959210d80b12807d38b48f32b22
+            seek_keys:
+              fasta: d8f55d9ccdf3ec851bb963e382432db70a2700632a8fdfda.fa
+              fai: d8f55d9ccdf3ec851bb963e382432db70a2700632a8fdfda.fa.fai
+              chrom_sizes: d8f55d9ccdf3ec851bb963e382432db70a2700632a8fdfda.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Petunia axillaris  Sol Genomics v1.6.2
+  69acef291f23f159ac35af0c3ba03f39da81e1c18ded2c97:
+    aliases: ['Picochlorum_RCC4223__ORCAE']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 4b2bff0e9fd5247d9dc5bed3b49175d9
+            seek_keys:
+              fasta: 69acef291f23f159ac35af0c3ba03f39da81e1c18ded2c97.fa
+              fai: 69acef291f23f159ac35af0c3ba03f39da81e1c18ded2c97.fa.fai
+              chrom_sizes: 69acef291f23f159ac35af0c3ba03f39da81e1c18ded2c97.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Picochlorum_RCC4223  ORCAE
+  e8c94896698d3163b51f95a4d79a10c30217896b64ab818e:
+    aliases: ['Manihot_esculenta_Cassava4']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 7fc06eb58a7dec126e19f3c83817057f
+            seek_keys:
+              fasta: e8c94896698d3163b51f95a4d79a10c30217896b64ab818e.fa
+              fai: e8c94896698d3163b51f95a4d79a10c30217896b64ab818e.fa.fai
+              chrom_sizes: e8c94896698d3163b51f95a4d79a10c30217896b64ab818e.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Manihot esculenta Cassava4
+  85da6cdfc0c010859f34da9c742221889f640bdf3332caf3:
+    aliases: ['Glycine_max_JGI_Glyma1_1_annotation_of_the_chromosome-based_Glyma1_assembly']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: a7e4f0804b9b141e8503877c2d806a45
+            seek_keys:
+              fasta: 85da6cdfc0c010859f34da9c742221889f640bdf3332caf3.fa
+              fai: 85da6cdfc0c010859f34da9c742221889f640bdf3332caf3.fa.fai
+              chrom_sizes: 85da6cdfc0c010859f34da9c742221889f640bdf3332caf3.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Glycine max JGI Glyma1.1 annotation of the chromosome-based Glyma1 assembly
+  a9157f405dc533114a3e16a001a81f0e724c3a4e95e32ed6:
+    aliases: ['Setaria_italica_JGI_v2_2', 'Setaria_italica_JGI_8_3X_chromosome-scale_assembly_release_2_0_annotation_version_2_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 2408ee3c7befcfe01d3175b5f82fef79
+            seek_keys:
+              fasta: a9157f405dc533114a3e16a001a81f0e724c3a4e95e32ed6.fa
+              fai: a9157f405dc533114a3e16a001a81f0e724c3a4e95e32ed6.fa.fai
+              chrom_sizes: a9157f405dc533114a3e16a001a81f0e724c3a4e95e32ed6.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Setaria italica JGI v2.2
+  4564acc86749fb474979f195f695e89146b41044cb3b1e97:
+    aliases: ['Glycine_max__JGI_Wm82_a2_v1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 19f0a86eea02ea9c4bce4335661d496b
+            seek_keys:
+              fasta: 4564acc86749fb474979f195f695e89146b41044cb3b1e97.fa
+              fai: 4564acc86749fb474979f195f695e89146b41044cb3b1e97.fa.fai
+              chrom_sizes: 4564acc86749fb474979f195f695e89146b41044cb3b1e97.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Glycine max  JGI Wm82.a2.v1
+  acd6dae4252d2e81d71b21c5d86b173e0241a35ce60b29d2:
+    aliases: ['Malus_domestica_IASMA']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 78618d196e0ace949c090b04c793af24
+            seek_keys:
+              fasta: acd6dae4252d2e81d71b21c5d86b173e0241a35ce60b29d2.fa
+              fai: acd6dae4252d2e81d71b21c5d86b173e0241a35ce60b29d2.fa.fai
+              chrom_sizes: acd6dae4252d2e81d71b21c5d86b173e0241a35ce60b29d2.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Malus domestica IASMA
+  1b6a08f56f840bfe6af578c5433f2db391c95beeb4dbded0:
+    aliases: ['Fragaria_vesca__JGI_v1_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 12ed8aee04b5d68bf221da9164bc04b9
+            seek_keys:
+              fasta: 1b6a08f56f840bfe6af578c5433f2db391c95beeb4dbded0.fa
+              fai: 1b6a08f56f840bfe6af578c5433f2db391c95beeb4dbded0.fa.fai
+              chrom_sizes: 1b6a08f56f840bfe6af578c5433f2db391c95beeb4dbded0.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Fragaria vesca  JGI v1.1
+  bd29315e8b9335b574a6051616ff9a92aeaf1645d275ee09:
+    aliases: ['Vigna_radiata_var__radiata__LIS_v6']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 7d3c6bf2edd6ead51a9b084a19e61424
+            seek_keys:
+              fasta: bd29315e8b9335b574a6051616ff9a92aeaf1645d275ee09.fa
+              fai: bd29315e8b9335b574a6051616ff9a92aeaf1645d275ee09.fa.fai
+              chrom_sizes: bd29315e8b9335b574a6051616ff9a92aeaf1645d275ee09.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Vigna radiata var. radiata  LIS v6
+  c87bb2e01048f495849df664e6ec0ceb02f06aeef423b7b4:
+    aliases: ['Elaeis_guineensis_NCBI_Genome_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 612f4a05e55c1277098ca24305081e82
+            seek_keys:
+              fasta: c87bb2e01048f495849df664e6ec0ceb02f06aeef423b7b4.fa
+              fai: c87bb2e01048f495849df664e6ec0ceb02f06aeef423b7b4.fa.fai
+              chrom_sizes: c87bb2e01048f495849df664e6ec0ceb02f06aeef423b7b4.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Elaeis guineensis NCBI Genome v1.0
+  a4cdfb3599f18ecddb6a5d0699d811ef7d9cad2b42c18419:
+    aliases: ['Gossypium_raimondii__JGI_v2_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: be170583859a84b912d3830e55ad3352
+            seek_keys:
+              fasta: a4cdfb3599f18ecddb6a5d0699d811ef7d9cad2b42c18419.fa
+              fai: a4cdfb3599f18ecddb6a5d0699d811ef7d9cad2b42c18419.fa.fai
+              chrom_sizes: a4cdfb3599f18ecddb6a5d0699d811ef7d9cad2b42c18419.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Gossypium raimondii  JGI v2.1
+  55e8990994b5ce10e3c02bc84a312ceac56b55ea838a2874:
+    aliases: ['Mus_musculus_ENSEMBL_release_81']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 3664f9e61de247c786453c34d0f6eead
+            seek_keys:
+              fasta: 55e8990994b5ce10e3c02bc84a312ceac56b55ea838a2874.fa
+              fai: 55e8990994b5ce10e3c02bc84a312ceac56b55ea838a2874.fa.fai
+              chrom_sizes: 55e8990994b5ce10e3c02bc84a312ceac56b55ea838a2874.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Mus musculus ENSEMBL release 81
+  b05ccb6fa8741547f81c4e2b1a3e5c9e795c460a7a040198:
+    aliases: ['Vitis_vinifera__JGI_12xMarch2010']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 8b07844670293aeafc55cfbd079e0f95
+            seek_keys:
+              fasta: b05ccb6fa8741547f81c4e2b1a3e5c9e795c460a7a040198.fa
+              fai: b05ccb6fa8741547f81c4e2b1a3e5c9e795c460a7a040198.fa.fai
+              chrom_sizes: b05ccb6fa8741547f81c4e2b1a3e5c9e795c460a7a040198.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Vitis vinifera  JGI 12xMarch2010
+  79c05606860051c5261df12744ee9dee2063db55a06ccaac:
+    aliases: ['Vitis_vinifera_genescope_v1']
+  7940e9f0bcfc349fdd9fc5ef1c22561c9379a91250e2d069:
+    aliases: ['Oryza_sativa_ssp__indica_9311_BGF_2005']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 07c95bd66da71b454f72f376e9b9165d
+            seek_keys:
+              fasta: 7940e9f0bcfc349fdd9fc5ef1c22561c9379a91250e2d069.fa
+              fai: 7940e9f0bcfc349fdd9fc5ef1c22561c9379a91250e2d069.fa.fai
+              chrom_sizes: 7940e9f0bcfc349fdd9fc5ef1c22561c9379a91250e2d069.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Oryza sativa ssp. indica 9311_BGF_2005
+  a4b936d723960f3623315c50fba6228d281068fe25e31657:
+    aliases: ['Sorghum_bicolor_JGI_1_4']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: f4cb99587bdb81dcc53b5a2766d12295
+            seek_keys:
+              fasta: a4b936d723960f3623315c50fba6228d281068fe25e31657.fa
+              fai: a4b936d723960f3623315c50fba6228d281068fe25e31657.fa.fai
+              chrom_sizes: a4b936d723960f3623315c50fba6228d281068fe25e31657.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Sorghum bicolor JGI 1.4
+  b10f2d1ccc9bd1b26c9317a104f8094816bb08ebda9d5ed0:
+    aliases: ['Hevea_brasiliensis__NCBI_Genomes_v1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 58ed0de9b5125c560dfced54c64ea600
+            seek_keys:
+              fasta: b10f2d1ccc9bd1b26c9317a104f8094816bb08ebda9d5ed0.fa
+              fai: b10f2d1ccc9bd1b26c9317a104f8094816bb08ebda9d5ed0.fa.fai
+              chrom_sizes: b10f2d1ccc9bd1b26c9317a104f8094816bb08ebda9d5ed0.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Hevea brasiliensis  NCBI Genomes v1
+  b9ffb3bf121a642f4e7d3aa5345bf33909f557b573edbc56:
+    aliases: ['Ziziphus_jujuba__RefSeq_v1_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 9dd27b0b6ae86cc57a1bc188c734a2a3
+            seek_keys:
+              fasta: b9ffb3bf121a642f4e7d3aa5345bf33909f557b573edbc56.fa
+              fai: b9ffb3bf121a642f4e7d3aa5345bf33909f557b573edbc56.fa.fai
+              chrom_sizes: b9ffb3bf121a642f4e7d3aa5345bf33909f557b573edbc56.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Ziziphus jujuba  RefSeq v1.1
+  ddfb008d8a2cfd35ccd694299f488a765fe7935bf42fe21b:
+    aliases: ['Trifolium_pratense__JGI_v2']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 666f76a561c6e131e14f75322459a123
+            seek_keys:
+              fasta: ddfb008d8a2cfd35ccd694299f488a765fe7935bf42fe21b.fa
+              fai: ddfb008d8a2cfd35ccd694299f488a765fe7935bf42fe21b.fa.fai
+              chrom_sizes: ddfb008d8a2cfd35ccd694299f488a765fe7935bf42fe21b.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Trifolium pratense  JGI v2
+  6017bd572dd6112b052891863a8b19d85943dd46772e5476:
+    aliases: ['Capsicum_annuum__Pepper_Genome_v2_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: b80bbc0681043ad826c9b5152188e979
+            seek_keys:
+              fasta: 6017bd572dd6112b052891863a8b19d85943dd46772e5476.fa
+              fai: 6017bd572dd6112b052891863a8b19d85943dd46772e5476.fa.fai
+              chrom_sizes: 6017bd572dd6112b052891863a8b19d85943dd46772e5476.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Capsicum annuum  Pepper Genome v2.0
+  a3d718cd3533c0467119cbc2b13849746b50fd1bdfaaee88:
+    aliases: ['Hordeum_vulgare_IBC_PGSB_v2']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: ece9302611142422dfcc069c6f6b012f
+            seek_keys:
+              fasta: a3d718cd3533c0467119cbc2b13849746b50fd1bdfaaee88.fa
+              fai: a3d718cd3533c0467119cbc2b13849746b50fd1bdfaaee88.fa.fai
+              chrom_sizes: a3d718cd3533c0467119cbc2b13849746b50fd1bdfaaee88.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Hordeum vulgare IBC PGSB v2
+  23643c69617bfccd482f236bd11122f9e347ed9d16f1a563:
+    aliases: ['Zoysia_japonica_ssp__nagirizaki_Zoysia_Genome_Database_v1_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: c050718ac69085189a9f381234e55f34
+            seek_keys:
+              fasta: 23643c69617bfccd482f236bd11122f9e347ed9d16f1a563.fa
+              fai: 23643c69617bfccd482f236bd11122f9e347ed9d16f1a563.fa.fai
+              chrom_sizes: 23643c69617bfccd482f236bd11122f9e347ed9d16f1a563.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Zoysia japonica ssp. nagirizaki Zoysia Genome Database v1.1
+  af2a4fdd0ac42353ca7c7aa86c802e937003adc88c5a2f2d:
+    aliases: ['Zea_mays_B73_AGP_v4_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 29d348ce623f5d2a39d369a68ea6676c
+            seek_keys:
+              fasta: af2a4fdd0ac42353ca7c7aa86c802e937003adc88c5a2f2d.fa
+              fai: af2a4fdd0ac42353ca7c7aa86c802e937003adc88c5a2f2d.fa.fai
+              chrom_sizes: af2a4fdd0ac42353ca7c7aa86c802e937003adc88c5a2f2d.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Zea mays B73 AGP v4.0
+  54319392e233c8cd3039513db7e0e87985774476ea76cc0d:
+    aliases: ['Citrus_clementina__JGI_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 0c355c9f0a59abd2683959f3aacdb1d1
+            seek_keys:
+              fasta: 54319392e233c8cd3039513db7e0e87985774476ea76cc0d.fa
+              fai: 54319392e233c8cd3039513db7e0e87985774476ea76cc0d.fa.fai
+              chrom_sizes: 54319392e233c8cd3039513db7e0e87985774476ea76cc0d.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Citrus clementina  JGI v1.0
+  4fa4d50de8b6ea848a04175bd26122e6d8bf75c69fe2699f:
+    aliases: ['Zea_mays_B73_5b_60']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 9031dab7d06bed901db2b43dc344e4c6
+            seek_keys:
+              fasta: 4fa4d50de8b6ea848a04175bd26122e6d8bf75c69fe2699f.fa
+              fai: 4fa4d50de8b6ea848a04175bd26122e6d8bf75c69fe2699f.fa.fai
+              chrom_sizes: 4fa4d50de8b6ea848a04175bd26122e6d8bf75c69fe2699f.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Zea mays B73 5b.60
+  c212f53b6730ec30bcbbe7c879e2fa861ee85317c2ef12ff:
+    aliases: ['Phalaenopsis_equestris_Genomics_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 27d3d555445fa7c15a6e2d9b9bfae5fc
+            seek_keys:
+              fasta: c212f53b6730ec30bcbbe7c879e2fa861ee85317c2ef12ff.fa
+              fai: c212f53b6730ec30bcbbe7c879e2fa861ee85317c2ef12ff.fa.fai
+              chrom_sizes: c212f53b6730ec30bcbbe7c879e2fa861ee85317c2ef12ff.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Phalaenopsis equestris Genomics v1.0
+  7a086153d3d05d9bbc1201a739dd06b26c34ef47c36c63df:
+    aliases: ['Marchantia_polymorpha__JGI_v3_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 9cfa711b9a85c0f880ed07c186908eb6
+            seek_keys:
+              fasta: 7a086153d3d05d9bbc1201a739dd06b26c34ef47c36c63df.fa
+              fai: 7a086153d3d05d9bbc1201a739dd06b26c34ef47c36c63df.fa.fai
+              chrom_sizes: 7a086153d3d05d9bbc1201a739dd06b26c34ef47c36c63df.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Marchantia polymorpha  JGI v3.1
+  f202defaa0de396d043eaa3a99ec569252e529c8f5a6d17b:
+    aliases: ['Fragaria_vesca_Strawberry_Genome_1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 5c5a31b346ec71730decee4c4c711931
+            seek_keys:
+              fasta: f202defaa0de396d043eaa3a99ec569252e529c8f5a6d17b.fa
+              fai: f202defaa0de396d043eaa3a99ec569252e529c8f5a6d17b.fa.fai
+              chrom_sizes: f202defaa0de396d043eaa3a99ec569252e529c8f5a6d17b.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Fragaria vesca Strawberry Genome 1.0
+  663affd0938201cf9406a984a25a3017fa1f67e674a745a5:
+    aliases: ['Saccharum_spontaneum_v20190103']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 8b66f7f84be4f5d67798234cf4052374
+            seek_keys:
+              fasta: 663affd0938201cf9406a984a25a3017fa1f67e674a745a5.fa
+              fai: 663affd0938201cf9406a984a25a3017fa1f67e674a745a5.fa.fai
+              chrom_sizes: 663affd0938201cf9406a984a25a3017fa1f67e674a745a5.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Saccharum spontaneum v20190103
+  c2199ff32343cc14da62a119799b504c1a39dac1b897aa7a:
+    aliases: ['Oryza_sativa_ssp__japonica__JGI_v7_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 656a3f55766a3555d8e1493efb544eb9
+            seek_keys:
+              fasta: c2199ff32343cc14da62a119799b504c1a39dac1b897aa7a.fa
+              fai: c2199ff32343cc14da62a119799b504c1a39dac1b897aa7a.fa.fai
+              chrom_sizes: c2199ff32343cc14da62a119799b504c1a39dac1b897aa7a.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Oryza sativa ssp. japonica  JGI v7.0
+  1084b123b1548026bbf123d13e6786f145b8fbe432fbd572:
+    aliases: ['Hordeum_vulgare_Ensembl_Genomes_ASM32608v1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: dd3c0c5376b783a754f2252f3a5a3f29
+            seek_keys:
+              fasta: 1084b123b1548026bbf123d13e6786f145b8fbe432fbd572.fa
+              fai: 1084b123b1548026bbf123d13e6786f145b8fbe432fbd572.fa.fai
+              chrom_sizes: 1084b123b1548026bbf123d13e6786f145b8fbe432fbd572.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Hordeum vulgare Ensembl Genomes ASM32608v1
+  0cc477fedb3a0e2d7f40f9ae3abf277fd3fbeaf0c9569870:
+    aliases: ['Theobroma_cacao__RefSeq_v1_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 54f98bbc024da1f8af2bb743d1be9313
+            seek_keys:
+              fasta: 0cc477fedb3a0e2d7f40f9ae3abf277fd3fbeaf0c9569870.fa
+              fai: 0cc477fedb3a0e2d7f40f9ae3abf277fd3fbeaf0c9569870.fa.fai
+              chrom_sizes: 0cc477fedb3a0e2d7f40f9ae3abf277fd3fbeaf0c9569870.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Theobroma cacao  RefSeq v1.1
+  f9fdcbe9d5069192f97bf430d70b0ee0cc1f477f32ed834b:
+    aliases: ['Zostera_marina_JGI_v2_2']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: c38d0a5f596179d2328b70eeebc91393
+            seek_keys:
+              fasta: f9fdcbe9d5069192f97bf430d70b0ee0cc1f477f32ed834b.fa
+              fai: f9fdcbe9d5069192f97bf430d70b0ee0cc1f477f32ed834b.fa.fai
+              chrom_sizes: f9fdcbe9d5069192f97bf430d70b0ee0cc1f477f32ed834b.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Zostera marina JGI v2.2
+  21128d347ccf4c4f5b406ca5958e51e1913305425a999e43:
+    aliases: ['Cajanus_cajan__Penguin_Genomics_v5_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 375411f858fab67217f4d7b93cde7653
+            seek_keys:
+              fasta: 21128d347ccf4c4f5b406ca5958e51e1913305425a999e43.fa
+              fai: 21128d347ccf4c4f5b406ca5958e51e1913305425a999e43.fa.fai
+              chrom_sizes: 21128d347ccf4c4f5b406ca5958e51e1913305425a999e43.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Cajanus cajan  Penguin Genomics v5.0
+  11ef70ce0f68c21300d5b61079a3dee2d1cfa2d9cfc47f09:
+    aliases: ['Phyllostachys_edulis_NCGR_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: b2c75a610dd2f663a03e8beaade1c4c3
+            seek_keys:
+              fasta: 11ef70ce0f68c21300d5b61079a3dee2d1cfa2d9cfc47f09.fa
+              fai: 11ef70ce0f68c21300d5b61079a3dee2d1cfa2d9cfc47f09.fa.fai
+              chrom_sizes: 11ef70ce0f68c21300d5b61079a3dee2d1cfa2d9cfc47f09.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Phyllostachys edulis NCGR v1.0
+  ba2154e1f16438595a01ceef7e2784c0ad1b0df46816ff11:
+    aliases: ['Oryza_sativa_ssp__indica_MBKBASE_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 2fdb4c0bbad240f52b4986367f7e9ea4
+            seek_keys:
+              fasta: ba2154e1f16438595a01ceef7e2784c0ad1b0df46816ff11.fa
+              fai: ba2154e1f16438595a01ceef7e2784c0ad1b0df46816ff11.fa.fai
+              chrom_sizes: ba2154e1f16438595a01ceef7e2784c0ad1b0df46816ff11.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Oryza sativa ssp. indica MBKBASE v1.0
+  5f9e34c62ad27e9edf5d08968c7e16e15a488199b3b2ec1b:
+    aliases: ['Carica_papaya_Hawaii_Agriculture_Research_Center']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 467698519e3fd9075f04989a5988634f
+            seek_keys:
+              fasta: 5f9e34c62ad27e9edf5d08968c7e16e15a488199b3b2ec1b.fa
+              fai: 5f9e34c62ad27e9edf5d08968c7e16e15a488199b3b2ec1b.fa.fai
+              chrom_sizes: 5f9e34c62ad27e9edf5d08968c7e16e15a488199b3b2ec1b.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Carica papaya Hawaii Agriculture Research Center
+  7df6d879305963de79c97999a097885a0d7d19fea6461ec1:
+    aliases: ['Selaginella_moellendorffii_NCBIr100']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: ea8514f75f332d8c2a7d6b396cff06b0
+            seek_keys:
+              fasta: 7df6d879305963de79c97999a097885a0d7d19fea6461ec1.fa
+              fai: 7df6d879305963de79c97999a097885a0d7d19fea6461ec1.fa.fai
+              chrom_sizes: 7df6d879305963de79c97999a097885a0d7d19fea6461ec1.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Selaginella moellendorffii NCBIr100
+  1bea89f755e83232597fe56038a0473c4afe4247e252ae6c:
+    aliases: ['Zea_mays_PH207_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 04a08d82070d0e9afbed14e54630c6b9
+            seek_keys:
+              fasta: 1bea89f755e83232597fe56038a0473c4afe4247e252ae6c.fa
+              fai: 1bea89f755e83232597fe56038a0473c4afe4247e252ae6c.fa.fai
+              chrom_sizes: 1bea89f755e83232597fe56038a0473c4afe4247e252ae6c.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Zea mays PH207 v1.0
+  c0c381b217abf7855e877a8dcc0b99880194923e5cd84375:
+    aliases: ['Triticum_turgidum_Svevo_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 3265518cc0e387bafb5b87f5775579dc
+            seek_keys:
+              fasta: c0c381b217abf7855e877a8dcc0b99880194923e5cd84375.fa
+              fai: c0c381b217abf7855e877a8dcc0b99880194923e5cd84375.fa.fai
+              chrom_sizes: c0c381b217abf7855e877a8dcc0b99880194923e5cd84375.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Triticum turgidum Svevo v1.0
+  fbabae8e1dd4354102ef4524d3b0d9f27dc0cb094dc2f6ba:
+    aliases: ['Theobroma_cacao_D__Gilbert_public_gene_set_8_Mar_2012_on_assembly_v1_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: d895764905d3028b2e61ee9392d00151
+            seek_keys:
+              fasta: fbabae8e1dd4354102ef4524d3b0d9f27dc0cb094dc2f6ba.fa
+              fai: fbabae8e1dd4354102ef4524d3b0d9f27dc0cb094dc2f6ba.fa.fai
+              chrom_sizes: fbabae8e1dd4354102ef4524d3b0d9f27dc0cb094dc2f6ba.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Theobroma cacao D. Gilbert public gene set 8 Mar 2012 on assembly v1.1
+  6ec2948ecbb759ed21627852231a987f992b1e36e35de53a:
+    aliases: ['Corchorus_olitorius__GenBank_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: db0fac6ca539e285a0ab0afa948894ef
+            seek_keys:
+              fasta: 6ec2948ecbb759ed21627852231a987f992b1e36e35de53a.fa
+              fai: 6ec2948ecbb759ed21627852231a987f992b1e36e35de53a.fa.fai
+              chrom_sizes: 6ec2948ecbb759ed21627852231a987f992b1e36e35de53a.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Corchorus olitorius  GenBank v1.0
+  d75bede626029175dad91f89aeaa0ee8d54c963a5d9bcf79:
+    aliases: ['Triticum_aestivum_IWGSC1_1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 605d473764f39d56fed0acce68f7f6b6
+            seek_keys:
+              fasta: d75bede626029175dad91f89aeaa0ee8d54c963a5d9bcf79.fa
+              fai: d75bede626029175dad91f89aeaa0ee8d54c963a5d9bcf79.fa.fai
+              chrom_sizes: d75bede626029175dad91f89aeaa0ee8d54c963a5d9bcf79.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Triticum aestivum IWGSC1.1
+  fe78bfa2b40cd1cfcc0eb4c85726f5eedbcc0c3607cda0ca:
+    aliases: ['Triticum_aestivum_Ensembl_Plants_TGACv1']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 98a684049b505b6f4dd8c18e03060502
+            seek_keys:
+              fasta: fe78bfa2b40cd1cfcc0eb4c85726f5eedbcc0c3607cda0ca.fa
+              fai: fe78bfa2b40cd1cfcc0eb4c85726f5eedbcc0c3607cda0ca.fa.fai
+              chrom_sizes: fe78bfa2b40cd1cfcc0eb4c85726f5eedbcc0c3607cda0ca.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Triticum aestivum Ensembl Plants TGACv1
+  3048f0ddaa2abc35e3a8b249b1fad695f8a24697abe55832:
+    aliases: ['Hordeum_vulgare_MIPS']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 1a80ce98508e1b2a235b881d80270f6e
+            seek_keys:
+              fasta: 3048f0ddaa2abc35e3a8b249b1fad695f8a24697abe55832.fa
+              fai: 3048f0ddaa2abc35e3a8b249b1fad695f8a24697abe55832.fa.fai
+              chrom_sizes: 3048f0ddaa2abc35e3a8b249b1fad695f8a24697abe55832.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Hordeum vulgare MIPS
+  5a3bbdc406b149991f9af2f432def17c5112a9cfd66c0e53:
+    aliases: ['Picea_abies__ConGenIE_v1_0']
+    assets:
+      fasta:
+        asset_description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
+        tags:
+          default:
+            asset_path: fasta
+            asset_digest: 9125cf5f72645fc8c7bce5aa2d82765b
+            seek_keys:
+              fasta: 5a3bbdc406b149991f9af2f432def17c5112a9cfd66c0e53.fa
+              fai: 5a3bbdc406b149991f9af2f432def17c5112a9cfd66c0e53.fa.fai
+              chrom_sizes: 5a3bbdc406b149991f9af2f432def17c5112a9cfd66c0e53.chrom.sizes
+            asset_parents: []
+        default_tag: default
+    genome_description: Picea abies  ConGenIE v1.0
