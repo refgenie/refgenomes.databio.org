@@ -24,6 +24,8 @@
 #    and best practices on handling the access key credentials.
 
 on:
+  workflow_dispatch:
+    inputs: null   
   push:
     paths:
       - config/refgenie_config_archive.yaml
