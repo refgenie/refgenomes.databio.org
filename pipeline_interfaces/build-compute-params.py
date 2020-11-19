@@ -7,6 +7,7 @@ parser = ArgumentParser(description="Refgenie build params")
 
 parser.add_argument("-s", "--size", help="size", required=False)
 parser.add_argument("-a", "--asset", type=str, help="asset", required=True)
+parser.add_argument("-g", "--genome", type=str, help="genome", required=True)
 
 args = parser.parse_args()
 
