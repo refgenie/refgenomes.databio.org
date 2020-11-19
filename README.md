@@ -45,7 +45,7 @@ Next you will need to fill in 3 columns:
 
 **Validate the PEP with [`eido`](http://eido.databio.org/en/latest/)**
 
-The command below validates the PEP aginst a remote schema. Any PEP issues will result in a `ValidationError`:
+The command below validates the PEP against a remote schema. Any PEP issues will result in a `ValidationError`:
 
 ```
 eido validate refgenie_build_cfg.yaml -s http://schema.databio.org/refgenie/refgenie_build.yaml
@@ -64,16 +64,17 @@ In this guide we'll use environment variables to keep track of where stuff goes.
 - `REFGENIE_ARCHIVE` points to the location where we'll store the actual archives
 
 ```
-export BASEDIR=$HOME/garage/refgenie_deploy/refgenomes.databio.org
-export REFGENIE_RAW=$BASEDIR/refgenie_raw
-mkdir -p $BASEDIR
+#export BASEDIR=$HOME/garage/refgenie_deploy/refgenomes.databio.org
+#export REFGENIE_RAW=$BASEDIR/refgenie_raw
 
-export BASEDIR=$PROJECT/deploy/refgenomes_primary
-export REFGENIE_RAW=/project/shefflab/www/refgenie_raw
-
+export SERVERNAME=primary
+export BASEDIR=$PROJECT/deploy/$SERVERNAME
 export GENOMES=$BASEDIR/genomes
-export REFGENIE=$BASEDIR/refgenomes.databio.org/config/refgenie_config.yaml
+
+export REFGENIE_RAW=/project/shefflab/www/refgenie_$SERVERNAME
+export REFGENIE=$BASEDIR/$SERVERNAME/config/refgenie_config.yaml
 export REFGENIE_ARCHIVE=$GENOMES/archive
+mkdir -p $BASEDIR
 cd $BASEDIR
 ```
 
