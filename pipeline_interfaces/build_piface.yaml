@@ -1,10 +1,14 @@
 pipeline_name: refgenie
 pipeline_type: sample
-input_schema: refgenie_build.yaml
-compute:
-  dynamic_variables_command_template: pipeline_interfaces/build-compute-params.py -a {sample.asset}
+input_schema: build_inschema.yaml
+var_templates:
+  refgenie: "refgenie"
+  compute_vars: "{looper.piface_dir}/build-compute-params.py"
+pre_submit:
+  command_templates: 
+    - "{pipeline.var_templates.compute_vars} -a {sample.asset} -g {sample.genome}"
 command_template: >
-  refgenie build { sample.genome }/{ sample.asset }
+  {pipeline.var_templates.refgenie} build { sample.genome }/{ sample.asset }
   {% if sample.genome_description is defined %}--genome-description '{ sample.genome_description }'{% endif %}
   {%- if sample.input_value is defined -%}
     {%- for it in sample.input_type -%}

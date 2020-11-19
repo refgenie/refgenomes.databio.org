@@ -1,0 +1,25 @@
+sample_name,genome_description
+hg18-fasta,The NCBI36 reference sequence from UCSC. The individual chromosome files were concatenated prior to the asset building.
+hg19-fasta,The GRCh37 reference sequence from UCSC
+hg18_cdna-fasta,The NCBI36 cDNA reference sequence from Ensembl
+hg19_cdna-fasta,The GRCh37 cDNA reference sequence from Ensembl
+hg38_cdna-fasta,The GRCh38 cDNA reference sequence from Ensembl
+hg38-fasta,The GCA_000001405.15 GRCh38_no_alt_analysis_set from NCBI
+hg38_noalt_decoy-fasta,The GRCh38 reference with decoy and without alternative haplotypes from NCBI
+hs38d1-fasta,Decoy version 1 for GRCh38 from NCBI
+human_alphasat-fasta,"Manually curated human alpha-satellite sequences from GenBank, obtained from ref_decoy"
+human_alu-fasta,"Manually curated human ALU repeats from GenBank, obtained from ref_decoy"
+human_rDNA-fasta,Human rDNA sequences curated from GenBank
+human_repeats-fasta,Manually curated collection of human repeat sequences from GenBank
+mm10-fasta,The GCA_000001635.5 seqs_for_alignment_pipelines from NCBI
+mm10_cdna-fasta,The GRCm38 cDNA reference sequence from Ensembl
+mouse_chrM2x-fasta,"The mouse mitochondrial genome, doubled"
+rCRSd-fasta,The revised cambridge reference sequence. This is the human mitochondrial reference genome
+rn6-fasta,The GCA_000001895.4_Rnor_6.0_genomic from NCBI
+rn6_cdna-fasta,The Rnor_6.0 cDNA reference sequence from Ensembl
+hg38_chr22-fasta,Includes only chromosome 22 from the hg38 reference. Useful for testing.
+hg38_primary-fasta,UCSC hg38 assembly with primary chromosomes only
+mm10_primary-fasta,UCSC mm10 assembly with primary chromosomes only
+hg38_mm10-fasta,Merged genome with primary chromosomes of hg38 and mm10 from UCSC.
+dm6-fasta,Drosophila reference genome GCF_000001215.4 from NCBI.
+t7-fasta,"Genome of T7 phage, V01146.1 from GenBank"

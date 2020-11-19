@@ -11,7 +11,7 @@ parser.add_argument("-a", "--asset", type=str, help="asset", required=True)
 args = parser.parse_args()
 
 compute = {
-    "bulker_crate": "databio/refgenie:0.7.6",
+    "bulker_crate": "databio/refgenie:0.7.7",
     "mem": "24000",
     "cores": "1",
     "partition": "largemem",

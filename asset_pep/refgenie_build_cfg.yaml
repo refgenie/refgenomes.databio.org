@@ -1,5 +1,7 @@
 sample_table: assets.csv
-subsample_table: recipe_inputs.csv
+subsample_table:
+  - recipe_inputs.csv
+  - genome_descriptions.csv
 looper:
   output_dir: $GENOMES
   pipeline_interfaces: ../pipeline_interfaces/archive_pi.yaml
@@ -8,7 +10,7 @@ sample_modifiers:
   append:
     local_input: "LOCAL_INPUT"
     sample_name: "sn"
-    pipeline_interfaces: ../pipeline_interfaces/refgenie_piface.yaml
+    pipeline_interfaces: ../pipeline_interfaces/build_piface.yaml
   derive:
     attributes: ['sample_name', 'local_input']
     sources:
@@ -23,3 +25,8 @@ project_modifiers:
           - pipeline_interfaces
         append:
           pipeline_interfaces: ../pipeline_interfaces/wget_piface.yaml
+    archive:
+      sample_modifiers:
+        append:
+          pipeline_interfaces: ../pipeline_interfaces/archive_piface.yaml
+
