@@ -7,12 +7,11 @@ parser = ArgumentParser(description="Refgenie build params")
 
 parser.add_argument("-s", "--size", help="size", required=False)
 parser.add_argument("-a", "--asset", type=str, help="asset", required=True)
-parser.add_argument("-g", "--genome", type=str, help="genome", required=True)
 
 args = parser.parse_args()
 
-compute = {
-    "bulker_crate": "databio/refgenie:0.7.7",
+params =   {
+    "bulker_crate": "databio/refgenie:0.7.6",
     "mem": "24000",
     "cores": "1",
     "partition": "largemem",
@@ -26,40 +25,40 @@ slow_assets = ["bismark_bt2_index", "bismark_bt1_index", "salmon_partial_sa_inde
 
 
 if args.asset in fast_assets:
-    compute['time'] = "00:30:00"
-    compute['partition'] = "standard"
-    compute['mem'] = "6000"
+    params['time'] = "00:30:00"
+    params['partition'] = "standard"
+    params['mem'] = "6000"
 
 if args.asset in slow_assets:
-    compute['time'] = "8:00:00"
+    params['time'] = "8:00:00"
 
 if args.asset == 'suffixerator_index':
-    compute['mem'] = "32000"
+    params['mem'] = "32000"
 
 if args.asset == 'bowtie2_index':
-    compute['mem'] = "64000"
+    params['mem'] = "64000"
 
 if args.asset == 'bismark_bt2_index':
-    compute['mem'] = "64000"
+    params['mem'] = "64000"
 
 if args.asset == 'bismark_bt1_index':
-    compute['mem'] = "64000"
+    params['mem'] = "64000"
 
 if args.asset == 'salmon_partial_sa_index':
-    compute['mem'] = "112000"
-    compute['time'] = "6:00:00"
-    compute['cores'] = "8"
+    params['mem'] = "112000"
+    params['time'] = "6:00:00"
+    params['cores'] = "8"
 
-if args.asset == 'dbnsfp':
-    compute['time'] = "12:00:00"
+if args.asset == 'dbsfnp':
+    params['time'] = "12:00:00"
 
 if args.asset == 'salmon_sa_index':
-    compute['mem'] = "72000"
+    params['mem'] = "72000"
 
 if args.asset == 'star_index':
-    compute['mem'] = "64000"
+    params['mem'] = "64000"
 
 
-y = json.dumps({"compute": compute})
+y = json.dumps(params)
 
 print(y)

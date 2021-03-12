@@ -5,17 +5,23 @@ subsample_table:
 looper:
   output_dir: $GENOMES
   pipeline_interfaces: ../pipeline_interfaces/archive_pi.yaml
+  pipestat:
+    sample:
+      results_file_attribute: "pipestat_results_file"
+      namespace_attribute: "sample_name"
 
 sample_modifiers:
   append:
     local_input: "LOCAL_INPUT"
     sample_name: "sn"
     pipeline_interfaces: ../pipeline_interfaces/build_piface.yaml
+    pipestat_results_file: "RESULTS_FILE" 
   derive:
-    attributes: ['sample_name', 'local_input']
+    attributes: ['sample_name', 'local_input', 'pipestat_results_file']
     sources:
       sn: "{genome}-{asset}"
       LOCAL_INPUT: "$REFGENIE_RAW/{genome}-{asset}-"
+      RESULTS_FILE: "pipestat_results/{sample_name}_pipestat_results.yaml" # placed in "{looper.output_dir}" if not absolute
 
 project_modifiers:
   amend:
@@ -25,8 +31,3 @@ project_modifiers:
           - pipeline_interfaces
         append:
           pipeline_interfaces: ../pipeline_interfaces/wget_piface.yaml
-    archive:
-      sample_modifiers:
-        append:
-          pipeline_interfaces: ../pipeline_interfaces/archive_piface.yaml
-
