@@ -19,7 +19,7 @@ sample_modifiers:
   derive:
     attributes: ['sample_name', 'local_input', 'pipestat_results_file']
     sources:
-      sn: "{genome}-{asset}"
+      sn: "{genome}-{asset}-{tag}"
       LOCAL_INPUT: "$REFGENIE_RAW/{genome}-{asset}-"
       RESULTS_FILE: "pipestat_results/{sample_name}_pipestat_results.yaml" # placed in "{looper.output_dir}" if not absolute
 
