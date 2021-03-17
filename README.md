@@ -50,7 +50,7 @@ Next you will need to fill in 3 columns:
 The command below validates the PEP aginst a remote schema. Any PEP issues will result in a `ValidationError`:
 
 ```
-eido validate refgenie_build_cfg.yaml -s http://schema.databio.org/refgenie/refgenie_build.yaml
+eido validate asset_pep/refgenie_build_cfg.yaml -s http://schema.databio.org/refgenie/refgenie_build.yaml
 ```
 
 # Deploying assets onto the server
