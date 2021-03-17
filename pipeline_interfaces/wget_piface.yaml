@@ -1,10 +1,8 @@
 pipeline_name: download_input_files
 pipeline_type: sample
-output_schema: output_schema.yaml
 command_template: >
   {%- for itype in sample.input_type -%}
     {% if itype == 'files' %}
-      pipestat status set -i running -f {pipestat.results_file} -s {pipestat.schema} -n {pipestat.namespace} -r {pipestat.record_id}
       if [ -f "{sample.input_value[loop.index0]}" ]; then
         cp {sample.input_value[loop.index0]} {sample.local_input + sample.input_id[loop.index0]}
       else
@@ -14,11 +12,9 @@ command_template: >
       if [[ "{sample.md5[loop.index0]}" != $checksum ]]; then
         echo -e "\e[1;31mERROR: checksums don't match\e[0m: {sample.md5[loop.index0]}, $checksum"
         rm {sample.local_input + sample.input_id[loop.index0]}
-        pipestat status set -i failed -f {pipestat.results_file} -s {pipestat.schema} -n {pipestat.namespace} -r {pipestat.record_id}
         exit 1
       else
         echo -e "checksums match: $checksum";
-        pipestat status set -i completed -f {pipestat.results_file} -s {pipestat.schema} -n {pipestat.namespace} -r {pipestat.record_id}
       fi
     {% endif %}
   {%- endfor -%}

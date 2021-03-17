@@ -92,13 +92,15 @@ mkdir -p $REFGENIE_RAW
 looper run asset_pep/refgenie_build_cfg.yaml -p local --amend getfiles --sel-attr asset --sel-incl fasta
 ```
 
-Check the status with `looper check --use-pipesat`:
+[comment]: <> (Check the status with `looper check --use-pipesat`:)
 
-*`--use-pipesat` option is required as of early 2021. Might not be required if you're running later on.*
+[comment]: <> (*`--use-pipesat` option is required as of early 2021. Might not be required if you're running later on.*)
 
-```
-looper check asset_pep/refgenie_build_cfg.yaml --amend getfiles --sel-attr asset --sel-incl fasta --use-pipestat
-```
+[comment]: <> (```)
+
+[comment]: <> (looper check asset_pep/refgenie_build_cfg.yaml --amend getfiles --sel-attr asset --sel-incl fasta --use-pipestat)
+
+[comment]: <> (```)
 
 ## Step 2: Refgenie genome configuration file initialization
 
