@@ -1,4 +1,0 @@
-# we might need to resolve this issue: https://github.com/pepkit/pipestat/issues/1
-fake_result:
-  type: integer
-  description: "This is a fake result to bypass pipestat schema existence requirement"
