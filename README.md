@@ -1,4 +1,4 @@
-# rg.databio.org server overview
+# refgenomes.databio.org server overview
 
 This repository contains the files to build and archive genome assets to serve with [refgenieserver](https://github.com/refgenie/refgenieserver) at http://refgenomes.databio.org. 
 
