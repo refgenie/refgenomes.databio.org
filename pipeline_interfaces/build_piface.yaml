@@ -2,6 +2,7 @@ pipeline_name: refgenie-build
 pipeline_type: sample
 input_schema: build_inschema.yaml
 var_templates:
+  refgenie: "refgenie"
   compute_vars: "{looper.piface_dir}/build-compute-params.py"
 pre_submit:
   command_templates: 
@@ -9,7 +10,7 @@ pre_submit:
 compute:
   bulker_crate: databio/refgenie:0.7.6
 command_template: >
-  refgenie build { sample.genome }/{ sample.asset }
+  {pipeline.var_templates.refgenie} build { sample.genome }/{ sample.asset }:{ sample.tag }
   {% if sample.genome_description is defined %}--genome-description '{ sample.genome_description }'{% endif %}
   {%- if sample.input_value is defined -%}
     {%- for it in sample.input_type -%}
@@ -20,3 +21,4 @@ command_template: >
       {%- endif -%}
     {%- endfor -%}
   {%- endif -%}
+ 
