@@ -3027,4 +3027,3 @@ genomes:
     genome_description: Merged genome with primary chromosomes of hg38 and mm10 from UCSC.
 genome_archive_folder: /project/shefflab//deploy/rg.databio.org_full/genomes/archive
 genome_archive_config: refgenie_config_archive.yaml
-remote_url_base: http://awspds.refgenie.databio.org/refgenomes.databio.org/
