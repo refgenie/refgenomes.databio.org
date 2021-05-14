@@ -146,6 +146,7 @@ genomes:
              - 2230c535660fb4774114bfa966a62f823fdb6d21acf138d4/cellranger_reference:default
              - 2230c535660fb4774114bfa966a62f823fdb6d21acf138d4/bismark_bt2_index:default
              - 2230c535660fb4774114bfa966a62f823fdb6d21acf138d4/salmon_partial_sa_index:default
+             - 2230c535660fb4774114bfa966a62f823fdb6d21acf138d4/salmon_sa_index:default
             archive_digest: 4e94404ceab2b97f86afee1709d4f47e
             archive_size: 833.4MB
             asset_size: 2.9GB
@@ -342,6 +343,7 @@ genomes:
             asset_size: 363.9MB
             asset_children: 
              - 2230c535660fb4774114bfa966a62f823fdb6d21acf138d4/salmon_partial_sa_index:default
+             - 2230c535660fb4774114bfa966a62f823fdb6d21acf138d4/salmon_sa_index:default
             legacy_archive_digest: 1fd9217232c8934217a4ccb73f05e55e
         default_tag: default
       hisat2_index:
@@ -433,6 +435,24 @@ genomes:
             asset_children: []
             asset_digest: e8e30d826c3da0d675b1db6e5f79d2ce
             legacy_archive_digest: 728cf696469c1303cb0dc1e39f0eeb5f
+      salmon_sa_index:
+        asset_description: Transcriptome index for salmon, produced with salmon index using selective alignment method. Improves quantification accuracy compared to the regular index.
+        default_tag: default
+        tags:
+          default:
+            asset_path: salmon_sa_index
+            seek_keys:
+              salmon_sa_index: .
+              dir: .
+            archive_digest: 5dfc4ebfdcde867a395cc0fa0e686f79
+            archive_size: 14.1GB
+            asset_size: 16.5GB
+            asset_parents: 
+             - 2230c535660fb4774114bfa966a62f823fdb6d21acf138d4/fasta:default
+             - 2230c535660fb4774114bfa966a62f823fdb6d21acf138d4/fasta_txome:default
+            asset_children: []
+            asset_digest: 4258fa823e3c92b4285b48efa2ce3da0
+            legacy_archive_digest: b20a063cfef273981f8dbf647340e0cd
     aliases: 
      - hg38
     genome_description: The GCA_000001405.15 GRCh38_no_alt_analysis_set from NCBI
@@ -1260,6 +1280,7 @@ genomes:
              - baa91c8f6e2780cfd8fd1040ff37f51c379947a2a4820d6c/cellranger_reference:default
              - baa91c8f6e2780cfd8fd1040ff37f51c379947a2a4820d6c/bismark_bt2_index:default
              - baa91c8f6e2780cfd8fd1040ff37f51c379947a2a4820d6c/salmon_partial_sa_index:default
+             - baa91c8f6e2780cfd8fd1040ff37f51c379947a2a4820d6c/salmon_sa_index:default
             archive_digest: 80cef56fafce40329d9fb7784e12ac24
             archive_size: 905.3MB
             asset_size: 3.0GB
@@ -1439,6 +1460,7 @@ genomes:
             asset_size: 315.1MB
             asset_children: 
              - baa91c8f6e2780cfd8fd1040ff37f51c379947a2a4820d6c/salmon_partial_sa_index:default
+             - baa91c8f6e2780cfd8fd1040ff37f51c379947a2a4820d6c/salmon_sa_index:default
             legacy_archive_digest: e53b3d1966ca98db263286f2e7389a44
         default_tag: default
       star_index:
@@ -1530,6 +1552,24 @@ genomes:
             asset_children: []
             asset_digest: 68b03f21ac42e64bbcf48d2ec0ce5312
             legacy_archive_digest: df53a8cedd65b1afac6c41f8748a5200
+      salmon_sa_index:
+        asset_description: Transcriptome index for salmon, produced with salmon index using selective alignment method. Improves quantification accuracy compared to the regular index.
+        default_tag: default
+        tags:
+          default:
+            asset_path: salmon_sa_index
+            seek_keys:
+              salmon_sa_index: .
+              dir: .
+            archive_digest: 3ef461fb786454741ab3fa17ad018092
+            archive_size: 14.3GB
+            asset_size: 16.5GB
+            asset_parents: 
+             - baa91c8f6e2780cfd8fd1040ff37f51c379947a2a4820d6c/fasta_txome:default
+             - baa91c8f6e2780cfd8fd1040ff37f51c379947a2a4820d6c/fasta:default
+            asset_children: []
+            asset_digest: dd5a898d937f7147080ba3afc32e37b2
+            legacy_archive_digest: d78b4cb50ec58e20a03039fa6d66314d
     aliases: 
      - hg19
     genome_description: The GRCh37 reference sequence from UCSC
@@ -2116,6 +2156,7 @@ genomes:
              - 0f10d83b1050c08dd53189986f60970b92a315aa7a16a6f1/cellranger_reference:default
              - 0f10d83b1050c08dd53189986f60970b92a315aa7a16a6f1/bismark_bt2_index:default
              - 0f10d83b1050c08dd53189986f60970b92a315aa7a16a6f1/salmon_partial_sa_index:default
+             - 0f10d83b1050c08dd53189986f60970b92a315aa7a16a6f1/salmon_sa_index:default
             archive_digest: bfe552cb778db3777e88972ea645557d
             archive_size: 763.4MB
             asset_size: 2.6GB
@@ -2295,6 +2336,7 @@ genomes:
             asset_size: 247.6MB
             asset_children: 
              - 0f10d83b1050c08dd53189986f60970b92a315aa7a16a6f1/salmon_partial_sa_index:default
+             - 0f10d83b1050c08dd53189986f60970b92a315aa7a16a6f1/salmon_sa_index:default
             legacy_archive_digest: 6b54bd0c6f8a7d34e585285435a35491
         default_tag: default
       cellranger_reference:
@@ -2369,9 +2411,27 @@ genomes:
             asset_children: []
             asset_digest: 026853c8e511b50694f6da046b4b4c4d
             legacy_archive_digest: b8bda19220be70c2961f62d78810836a
+      salmon_sa_index:
+        asset_description: Transcriptome index for salmon, produced with salmon index using selective alignment method. Improves quantification accuracy compared to the regular index.
+        default_tag: default
+        tags:
+          default:
+            asset_path: salmon_sa_index
+            seek_keys:
+              salmon_sa_index: .
+              dir: .
+            archive_digest: 80ed7f8aec95d76c4f2b8e2d390b1367
+            archive_size: 12.1GB
+            asset_size: 14.3GB
+            asset_parents: 
+             - 0f10d83b1050c08dd53189986f60970b92a315aa7a16a6f1/fasta_txome:default
+             - 0f10d83b1050c08dd53189986f60970b92a315aa7a16a6f1/fasta:default
+            asset_children: []
+            asset_digest: ea2275ff070b8f3496c66ed66d5a7292
+            legacy_archive_digest: de6266859967419ae8c5fd061dcdfc07
     aliases: 
      - mm10
-    genome_description: The GCA_000001635.5 seqs_for_alignment_pipelines from NCBI
+    genome_description: The GCA_000001635.5 seqs_for_alignment_pipelines from NCBI 
   79168fd950d561cf5ce454dd27593c0af429b32cddce5ce9:
     assets:
       fasta:
@@ -2394,6 +2454,7 @@ genomes:
              - 79168fd950d561cf5ce454dd27593c0af429b32cddce5ce9/star_index:default
              - 79168fd950d561cf5ce454dd27593c0af429b32cddce5ce9/bismark_bt2_index:default
              - 79168fd950d561cf5ce454dd27593c0af429b32cddce5ce9/salmon_partial_sa_index:default
+             - 79168fd950d561cf5ce454dd27593c0af429b32cddce5ce9/salmon_sa_index:default
             archive_digest: 5ea8822221b08f887033d7ba032f4bf0
             archive_size: 847.3MB
             asset_size: 2.7GB
@@ -2540,6 +2601,7 @@ genomes:
             asset_size: 75.4MB
             asset_children: 
              - 79168fd950d561cf5ce454dd27593c0af429b32cddce5ce9/salmon_partial_sa_index:default
+             - 79168fd950d561cf5ce454dd27593c0af429b32cddce5ce9/salmon_sa_index:default
             legacy_archive_digest: 9a0a9c4c8d13659b2d670df19e70833e
         default_tag: default
       bismark_bt2_index:
@@ -2596,6 +2658,24 @@ genomes:
             asset_children: []
             asset_digest: 0aa9adb8d5af4840263e3e8271c0ad40
             legacy_archive_digest: d784f475b37fa7032a4861acc962c032
+      salmon_sa_index:
+        asset_description: Transcriptome index for salmon, produced with salmon index using selective alignment method. Improves quantification accuracy compared to the regular index.
+        default_tag: default
+        tags:
+          default:
+            asset_path: salmon_sa_index
+            seek_keys:
+              salmon_sa_index: .
+              dir: .
+            archive_digest: 1a6cd6d3f9ed9226c6d0048408dc93dd
+            archive_size: 12.5GB
+            asset_size: 14.4GB
+            asset_parents: 
+             - 79168fd950d561cf5ce454dd27593c0af429b32cddce5ce9/fasta:default
+             - 79168fd950d561cf5ce454dd27593c0af429b32cddce5ce9/fasta_txome:default
+            asset_children: []
+            asset_digest: 25d43330409ef99d36a811228928ef1b
+            legacy_archive_digest: dde601b45b30f9c190a9f5c77956f825
     aliases: 
      - rn6
     genome_description: The GCA_000001895.4_Rnor_6.0_genomic from NCBI
