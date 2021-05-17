@@ -12,7 +12,7 @@ hg19-ensembl_rb-default,hg19,default,gff,ftp://ftp.ensembl.org/pub/grch37/curren
 hg19-fasta-default,hg19,default,fasta,http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz,files,806c02398f5ac5da8ffd6da2d1d5d1a9
 hg19-fasta_txome-default,hg19,default,fasta,ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh37.75.cdna.all.fa.gz,files,fdc309998a384129b364ac630b42b54a
 hg19-gencode_gtf-default,hg19,default,gencode_gtf,ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_32/GRCh37_mapping/gencode.v32lift37.annotation.gtf.gz,files,9b6f9f5ed80f4d14d4dbe4614db1c2bd
-hg19-refgene_anno-default,hg19,default,hg38,refgene,http://hgdownload.cse.ucsc.edu/goldenpath/hg19/database/refGene.txt.gz,files,1b028ad27b0c66dfdeb1ef73b9e9ddc1
+hg19-refgene_anno-default,hg19,default,refgene,http://hgdownload.cse.ucsc.edu/goldenpath/hg19/database/refGene.txt.gz,files,1b028ad27b0c66dfdeb1ef73b9e9ddc1
 hg38_cdna-fasta-default,hg38,default,fasta,ftp://ftp.ensembl.org/pub/release-97/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz,files,b99e0ed778d922c87cd5ab70dfecd544
 hg38_chr22-fasta-default,hg38,default,fasta,http://big.databio.org/refgenomes/hg38_chr22.fa.gz,files,6da24cadfe7566c501da07bd54555eb2
 hg38_mm10-fasta-default,hg38,default,fasta,http://big.databio.org/refgenomes/hg38_mm10.fa.gz,files,36a0be3e1c0b29ff1ec173b73a24ef56
