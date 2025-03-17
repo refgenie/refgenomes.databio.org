@@ -4,3 +4,12 @@ GRCh37.p13-fasta, homo_sapiens, hg19, ncbi, https://ftp.ncbi.nlm.nih.gov/genomes
 hg38-initial-ucsc, homo_sapiens, hg38, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz, fasta, hg38 from UCSC representing initial 2013 release
 hg38-p14-ucsc, homo_sapiens, hg38, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/p14/hg38.p14.fa.gz, fasta, hg38 from UCSC patch 14
 hg19-initial-ucsc, homo_sapiens, hg19, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz, fasta, hg19 from UCSC representing initial 2009 release
+hg38-primary-113-ensembl, homo_sapiens, hg38, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz, fasta, primary fasta of GRCh38 release 113
+hg38-toplevel-113-ensembl, homo_sapiens, hg38, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz, fasta, top level fasta of GRCh38 release 113
+hg38-alt-113-ensembl, homo_sapiens, hg38, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.alt.fa.gz, fasta, alt sites fasta of GRCh38 release 113
+hg38-alt-rm-113-ensembl, homo_sapiens, hg38, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_rm.alt.fa.gz, fasta, alt rm sites fasta of GRCh38 release 113
+hg38-toplevel-rm-113-ensembl, homo_sapiens, hg38, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_rm.toplevel.fa.gz, fasta, top level rm fasta of GRCh38 release 113
+hg38-primary-rm-113-ensembl, homo_sapiens, hg38, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_rm.primary_assembly.fa.gz, fasta,  primary fasta rm fasta of GRCh38 release 113
+hg38-alt-sm-113-ensembl, homo_sapiens, hg38, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_sm.alt.fa.gz, fasta, alt sm sites fasta of GRCh38 release 113
+hg38-toplevel-sm-113-ensembl, homo_sapiens, hg38, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_sm.toplevel.fa.gz, fasta, top level sm fasta of GRCh38 release 113
+hg38-primary-sm-113-ensembl, homo_sapiens, hg38, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz, fasta,  primary fasta sm fasta of GRCh38 release 113
