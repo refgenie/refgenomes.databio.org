@@ -2,6 +2,9 @@ import sys
 import os
 import urllib.request
 import urllib.error
+import pipestat
+from refget import fasta_to_digest
+
 
 sample_name= sys.argv[1]  
 ftp_url = sys.argv[2]
@@ -33,9 +36,12 @@ try:
     filename = os.path.basename(ftp_url) 
     filepath = os.path.join(download_path, filename)
 
-    print(f"Downloading {ftp_url} to {filepath}...")
-    urllib.request.urlretrieve(ftp_url, filepath)
-    print(f"Downloaded {filename} successfully!")
+    if not os.path.exists(filepath):
+        print(f"Downloading {ftp_url} to {filepath}...")
+        urllib.request.urlretrieve(ftp_url, filepath)
+        print(f"Downloaded {filename} successfully!")
+    else:
+        print(f"File exists at: {filepath}")
 
 except urllib.error.URLError as e:
     print(f"Error downloading {ftp_url}: {e}")
@@ -43,3 +49,11 @@ except Exception as e:
     print(f"An unexpected error occurred while downloading {ftp_url}: {e}")
 
 #report final digest and path to a pep on pephub
+
+digest = fasta_to_digest(filepath,inherent_attrs=['names', 'sequences'])
+
+print(f"Here is the digest: {digest}")
+
+psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/human_seqcol_digests:default")
+
+psm.report(record_identifier=filename, values={"top_level_digest":digest, "brickyard_location":filepath})
