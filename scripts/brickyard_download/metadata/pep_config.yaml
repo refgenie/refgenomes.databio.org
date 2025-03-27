@@ -1,2 +1,5 @@
 pep_version: 2.1.0
 sample_table: homo_sapiens_sample_table.csv
+sample_modifiers:
+  append:
+    download_location: $BRICKYARD_DOWNLOAD_LOCATION

@@ -2,3 +2,6 @@ pep_config: metadata/pep_config.yaml
 output_dir: ${RESULTS}
 pipeline_interfaces:
   - pipeline/pipeline_interface.yaml
+pipestat:
+  pephub_path: donaldcampbelljr/human_seqcol_digests:default
+  #flag_file_dir: ${RESULTS}/flags

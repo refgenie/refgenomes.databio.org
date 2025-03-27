@@ -12,9 +12,10 @@ species = sys.argv[3]
 common_genome_name = sys.argv[4]
 authority = sys.argv[5]
 file_type = sys.argv[6]
-results_dir = sys.argv[7]
-# results_file = sys.argv[3]
-# schema_path = sys.argv[4]
+pephub_path = sys.argv[7]
+download_location = sys.argv[8]
+#flag_file_dir = sys.argv[9]
+
 
 print(f"HERE IS THE FILE PATH:{ftp_url}")
 
@@ -22,7 +23,7 @@ print(f"HERE IS THE FILE PATH:{ftp_url}")
 
 # Make digest here and now and download it
 
-download_path = os.path.join(results_dir,authority, species, common_genome_name, file_type)
+download_path = os.path.join(download_location,authority, species, common_genome_name, file_type)
 
 try:
     os.makedirs(download_path, exist_ok=True)  
@@ -54,6 +55,7 @@ digest = fasta_to_digest(filepath,inherent_attrs=['names', 'sequences'])
 
 print(f"Here is the digest: {digest}")
 
-psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/human_seqcol_digests:default")
+psm = pipestat.PipestatManager(pephub_path=pephub_path)
 
 psm.report(record_identifier=filename, values={"top_level_digest":digest, "brickyard_location":filepath})
+#psm.set_status(record_identifier=filename, status_identifier='completed')
