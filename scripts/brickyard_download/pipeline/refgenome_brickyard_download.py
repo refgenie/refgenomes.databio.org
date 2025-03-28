@@ -23,7 +23,7 @@ print(f"HERE IS THE FILE PATH:{ftp_url}")
 
 # Make digest here and now and download it
 
-download_path = os.path.join(download_location,authority, species, common_genome_name, file_type)
+download_path = os.path.join(download_location, species, authority, common_genome_name, file_type)
 
 try:
     os.makedirs(download_path, exist_ok=True)  

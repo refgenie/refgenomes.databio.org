@@ -27,8 +27,8 @@ hg38-primary-sm-113-ensembl, homo_sapiens, hg38, ensembl, https://ftp.ensembl.or
 GRCh38-ena, homo_sapiens, hg38, ENA, https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_000001405.29?download=true&gzip=true, fasta, ref genome hosted on ENA
 GRCh38-p14-47-gencode, homo_sapiens, hg38, gencode, https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_47/GRCh38.p14.genome.fa.gz, fasta, release 47 of gencode GRCh38
 GRCh38-primary-assembly-47-gencode, homo_sapiens, hg38, gencode, https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_47/GRCh38.primary_assembly.genome.fa.gz, fasta, release 47 of gencode primary assembly GRCh38
-GRCh37-primary-assembly-47-gencode, homo_sapiens, hg38, gencode, https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_47/GRCh37_mapping/GRCh37.primary_assembly.genome.fa.gz, fasta, release 47 of gencode primary assembly GRCh37
+GRCh37-primary-assembly-47-gencode, homo_sapiens, hg19, gencode, https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_47/GRCh37_mapping/GRCh37.primary_assembly.genome.fa.gz, fasta, release 47 of gencode primary assembly GRCh37
 GRCh38-p14-46-gencode, homo_sapiens, hg38, gencode, https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_46/GRCh38.p14.genome.fa.gz, fasta, release 46 of gencode GRCh38
 GRCh38-primary-assembly-46-gencode, homo_sapiens, hg38, gencode, https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_46/GRCh38.primary_assembly.genome.fa.gz, fasta, release 46 of gencode primary assembly GRCh38
-GRCh37-primary-assembly-46-gencode, homo_sapiens, hg38, gencode, https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_46/GRCh37_mapping/GRCh37.primary_assembly.genome.fa.gz, fasta, release 46 of gencode primary assembly GRCh37
+GRCh37-primary-assembly-46-gencode, homo_sapiens, hg19, gencode, https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_46/GRCh37_mapping/GRCh37.primary_assembly.genome.fa.gz, fasta, release 46 of gencode primary assembly GRCh37
 hg18-ucsc,homo_sapiens,hg18,ucsc,https://hgdownload.cse.ucsc.edu/goldenpath/hg18/bigZips/hg18.fa.gz,fasta, 2006 release of hg18 ucsc
