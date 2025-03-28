@@ -3,7 +3,7 @@ import os
 import urllib.request
 import urllib.error
 import pipestat
-from refget import fasta_to_digest
+from refget import fasta_to_digest, fasta_to_seqcol_dict
 
 
 sample_name= sys.argv[1]  
@@ -53,7 +53,11 @@ except Exception as e:
 
 digest = fasta_to_digest(filepath,inherent_attrs=['names', 'sequences'])
 
-print(f"Here is the digest: {digest}")
+# seq_col_dict = fasta_to_seqcol_dict(filepath) # 'sorted_name_length_pairs`` is a list of bytes data and is NOT json serializable, so it cannot be uploaded to pephub via pipestat
+# print(type(seq_col_dict))
+
+# print(f"Here is the digest: {digest}")
+# print(f"Here is the seq_col_dict: {seq_col_dict}")
 
 psm = pipestat.PipestatManager(pephub_path=pephub_path)
 
