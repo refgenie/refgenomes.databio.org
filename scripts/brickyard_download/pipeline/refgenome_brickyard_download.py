@@ -4,6 +4,7 @@ import urllib.request
 import urllib.error
 import pipestat
 from refget import fasta_to_digest, fasta_to_seqcol_dict
+import pypiper
 
 
 sample_name= sys.argv[1]  
@@ -14,7 +15,7 @@ authority = sys.argv[5]
 file_type = sys.argv[6]
 pephub_path = sys.argv[7]
 download_location = sys.argv[8]
-#flag_file_dir = sys.argv[9]
+looper_output_dir = sys.argv[9]
 
 
 print(f"HERE IS THE FILE PATH:{ftp_url}")
@@ -22,6 +23,17 @@ print(f"HERE IS THE FILE PATH:{ftp_url}")
 # Construct download location based on pep
 
 # Make digest here and now and download it
+
+pypiper_logs = os.path.join(looper_output_dir, "pipeline_results",sample_name)
+
+pm = pypiper.PipelineManager(
+    name="FASTA_DOWLOADER",
+    outfolder=pypiper_logs,
+    pipestat_record_identifier=sample_name,
+    recover=True,
+)
+
+pm.start_pipeline()
 
 download_path = os.path.join(download_location, species, authority, common_genome_name, file_type)
 
@@ -62,4 +74,7 @@ digest = fasta_to_digest(filepath,inherent_attrs=['names', 'sequences'])
 psm = pipestat.PipestatManager(pephub_path=pephub_path)
 
 psm.report(record_identifier=filename, values={"top_level_digest":digest, "brickyard_location":filepath})
+pm.report_result("top_level_digest", digest)
+pm.report_result("brickyard_location",filepath)
+pm.stop_pipeline()
 #psm.set_status(record_identifier=filename, status_identifier='completed')
