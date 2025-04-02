@@ -1,1 +1,20 @@
 sample_name,species,common_genome_name,authority,ftp_file_path,file_type,description
+GRCm39-fasta-full-analysis, mus_musculus, mm39, ncbi,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/635/GCF_000001635.27_GRCm39/seqs_for_alignment_pipelines/GCA_000001635.9_GRCm39_full_analysis_set.fna.gz, fasta, GCA_000001635.9_GRCm39_full_analysis_set from NCBI
+GRCm39-fasta-genomic, mus_musculus, mm39, ncbi, https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/635/GCF_000001635.27_GRCm39/GCF_000001635.27_GRCm39_genomic.fna.gz, fasta, GCF_000001635.27_GRCm39_genomic from NCBI
+GRCm38.p6-fasta-genomic, mus_musculus, mm38, ncbi, https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/635/GCF_000001635.26_GRCm38.p6/GCF_000001635.26_GRCm38.p6_genomic.fna.gz, fasta, GCF_000001635.26_GRCm38.p6_genomic from NCBI
+GRCm38.p6-fasta-genomic-GCA, mus_musculus,mm38, ncbi, https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/635/GCA_000001635.8_GRCm38.p6/GCA_000001635.8_GRCm38.p6_genomic.fna.gz, fasta, GCA_000001635.8_GRCm38.p6_genomic.fna.gz from NCIBI
+GRCm39-fasta-genomic-GCA, mus_musculus, mm39, ncbi, https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/635/GCA_000001635.9_GRCm39/GCA_000001635.9_GRCm39_genomic.fna.gz, fasta, GCA_000001635.9_GRCm39_genomic.fna.gz from NCBI
+GRCm39-fasta-full-analysis-ucsc-ids, mus_musculus, mm39, ncbi, https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/635/GCA_000001635.9_GRCm39/seqs_for_alignment_pipelines.ucsc_ids/GCA_000001635.9_GRCm39_full_analysis_set.fna.gz, fasta, GCA_000001635.9_GRCm39_full_analysis_set.fna.gz with ucsc ids from NCBI
+mm10-ucsc-initial-soft-masked, mus_musculus, mm10, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/mm10.fa.gz,fasta, mm10 from ucsc representing the 2012 release soft masked
+mm10-ucsc-initial-hard-masked, mus_musculus, mm10, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/mm10.fa.masked.gz, fasta, mm10 from ucsc representing the 2012 release hard masked
+mm10-ucsc-p6-soft-masked, mus_musculus, mm10, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/p6/mm10.p6.fa.gz, fasta, mm10 p6 from ucsc soft masked
+mm10-ucsc-p6-hard-masked, mus_musculus, mm10, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/p6/mm10.p6.fa.masked.gz, fasta, mm10 p6 from ucsc hard masked
+mm39-ucsc-initial-soft-masked, mus_musculus, mm39, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/mm39/bigZips/mm39.fa.gz, fasta, mm39 initial ucsc soft masked
+mm39-ucsc-initial-hard-masked, mus_musculus, mm39, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/mm39/bigZips/mm39.fa.masked.gz, fasta, mm39 initial ucsc hard masked
+mm9-ucsc-initial, mus_musculus, mm9,ucsc,https://hgdownload.soe.ucsc.edu/goldenPath/mm9/bigZips/mm9.fa.gz, fasta, mm9 initial 2007
+GRCm39-primary-113-ensembl, mus_musculus, mm39, ucsc, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna.primary_assembly.fa.gz, fasta, ensembl 113 primary assembly
+GRCm39-primary-rm-113-ensembl, mus_musculus, mm39, ucsc, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna_rm.primary_assembly.fa.gz, fasta, ensembl 113 primary assembly rm
+GRCm39-toplevel-113-ensembl, mus_musculus, mm39, ucsc, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna.toplevel.fa.gz, fasta, ensembl 113 top level
+GRCm39-toplevel-rm-113-ensembl, mus_musculus, mm39, ucsc, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna_rm.toplevel.fa.gz, fasta, ensembl 113 top level rm
+GRCm39-primary-sm-113-ensembl, mus_musculus, mm39, ucsc, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna_sm.primary_assembly.fa.gz, fasta, ensembl 113 primary sm
+GRCm39-toplevel-sm-113-ensembl, mus_musculus, mm39, ucsc, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna_sm.toplevel.fa.gz, fasta, ensembl 113 top level sm
