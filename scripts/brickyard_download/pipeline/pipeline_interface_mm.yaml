@@ -1,0 +1,7 @@
+ #sample_name,species,common_genome_name,authority,ftp_file_path,file_type,description
+pipeline_name: brickyard_refgenome_download_mm
+sample_interface:
+  command_template: >
+    python3 pipeline/refgenome_brickyard_download.py {sample.sample_name} {sample.ftp_file_path} {sample.species} {sample.common_genome_name} {sample.authority} {sample.file_type} {pipestat.pephub_path} {sample.download_location} {looper.output_dir}
+
+   
