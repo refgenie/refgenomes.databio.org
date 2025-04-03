@@ -12,9 +12,9 @@ mm10-ucsc-p6-hard-masked, mus_musculus, mm10, ucsc, https://hgdownload.soe.ucsc.
 mm39-ucsc-initial-soft-masked, mus_musculus, mm39, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/mm39/bigZips/mm39.fa.gz, fasta, mm39 initial ucsc soft masked
 mm39-ucsc-initial-hard-masked, mus_musculus, mm39, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/mm39/bigZips/mm39.fa.masked.gz, fasta, mm39 initial ucsc hard masked
 mm9-ucsc-initial, mus_musculus, mm9,ucsc,https://hgdownload.soe.ucsc.edu/goldenPath/mm9/bigZips/mm9.fa.gz, fasta, mm9 initial 2007
-GRCm39-primary-113-ensembl, mus_musculus, mm39, ucsc, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna.primary_assembly.fa.gz, fasta, ensembl 113 primary assembly
-GRCm39-primary-rm-113-ensembl, mus_musculus, mm39, ucsc, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna_rm.primary_assembly.fa.gz, fasta, ensembl 113 primary assembly rm
-GRCm39-toplevel-113-ensembl, mus_musculus, mm39, ucsc, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna.toplevel.fa.gz, fasta, ensembl 113 top level
-GRCm39-toplevel-rm-113-ensembl, mus_musculus, mm39, ucsc, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna_rm.toplevel.fa.gz, fasta, ensembl 113 top level rm
-GRCm39-primary-sm-113-ensembl, mus_musculus, mm39, ucsc, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna_sm.primary_assembly.fa.gz, fasta, ensembl 113 primary sm
-GRCm39-toplevel-sm-113-ensembl, mus_musculus, mm39, ucsc, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna_sm.toplevel.fa.gz, fasta, ensembl 113 top level sm
+GRCm39-primary-113-ensembl, mus_musculus, mm39, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna.primary_assembly.fa.gz, fasta, ensembl 113 primary assembly
+GRCm39-primary-rm-113-ensembl, mus_musculus, mm39, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna_rm.primary_assembly.fa.gz, fasta, ensembl 113 primary assembly rm
+GRCm39-toplevel-113-ensembl, mus_musculus, mm39, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna.toplevel.fa.gz, fasta, ensembl 113 top level
+GRCm39-toplevel-rm-113-ensembl, mus_musculus, mm39, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna_rm.toplevel.fa.gz, fasta, ensembl 113 top level rm
+GRCm39-primary-sm-113-ensembl, mus_musculus, mm39, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna_sm.primary_assembly.fa.gz, fasta, ensembl 113 primary sm
+GRCm39-toplevel-sm-113-ensembl, mus_musculus, mm39, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna_sm.toplevel.fa.gz, fasta, ensembl 113 top level sm
