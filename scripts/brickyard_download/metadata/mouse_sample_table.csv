@@ -18,5 +18,8 @@ GRCm39-toplevel-113-ensembl, mus_musculus, mm39, ensembl, https://ftp.ensembl.or
 GRCm39-toplevel-rm-113-ensembl, mus_musculus, mm39, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna_rm.toplevel.fa.gz, fasta, ensembl 113 top level rm
 GRCm39-primary-sm-113-ensembl, mus_musculus, mm39, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna_sm.primary_assembly.fa.gz, fasta, ensembl 113 primary sm
 GRCm39-toplevel-sm-113-ensembl, mus_musculus, mm39, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna_sm.toplevel.fa.gz, fasta, ensembl 113 top level sm
+GRCm39-toplevel-65-ensembl, mus_musculus, mm9, ensembl, https://ftp.ensembl.org/pub/release-65/fasta/mus_musculus/dna/Mus_musculus.NCBIM37.65.dna.toplevel.fa.gz, fasta, ensembl NCBIM37.65 top level
+GRCm39-toplevel-rm-65-ensembl, mus_musculus, mm9, ensembl, https://ftp.ensembl.org/pub/release-65/fasta/mus_musculus/dna/Mus_musculus.NCBIM37.65.dna_rm.toplevel.fa.gz, fasta, ensembl NCBIM37.65 rm top level
 GRCm39-primary-M36-gencode, mus_musculus, mm39, gencode,https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M36/GRCm39.primary_assembly.genome.fa.gz,fasta, gencode primary release m36 mm39
 GRCm39-all-M36-gencode, mus_musculus,mm39, gencode, https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M36/GRCm39.genome.fa.gz, fasta, gencode all release m36 mm39
+GRCm39-all-M1-gencode, mus_musculus,mm9, gencode, https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M1/genome.NCBIM37.fa.gz, fasta, gencode all M1 mm9 corresponds to Ensembl version 65
