@@ -1,0 +1,4 @@
+pep_config: donaldcampbelljr/human_seqcol_digests_local:default
+output_dir: ${RESULTS}
+pipeline_interfaces:
+  - pipeline/pipeline_interface.yaml
