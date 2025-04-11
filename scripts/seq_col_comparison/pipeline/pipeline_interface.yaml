@@ -1,7 +1,9 @@
  #sample_name,species,common_genome_name,authority,ftp_file_path,file_type,description
 pipeline_name: seqcol_comparisons
-sample_interface:
+project_interface:
   command_template: >
-    python3 pipeline/seq_col_comparisons.py {sample.sample_name} {sample.top_level_digest} {sample.brickyard_location} {looper.output_dir}
+    python3 pipeline/seq_col_comparisons.py {looper.pep_config}
+sample_interface:
+  command_template: > #> python3 pipeline/seq_col_comparisons.py {sample.sample_name} {sample.top_level_digest} {sample.brickyard_location} {looper.output_dir}
 
    

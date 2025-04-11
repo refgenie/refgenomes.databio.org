@@ -6,22 +6,44 @@ import pipestat
 from refget import fasta_to_digest, fasta_to_seqcol_dict,fasta_to_seq_digests
 import pypiper
 import pprint
+import peppy
+from pephubclient import PEPHubClient
 
-sample_name= sys.argv[1]  
-digest = sys.argv[2]
-file_path = sys.argv[3]
-looper_output_dir = sys.argv[4]
+looper_config = sys.argv[1]  
+# digest = sys.argv[2]
+# file_path = sys.argv[3]
+# looper_output_dir = sys.argv[4]
 
-print(f"Here is the file_path: {file_path}")
+# print(f"Here is the file_path: {file_path}")
 
-exists = os.path.exists(file_path)
-print(f"File exists: {exists}")
+# exists = os.path.exists(file_path)
+# print(f"File exists: {exists}")
 
-# WE WANT sha512t24u due to robustness wrt collisions
+# # WE WANT sha512t24u due to robustness wrt collisions
 
-# for x in fasta_to_seq_digests(file_path):
-#     print(f"{x.id}\t{x.length}\t{x.sha512t24u}\t{x.md5}")
+# # for x in fasta_to_seq_digests(file_path):
+# #     print(f"{x.id}\t{x.length}\t{x.sha512t24u}\t{x.md5}")
 
-seq_dict = fasta_to_seqcol_dict(file_path)
+# seq_dict = fasta_to_seqcol_dict(file_path)
 
-pprint.pprint(seq_dict)
+# pprint.pprint(seq_dict)
+
+print(f"here is the looper config: {looper_config}")
+
+
+# initiate pephubclient object
+phc = PEPHubClient()
+pep = phc.load_project(looper_config)
+print(pep)
+
+
+# Create a dictionary holding seq collection data for all the samples.
+# In the future, should potentially pull this from a database instead of calculating on the fly.
+
+
+seq_col_all={}
+
+for sample in pep.samples:
+    print(f"Here is the sample name: {sample.sample_name} here is top_level_digest: {sample.top_level_digest} Here is brickyard location: {sample.brickyard_location} ")
+    #seq_dict = fasta_to_seqcol_dict(sample.brickyard_location)
+    #pprint.pprint(seq_dict)
