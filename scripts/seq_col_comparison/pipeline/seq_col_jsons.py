@@ -4,6 +4,7 @@
 # this will take a pep from pephub and MODIFY it with the new columns.
 
 
+import pipestat
 import pypiper
 import os
 import sys
@@ -25,7 +26,7 @@ sample_name = sys.argv[7]
 pypiper_logs = os.path.join(looper_output_dir, "pipeline_results",top_level_digest)
 
 pm = pypiper.PipelineManager(
-    name="FASTA_DOWLOADER",
+    name="SEQ_COL_CREATOR",
     outfolder=pypiper_logs,
     pipestat_record_identifier=top_level_digest,
     recover=True,
@@ -33,8 +34,8 @@ pm = pypiper.PipelineManager(
 
 pm.start_pipeline()
 
-json_creation_path = os.path.join(json_directory,top_level_digest,".json")
-chrom_sizes_creation_path = os.path.join(chrom_sizes_location,top_level_digest,".chrom.sizes")
+json_creation_path = os.path.join(json_directory,top_level_digest+".json")
+chrom_sizes_creation_path = os.path.join(chrom_sizes_location,top_level_digest+".chrom.sizes")
 
 
 
@@ -61,11 +62,6 @@ with open(chrom_sizes_creation_path, 'w') as outfile:
 # report final locations BACK to pephub
 psm = pipestat.PipestatManager(pephub_path=pep_config)
 
-result = psm.retrieve_one(record_identifier=sample_name)
-
-result.update({brickyard_json_path: json_creation_path})
-result.update({brickyard_chrom_sizes_path: chrom_sizes_creation_path})
-
-psm.report(record_identifier=sample_name,values=result)
+psm.report(record_identifier=sample_name, values={"brickyard_json_path": json_creation_path,"brickyard_chrom_sizes_path": chrom_sizes_creation_path})
 
 pm.stop_pipeline()
