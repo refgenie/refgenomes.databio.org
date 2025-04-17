@@ -37,27 +37,37 @@ pm.start_pipeline()
 json_creation_path = os.path.join(json_directory,top_level_digest+".json")
 chrom_sizes_creation_path = os.path.join(chrom_sizes_location,top_level_digest+".chrom.sizes")
 
-
-
 # create seq_col
+if not os.path.exists(json_creation_path):
+    try:
 
-res = SequenceCollection.from_dict(
-        fasta_to_seqcol_dict(brickyard_location),
-        inherent_attrs=["names", "sequences"],
-    )
+        res = SequenceCollection.from_dict(
+                fasta_to_seqcol_dict(brickyard_location),
+                inherent_attrs=["names", "sequences"],
+            )
 
+        # write jsons
+        level_2 = res.level2()
+        with open(json_creation_path, "w") as f:
+            f.write(json.dumps(level_2 , indent=2))
+    except Exception as e:
+        print(f"An unexpected error occurred while creatiing json at path {json_creation_path}: {e}")
+else:
+    print(f"File exists at: {json_creation_path}")
 
-# write jsons
-level_2 = res.level2()
-with open(json_creation_path, "w") as f:
-    f.write(json.dumps(level_2 , indent=2))
-
+if not os.path.exists(chrom_sizes_creation_path):
 #write chrom.sizes
-name_length_pairs = level_2['name_length_pairs']
-with open(chrom_sizes_creation_path, 'w') as outfile:
-    for item in name_length_pairs:
-        line = f"{item['name']}\t{item['length']}\n"
-        outfile.write(line)
+    try:
+        name_length_pairs = level_2['name_length_pairs']
+        with open(chrom_sizes_creation_path, 'w') as outfile:
+            for item in name_length_pairs:
+                line = f"{item['name']}\t{item['length']}\n"
+                outfile.write(line)
+    except Exception as e:
+        print(f"An unexpected error occurred while creatiing chrom.sizes file at path {chrom_sizes_creation_path}: {e}")
+
+else:
+    print(f"File exists at: {chrom_sizes_creation_path}")
 
 # report final locations BACK to pephub
 psm = pipestat.PipestatManager(pephub_path=pep_config)
