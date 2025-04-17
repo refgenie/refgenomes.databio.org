@@ -13,7 +13,8 @@ from itertools import combinations
 from pprint import pprint
 
 #looper_config = sys.argv[1]  
-looper_config = "donaldcampbelljr/human_seqcol_digests_local:default"
+looper_config = "donaldcampbelljr/human_seqcol_digests_local:default"  # input PEP
+results_pep = "donaldcampbelljr/test_seq_col_results:default"
 # digest = sys.argv[2]
 # file_path = sys.argv[3]
 # looper_output_dir = sys.argv[4]
@@ -63,6 +64,10 @@ print(all_jsons)
 print(key_digest_sample_name)
 
 all_combinations = combinations(iterable=all_jsons,r=2)
+
+
+# psm_input = pipestat.PipestatManager(pephub_path=looper_config)
+psm_output = pipestat.PipestatManager(pephub_path=results_pep)
 
 for combination in all_combinations:
     json_fp_1=combination[0]
@@ -167,5 +172,8 @@ for combination in all_combinations:
 
     # pprint(reloaded_dict1_name_length_dict)
     # pprint(reloaded_dict2_name_length_dict)
+
+    # comparison_str = str(os.path.basename(comparison[0])) +" vs " + str(os.path.basename(comparison[1]))
+    # psm_output.report(record_identifier=comparison_str, values={"digest1":os.path.basename(combination[0]),"sample_name_1":key_digest_sample_name[os.path.basename(combination[0])],"digest2":os.path.basename(combination[1]),"sample_name_2":key_digest_sample_name[os.path.basename(combination[1])], "overlap_coefficient_names":overlap_coefficient_names,"overlap_coefficient_lengths":overlap_coefficient_lengths, "jaccard_names":jaccard_names, "jaccard_lengths":jaccard_lengths, "jaccard_similarity_weighted_length":jaccard_similarity_weighted_length})
 
                                                
