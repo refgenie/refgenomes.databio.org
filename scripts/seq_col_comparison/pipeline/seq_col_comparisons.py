@@ -32,8 +32,17 @@ def calc_jaccard_similarity(A_B_intersection, A_B_union):
     jaccard = abs(A_B_intersection)/abs(A_B_union)
     return jaccard
 
-def calc_weighted_jaccard():
-    pass
+def calc_weighted_jaccard(list_intersection_lengths, list_union_lengths):
+    intersection_total = 0
+    union_total = 0
+
+    for length in list_intersection_lengths:
+        intersection_total += length
+    
+    for length in list_union_lengths:
+        union_total += length
+
+    return intersection_total/union_total
 
 # initiate pephubclient object
 phc = PEPHubClient()
@@ -65,6 +74,7 @@ for combination in all_combinations:
     # print(pprint(compare_seqcols(reloaded_dict1,reloaded_dict2),indent=4))
     comparison = compare_seqcols(reloaded_dict1,reloaded_dict2)
 
+    print(f"Reality Check: {comparison['array_elements']['a_and_b']['names']}  {comparison['array_elements']['a']['names']+ comparison['array_elements']['b']['names'] - comparison['array_elements']['a_and_b']['names']}")
     # overlap for names
     overlap_coefficient_names = calc_overlap_coeff(comparison['array_elements']['a']['names'],comparison['array_elements']['b']['names'],comparison['array_elements']['a_and_b']['names'])
     print(f"Here is the overlap coefficient for names: {overlap_coefficient_names}")
@@ -82,9 +92,69 @@ for combination in all_combinations:
     print(f"Here is the jaccard similarity for lengths: {jaccard_lengths}")
 
 
+    # -------- attempt to get unique lengths vs all shared lengths
+    lengths_1 = set(reloaded_dict1['lengths'])
+    lengths_2 = set(reloaded_dict2['lengths'])
+
+    lengths_union = lengths_1.union(lengths_2)
+    lengths_intersection = lengths_1.intersection(lengths_2)
+
+    jaccard_similarity_weighted_length = calc_weighted_jaccard(lengths_intersection, lengths_union)
+
+    print(f"Here is the weighted jaccard similarity: {jaccard_similarity_weighted_length}")
+
+    # -------- attempt to get unique lengths vs all shared lengths
+    # name_length_pairs1 = set(reloaded_dict1['name_length_pairs'])
+    # name_length_pairs2 = set(reloaded_dict2['name_length_pairs'])
+
+    # name_length_pairs_intersection_list = list(name_length_pairs1.intersection(name_length_pairs2))
+    # name_length_pairs_union_list = list(name_length_pairs1.union(name_length_pairs2))
+
+    # jaccard_similarity_weighted_length = calc_weighted_jaccard(name_length_pairs_intersection_list, name_length_pairs_union_list)
+
+    # print(f"Here is the weighted jaccard similarity: {jaccard_similarity_weighted_length}")
+
+    # build chr1 name : length dicts
+
+    # reloaded_dict1_name_length_dict = {}
+    # reloaded_dict2_name_length_dict = {}
+    # for i in range(0, len(reloaded_dict1['lengths'])):
+    #     reloaded_dict1_name_length_dict.update({reloaded_dict1['names'][i]:reloaded_dict1['lengths'][i]})
+    # for i in range(0, len(reloaded_dict2['lengths'])):
+    #     reloaded_dict2_name_length_dict.update({reloaded_dict2['names'][i]:reloaded_dict2['lengths'][i]})
+    
+    # # Build sets for calcs
+    # set1 = set(reloaded_dict1['names'])
+    # set2 = set(reloaded_dict2['names'])
+    # names_intersection = set1.intersection(set2)
+    # names_union = set1.union(set2)
+
+    # list_intersection_lengths = []
+    # list_union_lengths = []
+
+    # for name in names_intersection:
+    #     if reloaded_dict1_name_length_dict.get(name)==reloaded_dict2_name_length_dict.get(name):
+    #         list_intersection_lengths.append(reloaded_dict1_name_length_dict.get(name))
+    #     else:
+    #         pass
+
+    # for name in names_union:
+    #     if reloaded_dict1_name_length_dict.get(name)==reloaded_dict2_name_length_dict.get(name):
+    #         list_union_lengths.append(reloaded_dict1_name_length_dict.get(name))
+    #     else:
+    #         list_union_lengths.append(reloaded_dict1_name_length_dict.get(name))
+    #         list_union_lengths.append(reloaded_dict2_name_length_dict.get(name))
 
 
+    # if len(list_union_lengths) != len(names_union):
+    #     print(f"The unions were not equal: {len(list_union_lengths)} vs {len(names_union)}") 
+    # if names_union:
+    #     print(f"names union = {len(names_union)}")
+    # if names_intersection:
+    #     print(f"names intersection = {len(names_intersection)}")
+    
 
+    # pprint(reloaded_dict1_name_length_dict)
+    # pprint(reloaded_dict2_name_length_dict)
 
-
-
+                                               
