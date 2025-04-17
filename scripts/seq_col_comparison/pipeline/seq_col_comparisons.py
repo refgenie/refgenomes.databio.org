@@ -28,8 +28,9 @@ def calc_overlap_coeff(A,B, A_B_intersection):
     return overlap
 
 
-def calc_jaccard_similarity():
-    pass
+def calc_jaccard_similarity(A_B_intersection, A_B_union):
+    jaccard = abs(A_B_intersection)/abs(A_B_union)
+    return jaccard
 
 def calc_weighted_jaccard():
     pass
@@ -67,6 +68,22 @@ for combination in all_combinations:
     # overlap for names
     overlap_coefficient_names = calc_overlap_coeff(comparison['array_elements']['a']['names'],comparison['array_elements']['b']['names'],comparison['array_elements']['a_and_b']['names'])
     print(f"Here is the overlap coefficient for names: {overlap_coefficient_names}")
+
+    # overlap for lengths
+    overlap_coefficient_lengths = calc_overlap_coeff(comparison['array_elements']['a']['lengths'],comparison['array_elements']['b']['lengths'],comparison['array_elements']['a_and_b']['lengths'])
+    print(f"Here is the overlap coefficient for lengths: {overlap_coefficient_names}")
+
+    # jaccard similarity for names, intersection over union where we can find the union -> A+B-ABintersection
+    jaccard_names = calc_jaccard_similarity(comparison['array_elements']['a_and_b']['names'],(comparison['array_elements']['a']['names']+comparison['array_elements']['b']['names']-comparison['array_elements']['a_and_b']['names']))
+    print(f"Here is the jaccard similarity for names: {jaccard_names}")
+
+    # jaccard similarity for lengths, intersection over union where we can find the union -> A+B-ABintersection
+    jaccard_lengths = calc_jaccard_similarity(comparison['array_elements']['a_and_b']['lengths'],(comparison['array_elements']['a']['lengths']+comparison['array_elements']['b']['lengths']-comparison['array_elements']['a_and_b']['lengths']))
+    print(f"Here is the jaccard similarity for lengths: {jaccard_lengths}")
+
+
+
+
 
 
 
