@@ -2,7 +2,7 @@
 pipeline_name: seqcol_comparisons
 project_interface:
   command_template: >
-    python3 pipeline/seq_col_comparisons.py {looper.pep_config}
+    python3 pipeline/seq_col_comparisons.py {looper.pep_config} {pipestat.pephub_path}
 sample_interface:
   command_template: > 
     python3 pipeline/seq_col_jsons.py {looper.pep_config} {looper.output_dir} {sample.top_level_digest} {sample.brickyard_location} {sample.json_creation_location} {sample.chrom_sizes_location} {sample.sample_name}

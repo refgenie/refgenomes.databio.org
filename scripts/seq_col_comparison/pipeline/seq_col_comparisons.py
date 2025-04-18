@@ -12,12 +12,10 @@ from pephubclient import PEPHubClient
 from itertools import combinations
 from pprint import pprint
 
-#looper_config = sys.argv[1]  
-looper_config = "donaldcampbelljr/human_seqcol_digests_local:default"  # input PEP
-results_pep = "donaldcampbelljr/test_seq_col_results:default"
-# digest = sys.argv[2]
-# file_path = sys.argv[3]
-# looper_output_dir = sys.argv[4]
+looper_config = sys.argv[1]  
+results_pep = sys.argv[2]
+#looper_config = "donaldcampbelljr/human_seqcol_digests_local:default"  # input PEP
+#results_pep = "donaldcampbelljr/test_seq_col_results:default"
 
 print(f"here is the looper config: {looper_config}")
 
@@ -79,7 +77,7 @@ for combination in all_combinations:
 
     digest1 = os.path.splitext(os.path.basename(json_fp_1))[0]
     digest2 = os.path.splitext(os.path.basename(json_fp_2))[0]
-#
+
     print(f"COMBINATION: {digest1} vs {digest2}")
 
     # print(pprint(compare_seqcols(reloaded_dict1,reloaded_dict2),indent=4))
@@ -101,31 +99,6 @@ for combination in all_combinations:
     # jaccard similarity for lengths, intersection over union where we can find the union -> A+B-ABintersection
     jaccard_lengths = calc_jaccard_similarity(comparison['array_elements']['a_and_b']['lengths'],(comparison['array_elements']['a']['lengths']+comparison['array_elements']['b']['lengths']-comparison['array_elements']['a_and_b']['lengths']))
     print(f"Here is the jaccard similarity for lengths: {jaccard_lengths}")
-
-
-    # # -------- attempt to get unique lengths vs all shared lengths
-    # lengths_1 = set(reloaded_dict1['lengths'])
-    # lengths_2 = set(reloaded_dict2['lengths'])
-
-    # lengths_union = lengths_1.union(lengths_2)
-    # lengths_intersection = lengths_1.intersection(lengths_2)
-
-    # jaccard_similarity_weighted_length = calc_weighted_jaccard(lengths_intersection, lengths_union)
-
-    # print(f"Here is the weighted jaccard similarity: {jaccard_similarity_weighted_length}")
-
-    # -------- attempt to get unique lengths vs all shared lengths
-    # name_length_pairs1 = set(reloaded_dict1['name_length_pairs'])
-    # name_length_pairs2 = set(reloaded_dict2['name_length_pairs'])
-
-    # name_length_pairs_intersection_list = list(name_length_pairs1.intersection(name_length_pairs2))
-    # name_length_pairs_union_list = list(name_length_pairs1.union(name_length_pairs2))
-
-    # jaccard_similarity_weighted_length = calc_weighted_jaccard(name_length_pairs_intersection_list, name_length_pairs_union_list)
-
-    # print(f"Here is the weighted jaccard similarity: {jaccard_similarity_weighted_length}")
-
-    # build chr1 name : length dicts
 
     reloaded_dict1_name_length_dict = {}
     reloaded_dict2_name_length_dict = {}
@@ -152,10 +125,6 @@ for combination in all_combinations:
             pass
 
     for name in names_union:
-        # if name in names_intersection:
-        # if reloaded_dict1_name_length_dict.get(name)==reloaded_dict2_name_length_dict.get(name):
-        #     list_union_lengths.append(reloaded_dict1_name_length_dict.get(name))
-        # else:
         list_union_lengths.append(reloaded_dict1_name_length_dict.get(name))
         list_union_lengths.append(reloaded_dict2_name_length_dict.get(name))
 
@@ -166,16 +135,6 @@ for combination in all_combinations:
     jaccard_similarity_weighted_length = calc_weighted_jaccard(list_intersection_lengths, list_union_lengths_new_list)
 
     print(f"Here is the weighted jaccard similarity: {jaccard_similarity_weighted_length}")
-    # if len(list_union_lengths) != len(names_union):
-    #     print(f"The unions were not equal: {len(list_union_lengths)} vs {len(names_union)}") 
-    # if names_union:
-    #     print(f"names union = {len(names_union)}")
-    # if names_intersection:
-    #     print(f"names intersection = {len(names_intersection)}")
-    
-
-    # pprint(reloaded_dict1_name_length_dict)
-    # pprint(reloaded_dict2_name_length_dict)
 
     comparison_str = digest1 +"_vs_" + digest2
     psm_output.report(record_identifier=comparison_str, values={"digest1":digest1,"sample_name_1":key_digest_sample_name[digest1],"digest2":digest2,"sample_name_2":key_digest_sample_name[digest2], "overlap_coefficient_names":overlap_coefficient_names,"overlap_coefficient_lengths":overlap_coefficient_lengths, "jaccard_names":jaccard_names, "jaccard_lengths":jaccard_lengths, "jaccard_similarity_weighted_length":jaccard_similarity_weighted_length})
