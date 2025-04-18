@@ -14,8 +14,8 @@ from pprint import pprint
 
 looper_config = sys.argv[1]  
 results_pep = sys.argv[2]
-#looper_config = "donaldcampbelljr/human_seqcol_digests_local:default"  # input PEP
-#results_pep = "donaldcampbelljr/test_seq_col_results:default"
+# looper_config = "donaldcampbelljr/human_seqcol_digests_local:default"  # input PEP
+# results_pep = "donaldcampbelljr/test_seq_col_results:default"
 
 print(f"here is the looper config: {looper_config}")
 
@@ -51,34 +51,39 @@ pep = phc.load_project(looper_config)
 print(pep)
 
 # Retrieve all json file paths from the pep
-all_jsons = []
+all_samples = []
 key_digest_sample_name = {}
+sample_json_path = {}
 
 for sample in pep.samples:
-    all_jsons.append(sample.brickyard_json_path)
-    key_digest_sample_name.update({sample.top_level_digest:sample.sample_name}) # handy later when we need to make this more human readable
+    #all_jsons.append(sample.brickyard_json_path)
+    key_digest_sample_name.update({sample.sample_name:sample.top_level_digest}) # handy later when we need to make this more human readable
+    sample_json_path.update({sample.sample_name:sample.brickyard_json_path})
+    all_samples.append(sample.sample_name)
 
-print(all_jsons)
+print(all_samples)
 print(key_digest_sample_name)
 
-all_combinations = combinations(iterable=all_jsons,r=2)
+all_combinations = combinations(iterable=all_samples,r=2)
 
 
 # psm_input = pipestat.PipestatManager(pephub_path=looper_config)
 psm_output = pipestat.PipestatManager(pephub_path=results_pep)
 
+combination_count = 0
 for combination in all_combinations:
-    json_fp_1=combination[0]
-    json_fp_2=combination[1]
+    json_fp_1=sample_json_path[combination[0]]
+    json_fp_2=sample_json_path[combination[1]]
     with open(json_fp_1, "r") as f:
         reloaded_dict1 = json.load(fp=f)
     with open(json_fp_2, "r") as f:
         reloaded_dict2 = json.load(fp=f)
 
-    digest1 = os.path.splitext(os.path.basename(json_fp_1))[0]
-    digest2 = os.path.splitext(os.path.basename(json_fp_2))[0]
-
-    print(f"COMBINATION: {digest1} vs {digest2}")
+    #digest1 = os.path.splitext(os.path.basename(json_fp_1))[0]
+    digest1 = key_digest_sample_name[combination[0]]
+    #digest2 = os.path.splitext(os.path.basename(json_fp_2))[0]
+    digest2 = key_digest_sample_name[combination[1]]
+    print(f"COMBINATION: samples: {combination[0]} vs {combination[1]} digests: {digest1} vs {digest2}")
 
     # print(pprint(compare_seqcols(reloaded_dict1,reloaded_dict2),indent=4))
     comparison = compare_seqcols(reloaded_dict1,reloaded_dict2)
@@ -136,7 +141,8 @@ for combination in all_combinations:
 
     print(f"Here is the weighted jaccard similarity: {jaccard_similarity_weighted_length}")
 
-    comparison_str = digest1 +"_vs_" + digest2
-    psm_output.report(record_identifier=comparison_str, values={"digest1":digest1,"sample_name_1":key_digest_sample_name[digest1],"digest2":digest2,"sample_name_2":key_digest_sample_name[digest2], "overlap_coefficient_names":overlap_coefficient_names,"overlap_coefficient_lengths":overlap_coefficient_lengths, "jaccard_names":jaccard_names, "jaccard_lengths":jaccard_lengths, "jaccard_similarity_weighted_length":jaccard_similarity_weighted_length})
-
+    comparison_str = combination[0] +"_vs_" + combination[1]
+    psm_output.report(record_identifier=comparison_str, values={"digest1":digest1,"sample_name_1":combination[0],"digest2":digest2,"sample_name_2":combination[1], "overlap_coefficient_names":overlap_coefficient_names,"overlap_coefficient_lengths":overlap_coefficient_lengths, "jaccard_names":jaccard_names, "jaccard_lengths":jaccard_lengths, "jaccard_similarity_weighted_length":jaccard_similarity_weighted_length})
+    combination_count+=1
+print (f"Finished with {combination_count} combinations processed")
                                                
