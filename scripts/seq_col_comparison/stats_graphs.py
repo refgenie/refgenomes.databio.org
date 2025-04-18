@@ -1,9 +1,15 @@
+import sys
+import os
 from pephubclient import PEPHubClient
 from refget import fasta_to_digest, fasta_to_seqcol_dict, compare_seqcols, SequenceCollection
 from itertools import combinations
 from pprint import pprint
 
-results_pep = "donaldcampbelljr/test_seq_col_results:default"
+
+#results_pep = "donaldcampbelljr/test_seq_col_results:default"
+
+results_dir = sys.argv[1]  
+results_pep = sys.argv[2]
 
 
 import pandas as pd
@@ -52,10 +58,13 @@ for stat in all_relevant_stats:
     heatmap_data = heatmap_data.apply(pd.to_numeric, errors='coerce')
 
     # 4. Create the heatmap
-    plt.figure(figsize=(12, 10))  # Adjust figure size as needed
-    sns.heatmap(heatmap_data, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar_kws={'label': stat})
+    plt.figure(figsize=(18, 15))  # Adjust figure size as needed
+    sns.heatmap(heatmap_data, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar_kws={'label': stat},annot_kws={"size": 9})
     plt.title(f'{stat} Heatmap')
     plt.xticks(rotation=90)
     plt.yticks(rotation=0)
     plt.tight_layout()
-    plt.show()
+    #plt.show()
+    output_path = os.path.join(results_dir,stat)
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    print(f"Heatmap saved to: {output_path}")
