@@ -105,6 +105,18 @@ for combination in all_combinations:
     jaccard_lengths = calc_jaccard_similarity(comparison['array_elements']['a_and_b']['lengths'],(comparison['array_elements']['a']['lengths']+comparison['array_elements']['b']['lengths']-comparison['array_elements']['a_and_b']['lengths']))
     print(f"Here is the jaccard similarity for lengths: {jaccard_lengths}")
 
+    set_sequences_1 = set(reloaded_dict1['sorted_sequences'])
+    set_sequences_2 = set(reloaded_dict2['sorted_sequences'])
+
+    sequences_intersections = set_sequences_1.intersection(set_sequences_2)
+    sequences_intersection_length = len (sequences_intersections)
+    sequences_union = set_sequences_1.union(set_sequences_2)
+    sequences_union_length = len(sequences_union)
+
+
+    jaccard_sequences = calc_jaccard_similarity(sequences_intersection_length,sequences_union_length)
+    overlap_coeff_sequences = calc_overlap_coeff(len(set_sequences_1),len(set_sequences_2),sequences_intersection_length)
+
     reloaded_dict1_name_length_dict = {}
     reloaded_dict2_name_length_dict = {}
     for i in range(0, len(reloaded_dict1['lengths'])):
@@ -142,7 +154,7 @@ for combination in all_combinations:
     print(f"Here is the weighted jaccard similarity: {jaccard_similarity_weighted_length}")
 
     comparison_str = combination[0] +"_vs_" + combination[1]
-    psm_output.report(record_identifier=comparison_str, values={"digest1":digest1,"sample_name_1":combination[0],"digest2":digest2,"sample_name_2":combination[1], "overlap_coefficient_names":overlap_coefficient_names,"overlap_coefficient_lengths":overlap_coefficient_lengths, "jaccard_names":jaccard_names, "jaccard_lengths":jaccard_lengths, "jaccard_similarity_weighted_length":jaccard_similarity_weighted_length})
+    psm_output.report(record_identifier=comparison_str, values={"digest1":digest1,"sample_name_1":combination[0],"digest2":digest2,"sample_name_2":combination[1], "overlap_coefficient_names":overlap_coefficient_names,"overlap_coefficient_lengths":overlap_coefficient_lengths, "jaccard_names":jaccard_names, "jaccard_lengths":jaccard_lengths, "jaccard_similarity_weighted_length":jaccard_similarity_weighted_length, "jaccard_sequences": jaccard_sequences, "overlap_coefficient_sequences": overlap_coeff_sequences})
     combination_count+=1
 print (f"Finished with {combination_count} combinations processed")
                                                
