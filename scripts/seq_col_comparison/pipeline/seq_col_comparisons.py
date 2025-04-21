@@ -116,6 +116,8 @@ for combination in all_combinations:
 
     jaccard_sequences = calc_jaccard_similarity(sequences_intersection_length,sequences_union_length)
     overlap_coeff_sequences = calc_overlap_coeff(len(set_sequences_1),len(set_sequences_2),sequences_intersection_length)
+    print(f"Here is the jaccard similarity for sequences: {jaccard_sequences}")
+    print(f"Here is the overlap coeff for sequences: {overlap_coeff_sequences}")
 
     reloaded_dict1_name_length_dict = {}
     reloaded_dict2_name_length_dict = {}
