@@ -69,3 +69,39 @@ for stat in all_relevant_stats:
     output_path = os.path.join(results_dir,stat)
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     print(f"Heatmap saved to: {output_path}")
+
+
+# Create Histogram
+for stat in all_relevant_stats:
+    pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
+    similarity_series = pd.Series(pep_df[stat])
+    print(similarity_series)
+    # 2. Define the bin size
+    bin_width = 0.05  # You can adjust this value (e.g., 0.1, 0.02)
+
+    # 3. Create the bins for the histogram
+    bins = np.arange(0, 1.0 + bin_width, bin_width)
+
+    # 4. Create the frequency plot (histogram)
+    plt.figure(figsize=(10, 6))
+    n, bins, patches = plt.hist(similarity_series, bins=bins, edgecolor='black', alpha=0.7)
+
+    for i in range(len(n)):
+        count = int(n[i])  # Get the count for the current bin
+        if count !=0:
+            x_position = (bins[i] + bins[i+1]) / 2  # Center of the bar
+            y_position = n[i]  # Top of the bar
+            plt.text(x_position, y_position, str(count), ha='center', va='bottom')
+    
+    # 5. Set the labels and title
+    plt.xlabel(f' {stat} (0 to 1.0)')
+    plt.ylabel('Count Frequency')
+    plt.title(f'Frequency Distribution of {stat} - {species_title}')
+    plt.xticks(np.arange(0, 1.0 + bin_width, bin_width))  # Set x-axis ticks
+    plt.grid(axis='y', linestyle='--')  # Add a grid for better readability
+
+    # 6. Show the plot
+    plt.tight_layout()
+    #plt.show()
+    output_path = os.path.join(results_dir,stat+'_histogram')
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
