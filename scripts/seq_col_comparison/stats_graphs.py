@@ -8,8 +8,9 @@ from pprint import pprint
 
 #results_pep = "donaldcampbelljr/test_seq_col_results:default"
 
-results_dir = sys.argv[1]  
-results_pep = sys.argv[2]
+results_dir = sys.argv[1] # output dir for graphs 
+results_pep = sys.argv[2] # input pep for graphing
+species_title = sys.argv[3] # additional information for the title
 
 
 import pandas as pd
@@ -25,7 +26,7 @@ pep_df = pep["_sample_df"]
 print(pep_df)
 
 
-all_relevant_stats = ['overlap_coefficient_names',	'overlap_coefficient_lengths',	'jaccard_names', 'jaccard_lengths', 'jaccard_similarity_weighted_length']
+all_relevant_stats = ['overlap_coefficient_names',	'overlap_coefficient_lengths',	'jaccard_names', 'jaccard_lengths', 'jaccard_similarity_weighted_length', 'jaccard_sequences', 'overlap_coefficient_sequences']
 
 for stat in all_relevant_stats:
     pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
@@ -59,8 +60,8 @@ for stat in all_relevant_stats:
 
     # 4. Create the heatmap
     plt.figure(figsize=(18, 15))  # Adjust figure size as needed
-    sns.heatmap(heatmap_data, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar_kws={'label': stat},annot_kws={"size": 9})
-    plt.title(f'{stat} Heatmap')
+    sns.heatmap(heatmap_data, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar_kws={'label': stat},annot_kws={"size": 9},vmin=0.0, vmax=1.0)
+    plt.title(f'{stat} Heatmap - {species_title}')
     plt.xticks(rotation=90)
     plt.yticks(rotation=0)
     plt.tight_layout()
