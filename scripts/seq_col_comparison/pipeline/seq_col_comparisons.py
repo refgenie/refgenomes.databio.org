@@ -31,6 +31,14 @@ def calc_jaccard_similarity(A_B_intersection, A_B_union):
     jaccard = abs(A_B_intersection)/abs(A_B_union)
     return jaccard
 
+# def calc_f1_score(tp, fp, fn):
+#     # another way to consider:
+#     # tp = a = the number of attrivutes that equal ` for both objects i and j
+#     # fp = b = the number of attributes that equal 0 for object i but equal 1 for object j
+#     # fn = c = the number of attributes that equal 1 for object i but equal 0 for object j
+#     # d = the number of attributes that equal 0 for both objects i and j but we do not need to consider these.
+#     return (2*tp)/(2*tp+fp+fn)
+
 def calc_weighted_jaccard(list_intersection_lengths, list_union_lengths):
     intersection_total = 0
     union_total = 0
@@ -170,6 +178,15 @@ for combination in all_combinations:
     print(f"Here is the jaccard similarity for sequences: {jaccard_sequences}")
     print(f"Here is the overlap coeff for sequences: {overlap_coeff_sequences}")
 
+    
+    # Calculate F1 scores 
+
+    f1_names = 2*jaccard_names/(jaccard_names+1)
+    f1_lengths = 2*jaccard_lengths/(jaccard_lengths+1)
+    f1_sequences = 2*jaccard_sequences/(jaccard_sequences+1)
+    f1_weighted_lengths = 2*jaccard_similarity_weighted_length/(jaccard_similarity_weighted_length+1)
+    f1_name_len_pairs = 2*jaccard_name_len/(jaccard_name_len+1)
+
     comparison_str = combination[0] +"_vs_" + combination[1]
     psm_output.report(record_identifier=comparison_str, values={"digest1":digest1,"sample_name_1":combination[0],
                                                                 "digest2":digest2,"sample_name_2":combination[1], 
@@ -181,6 +198,11 @@ for combination in all_combinations:
                                                                 "overlap_coefficient_sequences": overlap_coeff_sequences,
                                                                 "jaccard_name_len":jaccard_name_len,
                                                                 "overlap_coeff_name_len":overlap_coeff_name_len,
+                                                                "f1_names":f1_names,
+                                                                "f1_lengths":f1_lengths,
+                                                                "f1_sequences":f1_sequences,
+                                                                "f1_weighted_lengths":f1_weighted_lengths,
+                                                                "f1_name_len_pairs":f1_name_len_pairs,
                                                                 })
     combination_count+=1
 print (f"Finished with {combination_count} combinations processed")
