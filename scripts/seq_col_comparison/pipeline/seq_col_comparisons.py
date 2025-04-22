@@ -12,10 +12,10 @@ from pephubclient import PEPHubClient
 from itertools import combinations
 from pprint import pprint
 
-looper_config = sys.argv[1]  
-results_pep = sys.argv[2]
-# looper_config = "donaldcampbelljr/human_seqcol_digests_local:default"  # input PEP
-# results_pep = "donaldcampbelljr/test_seq_col_results:default"
+# looper_config = sys.argv[1]  
+# results_pep = sys.argv[2]
+looper_config = "donaldcampbelljr/human_seqcol_digests_local:default"  # input PEP
+results_pep = "donaldcampbelljr/test_seq_col_results:default"
 
 print(f"here is the looper config: {looper_config}")
 
@@ -78,7 +78,7 @@ for combination in all_combinations:
         reloaded_dict1 = json.load(fp=f)
     with open(json_fp_2, "r") as f:
         reloaded_dict2 = json.load(fp=f)
-
+ 
     #digest1 = os.path.splitext(os.path.basename(json_fp_1))[0]
     digest1 = key_digest_sample_name[combination[0]]
     #digest2 = os.path.splitext(os.path.basename(json_fp_2))[0]
@@ -105,6 +105,7 @@ for combination in all_combinations:
     jaccard_lengths = calc_jaccard_similarity(comparison['array_elements']['a_and_b']['lengths'],(comparison['array_elements']['a']['lengths']+comparison['array_elements']['b']['lengths']-comparison['array_elements']['a_and_b']['lengths']))
     print(f"Here is the jaccard similarity for lengths: {jaccard_lengths}")
 
+    # Get sequences and calculate overlaps for sequences
     set_sequences_1 = set(reloaded_dict1['sorted_sequences'])
     set_sequences_2 = set(reloaded_dict2['sorted_sequences'])
 
@@ -119,6 +120,8 @@ for combination in all_combinations:
     print(f"Here is the jaccard similarity for sequences: {jaccard_sequences}")
     print(f"Here is the overlap coeff for sequences: {overlap_coeff_sequences}")
 
+    # Build sets for calculating weighted jaccard score
+
     reloaded_dict1_name_length_dict = {}
     reloaded_dict2_name_length_dict = {}
     for i in range(0, len(reloaded_dict1['lengths'])):
@@ -126,7 +129,6 @@ for combination in all_combinations:
     for i in range(0, len(reloaded_dict2['lengths'])):
         reloaded_dict2_name_length_dict.update({reloaded_dict2['names'][i]:reloaded_dict2['lengths'][i]})
     
-    # Build sets for calcs
     set1 = set(reloaded_dict1['names'])
     set2 = set(reloaded_dict2['names'])
     names_intersection = set1.intersection(set2)
@@ -152,11 +154,34 @@ for combination in all_combinations:
     print(f"The union lengths vs names union: {len(list_union_lengths_new_list)} vs {len(names_union)}") 
     print(f"The intersection lengths vs names intersection: {len(list_intersection_lengths)} vs {len(names_intersection)}") 
     jaccard_similarity_weighted_length = calc_weighted_jaccard(list_intersection_lengths, list_union_lengths_new_list)
-
     print(f"Here is the weighted jaccard similarity: {jaccard_similarity_weighted_length}")
 
+
+    # create set of name_length_pairs
+    #print(type(reloaded_dict1['name_length_pairs'][0]))
+    set_of_name_len_pairs_1 = {tuple(d.values()) for d in reloaded_dict1['name_length_pairs']}
+    set_of_name_len_pairs_2 = {tuple(d.values()) for d in reloaded_dict2['name_length_pairs']}
+
+    name_len_pairs_intersection = set_of_name_len_pairs_1.intersection(set_of_name_len_pairs_2)
+    name_len_pairs_union = set_of_name_len_pairs_1.union(set_of_name_len_pairs_2)
+
+    jaccard_name_len = calc_jaccard_similarity(len(name_len_pairs_intersection),len(name_len_pairs_union))
+    overlap_coeff_name_len = calc_overlap_coeff(len(set_of_name_len_pairs_1),len(set_of_name_len_pairs_2),len(name_len_pairs_intersection))
+    print(f"Here is the jaccard similarity for sequences: {jaccard_sequences}")
+    print(f"Here is the overlap coeff for sequences: {overlap_coeff_sequences}")
+
     comparison_str = combination[0] +"_vs_" + combination[1]
-    psm_output.report(record_identifier=comparison_str, values={"digest1":digest1,"sample_name_1":combination[0],"digest2":digest2,"sample_name_2":combination[1], "overlap_coefficient_names":overlap_coefficient_names,"overlap_coefficient_lengths":overlap_coefficient_lengths, "jaccard_names":jaccard_names, "jaccard_lengths":jaccard_lengths, "jaccard_similarity_weighted_length":jaccard_similarity_weighted_length, "jaccard_sequences": jaccard_sequences, "overlap_coefficient_sequences": overlap_coeff_sequences})
+    psm_output.report(record_identifier=comparison_str, values={"digest1":digest1,"sample_name_1":combination[0],
+                                                                "digest2":digest2,"sample_name_2":combination[1], 
+                                                                "overlap_coefficient_names":overlap_coefficient_names,
+                                                                "overlap_coefficient_lengths":overlap_coefficient_lengths, 
+                                                                "jaccard_names":jaccard_names, "jaccard_lengths":jaccard_lengths, 
+                                                                "jaccard_similarity_weighted_length":jaccard_similarity_weighted_length, 
+                                                                "jaccard_sequences": jaccard_sequences, 
+                                                                "overlap_coefficient_sequences": overlap_coeff_sequences,
+                                                                "jaccard_name_len":jaccard_name_len,
+                                                                "overlap_coeff_name_len":overlap_coeff_name_len,
+                                                                })
     combination_count+=1
 print (f"Finished with {combination_count} combinations processed")
                                                
