@@ -24,9 +24,11 @@ print(pep["_sample_df"])
 
 pep_df = pep["_sample_df"]
 print(pep_df)
+#new_df = pep_df.copy()
 
 
-all_relevant_stats = ['overlap_coefficient_names',	'overlap_coefficient_lengths',	'jaccard_names', 'jaccard_lengths', 'jaccard_similarity_weighted_length', 'jaccard_sequences', 'overlap_coefficient_sequences']
+#all_relevant_stats = ['overlap_coefficient_names',	'overlap_coefficient_lengths',	'jaccard_names', 'jaccard_lengths', 'jaccard_similarity_weighted_length', 'jaccard_sequences', 'overlap_coefficient_sequences']
+all_relevant_stats = ['jaccard_names']
 
 for stat in all_relevant_stats:
     pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
@@ -67,8 +69,50 @@ for stat in all_relevant_stats:
     plt.tight_layout()
     #plt.show()
     output_path = os.path.join(results_dir,stat)
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    #plt.savefig(output_path, dpi=300, bbox_inches='tight')
     print(f"Heatmap saved to: {output_path}")
+
+    #     # 1. Pivot the dataframe to create a matrix
+    
+    # heatmap_data_asymmetrical = new_df.pivot(index='sample_name_1', columns='sample_name_2', values=stat)
+
+    # # 2. Create the heatmap
+    # plt.figure(figsize=(10, 8))  # Adjust figure size as needed
+    # sns.heatmap(heatmap_data_asymmetrical, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar_kws={'label': 'Jaccard Similarity'})
+
+    # # Optional: Add a title
+    # plt.title('Asymmetrical Jaccard Similarity Heatmap (Direct from Pivot)')
+
+    # # Optional: Rotate x-axis labels for better readability
+    # plt.xticks(rotation=90)
+    # plt.yticks(rotation=0)
+
+    # # Show the plot
+    # plt.tight_layout()  # Adjust layout to prevent labels from being cut off
+    # plt.show()
+
+    row_sums = heatmap_data.sum(axis=1)
+
+    # Create row sum graph
+    # 2. Display the row sums
+    print(f"Sum of {stat} Scores for Each Sample:")
+    print(row_sums)
+    # 1. Sort the row sums (optional, for better visualization)
+    row_sums_sorted = row_sums.sort_values(ascending=False)  # Sort in descending order
+
+    # 2. Create the bar plot
+    plt.figure(figsize=(12, 8))
+    plt.bar(row_sums_sorted.index, row_sums_sorted.values)
+
+    # 3. Set labels and title
+    plt.xlabel("Sample")
+    plt.ylabel(f"Sum of {stat}")
+    plt.title("Total Similarity of Each Sample")
+    plt.xticks(rotation=90, ha="right", fontsize=8)  # Rotate sample names for readability
+    plt.tight_layout()
+
+    # 4. Show and save the plot
+    plt.show()
 
 
 # Create Histogram
@@ -104,4 +148,4 @@ for stat in all_relevant_stats:
     plt.tight_layout()
     #plt.show()
     output_path = os.path.join(results_dir,stat+'_histogram')
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    #plt.savefig(output_path, dpi=300, bbox_inches='tight')
