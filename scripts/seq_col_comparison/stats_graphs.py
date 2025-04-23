@@ -28,12 +28,14 @@ print(pep_df)
 
 
 all_relevant_stats = ['overlap_coefficient_names',	
-                      'overlap_coefficient_lengths',	
+                      'overlap_coefficient_lengths',
+                      'overlap_coefficient_sequences',
+                      'overlap_coeff_name_len',	
                       'jaccard_names', 
                       'jaccard_lengths', 
                       'jaccard_similarity_weighted_length', ''
-                      'jaccard_sequences', 
-                      'overlap_coefficient_sequences',
+                      'jaccard_sequences',
+                      'jaccard_name_len', 
                       'f1_names',
                       'f1_lengths',
                       'f1_sequences',
