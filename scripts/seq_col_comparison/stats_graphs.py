@@ -27,8 +27,20 @@ print(pep_df)
 #new_df = pep_df.copy()
 
 
-#all_relevant_stats = ['overlap_coefficient_names',	'overlap_coefficient_lengths',	'jaccard_names', 'jaccard_lengths', 'jaccard_similarity_weighted_length', 'jaccard_sequences', 'overlap_coefficient_sequences']
-all_relevant_stats = ['jaccard_names']
+all_relevant_stats = ['overlap_coefficient_names',	
+                      'overlap_coefficient_lengths',	
+                      'jaccard_names', 
+                      'jaccard_lengths', 
+                      'jaccard_similarity_weighted_length', ''
+                      'jaccard_sequences', 
+                      'overlap_coefficient_sequences',
+                      'f1_names',
+                      'f1_lengths',
+                      'f1_sequences',
+                      'f1_weighted_lengths',
+                      'f1_name_len_pairs'
+                      ]
+#all_relevant_stats = ['jaccard_names']
 
 for stat in all_relevant_stats:
     pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
@@ -69,7 +81,7 @@ for stat in all_relevant_stats:
     plt.tight_layout()
     #plt.show()
     output_path = os.path.join(results_dir,stat)
-    #plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
     print(f"Heatmap saved to: {output_path}")
 
     #     # 1. Pivot the dataframe to create a matrix
@@ -112,7 +124,9 @@ for stat in all_relevant_stats:
     plt.tight_layout()
 
     # 4. Show and save the plot
-    plt.show()
+    #plt.show()
+    output_path = os.path.join(results_dir,stat+"_row_sums")
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
 
 
 # Create Histogram
@@ -148,4 +162,4 @@ for stat in all_relevant_stats:
     plt.tight_layout()
     #plt.show()
     output_path = os.path.join(results_dir,stat+'_histogram')
-    #plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
