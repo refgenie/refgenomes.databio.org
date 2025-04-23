@@ -69,169 +69,177 @@ all_relevant_stats = ['overlap_coefficient_names',
                       ]
 #all_relevant_stats = ['jaccard_names']
 
-for stat in all_relevant_stats:
-    pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
-    # 1. Get all unique sample names
-    all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
+# for stat in all_relevant_stats:
+#     pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
+#     # 1. Get all unique sample names
+#     all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
 
-    # 2. Create an empty DataFrame for the heatmap, initialized with NaN
-    heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
+#     # 2. Create an empty DataFrame for the heatmap, initialized with NaN
+#     heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
 
-    # 3. Iterate over all pairs of unique sample names (O(n^2))
-    for sample1 in all_samples:
-        for sample2 in all_samples:
-            # a. If sample1 and sample2 are the same, assign 1 to both (symmetric)
-            if sample1 == sample2:
-                heatmap_data.loc[sample1, sample2] = 1.0
-            else:
-                # b. Check if the combination exists in the original dataframe
-                comparison = pep_df[
-                    ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
-                    ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
-                ]
-                if not comparison.empty:
-                    similarity_score = comparison[stat].iloc[0]
-                    heatmap_data.loc[sample1, sample2] = similarity_score
-                    heatmap_data.loc[sample2, sample1] = similarity_score
+#     # 3. Iterate over all pairs of unique sample names (O(n^2))
+#     for sample1 in all_samples:
+#         for sample2 in all_samples:
+#             # a. If sample1 and sample2 are the same, assign 1 to both (symmetric)
+#             if sample1 == sample2:
+#                 heatmap_data.loc[sample1, sample2] = 1.0
+#             else:
+#                 # b. Check if the combination exists in the original dataframe
+#                 comparison = pep_df[
+#                     ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+#                     ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+#                 ]
+#                 if not comparison.empty:
+#                     similarity_score = comparison[stat].iloc[0]
+#                     heatmap_data.loc[sample1, sample2] = similarity_score
+#                     heatmap_data.loc[sample2, sample1] = similarity_score
 
 
 
-    print(heatmap_data)
-    heatmap_data = heatmap_data.apply(pd.to_numeric, errors='coerce')
+#     print(heatmap_data)
+#     heatmap_data = heatmap_data.apply(pd.to_numeric, errors='coerce')
 
-    # 4. Create the heatmap
-    plt.figure(figsize=(18, 15))  # Adjust figure size as needed
-    sns.heatmap(heatmap_data, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar_kws={'label': stat},annot_kws={"size": 9},vmin=0.0, vmax=1.0)
-    plt.title(f'{stat} Heatmap - {species_title}')
-    plt.xticks(rotation=90)
-    plt.yticks(rotation=0)
-    plt.tight_layout()
-    #plt.show()
-    output_path = os.path.join(results_dir,stat)
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    print(f"Heatmap saved to: {output_path}")
+#     # 4. Create the heatmap
+#     plt.figure(figsize=(18, 15))  # Adjust figure size as needed
+#     sns.heatmap(heatmap_data, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar_kws={'label': stat},annot_kws={"size": 9},vmin=0.0, vmax=1.0)
+#     plt.title(f'{stat} Heatmap - {species_title}')
+#     plt.xticks(rotation=90)
+#     plt.yticks(rotation=0)
+#     plt.tight_layout()
+#     #plt.show()
+#     output_path = os.path.join(results_dir,stat)
+#     plt.savefig(output_path, dpi=300, bbox_inches='tight')
+#     print(f"Heatmap saved to: {output_path}")
 
-    #     # 1. Pivot the dataframe to create a matrix
+#     #     # 1. Pivot the dataframe to create a matrix
     
-    # heatmap_data_asymmetrical = new_df.pivot(index='sample_name_1', columns='sample_name_2', values=stat)
+#     # heatmap_data_asymmetrical = new_df.pivot(index='sample_name_1', columns='sample_name_2', values=stat)
 
-    # # 2. Create the heatmap
-    # plt.figure(figsize=(10, 8))  # Adjust figure size as needed
-    # sns.heatmap(heatmap_data_asymmetrical, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar_kws={'label': 'Jaccard Similarity'})
+#     # # 2. Create the heatmap
+#     # plt.figure(figsize=(10, 8))  # Adjust figure size as needed
+#     # sns.heatmap(heatmap_data_asymmetrical, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar_kws={'label': 'Jaccard Similarity'})
 
-    # # Optional: Add a title
-    # plt.title('Asymmetrical Jaccard Similarity Heatmap (Direct from Pivot)')
+#     # # Optional: Add a title
+#     # plt.title('Asymmetrical Jaccard Similarity Heatmap (Direct from Pivot)')
 
-    # # Optional: Rotate x-axis labels for better readability
-    # plt.xticks(rotation=90)
-    # plt.yticks(rotation=0)
+#     # # Optional: Rotate x-axis labels for better readability
+#     # plt.xticks(rotation=90)
+#     # plt.yticks(rotation=0)
 
-    # # Show the plot
-    # plt.tight_layout()  # Adjust layout to prevent labels from being cut off
-    # plt.show()
+#     # # Show the plot
+#     # plt.tight_layout()  # Adjust layout to prevent labels from being cut off
+#     # plt.show()
 
-    row_sums = heatmap_data.sum(axis=1)
+#     row_sums = heatmap_data.sum(axis=1)
 
-    # Create row sum graph
-    # 2. Display the row sums
-    print(f"Sum of {stat} Scores for Each Sample:")
-    print(row_sums)
-    # 1. Sort the row sums (optional, for better visualization)
-    row_sums_sorted = row_sums.sort_values(ascending=False)  # Sort in descending order
+#     # Create row sum graph
+#     # 2. Display the row sums
+#     print(f"Sum of {stat} Scores for Each Sample:")
+#     print(row_sums)
+#     # 1. Sort the row sums (optional, for better visualization)
+#     row_sums_sorted = row_sums.sort_values(ascending=False)  # Sort in descending order
 
-    # 2. Create the bar plot
-    plt.figure(figsize=(12, 8))
-    plt.bar(row_sums_sorted.index, row_sums_sorted.values)
+#     # 2. Create the bar plot
+#     plt.figure(figsize=(12, 8))
+#     plt.bar(row_sums_sorted.index, row_sums_sorted.values)
 
-    # 3. Set labels and title
-    plt.xlabel("Sample")
-    plt.ylabel(f"Sum of {stat}")
-    plt.title("Total Similarity of Each Sample")
-    plt.xticks(rotation=90, ha="right", fontsize=8)  # Rotate sample names for readability
-    plt.tight_layout()
+#     # 3. Set labels and title
+#     plt.xlabel("Sample")
+#     plt.ylabel(f"Sum of {stat}")
+#     plt.title("Total Similarity of Each Sample")
+#     plt.xticks(rotation=90, ha="right", fontsize=8)  # Rotate sample names for readability
+#     plt.tight_layout()
 
-    # 4. Show and save the plot
-    #plt.show()
-    output_path = os.path.join(results_dir,stat+"_row_sums")
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+#     # 4. Show and save the plot
+#     #plt.show()
+#     output_path = os.path.join(results_dir,stat+"_row_sums")
+#     plt.savefig(output_path, dpi=300, bbox_inches='tight')
 
 
-# Create Histogram
-for stat in all_relevant_stats:
-    pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
-    similarity_series = pd.Series(pep_df[stat])
-    print(similarity_series)
-    # 2. Define the bin size
-    bin_width = 0.05  # You can adjust this value (e.g., 0.1, 0.02)
+# # Create Histogram
+# for stat in all_relevant_stats:
+#     pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
+#     similarity_series = pd.Series(pep_df[stat])
+#     print(similarity_series)
+#     # 2. Define the bin size
+#     bin_width = 0.05  # You can adjust this value (e.g., 0.1, 0.02)
 
-    # 3. Create the bins for the histogram
-    bins = np.arange(0, 1.0 + bin_width, bin_width)
+#     # 3. Create the bins for the histogram
+#     bins = np.arange(0, 1.0 + bin_width, bin_width)
 
-    # 4. Create the frequency plot (histogram)
-    plt.figure(figsize=(10, 6))
-    n, bins, patches = plt.hist(similarity_series, bins=bins, edgecolor='black', alpha=0.7)
+#     # 4. Create the frequency plot (histogram)
+#     plt.figure(figsize=(10, 6))
+#     n, bins, patches = plt.hist(similarity_series, bins=bins, edgecolor='black', alpha=0.7)
 
-    for i in range(len(n)):
-        count = int(n[i])  # Get the count for the current bin
-        if count !=0:
-            x_position = (bins[i] + bins[i+1]) / 2  # Center of the bar
-            y_position = n[i]  # Top of the bar
-            plt.text(x_position, y_position, str(count), ha='center', va='bottom')
+#     for i in range(len(n)):
+#         count = int(n[i])  # Get the count for the current bin
+#         if count !=0:
+#             x_position = (bins[i] + bins[i+1]) / 2  # Center of the bar
+#             y_position = n[i]  # Top of the bar
+#             plt.text(x_position, y_position, str(count), ha='center', va='bottom')
     
-    # 5. Set the labels and title
-    plt.xlabel(f' {stat} (0 to 1.0)')
-    plt.ylabel('Count Frequency')
-    plt.title(f'Frequency Distribution of {stat} - {species_title}')
-    plt.xticks(np.arange(0, 1.0 + bin_width, bin_width))  # Set x-axis ticks
-    plt.grid(axis='y', linestyle='--')  # Add a grid for better readability
+#     # 5. Set the labels and title
+#     plt.xlabel(f' {stat} (0 to 1.0)')
+#     plt.ylabel('Count Frequency')
+#     plt.title(f'Frequency Distribution of {stat} - {species_title}')
+#     plt.xticks(np.arange(0, 1.0 + bin_width, bin_width))  # Set x-axis ticks
+#     plt.grid(axis='y', linestyle='--')  # Add a grid for better readability
 
-    # 6. Show the plot
-    plt.tight_layout()
-    #plt.show()
-    output_path = os.path.join(results_dir,stat+'_histogram')
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+#     # 6. Show the plot
+#     plt.tight_layout()
+#     #plt.show()
+#     output_path = os.path.join(results_dir,stat+'_histogram')
+#     plt.savefig(output_path, dpi=300, bbox_inches='tight')
 
 
 # create single column showing subsets based on overlap coefficients
 df = pep["_sample_df"]
-stat = 'overlap_coeff_name_len'
-similarity_df_sorted = df.sort_values(by=stat, ascending=False)  # Example: Descending order
-similarity_df_sorted = similarity_df_sorted[similarity_df_sorted['overlap_coeff_name_len'] >= 0.75].copy()
-comparisons = []
-for index, row in similarity_df_sorted.iterrows():
-    sample1 = row['sample_name_1']
-    digest1 = row['digest1']
-    sample2 = row['sample_name_2']
-    digest2 = row['digest2']
-    similarity = row[stat]
 
-    # TODO need to have this not be dependent on local jsons, get from other PEP and pull from HPC storage?
-    if get_sequence_length_local(digest1) > get_sequence_length_local(digest2):
-        higher_value_sample = sample1
-        compared_sample = sample2
-    else:
-        higher_value_sample = sample2
-        compared_sample = sample1
+all_relevant_overlap_stats = ['overlap_coefficient_names',	
+                      'overlap_coefficient_lengths',
+                      'overlap_coefficient_sequences',
+                      'overlap_coeff_name_len',]
+#stat = 'overlap_coeff_name_len'
 
-    comparison_string = compared_sample + ' ⊂ ' + higher_value_sample
-    comparisons.append(comparison_string)
+for stat in all_relevant_overlap_stats:
+    df = pep["_sample_df"].copy()
+    similarity_df_sorted = df.sort_values(by=stat, ascending=False)  # Example: Descending order
+    similarity_df_sorted = similarity_df_sorted[similarity_df_sorted['overlap_coeff_name_len'] >= 0.75].copy()
+    comparisons = []
+    for index, row in similarity_df_sorted.iterrows():
+        sample1 = row['sample_name_1']
+        digest1 = row['digest1']
+        sample2 = row['sample_name_2']
+        digest2 = row['digest2']
+        similarity = row[stat]
 
-similarity_df_sorted['comparison'] = comparisons
+        # TODO need to have this not be dependent on local jsons, get from other PEP and pull from HPC storage?
+        if get_sequence_length_local(digest1) > get_sequence_length_local(digest2):
+            higher_value_sample = sample1
+            compared_sample = sample2
+        else:
+            higher_value_sample = sample2
+            compared_sample = sample1
 
-heatmap_data_single_col = similarity_df_sorted.set_index('comparison')[[stat]]
+        comparison_string = compared_sample + ' ⊂ ' + higher_value_sample
+        comparisons.append(comparison_string)
 
-plt.figure(figsize=(4, 10))  
-sns.heatmap(heatmap_data_single_col, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar_kws={'label': stat})
+    similarity_df_sorted['comparison'] = comparisons
 
-plt.title('Overlap Coefficient per Comparison')
-plt.ylabel('Comparison (Sample1 vs Sample2)')
-plt.xticks([])  
-plt.xlabel('')  
-plt.yticks(rotation=0)  
-plt.tight_layout()
-# plt.show()
-output_path = os.path.join(results_dir,stat+'_subset_mapping')
-plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    heatmap_data_single_col = similarity_df_sorted.set_index('comparison')[[stat]]
+
+    plt.figure(figsize=(6, 15))  
+    sns.heatmap(heatmap_data_single_col, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar_kws={'label': stat})
+
+    plt.title('Overlap Coefficient per Comparison')
+    plt.ylabel('Comparison (Sample1 vs Sample2)')
+    plt.xticks([])  
+    plt.xlabel('')  
+    plt.yticks(rotation=0)  
+    plt.tight_layout()
+    # plt.show()
+    output_path = os.path.join(results_dir,stat+'_subset_mapping')
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
 
 
 
