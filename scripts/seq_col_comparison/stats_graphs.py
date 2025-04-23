@@ -206,6 +206,8 @@ for stat in all_relevant_overlap_stats:
     similarity_df_sorted = df.sort_values(by=stat, ascending=False)  # Example: Descending order
     similarity_df_sorted = similarity_df_sorted[similarity_df_sorted['overlap_coeff_name_len'] >= 0.75].copy()
     comparisons = []
+    highers=[]
+    lowers=[]
     for index, row in similarity_df_sorted.iterrows():
         sample1 = row['sample_name_1']
         digest1 = row['digest1']
@@ -223,18 +225,32 @@ for stat in all_relevant_overlap_stats:
 
         comparison_string = compared_sample + ' ⊂ ' + higher_value_sample
         comparisons.append(comparison_string)
+        highers.append(higher_value_sample)
+        lowers.append(compared_sample)
 
     similarity_df_sorted['comparison'] = comparisons
+    similarity_df_sorted['highers'] = highers
+    similarity_df_sorted['lowers'] = lowers
 
     heatmap_data_single_col = similarity_df_sorted.set_index('comparison')[[stat]]
 
-    plt.figure(figsize=(6, 15))  
-    sns.heatmap(heatmap_data_single_col, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar_kws={'label': stat})
+    plt.figure(figsize=(12, 15))  
+
+    ax=sns.heatmap(heatmap_data_single_col, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar_kws={'label': stat})
 
     plt.title('Overlap Coefficient per Comparison')
     plt.ylabel('Comparison (Sample1 vs Sample2)')
     plt.xticks([])  
     plt.xlabel('')  
+
+    ax2 = ax.twinx()  # Create a second y-axis that shares the same x-axis
+    ax2.set_yticks(ax.get_yticks())  # Ensure the ticks are aligned
+    ax2.set_yticklabels(similarity_df_sorted['lowers'].tolist(), rotation=0, ha='left')
+    ax2.set_ylabel('Subset', rotation=270, labelpad=80)
+
+    ax.set_yticklabels(similarity_df_sorted['highers'].tolist(), rotation=0, ha='right')
+    ax.set_ylabel('Superset', rotation=270, labelpad=20)
+
     plt.yticks(rotation=0)  
     plt.tight_layout()
     # plt.show()
