@@ -1,5 +1,6 @@
 import sys
 import os
+import json
 from pephubclient import PEPHubClient
 from refget import fasta_to_digest, fasta_to_seqcol_dict, compare_seqcols, SequenceCollection
 from itertools import combinations
@@ -17,6 +18,30 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
+
+
+
+#---- for running locally only
+# json_files = []
+# if os.path.isdir("/home/drc/Downloads/jsons_from_rivanna/json/"):
+#     for filename in os.listdir("/home/drc/Downloads/jsons_from_rivanna/json/"):
+#         if filename.endswith(".json"):
+#             full_path = os.path.join("/home/drc/Downloads/jsons_from_rivanna/json/", filename)
+#             json_files.append(full_path)
+
+def get_sequence_length(digest):
+
+    json_fp_1 = os.path.join("/home/drc/Downloads/jsons_from_rivanna/json/", digest+".json")
+    # json_fp_2 = os.path.join("/home/drc/Downloads/jsons_from_rivanna/json/", digest2+".json")
+    with open(json_fp_1, "r") as f:
+        reloaded_dict1 = json.load(fp=f)
+    
+    return len(reloaded_dict1['sorted_sequences'])
+    # with open(json_fp_2, "r") as f:
+    #     reloaded_dict2 = json.load(fp=f)
+
+
+# --------
 
 phc = PEPHubClient()
 pep = phc.load_project(results_pep)
@@ -165,3 +190,104 @@ for stat in all_relevant_stats:
     #plt.show()
     output_path = os.path.join(results_dir,stat+'_histogram')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
+
+
+# Create asymmetrical graph
+
+df = pep["_sample_df"]
+
+stat = 'overlap_coeff_name_len'
+similarity_df_sorted = df.sort_values(by=stat, ascending=False)  # Example: Descending order
+
+results_df = pd.DataFrame(columns=['Samples_Superset', 'Samples_Subset', stat])
+
+for index, row in similarity_df_sorted.iterrows():
+    sample1 = row['sample_name_1']
+    digest1 = row['digest1']
+    sample2 = row['sample_name_2']
+    digest2 = row['digest2']
+    similarity = row[stat]
+
+    if get_sequence_length(digest1) > get_sequence_length(digest2):
+        higher_value_sample = sample1
+        compared_sample = sample2
+    else:
+        higher_value_sample = sample2
+        compared_sample = sample1
+
+    # Append the result to the new DataFrame
+    results_df = pd.concat([results_df, pd.DataFrame({'Samples_Superset': [higher_value_sample],
+                                                     'Samples_Subset': [compared_sample],
+                                                     stat: [similarity]})], ignore_index=True)
+
+print(results_df)
+
+heatmap_data = results_df.pivot(index='Samples_Superset', columns='Samples_Subset', values=stat)
+
+plt.figure(figsize=(10, 8))  
+sns.heatmap(heatmap_data, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, linecolor='black')
+plt.title('Heatmap of Result by Samples_Superset and Samples_Subset')
+plt.xlabel('Samples_Subset')
+plt.ylabel('Samples_Superset')
+
+plt.xticks(rotation=90)
+plt.yticks(rotation=0)
+
+plt.tight_layout()  # Adjust layout to prevent labels from being cut off
+plt.show()
+
+
+# Pivot the DataFrame to create the matrix for the heatmap
+# heatmap_data = df.pivot(index='sample_name_1', columns='sample_name_2', values='overlap_coefficient_names')
+# heatmap_data = df.pivot(index='sample_name_2', columns=['sample_name_1'], values='overlap_coefficient_names')
+# # mask = heatmap_data.isnull()
+
+
+# # Create the heatmap
+# plt.figure(figsize=(10, 8))  # Adjust figure size as needed
+# sns.heatmap(heatmap_data, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, linecolor='black')
+# plt.title('Heatmap of Result by Sample1 and Sample2')
+# plt.xlabel('Sample2')
+# plt.ylabel('Sample1')
+# # Optional: Rotate x-axis labels for better readability
+# plt.xticks(rotation=90)
+# plt.yticks(rotation=0)
+
+# # Show the plot
+# #plt.tight_layout()  # Adjust layout to prevent labels from being cut off
+# plt.show()
+
+# 1. Get all unique sample names from both columns
+# all_samples = pd.concat([df['sample_name_1'], df['sample_name_2']]).unique()
+
+# # 2. Create a DataFrame with all unique samples as index and columns, initialized with NaN
+# heatmap_data_fixed = pd.DataFrame(index=all_samples, columns=all_samples)
+
+# # 3. Populate the heatmap DataFrame with Jaccard similarity values
+# for index, row in df.iterrows():
+#     sample1 = row['sample_name_1']
+#     sample2 = row['sample_name_2']
+#     similarity = row['overlap_coefficient_names']
+#     if sample1 in heatmap_data_fixed.index and sample2 in heatmap_data_fixed.columns:
+#         if similarity:
+#             heatmap_data_fixed.loc[sample1, sample2] = similarity
+
+# # 4. Create the heatmap
+# plt.figure(figsize=(12, 10))  # Adjust figure size as needed
+# sns.heatmap(heatmap_data_fixed, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar_kws={'label': 'Jaccard Similarity'})
+
+# # Customize the plot
+# plt.title('Jaccard Similarity Heatmap (All Unique Samples on Both Axes)')
+# plt.xlabel('Sample 2')
+# plt.ylabel('Sample 1')
+# plt.xticks(rotation=90)
+# plt.yticks(rotation=0)
+# plt.tight_layout()
+# plt.show()
+
+# # Save the plot (optional)
+# output_path = 'jaccard_similarity_heatmap_fixed_axes.png'
+# plt.savefig(output_path, dpi=300, bbox_inches='tight')
+# print(f"Heatmap saved to: {output_path}")
+
+
