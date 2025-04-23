@@ -78,6 +78,8 @@ all_combinations = combinations(iterable=all_samples,r=2)
 # psm_input = pipestat.PipestatManager(pephub_path=looper_config)
 psm_output = pipestat.PipestatManager(pephub_path=results_pep)
 
+# combos_to_consider = []
+
 combination_count = 0
 for combination in all_combinations:
     json_fp_1=sample_json_path[combination[0]]
@@ -205,5 +207,11 @@ for combination in all_combinations:
                                                                 "f1_name_len_pairs":f1_name_len_pairs,
                                                                 })
     combination_count+=1
+
+    # if len(sequences_intersections) >0:
+    #     temp_dict = {"comparison str": comparison_str, "s1":combination[0],"s2":combination[1], "intersection_seq": sequences_intersections, "len_intersection_seq": len(sequences_intersections)}
+
+    # print(f"Here is temp dict: {temp_dict}")
+
 print (f"Finished with {combination_count} combinations processed")
                                                
