@@ -239,11 +239,12 @@ for stat in all_relevant_overlap_stats[:]:
 
     sns.heatmap(heatmap_data_single_col, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar=True, cbar_ax=cbar_ax, ax=ax, cbar_kws={'label': stat})
 
-    plt.title(f'Overlap Coefficient per Comparison ({stat})')
+    fig.suptitle(f'Overlap Coefficient per Comparison ({stat})', x=0.1, y=0.95, ha='left', va='top',fontweight='bold') # Use fig.suptitle
     ax.set_ylabel('Subset',rotation=270, labelpad=20)
     ax.set_xticks(ticks=[])
     ax.set_yticklabels(similarity_df_sorted['lowers'].tolist(), rotation=0, ha='left')
     ax.tick_params(axis='y', which='major', pad=200)
+    ax.text(0.5, 1.05, 'Left Ref ⊂ Right Ref', ha='center', va='top', transform=ax.transAxes,fontweight='bold')
 
     ax2 = ax.twinx()  # Create a second y-axis that shares the same x-axis
     ax2.set_yticks(ax.get_yticks())  # Ensure the ticks are aligned
@@ -251,8 +252,6 @@ for stat in all_relevant_overlap_stats[:]:
     ax2.set_ylabel('Contained by', rotation=270, labelpad=20) # Adjust labelpad
 
     plt.yticks(rotation=0)
-    plt.tight_layout(rect=[0, 0, 0.85, 1]) # Adjust right margin for labels
-    #plt.show()
     output_path = os.path.join(results_dir,stat+'_subset_mapping')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
 
