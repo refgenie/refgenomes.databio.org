@@ -52,21 +52,21 @@ print(pep_df)
 #new_df = pep_df.copy()
 
 
-all_relevant_stats = ['overlap_coefficient_names',	
-                      'overlap_coefficient_lengths',
-                      'overlap_coefficient_sequences',
-                      'overlap_coeff_name_len',	
-                      'jaccard_names', 
-                      'jaccard_lengths', 
-                      'jaccard_similarity_weighted_length', ''
-                      'jaccard_sequences',
-                      'jaccard_name_len', 
-                      'f1_names',
-                      'f1_lengths',
-                      'f1_sequences',
-                      'f1_weighted_lengths',
-                      'f1_name_len_pairs'
-                      ]
+# all_relevant_stats = ['overlap_coefficient_names',	
+#                       'overlap_coefficient_lengths',
+#                       'overlap_coefficient_sequences',
+#                       'overlap_coeff_name_len',	
+#                       'jaccard_names', 
+#                       'jaccard_lengths', 
+#                       'jaccard_similarity_weighted_length', ''
+#                       'jaccard_sequences',
+#                       'jaccard_name_len', 
+#                       'f1_names',
+#                       'f1_lengths',
+#                       'f1_sequences',
+#                       'f1_weighted_lengths',
+#                       'f1_name_len_pairs'
+#                       ]
 #all_relevant_stats = ['jaccard_names']
 
 # for stat in all_relevant_stats:
@@ -194,68 +194,138 @@ all_relevant_stats = ['overlap_coefficient_names',
 
 
 # create single column showing subsets based on overlap coefficients
-df = pep["_sample_df"]
+# df = pep["_sample_df"]
 
-all_relevant_overlap_stats = ['overlap_coefficient_names',	
+# all_relevant_overlap_stats = ['overlap_coefficient_names',	
+#                       'overlap_coefficient_lengths',
+#                       'overlap_coefficient_sequences',
+#                       'overlap_coeff_name_len',]
+# #stat = 'overlap_coeff_name_len'
+
+# for stat in all_relevant_overlap_stats[:]:
+#     df = pep["_sample_df"].copy()
+#     similarity_df_sorted = df.sort_values(by=stat, ascending=False).copy()
+#     similarity_df_sorted = similarity_df_sorted[similarity_df_sorted['overlap_coeff_name_len'] >= 0.75].copy()
+#     comparisons = []
+#     highers = []
+#     lowers = []
+#     for index, row in similarity_df_sorted.iterrows():
+#         sample1 = row['sample_name_1']
+#         digest1 = row['digest1']
+#         sample2 = row['sample_name_2']
+#         digest2 = row['digest2']
+#         similarity = row[stat]
+
+#         # TODO need to have this not be dependent on local jsons, get from other PEP and pull from HPC storage?
+#         if get_sequence_length_local(digest1) > get_sequence_length_local(digest2):
+#             higher_value_sample = sample1
+#             compared_sample = sample2
+#         else:
+#             higher_value_sample = sample2
+#             compared_sample = sample1
+
+#         comparison_string = compared_sample + ' ⊂ ' + higher_value_sample
+#         comparisons.append(comparison_string)
+#         highers.append(higher_value_sample)
+#         lowers.append(compared_sample)
+
+#     similarity_df_sorted['comparison'] = comparisons
+#     similarity_df_sorted['highers'] = highers
+#     similarity_df_sorted['lowers'] = lowers
+
+#     heatmap_data_single_col = similarity_df_sorted.set_index('comparison')[[stat]]
+
+#     grid_kws = {"width_ratios": (.8, .05), "wspace": 2.00} # Adjust width ratios and spacing
+#     fig, (ax, cbar_ax) = plt.subplots(1, 2, figsize=(12, 15), gridspec_kw=grid_kws)
+
+#     sns.heatmap(heatmap_data_single_col, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar=True, cbar_ax=cbar_ax, ax=ax, cbar_kws={'label': stat})
+
+#     fig.suptitle(f'Overlap Coefficient per Comparison ({stat})', x=0.1, y=0.95, ha='left', va='top',fontweight='bold') # Use fig.suptitle
+#     ax.set_ylabel('Subset',rotation=270, labelpad=20)
+#     ax.set_xticks(ticks=[])
+#     ax.set_yticklabels(similarity_df_sorted['lowers'].tolist(), rotation=0, ha='left')
+#     ax.tick_params(axis='y', which='major', pad=200)
+#     ax.text(0.5, 1.05, 'Left Ref ⊂ Right Ref', ha='center', va='top', transform=ax.transAxes,fontweight='bold')
+
+#     ax2 = ax.twinx()  # Create a second y-axis that shares the same x-axis
+#     ax2.set_yticks(ax.get_yticks())  # Ensure the ticks are aligned
+#     ax2.set_yticklabels(similarity_df_sorted['highers'].tolist(), rotation=0, ha='left')
+#     ax2.set_ylabel('Contained by', rotation=270, labelpad=20) # Adjust labelpad
+
+#     plt.yticks(rotation=0)
+#     output_path = os.path.join(results_dir,stat+'_subset_mapping')
+#     plt.savefig(output_path, dpi=300, bbox_inches='tight')
+
+
+#### PLOT MULTIPLE SUBPLOTS
+
+all_relevant_stats = ['overlap_coefficient_names',	
                       'overlap_coefficient_lengths',
                       'overlap_coefficient_sequences',
-                      'overlap_coeff_name_len',]
-#stat = 'overlap_coeff_name_len'
+                      'overlap_coeff_name_len',	
+                    #   'jaccard_names', 
+                    #   'jaccard_lengths', 
+                    #   'jaccard_similarity_weighted_length', ''
+                    #   'jaccard_sequences',
+                    #   'jaccard_name_len', 
+                    #   'f1_names',
+                    #   'f1_lengths',
+                    #   'f1_sequences',
+                    #   'f1_weighted_lengths',
+                    #   'f1_name_len_pairs'
+                      ]
+#all_relevant_stats = ['jaccard_names']
 
-for stat in all_relevant_overlap_stats[:]:
-    df = pep["_sample_df"].copy()
-    similarity_df_sorted = df.sort_values(by=stat, ascending=False).copy()
-    similarity_df_sorted = similarity_df_sorted[similarity_df_sorted['overlap_coeff_name_len'] >= 0.75].copy()
-    comparisons = []
-    highers = []
-    lowers = []
-    for index, row in similarity_df_sorted.iterrows():
-        sample1 = row['sample_name_1']
-        digest1 = row['digest1']
-        sample2 = row['sample_name_2']
-        digest2 = row['digest2']
-        similarity = row[stat]
+num_plots = len(all_relevant_stats)
+fig, axes = plt.subplots(1, num_plots, figsize=(8 * num_plots, 3))
 
-        # TODO need to have this not be dependent on local jsons, get from other PEP and pull from HPC storage?
-        if get_sequence_length_local(digest1) > get_sequence_length_local(digest2):
-            higher_value_sample = sample1
-            compared_sample = sample2
-        else:
-            higher_value_sample = sample2
-            compared_sample = sample1
+for i, stat in enumerate(all_relevant_stats):
+    pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
+    # 1. Get all unique sample names
+    all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
 
-        comparison_string = compared_sample + ' ⊂ ' + higher_value_sample
-        comparisons.append(comparison_string)
-        highers.append(higher_value_sample)
-        lowers.append(compared_sample)
+    # 2. Create an empty DataFrame for the heatmap, initialized with NaN
+    heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
 
-    similarity_df_sorted['comparison'] = comparisons
-    similarity_df_sorted['highers'] = highers
-    similarity_df_sorted['lowers'] = lowers
-
-    heatmap_data_single_col = similarity_df_sorted.set_index('comparison')[[stat]]
-
-    grid_kws = {"width_ratios": (.8, .05), "wspace": 2.00} # Adjust width ratios and spacing
-    fig, (ax, cbar_ax) = plt.subplots(1, 2, figsize=(12, 15), gridspec_kw=grid_kws)
-
-    sns.heatmap(heatmap_data_single_col, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar=True, cbar_ax=cbar_ax, ax=ax, cbar_kws={'label': stat})
-
-    fig.suptitle(f'Overlap Coefficient per Comparison ({stat})', x=0.1, y=0.95, ha='left', va='top',fontweight='bold') # Use fig.suptitle
-    ax.set_ylabel('Subset',rotation=270, labelpad=20)
-    ax.set_xticks(ticks=[])
-    ax.set_yticklabels(similarity_df_sorted['lowers'].tolist(), rotation=0, ha='left')
-    ax.tick_params(axis='y', which='major', pad=200)
-    ax.text(0.5, 1.05, 'Left Ref ⊂ Right Ref', ha='center', va='top', transform=ax.transAxes,fontweight='bold')
-
-    ax2 = ax.twinx()  # Create a second y-axis that shares the same x-axis
-    ax2.set_yticks(ax.get_yticks())  # Ensure the ticks are aligned
-    ax2.set_yticklabels(similarity_df_sorted['highers'].tolist(), rotation=0, ha='left')
-    ax2.set_ylabel('Contained by', rotation=270, labelpad=20) # Adjust labelpad
-
-    plt.yticks(rotation=0)
-    output_path = os.path.join(results_dir,stat+'_subset_mapping')
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    # 3. Iterate over all pairs of unique sample names (O(n^2))
+    for sample1 in all_samples:
+        for sample2 in all_samples:
+            # a. If sample1 and sample2 are the same, assign 1 to both (symmetric)
+            if sample1 == sample2:
+                heatmap_data.loc[sample1, sample2] = 1.0
+            else:
+                # b. Check if the combination exists in the original dataframe
+                comparison = pep_df[
+                    ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+                    ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+                ]
+                if not comparison.empty:
+                    similarity_score = comparison[stat].iloc[0]
+                    heatmap_data.loc[sample1, sample2] = similarity_score
+                    heatmap_data.loc[sample2, sample1] = similarity_score
 
 
+
+    #print(heatmap_data)
+    heatmap_data = heatmap_data.apply(pd.to_numeric, errors='coerce')
+    ax = axes[i]
+    # 4. Create the heatmap
+    #plt.figure(figsize=(18, 15))  # Adjust figure size as needed
+    sns.heatmap(heatmap_data, annot=False, cmap='viridis', fmt=".2f", linewidths=.2, cbar_kws={'label': stat},annot_kws={"size": 3},vmin=0.0, vmax=1.0, ax=ax)
+    ax.set_title(f'{stat} Heatmap')
+    ax.set_xticks(range(len(all_samples)))
+    ax.set_yticks(range(len(all_samples)))
+    if i==0:
+        ax.set_yticklabels(all_samples, rotation=0, fontsize=2)
+    ax.tick_params(axis='both', which='major', labelsize=8)
+    ax.set_xticklabels(all_samples, rotation=90, fontsize=2)
+    #plt.tight_layout()
+    #plt.show()
+    # output_path = os.path.join(results_dir,stat)
+    # #plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    # print(f"Heatmap saved to: {output_path}")
+plt.suptitle(f'Comparison Heatmaps - {species_title}', fontsize=16, y=1.02) # Add a suptitle for the entire figure
+plt.tight_layout(rect=[0, 0, 1, 0.96]) # Adjust layout to make space for suptitle
+plt.show()
 
 
