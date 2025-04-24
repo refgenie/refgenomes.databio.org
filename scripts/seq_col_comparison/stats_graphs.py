@@ -259,20 +259,21 @@ print(pep_df)
 
 #### PLOT MULTIPLE SUBPLOTS
 
-all_relevant_stats = ['overlap_coefficient_names',	
-                      'overlap_coefficient_lengths',
-                      'overlap_coefficient_sequences',
-                      'overlap_coeff_name_len',	
+all_relevant_stats = [
+                    #   'overlap_coefficient_names',	
+                    #   'overlap_coefficient_lengths',
+                    #   'overlap_coefficient_sequences',
+                    #   'overlap_coeff_name_len',	
                     #   'jaccard_names', 
                     #   'jaccard_lengths', 
                     #   'jaccard_similarity_weighted_length', ''
                     #   'jaccard_sequences',
                     #   'jaccard_name_len', 
-                    #   'f1_names',
-                    #   'f1_lengths',
-                    #   'f1_sequences',
-                    #   'f1_weighted_lengths',
-                    #   'f1_name_len_pairs'
+                      'f1_names',
+                      'f1_lengths',
+                      'f1_sequences',
+                      'f1_weighted_lengths',
+                      'f1_name_len_pairs'
                       ]
 #all_relevant_stats = ['jaccard_names']
 
@@ -287,22 +288,23 @@ for i, stat in enumerate(all_relevant_stats):
     # 2. Create an empty DataFrame for the heatmap, initialized with NaN
     heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
 
-    # 3. Iterate over all pairs of unique sample names (O(n^2))
-    for sample1 in all_samples:
-        for sample2 in all_samples:
-            # a. If sample1 and sample2 are the same, assign 1 to both (symmetric)
-            if sample1 == sample2:
-                heatmap_data.loc[sample1, sample2] = 1.0
+    for row_idx, sample1 in enumerate(all_samples):
+        for col_idx, sample2 in enumerate(all_samples):
+            if col_idx >= row_idx:  # Condition to select the upper triangle (including diagonal)
+                if sample1 == sample2:
+                    heatmap_data.loc[sample1, sample2] = 1.0
+                else:
+                    comparison = pep_df[
+                        ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+                        ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+                    ]
+                    if not comparison.empty:
+                        similarity_score = comparison[stat].iloc[0]
+                        heatmap_data.loc[sample1, sample2] = similarity_score
+                    else:
+                        heatmap_data.loc[sample1, sample2] = np.nan
             else:
-                # b. Check if the combination exists in the original dataframe
-                comparison = pep_df[
-                    ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
-                    ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
-                ]
-                if not comparison.empty:
-                    similarity_score = comparison[stat].iloc[0]
-                    heatmap_data.loc[sample1, sample2] = similarity_score
-                    heatmap_data.loc[sample2, sample1] = similarity_score
+                heatmap_data.loc[sample1, sample2] = np.nan
 
 
 
