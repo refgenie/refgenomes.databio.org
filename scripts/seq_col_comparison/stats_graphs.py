@@ -201,13 +201,13 @@ all_relevant_overlap_stats = ['overlap_coefficient_names',
                       'overlap_coeff_name_len',]
 #stat = 'overlap_coeff_name_len'
 
-for stat in all_relevant_overlap_stats:
+for stat in all_relevant_overlap_stats[:1]:
     df = pep["_sample_df"].copy()
-    similarity_df_sorted = df.sort_values(by=stat, ascending=False)  # Example: Descending order
+    similarity_df_sorted = df.sort_values(by=stat, ascending=False).copy()
     similarity_df_sorted = similarity_df_sorted[similarity_df_sorted['overlap_coeff_name_len'] >= 0.75].copy()
     comparisons = []
-    highers=[]
-    lowers=[]
+    highers = []
+    lowers = []
     for index, row in similarity_df_sorted.iterrows():
         sample1 = row['sample_name_1']
         digest1 = row['digest1']
@@ -234,28 +234,25 @@ for stat in all_relevant_overlap_stats:
 
     heatmap_data_single_col = similarity_df_sorted.set_index('comparison')[[stat]]
 
-    plt.figure(figsize=(12, 15))  
+    grid_kws = {"width_ratios": (.4, .01), "wspace": 0.7} # Adjust width ratios and spacing
+    fig, (ax, cbar_ax) = plt.subplots(1, 2, figsize=(12, 15), gridspec_kw=grid_kws)
 
-    ax=sns.heatmap(heatmap_data_single_col, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar_kws={'label': stat})
+    sns.heatmap(heatmap_data_single_col, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar=True, cbar_ax=cbar_ax, ax=ax, cbar_kws={'label': stat})
 
-    plt.title('Overlap Coefficient per Comparison')
-    plt.ylabel('Comparison (Sample1 vs Sample2)')
-    plt.xticks([])  
-    plt.xlabel('')  
+    plt.title(f'Overlap Coefficient per Comparison ({stat})')
+    ax.set_ylabel('Subset')
+    ax.set_xticks(ticks=[])
+    ax.set_yticklabels(similarity_df_sorted['lowers'].tolist(), rotation=0, ha='left')
+    ax.tick_params(axis='y', which='major', pad=200)
 
     ax2 = ax.twinx()  # Create a second y-axis that shares the same x-axis
     ax2.set_yticks(ax.get_yticks())  # Ensure the ticks are aligned
-    ax2.set_yticklabels(similarity_df_sorted['lowers'].tolist(), rotation=0, ha='left')
-    ax2.set_ylabel('Subset', rotation=270, labelpad=80)
+    ax2.set_yticklabels(similarity_df_sorted['highers'].tolist(), rotation=0, ha='left')
+    ax2.set_ylabel('Contained by', rotation=270, labelpad=80) # Adjust labelpad
 
-    ax.set_yticklabels(similarity_df_sorted['highers'].tolist(), rotation=0, ha='right')
-    ax.set_ylabel('Superset', rotation=270, labelpad=20)
-
-    plt.yticks(rotation=0)  
-    plt.tight_layout()
-    # plt.show()
-    output_path = os.path.join(results_dir,stat+'_subset_mapping')
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.yticks(rotation=0)
+    plt.tight_layout(rect=[0, 0, 0.85, 1]) # Adjust right margin for labels
+    plt.show()
 
 
 
