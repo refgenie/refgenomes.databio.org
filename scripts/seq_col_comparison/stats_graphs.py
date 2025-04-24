@@ -132,6 +132,7 @@ all_relevant_stats = ['overlap_coefficient_names',
 
 #     row_sums = heatmap_data.sum(axis=1)
 
+#TODO Ensure row sums take direction into consideration
 #     # Create row sum graph
 #     # 2. Display the row sums
 #     print(f"Sum of {stat} Scores for Each Sample:")
