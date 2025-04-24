@@ -331,3 +331,91 @@ plt.tight_layout(rect=[0, 0, 1, 0.96]) # Adjust layout to make space for suptitl
 plt.show()
 
 
+# # Another way to approach row sums
+# for stat in all_relevant_stats:
+#     #pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
+#     # 1. Get all unique sample names
+#     #all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
+
+#     # 2. Create an empty DataFrame for the heatmap, initialized with NaN
+#     #heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
+
+#     # 3. Iterate over all pairs of unique sample names (O(n^2))
+#     # for sample1 in all_samples:
+#     #     for sample2 in all_samples:
+#     #         # a. If sample1 and sample2 are the same, assign 1 to both (symmetric)
+#     #         if sample1 == sample2:
+#     #             heatmap_data.loc[sample1, sample2] = 1.0
+#     #         else:
+#     #             # b. Check if the combination exists in the original dataframe
+#     #             comparison = pep_df[
+#     #                 ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+#     #                 ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+#     #             ]
+#     #             if not comparison.empty:
+#     #                 similarity_score = comparison[stat].iloc[0]
+#     #                 heatmap_data.loc[sample1, sample2] = similarity_score
+#     #                 heatmap_data.loc[sample2, sample1] = similarity_score
+#     # for stat in all_relevant_overlap_stats[:]:
+#     df = pep["_sample_df"].copy()
+#     similarity_df_sorted = df.sort_values(by=stat, ascending=False).copy()
+#     #similarity_df_sorted = similarity_df_sorted[similarity_df_sorted[stat]].copy()
+#     comparisons = []
+#     highers = []
+#     lowers = []
+#     for index, row in similarity_df_sorted.iterrows():
+#         sample1 = row['sample_name_1']
+#         digest1 = row['digest1']
+#         sample2 = row['sample_name_2']
+#         digest2 = row['digest2']
+#         similarity = row[stat]
+
+#         # TODO need to have this not be dependent on local jsons, get from other PEP and pull from HPC storage?
+#         if get_sequence_length_local(digest1) > get_sequence_length_local(digest2):
+#             higher_value_sample = sample1
+#             compared_sample = sample2
+#         else:
+#             higher_value_sample = sample2
+#             compared_sample = sample1
+
+#         comparison_string = compared_sample + ' ⊂ ' + higher_value_sample
+#         comparisons.append(comparison_string)
+#         highers.append(higher_value_sample)
+#         lowers.append(compared_sample)
+
+#     similarity_df_sorted['comparison'] = comparisons
+#     similarity_df_sorted['highers'] = highers
+#     similarity_df_sorted['lowers'] = lowers
+
+#     heatmap_data = similarity_df_sorted.set_index('highers')[[stat]]
+
+
+
+
+# #     print(heatmap_data)
+#     row_sums = heatmap_data.sum(axis=1)
+
+# #TODO Ensure row sums take direction into consideration
+#     # Create row sum graph
+#     # 2. Display the row sums
+#     print(f"Sum of {stat} Scores for Each Sample:")
+#     print(row_sums)
+#     # 1. Sort the row sums (optional, for better visualization)
+#     row_sums_sorted = row_sums.sort_values(ascending=False)  # Sort in descending order
+
+#     # 2. Create the bar plot
+#     plt.figure(figsize=(12, 8))
+#     plt.bar(row_sums_sorted.index, row_sums_sorted.values)
+
+#     # 3. Set labels and title
+#     plt.xlabel("Sample")
+#     plt.ylabel(f"Sum of {stat}")
+#     plt.title("Total Similarity of Each Sample")
+#     plt.xticks(rotation=90, ha="right", fontsize=8)  # Rotate sample names for readability
+#     plt.tight_layout()
+
+#     # 4. Show and save the plot
+#     #plt.show()
+#     output_path = os.path.join(results_dir,stat+"_row_sums_highers")
+#     plt.savefig(output_path, dpi=300, bbox_inches='tight')
+
