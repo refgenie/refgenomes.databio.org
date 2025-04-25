@@ -1,9 +1,16 @@
+# import sys
 import os
+# import urllib.request
+# import urllib.error
+import pipestat
 from pephubclient import PEPHubClient
-from refget import ga4gh_digest
+from refget import fasta_to_digest, fasta_to_seqcol_dict, compare_seqcols, SequenceCollection,ga4gh_digest
 import json
-import networkx as nx
+
+import pandas as pd
+import seaborn as sns
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 json_files = []
@@ -12,7 +19,6 @@ if os.path.isdir("/home/drc/Downloads/jsons_from_rivanna/json/"):
         if filename.endswith(".json"):
             full_path = os.path.join("/home/drc/Downloads/jsons_from_rivanna/json/", filename)
             json_files.append(full_path)
-
 
 all_sequences_union = set()
 
@@ -42,9 +48,33 @@ for seq in all_sequences_union:
     sequence_counts.update({seq:seq_count})
     single_sequence_in_fp.update({seq:list_fps})
 
+
+
+# Convert the sequence_counts dictionary to a Pandas DataFrame for easier plotting
+sequence_counts_df = pd.DataFrame(list(sequence_counts.items()), columns=['Sequence', 'Count'])
+
+# Sort the DataFrame by count in descending order (optional, for better visualization)
+sequence_counts_df_sorted = sequence_counts_df.sort_values(by='Count', ascending=False)
+sequence_counts_df_sorted = sequence_counts_df_sorted.head(50).copy()
+# --- Plotting Sequence vs Count ---
+plt.figure(figsize=(12, 6))
+plt.bar(sequence_counts_df_sorted['Sequence'], sequence_counts_df_sorted['Count'])
+plt.xlabel("Sequence")
+plt.ylabel("Count (Number of Files Containing Sequence)")
+plt.title("Sequence Frequency Across Ref Genomes")
+plt.xticks(rotation=90, fontsize=8)
+plt.tight_layout()
+plt.show()
+
+
+
 from operator import itemgetter
 sorted_dict_ascending_ordered = dict(sorted(sequence_counts.items(), key=itemgetter(1), reverse=True))
+#print("Sorted dictionary (ascending):", sorted_dict_ascending_ordered)
 
+# Now that the dictionary is sorted
+
+#print(single_sequence_in_fp['SQ.2LEWMcieZGf9Sx4VpEeWSDcULUVHGm0w'])
 
 previous_value = None
 dict_with_intersections = {}
@@ -104,17 +134,21 @@ for key, value in dict_with_intersections.items():
 
 #print(list_tuples)
 
+
+import networkx as nx
+import matplotlib.pyplot as plt
+
 G = nx.Graph()
 
 for strings, sequences in list_tuples:
     for s in strings:
         string_node = f"string_{s}"
-        G.add_node(string_node, type="string")  
+        G.add_node(string_node, type="string")  # Label nodes with type
 
     if sequences:
-        concat_seq = "".join(sorted(sequences)) 
-        joined_seq_digest = ga4gh_digest(concat_seq)  
-        digest_node_name = f"sequence_{joined_seq_digest}"  
+        concat_seq = "".join(sorted(sequences))  # Combine sequences, sorted for consistency
+        joined_seq_digest = ga4gh_digest(concat_seq)  # Calculate digest
+        digest_node_name = f"sequence_{joined_seq_digest}"  # Consistent node naming
         if digest_node_name not in G.nodes():
             G.add_node(digest_node_name, type="sequence")
             print(f"Added sequence node: {digest_node_name}")
@@ -122,17 +156,20 @@ for strings, sequences in list_tuples:
             print(f"Sequence node already exists: {digest_node_name}")
 
         for s in strings:
-            string_node = f"string_{s}" 
-            G.add_edge(string_node, digest_node_name) 
+            string_node = f"string_{s}" #redefine string_node
+            G.add_edge(string_node, digest_node_name)  # Connect string to digest node
 
+# Visualize the graph
+pos = nx.spring_layout(G,k=0.9)  # Define node positions
 
-pos = nx.spring_layout(G,k=0.9)  
-
+# # Color nodes based on their type
 node_color = [
     "lightblue" if data["type"] == "string" else "lightcoral" for node, data in G.nodes(data=True)
 ]
 
+# Get node degrees
 node_degrees = dict(G.degree())
+
 
 #node_labels = {node: f"{node}\n(Degree: {degree})" for node, degree in node_degrees.items()}
 node_labels = {}
@@ -154,3 +191,155 @@ plt.show()
 
 
 print(f"HERE ARE ORPHAN COUNTS: {len(orphaned_keys)}")
+
+# # Plot the adjacency matrix
+nodelist = sorted(G.nodes())
+adj_matrix = nx.to_numpy_array(G, nodelist=nodelist)
+adj_df = pd.DataFrame(adj_matrix, index=nodelist, columns=nodelist)
+
+plt.figure(figsize=(10, 10))
+sns.heatmap(adj_df, cmap='binary', annot=False, cbar=False, square=True)
+plt.title("Adjacency Matrix of the Network")
+plt.xlabel("Nodes")
+plt.ylabel("Nodes")
+plt.xticks(rotation=90, fontsize=8)
+plt.yticks(rotation=0, fontsize=8)
+plt.tight_layout()
+plt.show()
+
+
+
+#Plot adjacency matrix and plot
+#-------------------------------------------
+# import matplotlib.cm as cm
+# import matplotlib.colors as colors
+# # Separate lists of string and sequence nodes
+# string_nodes = sorted([node for node, data in G.nodes(data=True) if data.get('type') == 'string'])
+# sequence_nodes = sorted([node for node, data in G.nodes(data=True) if data.get('type') == 'sequence'])
+#
+# # Create the nodelist for the adjacency matrix with strings on y and sequences on x
+# nodelist_y = string_nodes
+# nodelist_x = sequence_nodes
+# combined_nodelist = nodelist_y + nodelist_x
+#
+# # Create the adjacency matrix based on the combined nodelist
+# adj_matrix = nx.to_numpy_array(G, nodelist=combined_nodelist)
+# adj_df = pd.DataFrame(adj_matrix, index=combined_nodelist, columns=combined_nodelist)
+#
+# # Select the submatrix corresponding to strings (rows) and sequences (columns)
+# adj_df_reordered = adj_df.loc[nodelist_y, nodelist_x]
+#
+# # Get node degrees for coloring (using the original G and all nodes)
+# node_degrees = dict(G.degree())
+# max_degree = max(node_degrees.values()) if node_degrees else 1
+# min_degree = min(node_degrees.values()) if node_degrees else 0
+# norm = colors.Normalize(vmin=min_degree, vmax=max_degree)
+# cmap = cm.viridis
+#
+# plt.figure(figsize=(len(sequence_nodes) * 0.6, len(string_nodes) * 0.6)) # Adjust figure size
+#
+# sns.heatmap(adj_df_reordered, cmap='binary', annot=False, cbar=False, square=False,
+#             linewidths=0.5, linecolor='lightgray', xticklabels=True, yticklabels=True)
+#
+# # Overlay colored rectangles based on degree
+# ax = plt.gca()
+# for i, string_node in enumerate(nodelist_y):
+#     for j, sequence_node in enumerate(nodelist_x):
+#         if adj_df_reordered.loc[string_node, sequence_node] == 1:
+#             degree_string = node_degrees.get(string_node, 0)
+#             degree_sequence = node_degrees.get(sequence_node, 0)
+#             avg_degree = (degree_string + degree_sequence) / 2
+#             color = cmap(norm(avg_degree))
+#             ax.add_patch(plt.Rectangle((j, i), 1, 1, facecolor=color, edgecolor=None))
+#
+# plt.title("Adjacency Matrix (Strings vs Sequences)")
+# plt.xlabel("Sequences")
+# plt.ylabel("Strings")
+# plt.xticks(rotation=90, fontsize=8)
+# plt.yticks(rotation=0, fontsize=8)
+# plt.tight_layout()
+#
+# # Add a colorbar
+# sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
+# sm.set_array([])
+# cbar = plt.colorbar(sm, ax=ax, label='Average Node Degree')
+#
+# plt.show()
+
+# PLOT BAR CHART
+# --------------------
+
+# Separate nodes into strings and sequences
+string_nodes = [node for node, data in G.nodes(data=True) if data.get('type') == 'string']
+sequence_nodes = [node for node, data in G.nodes(data=True) if data.get('type') == 'sequence']
+
+# Get degrees for string nodes
+string_degrees = {node: G.degree(node) for node in string_nodes}
+string_df = pd.DataFrame(list(string_degrees.items()), columns=['Node', 'Degree'])
+# Sort string degrees in descending order
+string_df = string_df.sort_values(by='Degree', ascending=False)
+
+# Get degrees for sequence nodes
+sequence_degrees = {node: G.degree(node) for node in sequence_nodes}
+sequence_df = pd.DataFrame(list(sequence_degrees.items()), columns=['Node', 'Degree'])
+sequence_df = sequence_df.sort_values(by='Degree', ascending=False)
+
+# --- Plotting String Degrees ---
+plt.figure(figsize=(12, 6))  # Adjust figure size for better readability
+plt.bar(string_df['Node'], string_df['Degree'])
+plt.xlabel("Ref Genome Nodes")
+plt.ylabel("Degree")
+plt.title("Degree Distribution of Ref Genome Nodes")
+plt.xticks(rotation=90, fontsize=8)  # Rotate x-axis labels for readability
+plt.tight_layout()  # Adjust layout to prevent labels from overlapping
+plt.show()
+
+# --- Plotting Sequence Degrees ---
+plt.figure(figsize=(12, 6))  # Adjust figure size
+plt.bar(sequence_df['Node'], sequence_df['Degree'])
+plt.xlabel("Sequence Nodes")
+plt.ylabel("Degree")
+plt.title("Degree Distribution of Sequence Nodes")
+plt.xticks(rotation=90, fontsize=8)  # Rotate x-axis labels
+plt.tight_layout()
+plt.show()
+
+#
+# print(res)
+
+# import networkx as nx
+# import matplotlib.pyplot as plt
+#
+# list_of_tuples = [
+#     (["apple", "banana", "cherry"], {"apple_seq", "banana_fruit", "grape_seq"}),
+#     (["date", "elderberry"], {"date_fruit", "berry_seq"}),
+#     (["fig", "grape"], {"fig_fruit", "grape_vine"}),
+# ]
+#
+# G = nx.Graph()
+#
+# # Add nodes and edges based on your relationship criteria
+# for strings, sequences in list_of_tuples:
+#     for s in strings:
+#         G.add_node(f"string_{s}", type="string")  # Label nodes with type
+#         for seq in sequences:
+#             if s in seq:  # Example relationship: string is a substring of sequence
+#                 G.add_edge(f"string_{s}", f"sequence_{seq}")
+#             # You could add other relationship conditions here
+#
+#     for seq in sequences:
+#         G.add_node(f"sequence_{seq}", type="sequence")
+#
+# # Visualize the graph
+# pos = nx.spring_layout(G)  # Define node positions
+#
+# # Color nodes based on their type
+# node_color = [
+#     "lightblue" if data["type"] == "string" else "lightcoral" for node, data in G.nodes(data=True)
+# ]
+#
+# nx.draw(G, pos, with_labels=True, node_color=node_color, node_size=2000, font_size=10, font_weight="bold")
+# nx.draw_networkx_edge_labels(G, pos, edge_labels=nx.get_edge_attributes(G, "weight")) # If you have edge weights
+#
+# plt.title("Network Graph of Strings and Sequences")
+# plt.show()
