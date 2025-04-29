@@ -169,6 +169,11 @@ for combination in all_combinations:
     names_intersection = set1.intersection(set2)
     names_union = set1.union(set2)
 
+    set1_l = set(reloaded_dict1['lengths'])
+    set2_l = set(reloaded_dict2['lengths'])
+    lengths_intersection = set1_l.intersection(set2_l)
+    lengths_union = set1_l.union(set2_l)
+
     print(f"names intersection length: {len(names_intersection)}, names_union_length: {len(names_union)}")
 
     list_intersection_lengths = []
@@ -216,9 +221,16 @@ for combination in all_combinations:
     f1_name_len_pairs = 2*jaccard_name_len/(jaccard_name_len+1)
 
     # Test generalized f1 score
-    f1_gen_names = f_beta_score(1,len(names_intersection),len(set1.difference(set2)),len(set2.difference(set1)))
+    #f1_gen_names = f_beta_score(1,len(names_intersection),len(set1.difference(set2)),len(set2.difference(set1)))
     #f1_gen_names_2 = f_beta_score(1,len(names_intersection),len(set2.difference(set1)),len(set1.difference(set2)))                      
     #print(f1_names==f1_gen_names==f1_gen_names_2)
+
+    # Calculate F10 Scores
+    f10_names = f_beta_score(10,len(names_intersection),len(set1.difference(set2)),len(set2.difference(set1)))
+    f10_lengths = f_beta_score(10,len(lengths_intersection),len(set1_l.difference(set2_l)),len(set2_l.difference(set1_l)))
+    f10_sequences = f_beta_score(10,len(sequences_intersections),len(set_sequences_1.difference(set_sequences_2)),len(set_sequences_2.difference(set_sequences_1)))
+    #f10_weighted_lengths = 
+    f10_name_len_pairs = f_beta_score(10,len(name_len_pairs_intersection),len(set_of_name_len_pairs_1.difference(set_of_name_len_pairs_2)),len(set_of_name_len_pairs_2.difference(set_of_name_len_pairs_1)))
 
     comparison_str = combination[0] +"_vs_" + combination[1]
     psm_output.report(record_identifier=comparison_str, values={"digest1":digest1,"sample_name_1":combination[0],
@@ -240,6 +252,11 @@ for combination in all_combinations:
                                                                 "overlap_coefficient_lengths_max":overlap_coefficient_lengths_max,
                                                                 "overlap_coefficient_sequences_max": overlap_coeff_sequences_max, 
                                                                 "overlap_coeff_name_len_max":overlap_coeff_name_len_max,
+                                                                "f10_names":f10_names,
+                                                                "f10_lengths":f10_lengths,
+                                                                "f10_sequences":f10_sequences,
+                                                                #"f10_weighted_lengths":f1_weighted_lengths,
+                                                                "f10_name_len_pairs":f10_name_len_pairs,
                                                                 })
     combination_count+=1
 
