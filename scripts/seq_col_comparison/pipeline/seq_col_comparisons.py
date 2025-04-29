@@ -27,6 +27,12 @@ def calc_overlap_coeff(A,B, A_B_intersection):
     return overlap
 
 
+def calc_overlap_coeff_MAX(A,B, A_B_intersection):
+    minimum_value = max(abs(A),abs(B))
+    overlap = abs(A_B_intersection)/minimum_value
+    return overlap
+
+
 def calc_jaccard_similarity(A_B_intersection, A_B_union):
     jaccard = abs(A_B_intersection)/abs(A_B_union)
     return jaccard
@@ -102,10 +108,12 @@ for combination in all_combinations:
     # overlap for names
     overlap_coefficient_names = calc_overlap_coeff(comparison['array_elements']['a']['names'],comparison['array_elements']['b']['names'],comparison['array_elements']['a_and_b']['names'])
     print(f"Here is the overlap coefficient for names: {overlap_coefficient_names}")
+    overlap_coefficient_names_max = calc_overlap_coeff_MAX(comparison['array_elements']['a']['names'],comparison['array_elements']['b']['names'],comparison['array_elements']['a_and_b']['names'])
 
     # overlap for lengths
     overlap_coefficient_lengths = calc_overlap_coeff(comparison['array_elements']['a']['lengths'],comparison['array_elements']['b']['lengths'],comparison['array_elements']['a_and_b']['lengths'])
     print(f"Here is the overlap coefficient for lengths: {overlap_coefficient_names}")
+    overlap_coefficient_lengths_max = calc_overlap_coeff_MAX(comparison['array_elements']['a']['lengths'],comparison['array_elements']['b']['lengths'],comparison['array_elements']['a_and_b']['lengths'])
 
     # jaccard similarity for names, intersection over union where we can find the union -> A+B-ABintersection
     jaccard_names = calc_jaccard_similarity(comparison['array_elements']['a_and_b']['names'],(comparison['array_elements']['a']['names']+comparison['array_elements']['b']['names']-comparison['array_elements']['a_and_b']['names']))
@@ -127,6 +135,7 @@ for combination in all_combinations:
 
     jaccard_sequences = calc_jaccard_similarity(sequences_intersection_length,sequences_union_length)
     overlap_coeff_sequences = calc_overlap_coeff(len(set_sequences_1),len(set_sequences_2),sequences_intersection_length)
+    overlap_coeff_sequences_max =calc_overlap_coeff_MAX(len(set_sequences_1),len(set_sequences_2),sequences_intersection_length)
     print(f"Here is the jaccard similarity for sequences: {jaccard_sequences}")
     print(f"Here is the overlap coeff for sequences: {overlap_coeff_sequences}")
 
@@ -177,6 +186,7 @@ for combination in all_combinations:
 
     jaccard_name_len = calc_jaccard_similarity(len(name_len_pairs_intersection),len(name_len_pairs_union))
     overlap_coeff_name_len = calc_overlap_coeff(len(set_of_name_len_pairs_1),len(set_of_name_len_pairs_2),len(name_len_pairs_intersection))
+    overlap_coeff_name_len_max = calc_overlap_coeff_MAX(len(set_of_name_len_pairs_1),len(set_of_name_len_pairs_2),len(name_len_pairs_intersection))
     print(f"Here is the jaccard similarity for sequences: {jaccard_sequences}")
     print(f"Here is the overlap coeff for sequences: {overlap_coeff_sequences}")
 
@@ -205,6 +215,10 @@ for combination in all_combinations:
                                                                 "f1_sequences":f1_sequences,
                                                                 "f1_weighted_lengths":f1_weighted_lengths,
                                                                 "f1_name_len_pairs":f1_name_len_pairs,
+                                                                "overlap_coefficient_names_max":overlap_coefficient_names_max,
+                                                                "overlap_coefficient_lengths_max":overlap_coefficient_lengths_max,
+                                                                "overlap_coefficient_sequences_max": overlap_coeff_sequences_max, 
+                                                                "overlap_coeff_name_len_max":overlap_coeff_name_len_max,
                                                                 })
     combination_count+=1
 
