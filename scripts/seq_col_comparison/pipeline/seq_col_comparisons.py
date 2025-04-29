@@ -12,10 +12,10 @@ from pephubclient import PEPHubClient
 from itertools import combinations
 from pprint import pprint
 
-# looper_config = sys.argv[1]  
-# results_pep = sys.argv[2]
-looper_config = "donaldcampbelljr/human_seqcol_digests_local:default"  # input PEP
-results_pep = "donaldcampbelljr/test_seq_col_results:default"
+looper_config = sys.argv[1]  
+results_pep = sys.argv[2]
+# looper_config = "donaldcampbelljr/human_seqcol_digests_local:default"  # input PEP
+# results_pep = "donaldcampbelljr/test_seq_col_results:default"
 
 print(f"here is the looper config: {looper_config}")
 
