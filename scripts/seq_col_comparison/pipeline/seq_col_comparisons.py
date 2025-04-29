@@ -45,6 +45,22 @@ def calc_jaccard_similarity(A_B_intersection, A_B_union):
 #     # d = the number of attributes that equal 0 for both objects i and j but we do not need to consider these.
 #     return (2*tp)/(2*tp+fp+fn)
 
+def f_beta_score(beta,tp,fp,fn):
+    # tp = a = the number of attributes that equal 1 for both objects i and j
+    # fp = b = the number of attributes that equal 0 for object i but equal 1 for object j
+    # fn = c = the number of attributes that equal 1 for object i but equal 0 for object j
+    # d = the number of attributes that equal 0 for both objects i and j but we do not need to consider these.
+
+    precision = tp/(tp+fp)
+    recall = tp/(tp+fn)
+
+    try:
+        f_beta = ((1+beta**2)*precision*recall)/(((beta**2)*precision)+recall)
+    except ZeroDivisionError:
+        f_beta = 0
+
+    return f_beta
+
 def calc_weighted_jaccard(list_intersection_lengths, list_union_lengths):
     intersection_total = 0
     union_total = 0
@@ -198,6 +214,11 @@ for combination in all_combinations:
     f1_sequences = 2*jaccard_sequences/(jaccard_sequences+1)
     f1_weighted_lengths = 2*jaccard_similarity_weighted_length/(jaccard_similarity_weighted_length+1)
     f1_name_len_pairs = 2*jaccard_name_len/(jaccard_name_len+1)
+
+    # Test generalized f1 score
+    f1_gen_names = f_beta_score(1,len(names_intersection),len(set1.difference(set2)),len(set2.difference(set1)))
+    #f1_gen_names_2 = f_beta_score(1,len(names_intersection),len(set2.difference(set1)),len(set1.difference(set2)))                      
+    #print(f1_names==f1_gen_names==f1_gen_names_2)
 
     comparison_str = combination[0] +"_vs_" + combination[1]
     psm_output.report(record_identifier=comparison_str, values={"digest1":digest1,"sample_name_1":combination[0],
