@@ -21,6 +21,7 @@ import numpy as np
 
 
 
+
 #---- for running locally only
 # json_files = []
 # if os.path.isdir("/home/drc/Downloads/jsons_from_rivanna/json/"):
@@ -48,7 +49,23 @@ pep = phc.load_project(results_pep)
 print(pep["_sample_df"])
 
 pep_df = pep["_sample_df"]
-print(pep_df)
+#print(pep_df)
+
+ncbi_target_samples = [  
+"GRCh38.p14-fasta-no-alt-analysis",
+"GRCh37.p13-fasta-no-alt-analysis",
+"GRCh37.p13-fasta-genomic",
+"GRCh38.p14-fasta-full-analysis-plus-hs38d1",
+"GRCh37.p13-fasta-full-analysis",
+"GRCh38.p14-fasta-no-alt-plus-hs38d1",
+"GRCh38.p14-fasta-genomic",
+"GRCh38.p14-fasta-full-analysis",
+]
+
+# Pre-filter the DataFrame
+pep_df = pep_df[
+    ((pep_df['sample_name_1'].isin(ncbi_target_samples)) & (pep_df['sample_name_2'].isin(ncbi_target_samples)))
+]
 #new_df = pep_df.copy()
 
 
@@ -484,7 +501,7 @@ for all_relevant_stats in stats_groups:
 #     plt.show()
 
 # PLOT MOW MEDIAN CHANGES BASED ON JACCARD_NAME_LEN
-df = pep["_sample_df"].copy()
+df = pep_df
 
 
 stats = ["Mean", "Median"]
@@ -653,5 +670,66 @@ for stat in relevant_stats:
 
     plt.tight_layout()
     output_path = os.path.join(results_dir, f'scatter_hexbin_{bottom_stat}_vs_{top_stat}')
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.show()
+
+
+
+# Plot bar graph freq distribution
+relevant_stats = [("f10_sequences", "f10_name_len_pairs")]
+for stat_pair in relevant_stats:
+    fig, ax = plt.subplots(figsize=(10, 6))  # Adjust figure size
+
+    bottom_stat, top_stat = stat_pair
+
+    pep_df[bottom_stat] = pd.to_numeric(pep_df[bottom_stat], errors='coerce')
+    pep_df[top_stat] = pd.to_numeric(pep_df[top_stat], errors='coerce')
+
+    # Collect all values for both statistics
+    bottom_values = []
+    top_values = []
+    all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
+
+    for i in range(len(all_samples)):
+        for j in range(i + 1, len(all_samples)):
+            sample1 = all_samples[i]
+            sample2 = all_samples[j]
+
+            comparison = pep_df[
+                ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+                ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+            ]
+
+            if not comparison.empty:
+                bottom_values.append(comparison[bottom_stat].iloc[0])
+                top_values.append(comparison[top_stat].iloc[0])
+
+    # Define bins for the frequency plot
+    bins = np.linspace(0, 1, 21)  # Create 20 bins from 0 to 1
+
+    # Calculate frequencies for both statistics
+    freq_bottom, _ = np.histogram(bottom_values, bins=bins)
+    freq_top, _ = np.histogram(top_values, bins=bins)
+
+    # Set the width of the bars
+    width = 0.35
+
+    # Set the positions of the bars on the x-axis
+    x = np.arange(len(freq_bottom))
+
+    # Create the bar plot
+    rects1 = ax.bar(x - width/2, freq_bottom, width, label=bottom_stat, color='skyblue')
+    rects2 = ax.bar(x + width/2, freq_top, width, label=top_stat, color='salmon')
+
+    # Add labels, title, and legend
+    ax.set_xlabel('Overlap Coefficient')
+    ax.set_ylabel('Frequency')
+    ax.set_title(f'Frequency Distribution of {bottom_stat} and {top_stat}')
+    ax.set_xticks(x)
+    ax.set_xticklabels([f'{b:.2f}-{(b + (bins[1] - bins[0])):.2f}' for b in bins[:-1]], rotation=45, ha='right')
+    ax.legend()
+
+    fig.tight_layout()
+    output_path = os.path.join(results_dir, f'frequency_plot_{bottom_stat}_vs_{top_stat}')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.show()
