@@ -634,10 +634,12 @@ for stat in relevant_stats:
                 y_values.append(comparison[top_stat].iloc[0])
 
     # Create the scatter plot
-    ax.scatter(x_values, y_values, alpha=0.5, label='Data Points',color='deeppink')  # Adjust alpha for transparency
+    
 
     # Create the hexbin plot on top (optional, but shows density)
-    hb = ax.hexbin(x_values, y_values, gridsize=30, cmap='viridis', alpha=0.5, label='Density')  # Adjust gridsize and alpha
+    hb = ax.hexbin(x_values, y_values, gridsize=10, cmap='plasma', alpha=0.75, label='Density')  # Adjust gridsize and alpha
+
+    ax.scatter(x_values, y_values, alpha=1.0, label='Data Points',color='skyblue')  # Adjust alpha for transparency
 
     # Add a colorbar for the hexbin plot
     cb = fig.colorbar(hb, ax=ax)
