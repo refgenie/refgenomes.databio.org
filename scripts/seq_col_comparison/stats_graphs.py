@@ -527,69 +527,72 @@ for stat in stats:
 
 #### PLOT OVERLAP_COEFFICIENT vs OVERLAP_MAX
 relevant_stats = [("overlap_coefficient_sequences", "overlap_coefficient_sequences_max")]
+#relevant_stats = [("overlap_coefficient_sequences", "overlap_coefficient_sequences_max"),("overlap_coefficient_sequences", "jaccard_sequences")]
 
-fig, ax = plt.subplots(figsize=(14, 12))  # Create a single subplot
+for stat in relevant_stats:
 
-bottom_stat, top_stat = relevant_stats[0]  # Get the stats
+    fig, ax = plt.subplots(figsize=(14, 12))  # Create a single subplot
 
-pep_df[bottom_stat] = pd.to_numeric(pep_df[bottom_stat], errors='coerce')
-pep_df[top_stat] = pd.to_numeric(pep_df[top_stat], errors='coerce')
+    bottom_stat, top_stat = stat  # Get the stats
 
-# 1. Get all unique sample names
-all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
-num_samples = len(all_samples)
+    pep_df[bottom_stat] = pd.to_numeric(pep_df[bottom_stat], errors='coerce')
+    pep_df[top_stat] = pd.to_numeric(pep_df[top_stat], errors='coerce')
 
-# 2. Create an empty DataFrame for the combined heatmap
-combined_heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
+    # 1. Get all unique sample names
+    all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
+    num_samples = len(all_samples)
 
-for row_idx, sample1 in enumerate(all_samples):
-    for col_idx, sample2 in enumerate(all_samples):
-        if col_idx >= row_idx:  # Upper triangle (including diagonal)
-            if sample1 == sample2:
-                combined_heatmap_data.loc[sample1, sample2] = np.nan  # White diagonal
-            else:
-                comparison = pep_df[
-                    ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
-                    ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
-                ]
-                if not comparison.empty:
-                    similarity_score = comparison[top_stat].iloc[0]
-                    combined_heatmap_data.loc[sample1, sample2] = similarity_score
+    # 2. Create an empty DataFrame for the combined heatmap
+    combined_heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
+
+    for row_idx, sample1 in enumerate(all_samples):
+        for col_idx, sample2 in enumerate(all_samples):
+            if col_idx >= row_idx:  # Upper triangle (including diagonal)
+                if sample1 == sample2:
+                    combined_heatmap_data.loc[sample1, sample2] = np.nan  # White diagonal
                 else:
-                    combined_heatmap_data.loc[sample1, sample2] = np.nan
-        else:  # Lower triangle
-            if sample1 == sample2:
-                combined_heatmap_data.loc[sample1, sample2] = 1.0  # Different diagonal value if needed
-            else:
-                comparison = pep_df[
-                    ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
-                    ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
-                ]
-                if not comparison.empty:
-                    similarity_score = comparison[bottom_stat].iloc[0]
-                    combined_heatmap_data.loc[sample1, sample2] = similarity_score
+                    comparison = pep_df[
+                        ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+                        ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+                    ]
+                    if not comparison.empty:
+                        similarity_score = comparison[top_stat].iloc[0]
+                        combined_heatmap_data.loc[sample1, sample2] = similarity_score
+                    else:
+                        combined_heatmap_data.loc[sample1, sample2] = np.nan
+            else:  # Lower triangle
+                if sample1 == sample2:
+                    combined_heatmap_data.loc[sample1, sample2] = 1.0  # Different diagonal value if needed
                 else:
-                    combined_heatmap_data.loc[sample1, sample2] = np.nan
+                    comparison = pep_df[
+                        ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+                        ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+                    ]
+                    if not comparison.empty:
+                        similarity_score = comparison[bottom_stat].iloc[0]
+                        combined_heatmap_data.loc[sample1, sample2] = similarity_score
+                    else:
+                        combined_heatmap_data.loc[sample1, sample2] = np.nan
 
-combined_heatmap_data = combined_heatmap_data.apply(pd.to_numeric, errors='coerce')
+    combined_heatmap_data = combined_heatmap_data.apply(pd.to_numeric, errors='coerce')
 
-# Create the heatmap
-sns.heatmap(combined_heatmap_data, annot=False, cmap='viridis', fmt=".2f", linewidths=.2,
-            cbar_kws={'label': f'{bottom_stat} (Lower), {top_stat} (Upper)'},
-            annot_kws={"size": 3}, vmin=0.0, vmax=1.0, ax=ax)
-ax.set_title(f'Combined Comparison Heatmap: {bottom_stat} (Lower), {top_stat} (Upper)')
+    # Create the heatmap
+    sns.heatmap(combined_heatmap_data, annot=False, cmap='viridis', fmt=".2f", linewidths=.2,
+                cbar_kws={'label': f'{bottom_stat} (Lower), {top_stat} (Upper)'},
+                annot_kws={"size": 3}, vmin=0.0, vmax=1.0, ax=ax)
+    ax.set_title(f'Combined Comparison Heatmap: {bottom_stat} (Lower), {top_stat} (Upper)')
 
-# Center the ticks
-ax.set_xticks(np.arange(num_samples) + 0.5)
-ax.set_yticks(np.arange(num_samples) + 0.5)
+    # Center the ticks
+    ax.set_xticks(np.arange(num_samples) + 0.5)
+    ax.set_yticks(np.arange(num_samples) + 0.5)
 
-# Set the labels to correspond to the new tick positions
-ax.set_xticklabels(all_samples, rotation=90, fontsize=8, ha='center')
-ax.set_yticklabels(all_samples, rotation=0, fontsize=8, va='center')
-ax.tick_params(axis='both', which='major', labelsize=8)
+    # Set the labels to correspond to the new tick positions
+    ax.set_xticklabels(all_samples, rotation=90, fontsize=8, ha='center')
+    ax.set_yticklabels(all_samples, rotation=0, fontsize=8, va='center')
+    ax.tick_params(axis='both', which='major', labelsize=8)
 
-plt.suptitle(f'Comparison Heatmap - {species_title}', fontsize=16, y=1.02)
-plt.tight_layout(rect=[0, 0, 1, 0.96])
-output_path = os.path.join(results_dir, f'combined_overlap_heatmap')
-plt.savefig(output_path, dpi=300, bbox_inches='tight')
-plt.show()
+    plt.suptitle(f'Comparison Heatmap - {species_title}', fontsize=16, y=1.02)
+    plt.tight_layout(rect=[0, 0, 1, 0.96])
+    output_path = os.path.join(results_dir, f'combined_overlap_heatmap'+bottom_stat+top_stat)
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.show()
