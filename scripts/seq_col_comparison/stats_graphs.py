@@ -263,77 +263,71 @@ print(pep_df)
 
 #### PLOT MULTIPLE SUBPLOTS
 
-all_relevant_stats = [
-                    #   'overlap_coefficient_names',	
-                    #   'overlap_coefficient_lengths',
-                    #   'overlap_coefficient_sequences',
-                    #   'overlap_coeff_name_len',	
-                    #   'jaccard_names', 
-                    #   'jaccard_lengths', 
-                    #   'jaccard_similarity_weighted_length', ''
-                    #   'jaccard_sequences',
-                    #   'jaccard_name_len', 
-                      'f10_names',
+stats_groups = [['f1_names',
+                      'f1_lengths',
+                      'f1_sequences',
+                      'f1_name_len_pairs',
+                      ],['f10_names',
                       'f10_lengths',
                       'f10_sequences',
-                      'f10_name_len_pairs'
-                      ]
-#all_relevant_stats = ['jaccard_names']
+                      'f10_name_len_pairs',
+                      ]]
 
-num_plots = len(all_relevant_stats)
-fig, axes = plt.subplots(1, num_plots, figsize=(6 * num_plots, 6))
+for all_relevant_stats in stats_groups:
+    num_plots = len(all_relevant_stats)
+    fig, axes = plt.subplots(1, num_plots, figsize=(6 * num_plots, 6))
 
-for i, stat in enumerate(all_relevant_stats):
-    pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
-    # 1. Get all unique sample names
-    all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
+    for i, stat in enumerate(all_relevant_stats):
+        pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
+        # 1. Get all unique sample names
+        all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
 
-    # 2. Create an empty DataFrame for the heatmap, initialized with NaN
-    heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
+        # 2. Create an empty DataFrame for the heatmap, initialized with NaN
+        heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
 
-    for row_idx, sample1 in enumerate(all_samples):
-        for col_idx, sample2 in enumerate(all_samples):
-            if col_idx >= row_idx:  # Condition to select the upper triangle (including diagonal)
-                if sample1 == sample2:
-                    heatmap_data.loc[sample1, sample2] = 1.0
-                else:
-                    comparison = pep_df[
-                        ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
-                        ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
-                    ]
-                    if not comparison.empty:
-                        similarity_score = comparison[stat].iloc[0]
-                        heatmap_data.loc[sample1, sample2] = similarity_score
+        for row_idx, sample1 in enumerate(all_samples):
+            for col_idx, sample2 in enumerate(all_samples):
+                if col_idx >= row_idx:  # Condition to select the upper triangle (including diagonal)
+                    if sample1 == sample2:
+                        heatmap_data.loc[sample1, sample2] = 1.0
                     else:
-                        heatmap_data.loc[sample1, sample2] = np.nan
-            else:
-                heatmap_data.loc[sample1, sample2] = np.nan
+                        comparison = pep_df[
+                            ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+                            ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+                        ]
+                        if not comparison.empty:
+                            similarity_score = comparison[stat].iloc[0]
+                            heatmap_data.loc[sample1, sample2] = similarity_score
+                        else:
+                            heatmap_data.loc[sample1, sample2] = np.nan
+                else:
+                    heatmap_data.loc[sample1, sample2] = np.nan
 
 
 
-    #print(heatmap_data)
-    heatmap_data = heatmap_data.apply(pd.to_numeric, errors='coerce')
-    ax = axes[i]
-    # 4. Create the heatmap
-    #plt.figure(figsize=(18, 15))  # Adjust figure size as needed
-    sns.heatmap(heatmap_data, annot=False, cmap='viridis', fmt=".2f", linewidths=.2, cbar_kws={'label': stat},annot_kws={"size": 3},vmin=0.0, vmax=1.0, ax=ax)
-    ax.set_title(f'{stat} Heatmap')
-    ax.set_xticks(range(len(all_samples)))
-    ax.set_yticks(range(len(all_samples)))
-    if i==0:
-        ax.set_yticklabels(all_samples, rotation=0, fontsize=2)
-    ax.tick_params(axis='both', which='major', labelsize=8)
-    ax.set_xticklabels(all_samples, rotation=90, fontsize=2)
-    #plt.tight_layout()
+        #print(heatmap_data)
+        heatmap_data = heatmap_data.apply(pd.to_numeric, errors='coerce')
+        ax = axes[i]
+        # 4. Create the heatmap
+        #plt.figure(figsize=(18, 15))  # Adjust figure size as needed
+        sns.heatmap(heatmap_data, annot=False, cmap='viridis', fmt=".2f", linewidths=.2, cbar_kws={'label': stat},annot_kws={"size": 3},vmin=0.0, vmax=1.0, ax=ax)
+        ax.set_title(f'{stat} Heatmap')
+        ax.set_xticks(range(len(all_samples)))
+        ax.set_yticks(range(len(all_samples)))
+        if i==0:
+            ax.set_yticklabels(all_samples, rotation=0, fontsize=2)
+        ax.tick_params(axis='both', which='major', labelsize=8)
+        ax.set_xticklabels(all_samples, rotation=90, fontsize=2)
+        #plt.tight_layout()
+        #plt.show()
+        # output_path = os.path.join(results_dir,stat)
+        # #plt.savefig(output_path, dpi=300, bbox_inches='tight')
+        # print(f"Heatmap saved to: {output_path}")
+    plt.suptitle(f'Comparison Heatmaps - {species_title}', fontsize=16, y=1.02) # Add a suptitle for the entire figure
+    plt.tight_layout(rect=[0, 0, 1, 0.96]) # Adjust layout to make space for suptitle
     #plt.show()
-    # output_path = os.path.join(results_dir,stat)
-    # #plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    # print(f"Heatmap saved to: {output_path}")
-plt.suptitle(f'Comparison Heatmaps - {species_title}', fontsize=16, y=1.02) # Add a suptitle for the entire figure
-plt.tight_layout(rect=[0, 0, 1, 0.96]) # Adjust layout to make space for suptitle
-#plt.show()
-output_path = os.path.join(results_dir,stat)
-plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    output_path = os.path.join(results_dir,stat)
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
 
 
 # # Another way to approach row sums
