@@ -596,3 +596,60 @@ for stat in relevant_stats:
     output_path = os.path.join(results_dir, f'combined_overlap_heatmap'+bottom_stat+top_stat)
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.show()
+
+# Plot Hexbin ScatterPlot
+
+# Assuming pep_df, results_dir, and species_title are defined elsewhere
+
+relevant_stats = [("f10_sequences", "f10_name_len_pairs")]
+# relevant_stats = [("overlap_coefficient_sequences", "overlap_coefficient_sequences_max"),("overlap_coefficient_sequences", "jaccard_sequences")]
+
+for stat in relevant_stats:
+    fig, ax = plt.subplots(figsize=(10, 8))  # Adjust figure size
+
+    bottom_stat, top_stat = stat  # Get the stats
+
+    pep_df[bottom_stat] = pd.to_numeric(pep_df[bottom_stat], errors='coerce')
+    pep_df[top_stat] = pd.to_numeric(pep_df[top_stat], errors='coerce')
+
+    # Create lists to store the paired data points
+    x_values = []
+    y_values = []
+
+    # Iterate through all unique sample pairs (avoiding duplicates and self-comparisons)
+    all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
+
+    for i in range(len(all_samples)):
+        for j in range(i + 1, len(all_samples)):
+            sample1 = all_samples[i]
+            sample2 = all_samples[j]
+
+            comparison = pep_df[
+                ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+                ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+            ]
+
+            if not comparison.empty:
+                x_values.append(comparison[bottom_stat].iloc[0])
+                y_values.append(comparison[top_stat].iloc[0])
+
+    # Create the scatter plot
+    ax.scatter(x_values, y_values, alpha=0.5, label='Data Points',color='deeppink')  # Adjust alpha for transparency
+
+    # Create the hexbin plot on top (optional, but shows density)
+    hb = ax.hexbin(x_values, y_values, gridsize=30, cmap='viridis', alpha=0.5, label='Density')  # Adjust gridsize and alpha
+
+    # Add a colorbar for the hexbin plot
+    cb = fig.colorbar(hb, ax=ax)
+    cb.set_label('Count')
+
+    # Set labels and title
+    ax.set_xlabel(bottom_stat)
+    ax.set_ylabel(top_stat)
+    ax.set_title(f'Scatter and Hexbin Plot of {bottom_stat} vs {top_stat}')
+    ax.legend()  # Show the legend
+
+    plt.tight_layout()
+    output_path = os.path.join(results_dir, f'scatter_hexbin_{bottom_stat}_vs_{top_stat}')
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.show()
