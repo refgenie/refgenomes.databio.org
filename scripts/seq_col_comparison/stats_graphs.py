@@ -273,66 +273,67 @@ all_relevant_stats = [
                     #   'jaccard_similarity_weighted_length', ''
                     #   'jaccard_sequences',
                     #   'jaccard_name_len', 
-                      'f1_names',
-                      'f1_lengths',
-                      'f1_sequences',
-                      'f1_weighted_lengths',
-                      'f1_name_len_pairs'
+                      'f10_names',
+                      'f10_lengths',
+                      'f10_sequences',
+                      'f10_name_len_pairs'
                       ]
 #all_relevant_stats = ['jaccard_names']
 
-# num_plots = len(all_relevant_stats)
-# fig, axes = plt.subplots(1, num_plots, figsize=(8 * num_plots, 3))
+num_plots = len(all_relevant_stats)
+fig, axes = plt.subplots(1, num_plots, figsize=(6 * num_plots, 6))
 
-# for i, stat in enumerate(all_relevant_stats):
-#     pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
-#     # 1. Get all unique sample names
-#     all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
+for i, stat in enumerate(all_relevant_stats):
+    pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
+    # 1. Get all unique sample names
+    all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
 
-#     # 2. Create an empty DataFrame for the heatmap, initialized with NaN
-#     heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
+    # 2. Create an empty DataFrame for the heatmap, initialized with NaN
+    heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
 
-#     for row_idx, sample1 in enumerate(all_samples):
-#         for col_idx, sample2 in enumerate(all_samples):
-#             if col_idx >= row_idx:  # Condition to select the upper triangle (including diagonal)
-#                 if sample1 == sample2:
-#                     heatmap_data.loc[sample1, sample2] = 1.0
-#                 else:
-#                     comparison = pep_df[
-#                         ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
-#                         ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
-#                     ]
-#                     if not comparison.empty:
-#                         similarity_score = comparison[stat].iloc[0]
-#                         heatmap_data.loc[sample1, sample2] = similarity_score
-#                     else:
-#                         heatmap_data.loc[sample1, sample2] = np.nan
-#             else:
-#                 heatmap_data.loc[sample1, sample2] = np.nan
+    for row_idx, sample1 in enumerate(all_samples):
+        for col_idx, sample2 in enumerate(all_samples):
+            if col_idx >= row_idx:  # Condition to select the upper triangle (including diagonal)
+                if sample1 == sample2:
+                    heatmap_data.loc[sample1, sample2] = 1.0
+                else:
+                    comparison = pep_df[
+                        ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+                        ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+                    ]
+                    if not comparison.empty:
+                        similarity_score = comparison[stat].iloc[0]
+                        heatmap_data.loc[sample1, sample2] = similarity_score
+                    else:
+                        heatmap_data.loc[sample1, sample2] = np.nan
+            else:
+                heatmap_data.loc[sample1, sample2] = np.nan
 
 
 
-#     #print(heatmap_data)
-#     heatmap_data = heatmap_data.apply(pd.to_numeric, errors='coerce')
-#     ax = axes[i]
-#     # 4. Create the heatmap
-#     #plt.figure(figsize=(18, 15))  # Adjust figure size as needed
-#     sns.heatmap(heatmap_data, annot=False, cmap='viridis', fmt=".2f", linewidths=.2, cbar_kws={'label': stat},annot_kws={"size": 3},vmin=0.0, vmax=1.0, ax=ax)
-#     ax.set_title(f'{stat} Heatmap')
-#     ax.set_xticks(range(len(all_samples)))
-#     ax.set_yticks(range(len(all_samples)))
-#     if i==0:
-#         ax.set_yticklabels(all_samples, rotation=0, fontsize=2)
-#     ax.tick_params(axis='both', which='major', labelsize=8)
-#     ax.set_xticklabels(all_samples, rotation=90, fontsize=2)
-#     #plt.tight_layout()
-#     #plt.show()
-#     # output_path = os.path.join(results_dir,stat)
-#     # #plt.savefig(output_path, dpi=300, bbox_inches='tight')
-#     # print(f"Heatmap saved to: {output_path}")
-# plt.suptitle(f'Comparison Heatmaps - {species_title}', fontsize=16, y=1.02) # Add a suptitle for the entire figure
-# plt.tight_layout(rect=[0, 0, 1, 0.96]) # Adjust layout to make space for suptitle
-# plt.show()
+    #print(heatmap_data)
+    heatmap_data = heatmap_data.apply(pd.to_numeric, errors='coerce')
+    ax = axes[i]
+    # 4. Create the heatmap
+    #plt.figure(figsize=(18, 15))  # Adjust figure size as needed
+    sns.heatmap(heatmap_data, annot=False, cmap='viridis', fmt=".2f", linewidths=.2, cbar_kws={'label': stat},annot_kws={"size": 3},vmin=0.0, vmax=1.0, ax=ax)
+    ax.set_title(f'{stat} Heatmap')
+    ax.set_xticks(range(len(all_samples)))
+    ax.set_yticks(range(len(all_samples)))
+    if i==0:
+        ax.set_yticklabels(all_samples, rotation=0, fontsize=2)
+    ax.tick_params(axis='both', which='major', labelsize=8)
+    ax.set_xticklabels(all_samples, rotation=90, fontsize=2)
+    #plt.tight_layout()
+    #plt.show()
+    # output_path = os.path.join(results_dir,stat)
+    # #plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    # print(f"Heatmap saved to: {output_path}")
+plt.suptitle(f'Comparison Heatmaps - {species_title}', fontsize=16, y=1.02) # Add a suptitle for the entire figure
+plt.tight_layout(rect=[0, 0, 1, 0.96]) # Adjust layout to make space for suptitle
+#plt.show()
+output_path = os.path.join(results_dir,stat)
+plt.savefig(output_path, dpi=300, bbox_inches='tight')
 
 
 # # Another way to approach row sums
@@ -426,7 +427,7 @@ all_relevant_stats = [
 
 
 
-# CREATE A SPECIAL LOOK AT JACCARD_SEQUENCES when JACCARD_NAME_LEN is perfect
+#CREATE A SPECIAL LOOK AT JACCARD_SEQUENCES when JACCARD_NAME_LEN is perfect
 
 # df = pep["_sample_df"]
 
@@ -483,36 +484,48 @@ all_relevant_stats = [
 #     # ax.set_yticklabels(rotation=0, ha='left')
 #     # ax.tick_params(axis='y', which='major', pad=200)
 #     # ax.text(0.5, 1.05, 'Left Ref ⊂ Right Ref', ha='center', va='top', transform=ax.transAxes,fontweight='bold')
-#     output_path = os.path.join(results_dir,stat+'_vs_name_len1')
-#     plt.savefig(output_path, dpi=300, bbox_inches='tight')
+#     # output_path = os.path.join(results_dir,stat+'_vs_name_len1')
+#     # plt.savefig(output_path, dpi=300, bbox_inches='tight')
 #     plt.show()
 
-# # PLOT MOW MEDIAN CHANGES BASED ON JACCARD_NAME_LEN
-# df = pep["_sample_df"].copy()
+# PLOT MOW MEDIAN CHANGES BASED ON JACCARD_NAME_LEN
+df = pep["_sample_df"].copy()
 
-# # --- Calculate and Plot Median ---
-# plt.figure(figsize=(10, 6))  # Adjust figure size as needed
 
-# # Create a list of unique jaccard_name_len values
-# #unique_jaccard_lengths = sorted(df['jaccard_name_len'].unique())
-# unique_jaccard_lengths = [0.0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1.0]
+stats = ["Mean", "Median"]
 
-# # Calculate and store medians for each jaccard_name_len
-# medians = []
-# for length in unique_jaccard_lengths:
-#     median_value = df[(df['jaccard_name_len'] >= length) & (df['jaccard_name_len'] <= (length + 0.99))]['jaccard_sequences'].mean()
-#     medians.append(median_value)
+for stat in stats:
+    # --- Calculate and Plot Median ---
+    plt.figure(figsize=(10, 6))  # Adjust figure size as needed
 
-# # Create the bar plot
-# plt.plot(unique_jaccard_lengths, medians, marker='o', linestyle='-') # Added marker and linestyle
+    # Create a list of unique jaccard_name_len values
+    #unique_jaccard_lengths = sorted(df['jaccard_name_len'].unique())
+    unique_jaccard_lengths = [0.0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1.0]
 
-# # Add labels and title
-# plt.xlabel('Jaccard Name Length')
-# plt.ylabel('Mean Jaccard Sequence Similarity')
-# plt.title('Mean Jaccard Sequence Similarity vs. Jaccard Name Length')
-# plt.xticks(unique_jaccard_lengths)  # Ensure all unique lengths are shown on x-axis
+    # Calculate and store medians for each jaccard_name_len
+    calculated_stats = []
+    counts = []  # Store the counts for each bin
+    for length in unique_jaccard_lengths:
+        bin_data = df[(df['jaccard_name_len'] > (length - 0.05)) & (df['jaccard_name_len'] <= (length + 0.05))]['jaccard_sequences']
+        if stat == "Median":
+            calculated_stats.append(bin_data.median())
+        elif stat == "Mean":
+            calculated_stats.append(bin_data.mean())
+        counts.append(len(bin_data))  # Count the data points
+                           
+    # Create the bar plot
+    plt.bar(unique_jaccard_lengths, calculated_stats, width=0.08) # Added marker and linestyle
+        # Add count labels
+    for i, count in enumerate(counts):
+        plt.text(unique_jaccard_lengths[i], calculated_stats[i], str(count), ha='center', va='bottom')
 
-# plt.tight_layout()
-# output_path = os.path.join(results_dir, 'jaccard_sequence_mean_by_length')
-# plt.savefig(output_path, dpi=300, bbox_inches='tight')
-# plt.show()
+    # Add labels and title
+    plt.xlabel('Jaccard Similarity of Name Len Pairs')
+    plt.ylabel(f'{stat} Jaccard Similarity of Sequences')
+    plt.title(f'{stat} Jaccard Sequence Similarity vs. Jaccard Name Length Pair Similarity')
+    plt.xticks(unique_jaccard_lengths)  # Ensure all unique lengths are shown on x-axis
+
+    plt.tight_layout()
+    output_path = os.path.join(results_dir, 'jaccard_sequence_'+stat)
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.show()
