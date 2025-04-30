@@ -73,7 +73,7 @@ digest = fasta_to_digest(filepath,inherent_attrs=['names', 'sequences'])
 
 psm = pipestat.PipestatManager(pephub_path=pephub_path)
 
-psm.report(record_identifier=sample_name, values={"top_level_digest":digest, "brickyard_location":filepath, "original_file_name":filename})
+psm.report(record_identifier=sample_name, values={"top_level_digest":digest, "brickyard_location":filepath, "original_file_name":filename, "authority": authority})
 pm.report_result("top_level_digest", digest)
 pm.report_result("brickyard_location",filepath)
 pm.stop_pipeline()
