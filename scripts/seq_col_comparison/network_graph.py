@@ -14,10 +14,13 @@ import numpy as np
 
 
 
-psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/human_seqcol_digests:default")
+#psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/human_seqcol_digests:default")
 
 #psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/ncbi_38_seqcol_digests:default")
 
+#psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/ncbi_subset_digests:default")
+
+psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/ucsc_subset_digests:default")
 
 results = psm.select_records()
 
