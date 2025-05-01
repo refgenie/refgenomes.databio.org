@@ -16,24 +16,34 @@ import numpy as np
 
 psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/human_seqcol_digests:default")
 
+#psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/ncbi_38_seqcol_digests:default")
+
+
 results = psm.select_records()
 
-print(results['records'])
+#print(results['records'])
 
 
 digest_samplename = {}
 
+all_digests = []
+
 for result in results['records']:
     #digest_samplename.update({result['top_level_digest']:result['record_identifier']})
     digest_samplename.update({result['record_identifier']:result['top_level_digest']})
+    all_digests.append(result['top_level_digest'])
 
 
 json_files = []
 if os.path.isdir("/home/drc/Downloads/jsons_from_rivanna/json/"):
     for filename in os.listdir("/home/drc/Downloads/jsons_from_rivanna/json/"):
-        if filename.endswith(".json"):
-            full_path = os.path.join("/home/drc/Downloads/jsons_from_rivanna/json/", filename)
-            json_files.append(full_path)
+        if os.path.splitext(filename)[0] in all_digests:
+            print(f"{filename} in all_digest")
+            if filename.endswith(".json"):
+                full_path = os.path.join("/home/drc/Downloads/jsons_from_rivanna/json/", filename)
+                json_files.append(full_path)
+        else:
+            print(f"{filename} NOT in all_digest")
 
 all_sequences_union = set()
 
@@ -166,6 +176,9 @@ plt.ylabel(f"Sequences, n={num_all_seqs}")
 plt.xticks(rotation=90)
 plt.yticks([])
 plt.tight_layout()
+output_path = "/home/drc/Downloads/refgenomes_pics_test/01may2025/"
+output_path = os.path.join(output_path, 'sequences_presence')
+plt.savefig(output_path, dpi=300, bbox_inches='tight')
 plt.show()
 
 # from operator import itemgetter
