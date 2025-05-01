@@ -52,18 +52,18 @@ pep_df = pep["_sample_df"]
 
 desired_order = None
 
-desired_order = [
-"GRCh38.p0-fasta-genomic",
-"GRCh38.p1-fasta-genomic",
-"GRCh38.p2-fasta-genomic",
-"GRCh38.p6-fasta-genomic",
-"GRCh38.p7-fasta-genomic",
-"GRCh38.p8-fasta-genomic",
-"GRCh38.p12-fasta-genomic",
-"GRCh38.p13-fasta-genomic",
-"GRCh38.p14-fasta-genomic",
+# desired_order = [
+# "GRCh38.p0-fasta-genomic",
+# "GRCh38.p1-fasta-genomic",
+# "GRCh38.p2-fasta-genomic",
+# "GRCh38.p6-fasta-genomic",
+# "GRCh38.p7-fasta-genomic",
+# "GRCh38.p8-fasta-genomic",
+# "GRCh38.p12-fasta-genomic",
+# "GRCh38.p13-fasta-genomic",
+# "GRCh38.p14-fasta-genomic",
     
-]
+# ]
 
 #pep_df = pep_df.sort_values(by="ORDER")
 #print(pep_df)
@@ -628,7 +628,7 @@ for stat in relevant_stats:
     combined_heatmap_data = combined_heatmap_data.apply(pd.to_numeric, errors='coerce')
 
     # Create the heatmap
-    sns.heatmap(combined_heatmap_data, annot=True, cmap='viridis', fmt=".2f", linewidths=.2,
+    sns.heatmap(combined_heatmap_data, annot=False, cmap='viridis', fmt=".2f", linewidths=.2,
                 cbar_kws={'label': f'{bottom_stat} (Lower), {top_stat} (Upper)'},
                 annot_kws={"size": 9}, vmin=0.0, vmax=1.0, ax=ax)
     ax.set_title(f'Combined Comparison Heatmap: {bottom_stat} (Lower), {top_stat} (Upper)')
