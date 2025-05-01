@@ -628,9 +628,9 @@ for stat in relevant_stats:
     combined_heatmap_data = combined_heatmap_data.apply(pd.to_numeric, errors='coerce')
 
     # Create the heatmap
-    sns.heatmap(combined_heatmap_data, annot=False, cmap='viridis', fmt=".2f", linewidths=.2,
+    sns.heatmap(combined_heatmap_data, annot=True, cmap='viridis', fmt=".2f", linewidths=.2,
                 cbar_kws={'label': f'{bottom_stat} (Lower), {top_stat} (Upper)'},
-                annot_kws={"size": 3}, vmin=0.0, vmax=1.0, ax=ax)
+                annot_kws={"size": 9}, vmin=0.0, vmax=1.0, ax=ax)
     ax.set_title(f'Combined Comparison Heatmap: {bottom_stat} (Lower), {top_stat} (Upper)')
 
     # Center the ticks
