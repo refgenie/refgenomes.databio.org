@@ -50,7 +50,22 @@ print(pep["_sample_df"])
 
 pep_df = pep["_sample_df"]
 
-pep_df = pep_df.sort_values(by="ORDER")
+desired_order = None
+
+desired_order = [
+"GRCh38.p0-fasta-genomic",
+"GRCh38.p1-fasta-genomic",
+"GRCh38.p2-fasta-genomic",
+"GRCh38.p6-fasta-genomic",
+"GRCh38.p7-fasta-genomic",
+"GRCh38.p8-fasta-genomic",
+"GRCh38.p12-fasta-genomic",
+"GRCh38.p13-fasta-genomic",
+"GRCh38.p14-fasta-genomic",
+    
+]
+
+#pep_df = pep_df.sort_values(by="ORDER")
 #print(pep_df)
 
 # ncbi_target_samples = [  
@@ -309,6 +324,8 @@ for all_relevant_stats in stats_groups:
         pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
         # 1. Get all unique sample names
         all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
+        if desired_order:
+            all_samples = [sample for sample in desired_order if sample in all_samples]
 
         # 2. Create an empty DataFrame for the heatmap, initialized with NaN
         heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
@@ -557,6 +574,8 @@ for stat in stats:
 relevant_stats = [("overlap_coefficient_sequences", "overlap_coefficient_sequences_max")]
 #relevant_stats = [("overlap_coefficient_sequences", "overlap_coefficient_sequences_max"),("overlap_coefficient_sequences", "jaccard_sequences")]
 
+
+
 for stat in relevant_stats:
 
     fig, ax = plt.subplots(figsize=(14, 12))  # Create a single subplot
@@ -568,6 +587,10 @@ for stat in relevant_stats:
 
     # 1. Get all unique sample names
     all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
+
+    if desired_order:
+        all_samples = [sample for sample in desired_order if sample in all_samples]
+
     num_samples = len(all_samples)
 
     # 2. Create an empty DataFrame for the combined heatmap
