@@ -833,20 +833,35 @@ def create_comparison_dot_plot(data, labels, title="Comparison Dot Plot", x_limi
 # Filter the DataFrame
 
 
-primary_samples = ["hg19-initial-ucsc",'GRCh38.p14-fasta-genomic']
+primary_samples = ["hg19-initial-ucsc", "GRCh38.p14-fasta-genomic"]
 
 #primary_sample = 'GRCh38.p14-fasta-genomic'
 
 
 for primary_sample in primary_samples:
 
-    filtered_df = pep_df[pep_df['sample_name_1'] == primary_sample]
+    new_df = pep_df.copy()
+
+    # filtered_df = pep_df[pep_df['sample_name_1'] == primary_sample]
+
+    # # Convert the filtered DataFrame to the dictionary format
+    # data_from_df = {
+    #     row['sample_name_2']: [row['f10_names'], row['f10_lengths'], row['f10_sequences'], row['f10_name_len_pairs']]
+    #     for _, row in filtered_df.iterrows()
+    # }
+        # Filter the DataFrame
+    filtered_df = new_df[(new_df['sample_name_1'] == primary_sample) | (new_df['sample_name_2'] == primary_sample)]
 
     # Convert the filtered DataFrame to the dictionary format
-    data_from_df = {
-        row['sample_name_2']: [row['f10_names'], row['f10_lengths'], row['f10_sequences'], row['f10_name_len_pairs']]
-        for _, row in filtered_df.iterrows()
-    }
+    data_from_df = {}
+    for _, row in filtered_df.iterrows():
+        if row['sample_name_1'] == primary_sample:
+            sample_name = row['sample_name_2']
+        else:
+            sample_name = row['sample_name_1']
+        if sample_name not in data_from_df:
+            data_from_df[sample_name] = []
+        data_from_df[sample_name] = [row['f10_names'], row['f10_lengths'], row['f10_sequences'], row['f10_name_len_pairs']]
 
 
     #print(data_from_df['f10_name_len_pairs'])
