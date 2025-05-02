@@ -20,7 +20,9 @@ import numpy as np
 
 #psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/ncbi_subset_digests:default")
 
-psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/ucsc_subset_digests:default")
+#psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/ucsc_hg19_subset_digests:default")
+
+psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/ncbi_hg38_subset_digests:default")
 
 results = psm.select_records()
 
@@ -179,7 +181,7 @@ plt.ylabel(f"Sequences, n={num_all_seqs}")
 plt.xticks(rotation=90)
 plt.yticks([])
 plt.tight_layout()
-output_path = "/home/drc/Downloads/refgenomes_pics_test/01may2025/"
+output_path = "/home/drc/Downloads/refgenomes_pics_test/02may2025/"
 output_path = os.path.join(output_path, 'sequences_presence')
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
 plt.show()
