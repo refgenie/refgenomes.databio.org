@@ -792,7 +792,7 @@ def create_comparison_dot_plot(data, labels, title="Comparison Dot Plot", x_limi
     if num_vars != 4:
         raise ValueError("Number of labels must be 4 for this comparison dot plot.")
 
-    fig, ax = plt.subplots(figsize=(8, 6))  # Adjust figure size as needed
+    fig, ax = plt.subplots(figsize=(8, 10))  # Adjust figure size as needed
     y_positions = np.arange(len(data))  # Create y positions for the samples
 
     # Default colors and markers
@@ -835,6 +835,8 @@ def create_comparison_dot_plot(data, labels, title="Comparison Dot Plot", x_limi
 
 primary_samples = ["hg19-initial-ucsc", "GRCh38.p14-fasta-genomic"]
 
+metrics = ['f10_names','f10_lengths','f10_sequences','f10_name_len_pairs']
+
 #primary_sample = 'GRCh38.p14-fasta-genomic'
 
 
@@ -861,13 +863,13 @@ for primary_sample in primary_samples:
             sample_name = row['sample_name_1']
         if sample_name not in data_from_df:
             data_from_df[sample_name] = []
-        data_from_df[sample_name] = [row['f10_names'], row['f10_lengths'], row['f10_sequences'], row['f10_name_len_pairs']]
+        data_from_df[sample_name] = [row[metrics[0]], row[metrics[1]], row[metrics[2]], row[metrics[3]]]
 
 
     #print(data_from_df['f10_name_len_pairs'])
 
     #Use the columns f10_names, f10_lengths, f10_sequences, f10_name_len_pairs
-    labels = ['f10_names', 'f10_lengths', 'f10_sequences', 'f10_name_len_pairs']
+    labels = metrics
     create_comparison_dot_plot(data_from_df, labels, title=f"Comparison of {primary_sample} vs All Other Ref Genomes", x_limit=1.0,
                                     metric_colors=['b', 'g', 'r', 'c'], metric_markers=['o', 's', 'D', '^'])
     
