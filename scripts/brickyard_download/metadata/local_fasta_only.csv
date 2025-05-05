@@ -1,4 +1,4 @@
-sample_name,species,common_genome_name,authority,ftp_file_path,file_type,description
+sample_name,species,common_genome_name,authority,local_file_path,file_type,description
 GRCh37-igenomes-ensembl, homo_sapiens, hg19, igenomes, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/igenomes/hg19/fasta/Homo_sapiens_Ensembl_GRCh37_genome.fa, fasta, igenomes hosted GRCh37 
 GRCh38-igenomes-ncbi, homo_sapiens, hg38, igenomes, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/igenomes/hg38/fasta/Homo_sapiens_NCBI_GRCh38_genome.fa, fasta, igenomes hosted GRCh38 
 GRCh38-igenomes-build37-2-ncbi, homo_sapiens, hg38, igenomes, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/igenomes/hg38/fasta/Homo_sapiens_NCBI_build37_2_genome.fa, fasta, igenomes hosted GRCh38 build 37.2 
@@ -7,4 +7,8 @@ GRCh38-igenomes-build36-3-ncbi, homo_sapiens, hg38, igenomes, /project/shefflab/
 GRCh38-igenomes-decoy-ncbi, homo_sapiens, hg38, igenomes, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/igenomes/hg38/fasta/Homo_sapiens_NCBI_GRCh38Decoy_genome.fa, fasta, igenomes hosted GRCh38 decoy 
 hg38-igenomes-ucsc, homo_sapiens, hg38, igenomes, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/igenomes/hg38/fasta/Homo_sapiens_UCSC_hg38_genome.fa, fasta, igenomes hosted hg38 
 hg19-igenomes-ucsc, homo_sapiens, hg19, igenomes, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/igenomes/hg19/fasta/Homo_sapiens_UCSC_hg19_genome.fa, fasta, igenomes hosted hg19 
-hg18-igenomes-ucsc, homo_sapiens, hg18, igenomes, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/igenomes/hg18/fasta/Homo_sapiens_UCSC_hg18_genome.fa, fasta, igenomes hosted hg18 
+hg18-igenomes-ucsc, homo_sapiens, hg18, igenomes, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/igenomes/hg18/fasta/Homo_sapiens_UCSC_hg18_genome.fa, fasta, igenomes hosted hg18
+hg38-refgenie, homo_sapiens, hg38, refgenie, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/refgenie/hg38/fasta/2230c535660fb4774114bfa966a62f823fdb6d21acf138d4.fa, fasta, refgenie's The GCA_000001405.15 GRCh38_no_alt_analysis_set from NCBI 
+hg38-primary-refgenie, homo_sapiens, hg38, refgenie, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/refgenie/hg38/fasta/047c6e1eda552b50c5add59ff0995a40bc4ce1732e3cc4ae.fa, fasta, refgenie's UCSC hg38 assembly with primary chromosomes only 
+hg18-refgenie, homo_sapiens, hg18, refgenie, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/refgenie/hg18/fasta/9b7fd88cae1bd01bf53760fb426e2aeb299150cc64af2b01.fa, fasta, refgenie's NCBI36 reference sequence from UCSC. The individual chromosome files were concatenated prior to the asset building 
+hg19-refgenie, homo_sapiens, hg19, refgenie, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/refgenie/hg19/fasta/baa91c8f6e2780cfd8fd1040ff37f51c379947a2a4820d6c.fa, fasta, refgenie's he GRCh37 reference sequence from UCSC 

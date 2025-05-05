@@ -1,0 +1,6 @@
+pipeline_name: brickyard_digest_calc
+sample_interface:
+  command_template: >
+    python3 pipeline/refgenome_brickyard_digest_calc_local.py {sample.sample_name} {sample.local_file_path} {sample.authority} {pipestat.pephub_path} {looper.output_dir}
+
+   
