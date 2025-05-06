@@ -429,7 +429,8 @@ for stat_combination in stat_combinations:
 # Plot bar graph freq distribution
 #TODO change stats
 #relevant_stats = [('jaccard_sequences', 'jaccard_name_len')]
-
+relevant_stats = ['jaccard_sequences', 'jaccard_name_len', 'jaccard_lengths', 'jaccard_names']
+stat_combinations = combinations(iterable=relevant_stats,r=2)
 for stat_combination in stat_combinations:
     fig, ax = plt.subplots(figsize=(10, 6))  # Adjust figure size
 
