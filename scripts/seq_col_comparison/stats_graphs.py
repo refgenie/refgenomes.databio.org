@@ -517,7 +517,7 @@ def create_comparison_dot_plot(data, labels, title="Comparison Dot Plot", x_limi
     y_positions = np.arange(len(data))  # Create y positions for the samples
 
     # Default colors and markers
-    default_colors = ['b', 'g', 'r', 'c']
+    default_colors = metric_colors = ['#1f77b4', '#ff7f0e', '#9467bd', '#8c564b']
     default_markers = ['o', 's', 'D', '^']
     sample_color = 'k'  # set a default sample color
 
@@ -578,10 +578,87 @@ for primary_sample in primary_samples:
 
     #Use the columns f10_names, f10_lengths, f10_sequences, f10_name_len_pairs
     labels = metrics
-    create_comparison_dot_plot(data_from_df, labels, title=f"Comparison of {primary_sample} vs All Other Ref Genomes", x_limit=1.0,
-                                    metric_colors=['b', 'g', 'r', 'c'], metric_markers=['o', 's', 'D', '^'])
+    create_comparison_dot_plot(data_from_df, labels, title=f"Comparison of {primary_sample} vs All Other Ref Genomes", x_limit=1.0, metric_markers=['o', 's', 'D', '^'])
     
     
     output_path = os.path.join(results_dir, f'comparison_{primary_sample}_.png')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     #plt.show()
+
+
+def create_comparison_bar_graph(data, labels, title="Comparison Bar Graph",
+                               metric_colors=None):
+    """
+    Creates a grouped bar graph using Matplotlib.
+
+    Args:
+        data (dict): A dictionary where keys are sample names (e.g., 'Sample 1')
+                      and values are lists of 4 values.
+        labels (list): A list of label names (e.g., ['Metric A', 'Metric B', 'Metric C', 'Metric D']).
+        title (str, optional): The title of the bar graph. Defaults to "Comparison Bar Graph".
+        metric_colors (list, optional): A list of colors for each metric. If None, default colors are used.
+
+    Returns:
+        None: Displays the plot.
+    """
+    num_metrics = len(labels)
+    if num_metrics != 4:
+        raise ValueError("Number of labels must be 4 for this comparison bar graph.")
+
+    if metric_colors is None:
+        metric_colors = ['#1f77b4', '#ff7f0e', '#9467bd', '#8c564b']  # Default colors
+
+    fig, ax = plt.subplots(figsize=(10, 8))  # Adjust figure size as needed
+    num_samples = len(data)
+    bar_width = 0.2  # Width of each individual bar
+    group_width = num_metrics * bar_width  # Total width of a group of bars
+    index = np.arange(num_samples)  # Positions for the group centers
+
+    for i, (sample_name, values) in enumerate(data.items()):
+        if len(values) != num_metrics:
+            raise ValueError(f"Sample '{sample_name}' must have {num_metrics} values.")
+        for j, value in enumerate(values):
+            x_position = index[i] + (j * bar_width) - (group_width / 2) + (bar_width / 2) # Calculate the x position for each bar
+            ax.bar(x_position, value, bar_width, color=metric_colors[j], label=labels[j] if i == 0 else "")
+
+    ax.set_xticks(index)
+    ax.set_xticklabels(list(data.keys()), rotation=90, ha="right", fontsize=8)  # Sample names as x-axis labels
+    ax.set_ylabel("Metric Value")
+    ax.set_title(title, fontsize=14)
+    ax.legend(loc='upper right')
+    ax.grid(True, axis='y', linestyle='--', alpha=0.6)
+
+    plt.tight_layout()
+    #plt.show()
+
+# --- Example Usage ---
+# Assuming pep_df and results_dir are defined elsewhere
+
+primary_samples = ["hg19-initial-ucsc", "GRCh38.p14-fasta-genomic"]
+metrics = ['f10_names', 'f10_lengths', 'f10_sequences', 'f10_name_len_pairs']
+
+for primary_sample in primary_samples:
+    new_df = pep_df.copy()
+
+    # Filter the DataFrame
+    filtered_df = new_df[(new_df['sample_name_1'] == primary_sample) | (new_df['sample_name_2'] == primary_sample)]
+
+    # Convert the filtered DataFrame to the dictionary format
+    data_from_df = {}
+    for _, row in filtered_df.iterrows():
+        if row['sample_name_1'] == primary_sample:
+            sample_name = row['sample_name_2']
+        else:
+            sample_name = row['sample_name_1']
+        if sample_name not in data_from_df:
+            data_from_df[sample_name] = []
+        data_from_df[sample_name] = [row[metrics[0]], row[metrics[1]], row[metrics[2]], row[metrics[3]]]
+
+    # Use the columns f10_names, f10_lengths, f10_sequences, f10_name_len_pairs
+    labels = metrics
+    create_comparison_bar_graph(data_from_df, labels, title=f"Comparison of {primary_sample} vs All Other Ref Genomes",
+                                 )
+
+    output_path = os.path.join(results_dir, f'comparison_bar_graph_{primary_sample}.png')
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()
