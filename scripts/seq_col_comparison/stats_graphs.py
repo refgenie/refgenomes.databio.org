@@ -238,40 +238,41 @@ df = pep_df.copy()
 stats = ["Mean", "Median"]
 
 for stat in stats:
-    # --- Calculate and Plot Median ---
+    # --- Calculate and Plot Statistic ---
     plt.figure(figsize=(10, 6))  # Adjust figure size as needed
 
-    # Create a list of unique jaccard_name_len values
-    #unique_jaccard_lengths = sorted(df['jaccard_name_len'].unique())
-    unique_jaccard_lengths = [0.0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1.0]
-
-    # Calculate and store medians for each jaccard_name_len
+    unique_jaccard_lengths = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
     calculated_stats = []
     counts = []  # Store the counts for each bin
+
     for length in unique_jaccard_lengths:
-        bin_data = df[(df['jaccard_name_len'] > (length - 0.05)) & (df['jaccard_name_len'] <= (length + 0.05))]['jaccard_sequences']
+        lower_bound = length - 0.05
+        upper_bound = length + 0.05
+        bin_data = df[(df['jaccard_name_len'] > lower_bound) & (df['jaccard_name_len'] <= upper_bound)]['jaccard_sequences']
         if stat == "Median":
             calculated_stats.append(bin_data.median())
         elif stat == "Mean":
             calculated_stats.append(bin_data.mean())
         counts.append(len(bin_data))  # Count the data points
-                           
+
     # Create the bar plot
-    plt.bar(unique_jaccard_lengths, calculated_stats, width=0.08) # Added marker and linestyle
-        # Add count labels
-    for i, count in enumerate(counts):
-        plt.text(unique_jaccard_lengths[i], calculated_stats[i], str(count), ha='center', va='bottom')
+    bars = plt.bar(unique_jaccard_lengths, calculated_stats, width=0.08)
+
+    # Add count labels at the bottom of the bars
+    for bar, count in zip(bars, counts):
+        yval = 0.05  # Position the text at the bottom (y=0)
+        plt.text(bar.get_x() + bar.get_width()/2, yval, "n="+str(count), ha='center', va='top',color='white', fontweight='bold')
 
     # Add labels and title
     plt.xlabel('Jaccard Similarity of Name Len Pairs')
     plt.ylabel(f'{stat} Jaccard Similarity of Sequences')
     plt.title(f'{stat} Jaccard Sequence Similarity vs. Jaccard Name Length Pair Similarity')
     plt.xticks(unique_jaccard_lengths)  # Ensure all unique lengths are shown on x-axis
+    plt.ylim(bottom=0) # Ensure the y-axis starts at 0 to accommodate the labels
 
     plt.tight_layout()
-    output_path = os.path.join(results_dir, 'jaccard_sequence_'+stat)
+    output_path = os.path.join(results_dir, f'{stat}_counts')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    #plt.show()
 
 
 
