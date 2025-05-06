@@ -1,0 +1,6 @@
+pep_config: metadata/pep_config_ensembl.yaml
+output_dir: ${RESULTS}
+pipeline_interfaces:
+  - pipeline/pipeline_interface.yaml
+pipestat:
+  pephub_path: donaldcampbelljr/ensembl_38_seqcol_digests:default
