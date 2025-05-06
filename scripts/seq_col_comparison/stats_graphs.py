@@ -1,7 +1,7 @@
 import sys
 import os
 import json
-from matplotlib.colors import LinearSegmentedColormap
+from matplotlib.colors import LinearSegmentedColormap, LogNorm
 from pephubclient import PEPHubClient
 from refget import fasta_to_digest, fasta_to_seqcol_dict, compare_seqcols, SequenceCollection
 from itertools import combinations
@@ -359,12 +359,14 @@ for stat in stats:
 
 # # Assuming pep_df, results_dir, and species_title are defined elsewhere
 
-relevant_stats = [('jaccard_sequences', 'jaccard_name_len')]
+#relevant_stats = [('jaccard_sequences', 'jaccard_name_len')]
+relevant_stats = ['jaccard_sequences', 'jaccard_name_len', 'jaccard_lengths', 'jaccard_names']
+stat_combinations = combinations(iterable=relevant_stats,r=2)
 
-for stat in relevant_stats:
+for stat_combination in stat_combinations:
     fig, ax = plt.subplots(figsize=(10, 8))  # Adjust figure size
 
-    bottom_stat, top_stat = stat  # Get the stats
+    bottom_stat, top_stat = stat_combination  # Get the stats
 
     pep_df[bottom_stat] = pd.to_numeric(pep_df[bottom_stat], errors='coerce')
     pep_df[top_stat] = pd.to_numeric(pep_df[top_stat], errors='coerce')
@@ -394,33 +396,44 @@ for stat in relevant_stats:
     colors = ["lightgrey", "darkorange"]
     cmap = LinearSegmentedColormap.from_list("grey_to_orange", colors)
 
-    # Create the hexbin plot
-    hb = ax.hexbin(x_values, y_values, gridsize=25, cmap=cmap, alpha=0.8)  # Adjust gridsize and alpha
+    # Create the hexbin plot with linear scaling first
+    hb = ax.hexbin(x_values, y_values, gridsize=25, cmap=cmap, alpha=0.8)
     ax.scatter(x_values, y_values, alpha=.20, label='Data Points',color='darkblue')
+    counts = hb.get_array()
 
-    # Add a colorbar for the hexbin plot
-    cb = fig.colorbar(hb, ax=ax)
-    cb.set_label('Density')
+    # Apply logarithmic scaling to the counts, handling zeros
+    log_counts = np.log1p(counts)
+
+    # Normalize the logarithmic counts for the colormap
+    norm = plt.Normalize(vmin=log_counts.min(), vmax=log_counts.max())
+    colored_values = cmap(norm(log_counts))
+
+    # Set the facecolors of the hexbins based on the normalized log counts
+    hb.set_array(log_counts)  # Directly set the array to the log-transformed counts
+    hb.set_norm(norm)        # Set the normalization for the colormap
+
+    # Add a colorbar for the logarithmic scale
+    cb = fig.colorbar(hb, ax=ax, ticks=np.log1p([1, 10, 100, 1000]))  # Example ticks
+    cb.set_label('Counts (Log Scale)')
+    cb.ax.set_yticklabels([1, 10, 100, 1000])  # Label the ticks
 
     # Set labels and title
     ax.set_xlabel(bottom_stat)
     ax.set_ylabel(top_stat)
-    ax.set_title(f'Hexbin Plot of {bottom_stat} vs {top_stat}')
+    ax.set_title(f'Hexbin Plot of {bottom_stat} vs {top_stat} (Log Scale)')
 
     plt.tight_layout()
-    output_path = os.path.join(results_dir, f'hexbin_monochromatic_{bottom_stat}_vs_{top_stat}')
+    output_path = os.path.join(results_dir, f'hexbin_monochromatic_logscale_{bottom_stat}_vs_{top_stat}')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    plt.close(fig)
-
 
 # Plot bar graph freq distribution
 #TODO change stats
-relevant_stats = [("f10_sequences", "f10_name_len_pairs")]
-for stat_pair in relevant_stats:
+#relevant_stats = [('jaccard_sequences', 'jaccard_name_len')]
+
+for stat_combination in stat_combinations:
     fig, ax = plt.subplots(figsize=(10, 6))  # Adjust figure size
 
-    bottom_stat, top_stat = stat_pair
-
+    bottom_stat, top_stat = stat_combination
     pep_df[bottom_stat] = pd.to_numeric(pep_df[bottom_stat], errors='coerce')
     pep_df[top_stat] = pd.to_numeric(pep_df[top_stat], errors='coerce')
 
