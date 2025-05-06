@@ -1,6 +1,7 @@
 import sys
 import os
 import json
+from matplotlib.colors import LinearSegmentedColormap
 from pephubclient import PEPHubClient
 from refget import fasta_to_digest, fasta_to_seqcol_dict, compare_seqcols, SequenceCollection
 from itertools import combinations
@@ -358,8 +359,7 @@ for stat in stats:
 
 # # Assuming pep_df, results_dir, and species_title are defined elsewhere
 
-relevant_stats = [("f10_sequences", "f10_name_len_pairs")]
-# relevant_stats = [("overlap_coefficient_sequences", "overlap_coefficient_sequences_max"),("overlap_coefficient_sequences", "jaccard_sequences")]
+relevant_stats = [('jaccard_sequences', 'jaccard_name_len')]
 
 for stat in relevant_stats:
     fig, ax = plt.subplots(figsize=(10, 8))  # Adjust figure size
@@ -390,28 +390,27 @@ for stat in relevant_stats:
                 x_values.append(comparison[bottom_stat].iloc[0])
                 y_values.append(comparison[top_stat].iloc[0])
 
-    # Create the scatter plot
-    
-    # Create the hexbin plot on top (optional, but shows density)
-    hb = ax.hexbin(x_values, y_values, gridsize=10, cmap='plasma', alpha=0.75, label='Density')  # Adjust gridsize and alpha
+    # Define the monochromatic colormap
+    colors = ["lightgrey", "darkorange"]
+    cmap = LinearSegmentedColormap.from_list("grey_to_orange", colors)
 
-    ax.scatter(x_values, y_values, alpha=1.0, label='Data Points',color='skyblue')  # Adjust alpha for transparency
+    # Create the hexbin plot
+    hb = ax.hexbin(x_values, y_values, gridsize=25, cmap=cmap, alpha=0.8)  # Adjust gridsize and alpha
+    ax.scatter(x_values, y_values, alpha=.20, label='Data Points',color='darkblue')
 
     # Add a colorbar for the hexbin plot
     cb = fig.colorbar(hb, ax=ax)
-    cb.set_label('Count')
+    cb.set_label('Density')
 
     # Set labels and title
     ax.set_xlabel(bottom_stat)
     ax.set_ylabel(top_stat)
-    ax.set_title(f'Scatter and Hexbin Plot of {bottom_stat} vs {top_stat}')
-    ax.legend()  # Show the legend
+    ax.set_title(f'Hexbin Plot of {bottom_stat} vs {top_stat}')
 
     plt.tight_layout()
-    output_path = os.path.join(results_dir, f'scatter_hexbin_{bottom_stat}_vs_{top_stat}')
+    output_path = os.path.join(results_dir, f'hexbin_monochromatic_{bottom_stat}_vs_{top_stat}')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    #plt.show()
-
+    plt.close(fig)
 
 
 # Plot bar graph freq distribution
