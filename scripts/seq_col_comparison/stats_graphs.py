@@ -181,6 +181,66 @@ for all_relevant_stats in stats_groups:
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
 
 
+# PLOT OPA AND OPB
+
+stats_groups = [['opa_names', 'opb_names', 'opa_lengths', 'opb_lengths', 'opa_sequences','opb_sequences','opa_name_len', 'opb_name_len']]
+
+for all_relevant_stats in stats_groups:
+    num_plots = len(all_relevant_stats)
+    num_rows = (num_plots + 1) // 2
+    fig, axes = plt.subplots(num_rows, 2, figsize=(14, 7 * num_rows), sharex=True, sharey=True)
+    axes = np.ravel(axes)
+
+    cbar_ax = fig.add_axes([0.92, 0.15, 0.03, 0.7])  # [left, bottom, width, height] for the colorbar
+
+    for i, stat in enumerate(all_relevant_stats):
+        pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
+        all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
+        if desired_order:
+            all_samples = [sample for sample in desired_order if sample in all_samples]
+        heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
+        for row_idx, sample1 in enumerate(all_samples):
+            for col_idx, sample2 in enumerate(all_samples):
+                if col_idx >= row_idx:
+                    if sample1 == sample2:
+                        heatmap_data.loc[sample1, sample2] = 1.0
+                    else:
+                        comparison = pep_df[
+                            ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+                            ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+                        ]
+                        if not comparison.empty:
+                            similarity_score = comparison[stat].iloc[0]
+                            heatmap_data.loc[sample1, sample2] = similarity_score
+                        else:
+                            heatmap_data.loc[sample1, sample2] = np.nan
+                else:
+                    heatmap_data.loc[sample1, sample2] = np.nan
+        heatmap_data = heatmap_data.apply(pd.to_numeric, errors='coerce')
+        ax = axes[i]
+        sns.heatmap(heatmap_data, annot=False, cmap='viridis', fmt=".2f", linewidths=.2, cbar=i == 0, cbar_ax=cbar_ax if i == 0 else None, annot_kws={"size": 3}, vmin=0.0, vmax=1.0, ax=ax)
+        ax.set_title(f'{stat} Heatmap')
+        ax.set_xticks(np.arange(0.5, len(all_samples), 1))
+        ax.set_yticks(np.arange(0.5, len(all_samples), 1))
+        ax.set_yticklabels(all_samples, rotation=0, fontsize=8)
+        ax.tick_params(axis='both', which='major', labelsize=8)
+        ax.set_xticklabels(all_samples, rotation=90, fontsize=8)
+        if i == 0:
+            cbar_ax.set_ylabel('Similarity Score', fontsize=12) # Set label only once
+
+    if num_plots < num_rows * 2:
+        for j in range(num_plots, num_rows * 2):
+            fig.delaxes(axes[j])
+
+    plt.suptitle(f'Comparison Heatmaps - {species_title}', fontsize=16, y=1.02)
+    #plt.tight_layout(rect=[0, 0, 0.9, 0.96]) # Adjust layout to make space for the colorbar
+    output_path = os.path.join(results_dir, f'stacked_heatmap_single_cbar_{"_".join(all_relevant_stats)}.png')
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+
+
+
+
+
 
 #CREATE A SPECIAL LOOK AT JACCARD_SEQUENCES when JACCARD_NAME_LEN is perfect
 
