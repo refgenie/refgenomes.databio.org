@@ -37,6 +37,11 @@ def calc_jaccard_similarity(A_B_intersection, A_B_union):
     jaccard = abs(A_B_intersection)/abs(A_B_union)
     return jaccard
 
+def overlap_proportion(A_B_intersection, a_or_b):
+    # calculate the intersection OVER one of the two sets used to calculate the intersection
+    proportion = abs(A_B_intersection)/abs(a_or_b)
+    return proportion
+
 # def calc_f1_score(tp, fp, fn):
 #     # another way to consider:
 #     # tp = a = the number of attrivutes that equal ` for both objects i and j
@@ -125,11 +130,15 @@ for combination in all_combinations:
     overlap_coefficient_names = calc_overlap_coeff(comparison['array_elements']['a']['names'],comparison['array_elements']['b']['names'],comparison['array_elements']['a_and_b']['names'])
     print(f"Here is the overlap coefficient for names: {overlap_coefficient_names}")
     overlap_coefficient_names_max = calc_overlap_coeff_MAX(comparison['array_elements']['a']['names'],comparison['array_elements']['b']['names'],comparison['array_elements']['a_and_b']['names'])
+    opa_names = overlap_proportion(comparison['array_elements']['a_and_b']['names'], comparison['array_elements']['a']['names'])
+    opb_names = overlap_proportion(comparison['array_elements']['a_and_b']['names'], comparison['array_elements']['b']['names'])
 
     # overlap for lengths
     overlap_coefficient_lengths = calc_overlap_coeff(comparison['array_elements']['a']['lengths'],comparison['array_elements']['b']['lengths'],comparison['array_elements']['a_and_b']['lengths'])
     print(f"Here is the overlap coefficient for lengths: {overlap_coefficient_names}")
     overlap_coefficient_lengths_max = calc_overlap_coeff_MAX(comparison['array_elements']['a']['lengths'],comparison['array_elements']['b']['lengths'],comparison['array_elements']['a_and_b']['lengths'])
+    opa_lengths = overlap_proportion(comparison['array_elements']['a_and_b']['lengths'], comparison['array_elements']['a']['lengths'])
+    opb_lengths = overlap_proportion(comparison['array_elements']['a_and_b']['lengths'], comparison['array_elements']['b']['lengths'])
 
     # jaccard similarity for names, intersection over union where we can find the union -> A+B-ABintersection
     jaccard_names = calc_jaccard_similarity(comparison['array_elements']['a_and_b']['names'],(comparison['array_elements']['a']['names']+comparison['array_elements']['b']['names']-comparison['array_elements']['a_and_b']['names']))
@@ -152,6 +161,9 @@ for combination in all_combinations:
     jaccard_sequences = calc_jaccard_similarity(sequences_intersection_length,sequences_union_length)
     overlap_coeff_sequences = calc_overlap_coeff(len(set_sequences_1),len(set_sequences_2),sequences_intersection_length)
     overlap_coeff_sequences_max =calc_overlap_coeff_MAX(len(set_sequences_1),len(set_sequences_2),sequences_intersection_length)
+    opa_sequences = overlap_proportion(sequences_intersection_length,len(set_sequences_1))
+    opb_sequences = overlap_proportion(sequences_intersection_length,len(set_sequences_2))
+
     print(f"Here is the jaccard similarity for sequences: {jaccard_sequences}")
     print(f"Here is the overlap coeff for sequences: {overlap_coeff_sequences}")
 
@@ -208,6 +220,10 @@ for combination in all_combinations:
     jaccard_name_len = calc_jaccard_similarity(len(name_len_pairs_intersection),len(name_len_pairs_union))
     overlap_coeff_name_len = calc_overlap_coeff(len(set_of_name_len_pairs_1),len(set_of_name_len_pairs_2),len(name_len_pairs_intersection))
     overlap_coeff_name_len_max = calc_overlap_coeff_MAX(len(set_of_name_len_pairs_1),len(set_of_name_len_pairs_2),len(name_len_pairs_intersection))
+
+    opa_name_len = overlap_proportion(len(name_len_pairs_intersection),len(set_of_name_len_pairs_1))
+    opb_name_len = overlap_proportion(len(name_len_pairs_intersection),len(set_of_name_len_pairs_2))
+
     print(f"Here is the jaccard similarity for sequences: {jaccard_sequences}")
     print(f"Here is the overlap coeff for sequences: {overlap_coeff_sequences}")
 
@@ -257,6 +273,14 @@ for combination in all_combinations:
                                                                 "f10_sequences":f10_sequences,
                                                                 #"f10_weighted_lengths":f1_weighted_lengths,
                                                                 "f10_name_len_pairs":f10_name_len_pairs,
+                                                                "opa_names":opa_names,
+                                                                "opb_names":opb_names,
+                                                                "opa_lengths":opa_lengths,
+                                                                "opb_lengths":opb_lengths,
+                                                                "opa_sequences":opa_sequences,
+                                                                "opb_sequences":opb_sequences,
+                                                                "opa_name_len":opa_name_len,
+                                                                "opb_name_len":opb_name_len
                                                                 })
     combination_count+=1
 
