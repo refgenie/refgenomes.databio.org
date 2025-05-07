@@ -468,7 +468,7 @@ for stat_combination in stat_combinations:
 
     # Create the hexbin plot with linear scaling first
     hb = ax.hexbin(x_values, y_values, gridsize=25, cmap=cmap, alpha=0.8)
-    ax.scatter(x_values, y_values, alpha=.20, label='Data Points',color='darkblue')
+    ax.scatter(x_values, y_values, alpha=.20, label='Data Points',color='darkblue', s=25)
     counts = hb.get_array()
 
     # Apply logarithmic scaling to the counts, handling zeros
