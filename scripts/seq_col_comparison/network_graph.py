@@ -66,10 +66,10 @@ for seq in all_sequences_union:
     sequence_counts.update({seq: seq_count})
     single_sequence_in_fp.update({seq: list_fps})
 
-# Convert the sequence_counts dictionary to a Pandas DataFrame for easier plotting
+## Convert the sequence_counts dictionary to a Pandas DataFrame
 sequence_counts_df = pd.DataFrame(list(sequence_counts.items()), columns=['Sequence', 'Count'])
 
-# Sort the DataFrame by count in descending order (optional, for better visualization)
+# Sort the DataFrame by count in descending order
 sequence_counts_df_sorted = sequence_counts_df.sort_values(by='Count', ascending=False)
 
 seq_samples_name = {}
@@ -101,23 +101,27 @@ file_authority={}
 for file in sorted_files:
     for result in results['records']:
         if file == result['record_identifier']:
-            #print(f"FOUND {file} {result['authority']}")
             file_authority[file]=result['authority']
-
 
 print(file_authority)
 
 # Sort the file_authority dictionary by its values
-sorted_file_authority = sorted(file_authority.items(), key=lambda item: item[1])
+sorted_file_authority_list = sorted(file_authority.items(), key=lambda item: item[1])
+# Create a list of sorted files based on authority
+sorted_files_by_authority = [item[0] for item in sorted_file_authority_list]
 
-print(sorted_file_authority)
+print(sorted_file_authority_list)
+print(f"Sorted files by authority: {sorted_files_by_authority}")
 
 data = []
 for seq in sequences:
-    row = [1 if file in seq_samples_name[seq] else 0 for file in sorted_files]
+    # Now we correctly iterate through sorted_files_by_authority
+    row = [1 if file in seq_samples_name[seq] else 0 for file in sorted_files_by_authority]
     data.append(row)
 
-df = pd.DataFrame(data, index=sequences, columns=sorted_files)
+df = pd.DataFrame(data, index=sequences, columns=sorted_files_by_authority)
+
+num_all_seqs = len(all_sequences_union) # Assuming this is defined
 
 plt.figure(figsize=(10, 8))
 sns.heatmap(df.T, cmap="magma", cbar=False)  # Transpose the DataFrame
@@ -127,7 +131,5 @@ plt.xlabel(f"Sequences, n={num_all_seqs}")  # Swapped labels
 plt.xticks([])  # Adjust rotation as needed
 plt.yticks(rotation=0)
 plt.tight_layout()
-
 output_path = os.path.join(OUTPUT_PATH, 'sequences_presence')
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
-# plt.show()
