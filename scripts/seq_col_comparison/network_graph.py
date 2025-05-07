@@ -123,7 +123,7 @@ df = pd.DataFrame(data, index=sequences, columns=sorted_files_by_authority)
 
 num_all_seqs = len(all_sequences_union) # Assuming this is defined
 
-plt.figure(figsize=(10, 8))
+plt.figure(figsize=(12, 14))
 sns.heatmap(df.T, cmap="magma", cbar=False)  # Transpose the DataFrame
 plt.title("Sequences Present in Reference Genomes")
 plt.ylabel("Reference Genomes")  # Swapped labels
