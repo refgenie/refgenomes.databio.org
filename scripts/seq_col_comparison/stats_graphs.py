@@ -84,9 +84,18 @@ desired_order = None
 # "hg19-p13-plusMT-ucsc",
 # ]
 
-# # Pre-filter the DataFrame
+# target_samples = [
+
+# "hg38-primary-113-ensembl",
+# "GRCh38-primary-assembly-47-gencode",
+# "GRCh38.p14-fasta-genomic",
+# "hg38-p14-ucsc",
+
+# ]
+
+# # # Pre-filter the DataFrame
 # pep_df = pep_df[
-#     ((pep_df['sample_name_1'].isin(ucsc_target_samples)) & (pep_df['sample_name_2'].isin(ucsc_target_samples)))
+#     ((pep_df['sample_name_1'].isin(target_samples)) & (pep_df['sample_name_2'].isin(target_samples)))
 # ]
 #new_df = pep_df.copy()
 # --------------------------------------------
@@ -615,7 +624,7 @@ def create_comparison_dot_plot(data, labels, title="Comparison Dot Plot", x_limi
 
 primary_samples = ["hg19-initial-ucsc", "GRCh38.p14-fasta-genomic"]
 
-metrics = ['f10_names','f10_lengths','f10_sequences','f10_name_len_pairs']
+metrics = ['jaccard_names', 'jaccard_lengths', 'jaccard_sequences', 'jaccard_name_len']
 
 
 for primary_sample in primary_samples:
@@ -695,7 +704,7 @@ def create_comparison_bar_graph(data, labels, title="Comparison Bar Graph",
 # Assuming pep_df and results_dir are defined elsewhere
 
 primary_samples = ["hg19-initial-ucsc", "GRCh38.p14-fasta-genomic"]
-metrics = ['f10_names', 'f10_lengths', 'f10_sequences', 'f10_name_len_pairs']
+metrics = ['jaccard_names', 'jaccard_lengths', 'jaccard_sequences', 'jaccard_name_len']
 
 for primary_sample in primary_samples:
     new_df = pep_df.copy()
