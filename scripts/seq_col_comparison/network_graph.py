@@ -72,6 +72,9 @@ sequence_counts_df = pd.DataFrame(list(sequence_counts.items()), columns=['Seque
 # Sort the DataFrame by count in descending order
 sequence_counts_df_sorted = sequence_counts_df.sort_values(by='Count', ascending=False)
 
+# Get the sorted list of sequences based on their counts
+sorted_sequences_by_frequency = sequence_counts_df_sorted['Sequence'].tolist()
+
 seq_samples_name = {}
 for seq in all_sequences_union:
     sample_names = []
@@ -114,22 +117,21 @@ print(sorted_file_authority_list)
 print(f"Sorted files by authority: {sorted_files_by_authority}")
 
 data = []
-for seq in sequences:
-    # Now we correctly iterate through sorted_files_by_authority
+for seq in sorted_sequences_by_frequency:  # Iterate through the sorted sequences
     row = [1 if file in seq_samples_name[seq] else 0 for file in sorted_files_by_authority]
     data.append(row)
 
-df = pd.DataFrame(data, index=sequences, columns=sorted_files_by_authority)
+df = pd.DataFrame(data, index=sorted_sequences_by_frequency, columns=sorted_files_by_authority)
 
 num_all_seqs = len(all_sequences_union) # Assuming this is defined
 
 plt.figure(figsize=(24, 10))
 sns.heatmap(df.T, cmap="magma", cbar=False)  # Transpose the DataFrame
-plt.title("Sequences Present in Reference Genomes")
+plt.title("Sequences Present in Reference Genomes (Sorted by Frequency)")
 plt.ylabel("Reference Genomes")  # Swapped labels
-plt.xlabel(f"Sequences, n={num_all_seqs}")  # Swapped labels
+plt.xlabel(f"Sequences (Sorted by Frequency), n={num_all_seqs}")  # Swapped labels
 plt.xticks([])  # Adjust rotation as needed
 plt.yticks(rotation=0)
 plt.tight_layout()
-output_path = os.path.join(OUTPUT_PATH, 'sequences_presence')
+output_path = os.path.join(OUTPUT_PATH, 'sequences_presence_sorted_frequency')
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
