@@ -14,7 +14,7 @@ import numpy as np
 
 OUTPUT_PATH = "/home/drc/Downloads/refgenomes_pics_test/06may2025/"
 
-psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/human_seqcol_digests:default")
+psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/human_seqcol_digests_easier_labels:default")
 
 # psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/ncbi_38_seqcol_digests:default")
 # psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/ncbi_subset_digests:default")
