@@ -264,6 +264,9 @@ for all_relevant_stats in stats_groups:
         ax.tick_params(axis='both', which='major', labelsize=8)
         if i == 0:
             cbar_ax.set_ylabel('Similarity Score', fontsize=12) # Set label only once
+            # Export the heatmap_data to a CSV file
+        output_path = os.path.join(results_dir, f'heatmap_data_{stat}.csv')
+        heatmap_data.to_csv(output_path) # Save the dataframe to a CSV
 
     if num_plots < num_rows * 2:
         for j in range(num_plots, num_rows * 2):
@@ -274,6 +277,7 @@ for all_relevant_stats in stats_groups:
     output_path = os.path.join(results_dir, f'stacked_heatmap_by_authority_grouped_{"_".join(all_relevant_stats)}.png')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
+
 
 # PLOT OPA AND OPB
 
