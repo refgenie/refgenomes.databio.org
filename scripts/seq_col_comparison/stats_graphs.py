@@ -154,7 +154,7 @@ for all_relevant_stats in stats_groups:
         heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
         for row_idx, sample1 in enumerate(all_samples):
             for col_idx, sample2 in enumerate(all_samples):
-                if col_idx >= row_idx:
+                if col_idx <= row_idx:
                     if sample1 == sample2:
                         heatmap_data.loc[sample1, sample2] = 1.0
                     else:
@@ -189,6 +189,7 @@ for all_relevant_stats in stats_groups:
     #plt.tight_layout(rect=[0, 0, 0.9, 0.96]) # Adjust layout to make space for the colorbar
     output_path = os.path.join(results_dir, f'stacked_heatmap_single_cbar_{"_".join(all_relevant_stats)}.png')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()
 
 
 # PLOT OPA AND OPB
@@ -233,7 +234,7 @@ for all_relevant_stats in stats_groups:
         heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
         for row_idx, sample1 in enumerate(all_samples):
             for col_idx, sample2 in enumerate(all_samples):
-                if col_idx >= row_idx:
+                if col_idx <= row_idx:
                     if sample1 == sample2:
                         heatmap_data.loc[sample1, sample2] = 1.0
                     else:
@@ -272,6 +273,7 @@ for all_relevant_stats in stats_groups:
     #plt.tight_layout(rect=[0, 0, 0.9, 0.96]) # Adjust layout to make space for the colorbar
     output_path = os.path.join(results_dir, f'stacked_heatmap_by_authority_grouped_{"_".join(all_relevant_stats)}.png')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()
 
 # PLOT OPA AND OPB
 
@@ -293,7 +295,7 @@ for all_relevant_stats in stats_groups:
         heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
         for row_idx, sample1 in enumerate(all_samples):
             for col_idx, sample2 in enumerate(all_samples):
-                if col_idx >= row_idx:
+                if col_idx <= row_idx:
                     if sample1 == sample2:
                         heatmap_data.loc[sample1, sample2] = 1.0
                     else:
@@ -328,6 +330,7 @@ for all_relevant_stats in stats_groups:
     #plt.tight_layout(rect=[0, 0, 0.9, 0.96]) # Adjust layout to make space for the colorbar
     output_path = os.path.join(results_dir, f'stacked_heatmap_single_cbar_{"_".join(all_relevant_stats)}.png')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()
 
 
 
@@ -353,7 +356,7 @@ for stat in all_relevant_stats[:]:
 
     for row_idx, sample1 in enumerate(all_samples):
         for col_idx, sample2 in enumerate(all_samples):
-            if col_idx >= row_idx:  # Condition to select the upper triangle (including diagonal)
+            if col_idx <= row_idx:  # Condition to select the lower triangle (including diagonal)
                 if sample1 == sample2:
                     heatmap_data.loc[sample1, sample2] = 1.0
                 else:
@@ -379,6 +382,7 @@ for stat in all_relevant_stats[:]:
     output_path = os.path.join(results_dir,stat+'_vs_name_len1')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     #plt.show()
+    plt.close()
 
 # PLOT MOW MEDIAN CHANGES BASED ON JACCARD_NAME_LEN
 
@@ -423,6 +427,7 @@ for stat in stats:
     plt.tight_layout()
     output_path = os.path.join(results_dir, f'{stat}_counts')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()
 
 
 
@@ -576,6 +581,7 @@ for stat_combination in stat_combinations:
     plt.tight_layout()
     output_path = os.path.join(results_dir, f'hexbin_monochromatic_logscale_{bottom_stat}_vs_{top_stat}')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()
 
 # Plot bar graph freq distribution
 #TODO change stats
@@ -637,6 +643,7 @@ for stat_combination in stat_combinations:
     output_path = os.path.join(results_dir, f'frequency_plot_{bottom_stat}_vs_{top_stat}')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     #plt.show()
+    plt.close()
 
 
 # PLOT DOT CHART
@@ -700,6 +707,7 @@ def create_comparison_dot_plot(data, labels, title="Comparison Dot Plot", x_limi
 
     plt.tight_layout()
     #plt.show()
+    
 
 
 
@@ -733,6 +741,7 @@ for primary_sample in primary_samples:
     
     output_path = os.path.join(results_dir, f'comparison_{primary_sample}_.png')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()
     #plt.show()
 
 
