@@ -1,4 +1,4 @@
-library(ggplot2)
+library(pheatmap)
 library(dplyr)
 
 # Set the directory where the CSV files are located
@@ -37,109 +37,70 @@ for (csv_file in csv_files) {
     stop(paste("Error reading CSV file:", csv_file, "\n", e$message))
   })
 
-  # Convert the data to long format for ggplot2
-  heatmap_long <- heatmap_data %>%
-    tidyr::pivot_longer(
-      cols = -1, # Keep the first column (sample name) as an identifier
-      names_to = "sample2",      # Call the other columns 'sample2'
-      values_to = "similarity"     # and the values 'similarity'
-    ) %>%
-    dplyr::rename(sample1 = 1) # Rename the first column to sample1
+  # Convert the data to matrix for pheatmap
+  # Remove the sample_name column before converting to matrix
+  if ("sample_name" %in% colnames(heatmap_data)) {
+    if (any(heatmap_data$sample_name == "") || any(is.na(heatmap_data$sample_name))){
+      warning(paste("Warning: 'sample_name' column contains missing or empty values in", csv_file))
+      heatmap_matrix <- as.matrix(heatmap_data[, -which(colnames(heatmap_data) == "sample_name")])
+      rownames(heatmap_matrix) <- paste0("Sample_", 1:nrow(heatmap_matrix)) # Create generic row names
+    }
+    else{
+      heatmap_matrix <- as.matrix(heatmap_data[, -which(colnames(heatmap_data) == "sample_name")])
+      rownames(heatmap_matrix) <- heatmap_data$sample_name # Set sample names as row names
+    }
+  } else {
+    warning(paste("Warning: 'sample_name' column is missing in", csv_file))
+    heatmap_matrix <- as.matrix(heatmap_data)
+    rownames(heatmap_matrix) <- paste0("Sample_", 1:nrow(heatmap_matrix)) # Create generic row names
+  }
 
-  # Print structure of dataframes for debugging
-  print("Structure of heatmap_long before join:")
-  print(str(heatmap_long))
-  print("Structure of sample_authority:")
-  print(str(sample_authority))
-
-  # Join authority information
-  heatmap_long <- heatmap_long %>%
-    left_join(sample_authority, by = c("sample1" = "sample_name")) %>%
-    left_join(sample_authority, by = c("sample2" = "sample_name"), suffix = c("_1", "_2"))
-
-  # Get unique authorities and order samples by authority
-  all_samples_with_authority <- unique(c(heatmap_long$sample1, heatmap_long$sample2)) %>%
-    tibble::enframe(name = NULL, value = "sample_name") %>%
-    left_join(sample_authority, by = c("sample_name")) %>%
-    arrange(authority)  # Sort by authority
-
-  ordered_samples <- all_samples_with_authority$sample_name
-  ordered_authorities <- all_samples_with_authority$authority # Get the ordered authorities.
-
-  # Convert sample names to factors, ensuring the order is preserved.
-  heatmap_long$sample1 <- factor(heatmap_long$sample1, levels = ordered_samples)
-  heatmap_long$sample2 <- factor(heatmap_long$sample2, levels = ordered_samples)
+  # Check for non-finite values in the matrix
+  if (!all(is.finite(heatmap_matrix))) {
+    warning(paste("Warning: heatmap data contains non-finite values (NA, Inf) in", csv_file))
+    heatmap_matrix[is.na(heatmap_matrix)] <- 0  # Replace NA with 0, or another appropriate value
+    heatmap_matrix[is.infinite(heatmap_matrix)] <- 100 # Replace Inf with a large value
+  }
   
-  # Create the heatmap with ggplot2
-  heatmap_plot <- ggplot(heatmap_long, aes(x = sample1, y = sample2, fill = similarity)) +
-    geom_tile() +
-    scale_fill_viridis_c(na.value = "grey", limits = c(0, 1)) + # Ensure 0-1 range
-    geom_text(aes(label = sprintf("%.2f", similarity)), size = 2.5, na.rm = TRUE, color="white") + # Add similarity scores as text, increased size.  Reduced size to 3
-    labs(
-      title = paste("Heatmap of", stat_name),
-      x = "Sample 1",
-      y = "Sample 2",
-      fill = "Similarity"
-    ) +
-    theme_minimal() +
-    theme(
-      axis.text.x = element_text(angle = 90, vjust = 1, hjust = 1, size = 10), # Rotate x-axis labels
-      axis.text.y = element_text(size = 10),
-      legend.title = element_text(size = 10),
-      plot.title = element_text(size = 12, hjust = 0.5), # Center the title
-      panel.grid.major = element_blank(),  # Remove grid lines
-      panel.grid.minor = element_blank(),
-      axis.ticks = element_blank() # remove axis ticks
-    ) +
-    coord_equal() # Ensure the heatmap cells are square
+  # Join authority information to heatmap_data
+  heatmap_data_with_authority <- heatmap_data %>%
+    left_join(sample_authority, by = "sample_name")
+
+  # Order the data by authority
+  heatmap_ordered <- heatmap_data_with_authority %>% arrange(authority)
   
-  # Add the authority labels as annotations
-  # Create a data frame for the annotations
-  annotation_data_x <- data.frame(
-    sample1 = ordered_samples,
-    authority_x = ordered_authorities
-  )
-  annotation_data_y <- data.frame(
-    sample2 = ordered_samples,
-    authority_y = ordered_authorities
+  # Extract the ordered sample names and authorities
+  ordered_samples <- heatmap_ordered$sample_name
+  ordered_authorities <- heatmap_ordered$authority
+  
+  # Create a named vector for the colors
+    authority_colors <- setNames(
+        rainbow(length(unique(ordered_authorities))),
+        unique(ordered_authorities)
+    )
+
+  # Create the heatmap with pheatmap, with ordered samples
+  pheatmap(
+    mat = heatmap_matrix,
+    color = colorRampPalette(c("grey", "darkorange"))(100),  # Color scale
+    border_color = NA,               # No borders
+    cluster_rows = FALSE,            # Do not cluster rows,
+    cluster_cols = FALSE,            # Do not cluster columns
+    order_rows = match(ordered_samples, rownames(heatmap_matrix)), # Order rows by authority
+    order_cols = match(ordered_samples, colnames(heatmap_matrix)), # Order cols by authority
+    annotation_row = data.frame(Authority = ordered_authorities, row.names = ordered_samples), # Row annotation
+    annotation_colors = list(Authority = authority_colors),
+    show_rownames = TRUE,  # Show row names
+    show_colnames = TRUE,
+    main = paste("Heatmap of", stat_name)
   )
 
-#   # Add the annotations to the plot - added size parameter
-#   heatmap_plot <- heatmap_plot +
-#     geom_text(
-#       data = annotation_data_x,
-#       aes(x = sample1, y = 0, label = authority_x),
-#       size = 2,  # Added size parameter here, reduced to 2
-#       angle = 0,
-#       hjust = 0.5,
-#       vjust = 0,
-#       position = position_nudge(y = -0.5)
-#     ) +
-#     geom_text(
-#       data = annotation_data_y,
-#       aes(x = 0, y = sample2, label = authority_y),
-#       size = 2, # Added size parameter here, reduced to 2
-#       angle = 0,
-#       hjust = 0,
-#       vjust = 0.5,
-#       position = position_nudge(x = -0.5)
-#     )
-
-  # Print the heatmap
-  print(heatmap_plot)
-  
   # Save the heatmap (optional)
   tryCatch({
-    ggsave(
-      filename = file.path(results_dir, paste0("heatmap_", stat_name, ".png")),
-      plot = heatmap_plot,
-      width = 18,  # Adjust as needed
-      height = 18, # Adjust as needed
-      dpi = 300
-    )
-    message(paste("Successfully saved plot:", stat_name)) # Added message
+    dev.copy(png, file.path(results_dir, paste0("pheatmap_", stat_name, ".png")), width = 1800, height = 1800, res = 300)
+    dev.off()
+    message(paste("Successfully saved plot:", stat_name))
   }, error = function(e) {
     warning(paste("Error saving plot:", stat_name, "\n", e$message))
   })
-  
 }
