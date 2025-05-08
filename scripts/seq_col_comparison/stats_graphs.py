@@ -205,6 +205,19 @@ for sample in all_samples:
             sample_authority[sample] = result['authority']
             break # Assuming one record per sample
 
+# # 1.  Extract sample authorities and create a dictionary
+# sample_authority_dict = {}
+# for result in results['records']:
+#     sample_authority_dict[result['record_identifier']] = result['authority']
+
+# 2. Convert the dictionary to a DataFrame
+sample_authority_df = pd.DataFrame(list(sample_authority.items()), columns=['sample_name', 'authority'])
+
+sample_authority_file = os.path.join("/home/drc/Downloads/refgenomes_pics_test/08May2025/heatmap_csvs/", "sample_authority.csv")
+
+# 4. Save the DataFrame to a CSV file
+sample_authority_df.to_csv(sample_authority_file, index=False)  # index=False prevents writing row numbers
+
 stats_groups = [['opa_names', 'opb_names', 'opa_lengths', 'opb_lengths', 'opa_sequences', 'opb_sequences', 'opa_name_len', 'opb_name_len']]
 
 for all_relevant_stats in stats_groups:
