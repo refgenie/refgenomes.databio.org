@@ -349,7 +349,7 @@ for stat in all_relevant_stats[:]:
     similarity_df_sorted = similarity_df_sorted[similarity_df_sorted['jaccard_name_len'] >= CUTOFF].copy()
 
     # 1. Get all unique sample names
-    all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
+    all_samples = pd.concat([df['sample_name_1'], df['sample_name_2']]).unique()
 
     # 2. Create an empty DataFrame for the heatmap, initialized with NaN
     heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples, dtype='float')
@@ -372,10 +372,15 @@ for stat in all_relevant_stats[:]:
             else:
                 heatmap_data.loc[sample1, sample2] = np.nan
 
-    grid_kws = {"width_ratios": (.8, .05), "wspace": .5} # Adjust width ratios and spacing
-    fig, (ax, cbar_ax) = plt.subplots(1, 2, figsize=(15, 15), gridspec_kw=grid_kws)
+    # Create a custom colormap
+    cmap = 'viridis' # go back to original cmap
+    cmap = plt.get_cmap(cmap) #needed to use set_bad
+    cmap.set_bad('lightgrey')  # Set NaN color to light grey
 
-    sns.heatmap(heatmap_data, annot=True, cmap='viridis', fmt=".2f", linewidths=.5, cbar=True, cbar_ax=cbar_ax, ax=ax, cbar_kws={'label': stat},annot_kws={"size": 8},vmin=0.0, vmax=1.0)
+    grid_kws = {"width_ratios": (.95, .05), "wspace": .05} # Adjust width ratios and spacing
+    fig, (ax, cbar_ax) = plt.subplots(1, 2, figsize=(22, 18), gridspec_kw=grid_kws)
+
+    sns.heatmap(heatmap_data, annot=True, cmap=cmap, fmt=".2f", linewidths=.5, cbar=True, cbar_ax=cbar_ax, ax=ax, cbar_kws={'label': stat},annot_kws={"size": 8},vmin=0.0, vmax=1.0)
 
     fig.suptitle(f'({stat}) where jaccard_name_len > {CUTOFF}', x=0.5, y=0.95, ha='left', va='top',fontweight='bold') # Use fig.suptitle
 
@@ -383,6 +388,7 @@ for stat in all_relevant_stats[:]:
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     #plt.show()
     plt.close()
+
 
 # PLOT MOW MEDIAN CHANGES BASED ON JACCARD_NAME_LEN
 
