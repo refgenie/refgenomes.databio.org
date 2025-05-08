@@ -57,11 +57,11 @@ for (csv_file in csv_files) {
   }
 
   # Check for non-finite values in the matrix
-  if (!all(is.finite(heatmap_matrix))) {
-    warning(paste("Warning: heatmap data contains non-finite values (NA, Inf) in", csv_file))
-    heatmap_matrix[is.na(heatmap_matrix)] <- 0  # Replace NA with 0, or another appropriate value
-    heatmap_matrix[is.infinite(heatmap_matrix)] <- 100 # Replace Inf with a large value
-  }
+#   if (!all(is.finite(heatmap_matrix))) {
+#     warning(paste("Warning: heatmap data contains non-finite values (NA, Inf) in", csv_file))
+#     heatmap_matrix[is.na(heatmap_matrix)] <- 0  # Replace NA with 0, or another appropriate value
+#     heatmap_matrix[is.infinite(heatmap_matrix)] <- 100 # Replace Inf with a large value
+#   }
   
   # Join authority information to heatmap_data
   heatmap_data_with_authority <- heatmap_data %>%
@@ -76,12 +76,12 @@ for (csv_file in csv_files) {
   
   # Create a named vector for the colors
 authority_colors <- setNames(
-    colorRampPalette(c("darkblue", "pink", "darkred"))(length(unique(ordered_authorities))),
+    colorRampPalette(c("lightblue", "pink", "darkred"))(length(unique(ordered_authorities))),
     unique(ordered_authorities)
 )
 
   # Define a custom color scale
-  my_color <- colorRampPalette(c("grey", viridis(100, option = "D"))) #Start from grey
+  my_color <- colorRampPalette(c(viridis(100, option = "D"))) #Start from grey
 
   # Create the heatmap with pheatmap, with ordered samples
   pheatmap(
