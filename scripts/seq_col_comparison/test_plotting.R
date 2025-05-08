@@ -1,5 +1,6 @@
 library(pheatmap)
 library(dplyr)
+library(viridis)  # Load the viridis package
 
 # Set the directory where the CSV files are located
 results_dir <- "/home/drc/Downloads/refgenomes_pics_test/08May2025/heatmap_csvs/" # Replace with the actual path
@@ -74,15 +75,18 @@ for (csv_file in csv_files) {
   ordered_authorities <- heatmap_ordered$authority
   
   # Create a named vector for the colors
-    authority_colors <- setNames(
-        rainbow(length(unique(ordered_authorities))),
-        unique(ordered_authorities)
-    )
+authority_colors <- setNames(
+    colorRampPalette(c("darkblue", "pink", "darkred"))(length(unique(ordered_authorities))),
+    unique(ordered_authorities)
+)
+
+  # Define a custom color scale
+  my_color <- colorRampPalette(c("grey", viridis(100, option = "D"))) #Start from grey
 
   # Create the heatmap with pheatmap, with ordered samples
   pheatmap(
     mat = heatmap_matrix,
-    color = colorRampPalette(c("grey", "darkorange"))(100),  # Color scale
+    color = my_color(100),  # Use the custom color scale
     border_color = NA,               # No borders
     cluster_rows = FALSE,            # Do not cluster rows,
     cluster_cols = FALSE,            # Do not cluster columns
@@ -92,12 +96,17 @@ for (csv_file in csv_files) {
     annotation_colors = list(Authority = authority_colors),
     show_rownames = TRUE,  # Show row names
     show_colnames = TRUE,
-    main = paste("Heatmap of", stat_name)
+    main = paste("Heatmap of", stat_name),
+    fontsize = 6,         # Control font size of labels
+    fontsize_row = 6,
+    fontsize_col = 6,
+    cellheight = 7, # adjust cell height
+    cellwidth = 7,  # adjust cell width
   )
 
   # Save the heatmap (optional)
   tryCatch({
-    dev.copy(png, file.path(results_dir, paste0("pheatmap_", stat_name, ".png")), width = 1800, height = 1800, res = 300)
+    dev.copy(png, file.path(results_dir, paste0("pheatmap_", stat_name, ".png")), width = 2400, height = 2400, res = 300)
     dev.off()
     message(paste("Successfully saved plot:", stat_name))
   }, error = function(e) {
