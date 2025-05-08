@@ -8,6 +8,7 @@ if (!dir.exists(results_dir)) {
   stop(paste("Error: Directory does not exist:", results_dir))
 }
 
+# YOUR CSVs MUST HAVE A "sample_name" COLUMN!!!
 # Get a list of CSV files in the directory that start with "heatmap_data_"
 csv_files <- list.files(path = results_dir, pattern = "heatmap_data_.*\\.csv$", full.names = TRUE)
 if (length(csv_files) == 0) {
