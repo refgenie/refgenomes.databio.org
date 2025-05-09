@@ -17,6 +17,7 @@ species_title = sys.argv[3] # additional information for the title
 
 
 LOCAL_JSON_DIRECTORY = "/home/drc/Downloads/jsons_from_rivanna/json/"
+PEPHUB_PATH_AUTHORITY = "donaldcampbelljr/human_seqcol_digests:default" # this PEP associates digests/sample_names/authorities together
 
 
 import pandas as pd
@@ -125,6 +126,32 @@ all_relevant_stats = [
 
 
 
+all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
+# get authority from another project based on sample_name:
+psm = pipestat.PipestatManager(pephub_path=PEPHUB_PATH_AUTHORITY)
+results = psm.select_records()
+
+sample_authority = {}
+for sample in all_samples:
+    for result in results['records']:
+        if sample == result['record_identifier']:
+            sample_authority[sample] = result['authority']
+            break # Assuming one record per sample
+
+# # 1.  Extract sample authorities and create a dictionary
+# sample_authority_dict = {}
+# for result in results['records']:
+#     sample_authority_dict[result['record_identifier']] = result['authority']
+
+# 2. Convert the dictionary to a DataFrame
+sample_authority_df = pd.DataFrame(list(sample_authority.items()), columns=['sample_name', 'authority'])
+
+sample_authority_file = os.path.join("/home/drc/Downloads/refgenomes_pics_test/08May2025/heatmap_csvs/", "sample_authority.csv")
+
+# 4. Save the DataFrame to a CSV file
+sample_authority_df.to_csv(sample_authority_file, index=False)  # index=False prevents writing row numbers
+
+
 #### PLOT MULTIPLE SUBPLOTS
 
 # stats_groups = [['f1_names',
@@ -148,9 +175,17 @@ for all_relevant_stats in stats_groups:
 
     for i, stat in enumerate(all_relevant_stats):
         pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
-        all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
-        if desired_order:
-            all_samples = [sample for sample in desired_order if sample in all_samples]
+        # if desired_order:
+        #     all_samples = [sample for sample in desired_order if sample in all_samples]
+                # Create a list of (sample, authority) tuples
+        sample_authority_list = [(sample, sample_authority.get(sample)) for sample in all_samples]
+
+        # Sort the list based on authority
+        sorted_sample_authority = sorted(sample_authority_list, key=lambda item: item[1])
+
+        # Extract the sorted sample names
+        all_samples = [item[0] for item in sorted_sample_authority]
+
         heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
         for row_idx, sample1 in enumerate(all_samples):
             for col_idx, sample2 in enumerate(all_samples):
@@ -181,6 +216,15 @@ for all_relevant_stats in stats_groups:
         if i == 0:
             cbar_ax.set_ylabel('Similarity Score', fontsize=12) # Set label only once
 
+                # Get the unique authorities in the sorted order of samples
+        ordered_authorities = [sample_authority.get(sample) for sample in all_samples]
+        ax.set_yticklabels(ordered_authorities, rotation=0, fontsize=8)
+        ax.set_xticklabels(ordered_authorities, rotation=90, fontsize=8)
+        
+        output_path = os.path.join(results_dir, f'heatmap_data_{stat}.csv')
+        heatmap_data.index.name = 'sample_name'  # Set the index name
+        heatmap_data.to_csv(output_path,index=True, header=True) # Save the dataframe to a CSV
+
     if num_plots < num_rows * 2:
         for j in range(num_plots, num_rows * 2):
             fig.delaxes(axes[j])
@@ -194,29 +238,7 @@ for all_relevant_stats in stats_groups:
 
 # PLOT OPA AND OPB
 
-# get authority from another project based on sample_name:
-psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/human_seqcol_digests:default")
-results = psm.select_records()
 
-sample_authority = {}
-for sample in all_samples:
-    for result in results['records']:
-        if sample == result['record_identifier']:
-            sample_authority[sample] = result['authority']
-            break # Assuming one record per sample
-
-# # 1.  Extract sample authorities and create a dictionary
-# sample_authority_dict = {}
-# for result in results['records']:
-#     sample_authority_dict[result['record_identifier']] = result['authority']
-
-# 2. Convert the dictionary to a DataFrame
-sample_authority_df = pd.DataFrame(list(sample_authority.items()), columns=['sample_name', 'authority'])
-
-sample_authority_file = os.path.join("/home/drc/Downloads/refgenomes_pics_test/08May2025/heatmap_csvs/", "sample_authority.csv")
-
-# 4. Save the DataFrame to a CSV file
-sample_authority_df.to_csv(sample_authority_file, index=False)  # index=False prevents writing row numbers
 
 stats_groups = [['opa_names', 'opb_names', 'opa_lengths', 'opb_lengths', 'opa_sequences', 'opb_sequences', 'opa_name_len', 'opb_name_len']]
 
@@ -231,8 +253,8 @@ for all_relevant_stats in stats_groups:
     for i, stat in enumerate(all_relevant_stats):
         pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
         all_samples_unsorted = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
-        if desired_order:
-            all_samples_unsorted = [sample for sample in desired_order if sample in all_samples_unsorted]
+        # if desired_order:
+        #     all_samples_unsorted = [sample for sample in desired_order if sample in all_samples_unsorted]
 
         # Create a list of (sample, authority) tuples
         sample_authority_list = [(sample, sample_authority.get(sample)) for sample in all_samples_unsorted]
@@ -307,9 +329,9 @@ for all_relevant_stats in stats_groups:
 
     for i, stat in enumerate(all_relevant_stats):
         pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
-        all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
-        if desired_order:
-            all_samples = [sample for sample in desired_order if sample in all_samples]
+        
+        # if desired_order:
+        #     all_samples = [sample for sample in desired_order if sample in all_samples]
         heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
         for row_idx, sample1 in enumerate(all_samples):
             for col_idx, sample2 in enumerate(all_samples):
@@ -366,8 +388,6 @@ for stat in all_relevant_stats[:]:
     similarity_df_sorted = df.sort_values(by=stat, ascending=False).copy()
     similarity_df_sorted = similarity_df_sorted[similarity_df_sorted['jaccard_name_len'] >= CUTOFF].copy()
 
-    # 1. Get all unique sample names
-    all_samples = pd.concat([df['sample_name_1'], df['sample_name_2']]).unique()
 
     # 2. Create an empty DataFrame for the heatmap, initialized with NaN
     heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples, dtype='float')
@@ -555,8 +575,6 @@ for stat_combination in stat_combinations:
     x_values = []
     y_values = []
 
-    # Iterate through all unique sample pairs (avoiding duplicates and self-comparisons)
-    all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
 
     for i in range(len(all_samples)):
         for j in range(i + 1, len(all_samples)):
@@ -622,7 +640,6 @@ for stat_combination in stat_combinations:
     # Collect all values for both statistics
     bottom_values = []
     top_values = []
-    all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
 
     for i in range(len(all_samples)):
         for j in range(i + 1, len(all_samples)):
