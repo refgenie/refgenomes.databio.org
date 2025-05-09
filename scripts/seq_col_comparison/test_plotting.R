@@ -3,7 +3,9 @@ library(dplyr)
 library(viridis)  # Load the viridis package
 
 # Set the directory where the CSV files are located
-results_dir <- "/home/drc/Downloads/refgenomes_pics_test/08May2025/heatmap_csvs/" # Replace with the actual path
+#results_dir <- "/home/drc/Downloads/refgenomes_pics_test/08May2025/heatmap_csvs/" # Replace with the actual path
+results_dir <- "/home/drc/Downloads/refgenomes_pics_test/08May2025/hetamaps_r_test_02/"
+
 if (!dir.exists(results_dir)) {
   stop(paste("Error: Directory does not exist:", results_dir))
 }

@@ -279,7 +279,8 @@ for all_relevant_stats in stats_groups:
             cbar_ax.set_ylabel('Similarity Score', fontsize=12) # Set label only once
             # Export the heatmap_data to a CSV file
         output_path = os.path.join(results_dir, f'heatmap_data_{stat}.csv')
-        heatmap_data.to_csv(output_path) # Save the dataframe to a CSV
+        heatmap_data.index.name = 'sample_name'  # Set the index name
+        heatmap_data.to_csv(output_path,index=True, header=True) # Save the dataframe to a CSV
 
     if num_plots < num_rows * 2:
         for j in range(num_plots, num_rows * 2):
