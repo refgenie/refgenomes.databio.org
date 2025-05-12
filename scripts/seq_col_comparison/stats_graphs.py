@@ -14,11 +14,12 @@ from pprint import pprint
 results_dir = sys.argv[1] # output dir for graphs 
 results_pep = sys.argv[2] # input pep for graphing
 species_title = sys.argv[3] # additional information for the title
+LOCAL_JSON_DIRECTORY  = sys.argv[4] # for lcally stored jsons to pull sequence col data
+PEPHUB_PATH_AUTHORITY = sys.argv[5] # a PEP that ties sample name to authority (e.g ncbi, ucsc)
 
-
-LOCAL_JSON_DIRECTORY = "/home/drc/Downloads/jsons_from_rivanna/json/"
-PEPHUB_PATH_AUTHORITY = "donaldcampbelljr/human_seqcol_digests:default" # this PEP associates digests/sample_names/authorities together
-PEPHUB_PATH_AUTHORITY = "donaldcampbelljr/ncbi_38_seqcol_digests:default" # this PEP associates digests/sample_names/authorities together
+# LOCAL_JSON_DIRECTORY = "/home/drc/Downloads/jsons_from_rivanna/json/"
+# PEPHUB_PATH_AUTHORITY = "donaldcampbelljr/human_seqcol_digests:default" # this PEP associates digests/sample_names/authorities together
+# PEPHUB_PATH_AUTHORITY = "donaldcampbelljr/ncbi_38_seqcol_digests:default" # this PEP associates digests/sample_names/authorities together
 
 
 import pandas as pd
