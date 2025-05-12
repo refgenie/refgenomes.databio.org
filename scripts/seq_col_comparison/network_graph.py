@@ -12,7 +12,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-OUTPUT_PATH = "/home/drc/Downloads/refgenomes_pics_test/06may2025/"
+OUTPUT_PATH = "/home/drc/Downloads/refgenomes_pics_test/12May2025/full_sequence_comparisons/"
 
 psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/human_seqcol_digests_easier_labels:default")
 
@@ -126,7 +126,7 @@ df = pd.DataFrame(data, index=sorted_sequences_by_frequency, columns=sorted_file
 num_all_seqs = len(all_sequences_union) # Assuming this is defined
 
 plt.figure(figsize=(24, 10))
-sns.heatmap(df.T, cmap="magma", cbar=False)  # Transpose the DataFrame
+sns.heatmap(df.T, cmap="viridis", cbar=False)  # Transpose the DataFrame
 plt.title("Sequences Present in Reference Genomes (Sorted by Frequency)")
 plt.ylabel("Reference Genomes")  # Swapped labels
 plt.xlabel(f"Sequences (Sorted by Frequency), n={num_all_seqs}")  # Swapped labels

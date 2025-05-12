@@ -7,7 +7,9 @@ library(viridis)
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/08May2025/hetamaps_r_test_02/"
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/UCSChg19p13/"
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ncbigrch38p14/"
-results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ncbi_grch38_patches/"
+#results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ncbi_grch38_patches/"
+#results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ensembl1/"
+results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/FULL_COMPARISON/"
 
 if (!dir.exists(results_dir)) {
   stop(paste("Error: Directory does not exist:", results_dir))
@@ -114,13 +116,13 @@ for (csv_file in csv_files) {
     fontsize = 6,
     fontsize_row = 6,
     fontsize_col = 6,
-    cellheight = 20,
-    cellwidth = 20
+    cellheight = 7,
+    cellwidth = 7
   )
 
   # Save the heatmap (optional)
   tryCatch({
-    dev.copy(png, file.path(results_dir, paste0("pheatmap_", stat_name, ".png")), width = 1400, height = 1400, res = 300)
+    dev.copy(png, file.path(results_dir, paste0("pheatmap_", stat_name, ".png")), width = 2400, height = 2400, res = 300)
     dev.off()
     message(paste("Successfully saved plot:", stat_name))
   }, error = function(e) {
