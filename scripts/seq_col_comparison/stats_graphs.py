@@ -18,6 +18,7 @@ species_title = sys.argv[3] # additional information for the title
 
 LOCAL_JSON_DIRECTORY = "/home/drc/Downloads/jsons_from_rivanna/json/"
 PEPHUB_PATH_AUTHORITY = "donaldcampbelljr/human_seqcol_digests:default" # this PEP associates digests/sample_names/authorities together
+PEPHUB_PATH_AUTHORITY = "donaldcampbelljr/ncbi_38_seqcol_digests:default" # this PEP associates digests/sample_names/authorities together
 
 
 import pandas as pd
@@ -93,7 +94,17 @@ desired_order = None
 
 # ]
 
-# # # Pre-filter the DataFrame
+# target_samples =[
+
+# "GRCh38.p14-fasta-no-alt-analysis",
+# "GRCh38.p14-fasta-full-analysis-plus-hs38d1",
+# "GRCh38.p14-fasta-no-alt-plus-hs38d1",
+# "GRCh38.p14-fasta-genomic",
+# "GRCh38.p14-fasta-full-analysis",
+# "GRCh38.p14-fasta-no-alt-analysis",
+# ]
+
+# # # # Pre-filter the DataFrame
 # pep_df = pep_df[
 #     ((pep_df['sample_name_1'].isin(target_samples)) & (pep_df['sample_name_2'].isin(target_samples)))
 # ]
@@ -144,7 +155,7 @@ for sample in all_samples:
 # 2. Convert the dictionary to a DataFrame
 sample_authority_df = pd.DataFrame(list(sample_authority.items()), columns=['sample_name', 'authority'])
 
-sample_authority_file = os.path.join("/home/drc/Downloads/refgenomes_pics_test/08May2025/heatmap_csvs/", "sample_authority.csv")
+sample_authority_file = os.path.join(results_dir, "sample_authority.csv")
 
 # 4. Save the DataFrame to a CSV file
 sample_authority_df.to_csv(sample_authority_file, index=False)  # index=False prevents writing row numbers

@@ -5,7 +5,9 @@ library(viridis)
 # Set the directory where the CSV files are located
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/08May2025/heatmap_csvs/" # Replace with the actual path
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/08May2025/hetamaps_r_test_02/"
-results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/UCSChg19p13/"
+#results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/UCSChg19p13/"
+#results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ncbigrch38p14/"
+results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ncbi_grch38_patches/"
 
 if (!dir.exists(results_dir)) {
   stop(paste("Error: Directory does not exist:", results_dir))
@@ -118,7 +120,7 @@ for (csv_file in csv_files) {
 
   # Save the heatmap (optional)
   tryCatch({
-    dev.copy(png, file.path(results_dir, paste0("pheatmap_", stat_name, ".png")), width = 1200, height = 1200, res = 300)
+    dev.copy(png, file.path(results_dir, paste0("pheatmap_", stat_name, ".png")), width = 1400, height = 1400, res = 300)
     dev.off()
     message(paste("Successfully saved plot:", stat_name))
   }, error = function(e) {
