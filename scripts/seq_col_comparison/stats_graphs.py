@@ -77,12 +77,10 @@ desired_order = None
 # "GRCh38.p14-fasta-full-analysis",
 # ]
 
-# ucsc_target_samples = [
-# "hg19-masked-ucsc",
+# target_samples = [
 # "hg19-p13-plusMT-masked-ucsc",
 # "hg19-p13-no-alt-analysis-ucsc",
 # "hg19-p13-full-analysis-ucsc",
-# "hg19-initial-ucsc",
 # "hg19-p13-plusMT-ucsc",
 # ]
 
@@ -220,7 +218,7 @@ for all_relevant_stats in stats_groups:
         ordered_authorities = [sample_authority.get(sample) for sample in all_samples]
         ax.set_yticklabels(ordered_authorities, rotation=0, fontsize=8)
         ax.set_xticklabels(ordered_authorities, rotation=90, fontsize=8)
-        
+
         output_path = os.path.join(results_dir, f'heatmap_data_{stat}.csv')
         heatmap_data.index.name = 'sample_name'  # Set the index name
         heatmap_data.to_csv(output_path,index=True, header=True) # Save the dataframe to a CSV

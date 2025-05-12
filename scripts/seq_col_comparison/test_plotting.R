@@ -5,7 +5,7 @@ library(viridis)
 # Set the directory where the CSV files are located
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/08May2025/heatmap_csvs/" # Replace with the actual path
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/08May2025/hetamaps_r_test_02/"
-results_dir <- "/home/drc/Downloads/refgenomes_pics_test/08May2025/heatmap_r_test_03/"
+results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/UCSChg19p13/"
 
 if (!dir.exists(results_dir)) {
   stop(paste("Error: Directory does not exist:", results_dir))
@@ -90,11 +90,13 @@ for (csv_file in csv_files) {
 
   # Define a custom color scale
   my_color <- colorRampPalette(c(viridis(100, option = "D")))
+  my_breaks <- seq(0, 1, length.out = 101)
 
   # Create the heatmap with pheatmap, with ordered samples and column annotation
   pheatmap(
     mat = heatmap_matrix_ordered,
     color = my_color(100),
+    breaks = my_breaks,
     border_color = NA,
     cluster_rows = FALSE,            # Do not cluster rows
     cluster_cols = FALSE,            # Do not cluster columns
@@ -110,13 +112,13 @@ for (csv_file in csv_files) {
     fontsize = 6,
     fontsize_row = 6,
     fontsize_col = 6,
-    cellheight = 7,
-    cellwidth = 7
+    cellheight = 20,
+    cellwidth = 20
   )
 
   # Save the heatmap (optional)
   tryCatch({
-    dev.copy(png, file.path(results_dir, paste0("pheatmap_", stat_name, ".png")), width = 2400, height = 2400, res = 300)
+    dev.copy(png, file.path(results_dir, paste0("pheatmap_", stat_name, ".png")), width = 1200, height = 1200, res = 300)
     dev.off()
     message(paste("Successfully saved plot:", stat_name))
   }, error = function(e) {
