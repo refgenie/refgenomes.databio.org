@@ -184,8 +184,8 @@ for all_relevant_stats in stats_groups:
 
     for i, stat in enumerate(all_relevant_stats):
         pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
-        # if desired_order:
-        #     all_samples = [sample for sample in desired_order if sample in all_samples]
+        if desired_order:
+            all_samples = [sample for sample in desired_order if sample in all_samples]
                 # Create a list of (sample, authority) tuples
         sample_authority_list = [(sample, sample_authority.get(sample)) for sample in all_samples]
 
@@ -262,8 +262,8 @@ for all_relevant_stats in stats_groups:
     for i, stat in enumerate(all_relevant_stats):
         pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
         all_samples_unsorted = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
-        # if desired_order:
-        #     all_samples_unsorted = [sample for sample in desired_order if sample in all_samples_unsorted]
+        if desired_order:
+            all_samples_unsorted = [sample for sample in desired_order if sample in all_samples_unsorted]
 
         # Create a list of (sample, authority) tuples
         sample_authority_list = [(sample, sample_authority.get(sample)) for sample in all_samples_unsorted]
@@ -339,8 +339,8 @@ for all_relevant_stats in stats_groups:
     for i, stat in enumerate(all_relevant_stats):
         pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
         
-        # if desired_order:
-        #     all_samples = [sample for sample in desired_order if sample in all_samples]
+        if desired_order:
+            all_samples = [sample for sample in desired_order if sample in all_samples]
         heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
         for row_idx, sample1 in enumerate(all_samples):
             for col_idx, sample2 in enumerate(all_samples):
