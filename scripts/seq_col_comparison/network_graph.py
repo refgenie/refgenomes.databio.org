@@ -134,4 +134,5 @@ plt.xticks([])  # Adjust rotation as needed
 plt.yticks(rotation=0)
 plt.tight_layout()
 output_path = os.path.join(OUTPUT_PATH, 'sequences_presence_sorted_frequency')
+#output_path = os.path.join(OUTPUT_PATH, 'sequences_presence_sorted_frequency.svg')
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
