@@ -65,7 +65,7 @@ if (any(is.na(annotation_col$Group))) {
   annotation_col <- annotation_col[!is.na(annotation_col$Group), , drop = FALSE]
   presence_matrix_ordered <- presence_matrix_ordered[, rownames(annotation_col)]
 }
-
+title = paste0(" Sequence Presence in Reference Genomes, n=", nrow(presence_matrix_ordered))
 # --- Create the heatmap ---
 heatmap_plot <- pheatmap(
   mat = t(presence_matrix_ordered), # Transpose the matrix
@@ -77,7 +77,7 @@ heatmap_plot <- pheatmap(
   show_colnames = FALSE, #  Do not show column names (originally row names)
   annotation_row = annotation_col, #  Annotation is now on the rows
   annotation_colors = list(Group = group_colors),
-  main = "Sequence Presence in Reference Genomes",
+  main = title,
   fontsize_row = 8,
   fontsize_col = 2,
   width = 24,
@@ -87,5 +87,10 @@ heatmap_plot <- pheatmap(
 
 # Save as PNG
 png(file.path(results_dir, "sequence_presence_heatmap_r_grouped_authority.png"), width = 2400, height = 1000, res = 150)
+print(heatmap_plot)
+dev.off()
+
+# Save as SVG (optional)
+svg(file.path(results_dir, "sequence_presence_heatmap_r_grouped_authority.svg"), width = 24, height = 10)
 print(heatmap_plot)
 dev.off()
