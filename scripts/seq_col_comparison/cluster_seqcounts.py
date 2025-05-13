@@ -92,7 +92,9 @@ for seq in sorted_sequences_by_frequency:  # Iterate through the sorted sequence
     data.append(row)
 
 df = pd.DataFrame(data, index=sorted_sequences_by_frequency, columns=sorted_files_by_row_count)
-
+# Export the df DataFrame to a CSV file
+df.to_csv(os.path.join(OUTPUT_PATH, 'sequence_presence_matrix.csv'), index=True)  # IMPORTANT: index=True
+print(f"Sequence presence matrix exported to: {os.path.join(OUTPUT_PATH, 'sequence_presence_matrix.csv')}")
 num_all_seqs = len(all_sequences_union) # Assuming this is defined
 
 plt.figure(figsize=(24, 10))
