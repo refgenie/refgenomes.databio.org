@@ -5,8 +5,10 @@ library(stringr)
 library(RColorBrewer)
 
 # Set the directory where the CSV file is located
-results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/full_sequence_comparisons/"
+results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/full_sequence_comparisons/attempt_by_name_len_pairs/"
 csv_file <- file.path(results_dir, "sequence_presence_matrix.csv")
+
+
 annotation_file <- file.path(results_dir, "sample_annotation.csv")
 
 # Read the CSV file
@@ -90,24 +92,15 @@ png(file.path(results_dir, "sequence_presence_heatmap_r_grouped_authority.png"),
 print(heatmap_plot)
 dev.off()
 
-# Save as SVG (optional)
-svg(file.path(results_dir, "sequence_presence_heatmap_r_grouped_authority.svg"), width = 24, height = 10)
-print(heatmap_plot)
-dev.off()
+# # Save as SVG (optional)
+# svg(file.path(results_dir, "sequence_presence_heatmap_r_grouped_authority.svg"), width = 24, height = 10)
+# print(heatmap_plot)
+# dev.off()
 
 
 
 # BY TYPE
 
-library(pheatmap)
-library(dplyr)
-library(viridis)
-library(stringr)
-library(RColorBrewer)
-
-# Set the directory where the CSV file is located
-results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/full_sequence_comparisons/"
-csv_file <- file.path(results_dir, "sequence_presence_matrix.csv")
 annotation_file <- file.path(results_dir, "sample_annotation_2.csv")
 
 # Read the CSV file
@@ -191,8 +184,8 @@ png(file.path(results_dir, "sequence_presence_heatmap_r_grouped_type.png"), widt
 print(heatmap_plot)
 dev.off()
 
-# Save as SVG (optional)
-svg(file.path(results_dir, "sequence_presence_heatmap_r_grouped_type.svg"), width = 24, height = 10)
-print(heatmap_plot)
-dev.off()
+# # Save as SVG (optional)
+# svg(file.path(results_dir, "sequence_presence_heatmap_r_grouped_type.svg"), width = 24, height = 10)
+# print(heatmap_plot)
+# dev.off()
 
