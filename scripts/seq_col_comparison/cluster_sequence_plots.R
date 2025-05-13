@@ -2,6 +2,7 @@ library(pheatmap)
 library(dplyr)
 library(viridis)
 library(stringr)
+library(RColorBrewer)
 
 # Set the directory where the CSV file is located
 results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/full_sequence_comparisons/"
@@ -33,11 +34,21 @@ if (!"group" %in% colnames(annotation_df)) {
   stop("Error: 'group' column is missing from the annotation file.")
 }
 
-# Create a named vector for the colors
-group_colors <- setNames(
-  c("Decoy" = "#440154", "Primary" = "#fde725", "Other" = "#cccccc"),
-  unique(annotation_df$group)
-)
+# # Create a named vector for the colors
+# group_colors <- setNames(
+#   c("Decoy" = "#440154", "Primary" = "#fde725", "Other" = "#cccccc"),
+#   unique(annotation_df$group)
+# )
+# Use the Dark2 color palette from RColorBrewer
+group_colors <- brewer.pal(n = 8, name = "Dark2")
+# Ensure we have enough colors for the unique groups, if not, extend.
+unique_groups <- unique(annotation_df$group)
+if (length(unique_groups) > length(group_colors)) {
+  # You can extend the colors by repeating or interpolating.  A simple repeat:
+  group_colors <- rep(group_colors, ceiling(length(unique_groups) / length(group_colors)))[1:length(unique_groups)]
+}
+# Assign the colors to the groups
+group_colors <- setNames(group_colors[1:length(unique_groups)], unique_groups)
 
 # Create annotation_col data frame
 annotation_df$modified_sample_name <- str_replace_all(annotation_df$sample_name, "-", ".")
@@ -67,7 +78,7 @@ heatmap_plot <- pheatmap(
   annotation_row = annotation_col, #  Annotation is now on the rows
   annotation_colors = list(Group = group_colors),
   main = "Sequence Presence in Reference Genomes",
-  fontsize_row = 6,
+  fontsize_row = 8,
   fontsize_col = 2,
   width = 24,
   height = 10,
