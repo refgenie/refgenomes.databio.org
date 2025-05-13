@@ -1,20 +1,20 @@
 library(pheatmap)
 library(dplyr)
 library(viridis)
-library(stringr) # Load the stringr package
+library(stringr)
 
-# Set the directory where the CSV file is located (adjust if needed)
+# Set the directory where the CSV file is located
 results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/full_sequence_comparisons/"
 csv_file <- file.path(results_dir, "sequence_presence_matrix.csv")
-annotation_file <- file.path(results_dir, "sample_annotation.csv") # Add path to annotation file
+annotation_file <- file.path(results_dir, "sample_annotation.csv")
 
 # Read the CSV file
-presence_df <- read.csv(csv_file, stringsAsFactors = FALSE, row.names = 1) # IMPORTANT: row.names = 1
+presence_df <- read.csv(csv_file, stringsAsFactors = FALSE, row.names = 1)
 
 # Convert to matrix
 presence_matrix <- as.matrix(presence_df)
 
-# Calculate the number of sequences per genome (for sorting rows of the heatmap)
+# Calculate the number of sequences per genome
 genome_sequence_counts <- colSums(presence_matrix)
 sorted_genomes_by_count <- names(sort(genome_sequence_counts, decreasing = TRUE))
 
@@ -22,71 +22,59 @@ sorted_genomes_by_count <- names(sort(genome_sequence_counts, decreasing = TRUE)
 presence_matrix_ordered <- presence_matrix[, sorted_genomes_by_count]
 
 # --- Annotation for the genomes ---
-annotation_df <- read.csv(annotation_file, stringsAsFactors = FALSE) # Read annotation CSV
-# Make sure "sample_name" is a column in annotation_df
+annotation_df <- read.csv(annotation_file, stringsAsFactors = FALSE)
 if (!"sample_name" %in% colnames(annotation_df)) {
   stop("Error: 'sample_name' column is missing in the annotation file.")
 }
-#check for missing values
-if (any(is.na(annotation_df$sample_name))){
+if (any(is.na(annotation_df$sample_name))) {
   stop("Error: Missing values in sample_name column in annotation file")
 }
-
-# Ensure that the annotation file has a 'sample_name' column and a 'group' column
 if (!"group" %in% colnames(annotation_df)) {
-    stop("Error: 'group' column is missing from the annotation file.")
+  stop("Error: 'group' column is missing from the annotation file.")
 }
 
 # Create a named vector for the colors
 group_colors <- setNames(
-  colorRampPalette(c("darkblue", "blue", "lightblue", "pink", "red", "darkred"))(length(unique(annotation_df$group))), # Adjust colors and palette
+  c("Decoy" = "#440154", "Primary" = "#fde725", "Other" = "#cccccc"),
   unique(annotation_df$group)
 )
 
-# Create annotation_col data frame.  We'll use this for column annotation.
-# Create a modified sample name in the annotation_df to match the presence_matrix
+# Create annotation_col data frame
 annotation_df$modified_sample_name <- str_replace_all(annotation_df$sample_name, "-", ".")
-
 annotation_col <- data.frame(
-  Group = annotation_df$group[match(colnames(presence_matrix_ordered), annotation_df$modified_sample_name)], # match by modified sample name
+  Group = annotation_df$group[match(colnames(presence_matrix_ordered), annotation_df$modified_sample_name)],
   row.names = colnames(presence_matrix_ordered)
 )
-#if there are NAs after the match
-if (any(is.na(annotation_col$Group))){
+
+if (any(is.na(annotation_col$Group))) {
   warning("Some samples in the presence matrix are missing from the annotation file")
-  missing_samples <- colnames(presence_matrix_ordered)[is.na(annotation_col$Group)] #get missing samples
+  missing_samples <- colnames(presence_matrix_ordered)[is.na(annotation_col$Group)]
   print("Samples missing from annotation file:")
   print(missing_samples)
   annotation_col <- annotation_col[!is.na(annotation_col$Group), , drop = FALSE]
   presence_matrix_ordered <- presence_matrix_ordered[, rownames(annotation_col)]
 }
 
-
 # --- Create the heatmap ---
 heatmap_plot <- pheatmap(
-  mat = presence_matrix_ordered,
-  color = colorRampPalette(c("white", "darkgreen"))(2), # Adjust colors for 0 and 1
+  mat = t(presence_matrix_ordered), # Transpose the matrix
+  color = viridis(100, option = "D"),
   border_color = NA,
-  cluster_rows = FALSE, # Do not cluster sequences (already sorted by frequency)
-  cluster_cols = FALSE, # Do not cluster genomes (already sorted by sequence count)
-  show_rownames = TRUE, # Show sequence names
-  show_colnames = TRUE,
-  annotation_col = annotation_col, # Use the annotation data frame
-  annotation_colors = list(Group = group_colors), # Pass the named color vector
+  cluster_rows = FALSE,
+  cluster_cols = FALSE,
+  show_rownames = TRUE, # Keep row names as they are now columns
+  show_colnames = FALSE, #  Do not show column names (originally row names)
+  annotation_row = annotation_col, #  Annotation is now on the rows
+  annotation_colors = list(Group = group_colors),
   main = "Sequence Presence in Reference Genomes",
   fontsize_row = 6,
-  fontsize_col = 8,
-  width = 10,
-  height = 8,
-  silent = TRUE # Add silent = TRUE to prevent double plotting
+  fontsize_col = 2,
+  width = 24,
+  height = 10,
+  silent = TRUE
 )
 
 # Save as PNG
-png(file.path(results_dir, "sequence_presence_heatmap_r.png"), width = 1200, height = 800, res = 150)
-print(heatmap_plot) # Use print() to render the plot within the file device
-dev.off()
-
-# Save as SVG (optional)
-svg(file.path(results_dir, "sequence_presence_heatmap_r.svg"), width = 10, height = 8)
-print(heatmap_plot) # Use print() to render the plot within the file device
+png(file.path(results_dir, "sequence_presence_heatmap_r_grouped_authority.png"), width = 2400, height = 1000, res = 150)
+print(heatmap_plot)
 dev.off()
