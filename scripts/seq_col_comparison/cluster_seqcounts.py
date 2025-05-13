@@ -8,7 +8,7 @@ import numpy as np
 
 OUTPUT_PATH = "/home/drc/Downloads/refgenomes_pics_test/12May2025/full_sequence_comparisons/"
 
-psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/human_seqcol_digests_easier_labels:default")
+psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/human_seqcol_digests:default")
 
 results = psm.select_records()
 
