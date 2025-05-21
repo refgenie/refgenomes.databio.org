@@ -14,10 +14,10 @@ pipestat:
 
 #### Current looper_config files:
 
-- .looper.yaml -> for running main set of initially curated files
+- .looper.yaml -> for running main set of initially curated files (human)
 - .looper_ncbi_38.yaml -> only hg38 samples acquired from NCBI
 - .looper_mm.yaml -> initial mouse set
-- .looper_local.yaml -> for files that could not be downloaded with the original pipeline but were instead manually downloaded (e.g. via web browser on HPC) and then processed
+- .looper_local.yaml -> for files that could not be downloaded with the original pipeline but were instead manually downloaded (e.g. via web browser on HPC) and then processed (human)
 - .looper_ensembl -> only Ensembl hg38 samples
 
 #### Example commands to run on HPC:

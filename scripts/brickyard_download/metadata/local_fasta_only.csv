@@ -1,4 +1,7 @@
 sample_name,species,common_genome_name,authority,local_file_path,file_type,description
+hg38-broad, homo_sapiens, hg38, broad, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/broad/hg38/Homo_sapiens_assembly38.fasta,fasta, broad institute hosted hg38
+hg38-noALT-noHLA-noDecoy-broad, homo_sapiens, hg38, broad, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/broad/hg38/Homo_sapiens_assembly38_noALT_noHLA_noDecoy.fasta, fasta, broad institute hosted hg38-noALT-noHLA-noDecoy
+b37-broad, homo_sapiens, hg19, broad, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/broad/hg19/references_b37_Homo_sapiens_assembly19.fasta.gz, fasta, broad institute b37
 GRCh37-igenomes-ensembl, homo_sapiens, hg19, igenomes, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/igenomes/hg19/fasta/Homo_sapiens_Ensembl_GRCh37_genome.fa, fasta, igenomes hosted GRCh37 
 GRCh38-igenomes-ncbi, homo_sapiens, hg38, igenomes, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/igenomes/hg38/fasta/Homo_sapiens_NCBI_GRCh38_genome.fa, fasta, igenomes hosted GRCh38 
 GRCh38-igenomes-build37-2-ncbi, homo_sapiens, hg38, igenomes, /project/shefflab/brickyard/datasets_downloaded/refgenomes_fasta/homo_sapiens/igenomes/hg38/fasta/Homo_sapiens_NCBI_build37_2_genome.fa, fasta, igenomes hosted GRCh38 build 37.2 
