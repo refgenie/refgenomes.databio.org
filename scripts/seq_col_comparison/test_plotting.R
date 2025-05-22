@@ -10,7 +10,7 @@ library(viridis)
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ncbi_grch38_patches/"
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ensembl1/"
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ncbi_grch38_patches/patches_with_svgs/"
-results_dir <- "/home/drc/Downloads/refgenomes_pics_test/21may2025/"
+results_dir <- "/home/drc/Downloads/refgenomes_pics_test/22may2025/mus_musculus/"
 
 if (!dir.exists(results_dir)) {
   stop(paste("Error: Directory does not exist:", results_dir))
