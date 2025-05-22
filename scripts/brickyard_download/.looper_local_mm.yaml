@@ -1,0 +1,6 @@
+pep_config: metadata/pep_config_local_mm.yaml
+output_dir: ${RESULTS}
+pipeline_interfaces:
+  - pipeline/pipeline_interface_local.yaml
+pipestat:
+  pephub_path: donaldcampbelljr/mouse_seqcol_digests:default
