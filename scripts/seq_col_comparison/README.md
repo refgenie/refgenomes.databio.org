@@ -35,3 +35,29 @@ RESULTS -> where looper will put its results
 BRICKYARD_JSON_LOCATION -> where to place created JSON files
 
 BRICKYARD_CHROM_SIZES_LOCATION -> where to place created chrom.sizes files
+
+
+## Various PEPs for digests and results
+
+### Homo sapiens
+
+- all sampled Genomes for Homo sapiens (~52)
+	- donaldcampbelljr/human_seqcol_digests:default
+	- donaldcampbelljr/human_seq_col_results:default
+- Ensembl primary assembly patches (90-113, 9 total) 
+	- donaldcampbelljr/ensembl_38_seqcol_digests:default
+	- donaldcampbelljr/ensembl_hg38_seqcol_results:default
+- NCBI GRCh genomic patches (p0-p14, 9 total), GCF  
+	- donaldcampbelljr/ncbi_38_seqcol_digests:default
+	- donaldcampbelljr/ncbi_38_seqcol_results:default
+- NCBI p14 ->  intra patch “flavors”  
+	- donaldcampbelljr/ncbi_hg38_p14_subset_digests:default
+- UCSC hg19 p13 -> intra patch “flavors”
+	- donaldcampbelljr/ucsc_hg19_subset_digests:default
+	- see the main results pep for results
+
+### Mus musculus
+
+- all sampled genomes for Mus musculus (~32 genomes)
+    - donaldcampbelljr/mouse_seqcol_digests:default
+    - donaldcampbelljr/mouse_seq_col_results:default
