@@ -26,3 +26,12 @@ There is also an R script, `test_plotting.R`. You must add the path to the outpu
 
 #### plotting clustered sequence frequency
 - run script `cluster_seqcounts.py` and then point `cluster_sequence_plots.R` to its output and run to produce a figure of sequences clustered by frequency.
+
+
+### ENV Variables to Set before execution
+
+RESULTS -> where looper will put its results
+
+BRICKYARD_JSON_LOCATION -> where to place created JSON files
+
+BRICKYARD_CHROM_SIZES_LOCATION -> where to place created chrom.sizes files

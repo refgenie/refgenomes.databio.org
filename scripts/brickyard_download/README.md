@@ -22,6 +22,11 @@ pipestat:
 
 #### Example commands to run on HPC:
 
+Some env variables to set before execution:
+
+RESULTS -> where looper will put its results
+BRICKYARD_DOWNLOAD_LOCATION -> if the pipeline downloads fasta files, it needs to know where to store them
+
 ##### load miniforge and conda env with require packages
 ```
 module load miniforge
