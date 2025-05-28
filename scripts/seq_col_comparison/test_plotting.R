@@ -10,7 +10,7 @@ library(viridis)
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ncbi_grch38_patches/"
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ensembl1/"
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ncbi_grch38_patches/patches_with_svgs/"
-results_dir <- "/home/drc/Downloads/refgenomes_pics_test/22may2025/mus_musculus/"
+results_dir <- "/home/drc/Downloads/refgenomes_pics_test/28May2025/homo_sapiens/hg19p13/"
 
 if (!dir.exists(results_dir)) {
   stop(paste("Error: Directory does not exist:", results_dir))
@@ -99,7 +99,7 @@ for (csv_file in csv_files) {
 
   # Save the heatmap (optional)
   tryCatch({
-    dev.copy(png, file.path(results_dir, paste0("pheatmap_", stat_name, ".png")), width = 2400, height = 2400, res = 300)
+    dev.copy(png, file.path(results_dir, paste0("pheatmap_", stat_name, ".png")), width = 1200, height = 1200, res = 300)
       # Create the heatmap with pheatmap, with ordered samples and column annotation
   pheatmap(
     mat = heatmap_matrix_ordered,
@@ -120,8 +120,8 @@ for (csv_file in csv_files) {
     fontsize = 6,
     fontsize_row = 6,
     fontsize_col = 6,
-    cellheight = 7,
-    cellwidth = 7
+    cellheight = 20,
+    cellwidth = 20,
   )
     dev.off()
     message(paste("Successfully saved plot:", stat_name))
@@ -129,7 +129,7 @@ for (csv_file in csv_files) {
     warning(paste("Error saving plot:", stat_name, "\n", e$message))
   })
 
-  # Save the heatmap as SVG
+  # # Save the heatmap as SVG
   tryCatch({
     svg(file.path(results_dir, paste0("pheatmap_", stat_name, ".svg")), width = 8, height = 8) # Adjust width and height as needed
     pheatmap(
@@ -159,7 +159,5 @@ for (csv_file in csv_files) {
   }, error = function(e) {
     warning(paste("Error saving SVG plot:", stat_name, "\n", e$message))
   })
-
-
 
 }
