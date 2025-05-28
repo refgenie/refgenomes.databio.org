@@ -99,8 +99,6 @@ for (csv_file in csv_files) {
 
   # Save the heatmap (optional)
   tryCatch({
-    dev.copy(png, file.path(results_dir, paste0("pheatmap_", stat_name, ".png")), width = 1200, height = 1200, res = 300)
-      # Create the heatmap with pheatmap, with ordered samples and column annotation
   pheatmap(
     mat = heatmap_matrix_ordered,
     color = my_color(100),
@@ -123,41 +121,43 @@ for (csv_file in csv_files) {
     cellheight = 20,
     cellwidth = 20,
   )
+    dev.copy(png, file.path(results_dir, paste0("pheatmap_", stat_name, ".png")), width = 1200, height = 1200, res = 300)
+    # Create the heatmap with pheatmap, with ordered samples and column annotation
     dev.off()
     message(paste("Successfully saved plot:", stat_name))
   }, error = function(e) {
     warning(paste("Error saving plot:", stat_name, "\n", e$message))
   })
 
-  # # Save the heatmap as SVG
-  tryCatch({
-    svg(file.path(results_dir, paste0("pheatmap_", stat_name, ".svg")), width = 8, height = 8) # Adjust width and height as needed
-    pheatmap(
-      mat = heatmap_matrix_ordered,
-      color = my_color(100),
-      breaks = my_breaks,
-      border_color = NA,
-      cluster_rows = FALSE,            # Do not cluster rows
-      cluster_cols = FALSE,            # Do not cluster columns
-      order_rows = match(ordered_samples, rownames(heatmap_matrix_ordered)), # Order rows by authority
-      order_cols = match(ordered_samples, colnames(heatmap_matrix_ordered)), # Order columns by authority
-      annotation_row = annotation_row,
-      annotation_col = annotation_col, # Add column annotation
-      annotation_colors = list(Authority = authority_colors),
-       #annotation_position = c("row", "bottom"),
-      show_rownames = TRUE,
-      show_colnames = TRUE,
-      main = paste("Heatmap of", stat_name),
-      fontsize = 6,
-      fontsize_row = 6,
-      fontsize_col = 6,
-      cellheight = 7,
-      cellwidth = 7
-    )
-    dev.off()
-    message(paste("Successfully saved SVG plot:", stat_name))
-  }, error = function(e) {
-    warning(paste("Error saving SVG plot:", stat_name, "\n", e$message))
-  })
+  # Save the heatmap as SVG
+  # tryCatch({
+  #   svg(file.path(results_dir, paste0("pheatmap_", stat_name, ".svg")), width = 8, height = 8) # Adjust width and height as needed
+  #   pheatmap(
+  #     mat = heatmap_matrix_ordered,
+  #     color = my_color(100),
+  #     breaks = my_breaks,
+  #     border_color = NA,
+  #     cluster_rows = FALSE,            # Do not cluster rows
+  #     cluster_cols = FALSE,            # Do not cluster columns
+  #     order_rows = match(ordered_samples, rownames(heatmap_matrix_ordered)), # Order rows by authority
+  #     order_cols = match(ordered_samples, colnames(heatmap_matrix_ordered)), # Order columns by authority
+  #     annotation_row = annotation_row,
+  #     annotation_col = annotation_col, # Add column annotation
+  #     annotation_colors = list(Authority = authority_colors),
+  #      #annotation_position = c("row", "bottom"),
+  #     show_rownames = TRUE,
+  #     show_colnames = TRUE,
+  #     main = paste("Heatmap of", stat_name),
+  #     fontsize = 6,
+  #     fontsize_row = 6,
+  #     fontsize_col = 6,
+  #     cellheight = 7,
+  #     cellwidth = 7
+  #   )
+  #   dev.off()
+  #   message(paste("Successfully saved SVG plot:", stat_name))
+  # }, error = function(e) {
+  #   warning(paste("Error saving SVG plot:", stat_name, "\n", e$message))
+  # })
 
 }
