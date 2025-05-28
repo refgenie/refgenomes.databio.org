@@ -1,6 +1,7 @@
 library(pheatmap)
 library(dplyr)
 library(viridis)
+library(stringr)
 
 # Set the directory where the CSV files are located
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/08May2025/heatmap_csvs/" # Replace with the actual path
@@ -97,6 +98,9 @@ for (csv_file in csv_files) {
   my_color <- colorRampPalette(c(viridis(100, option = "D")))
   my_breaks <- seq(0, 1, length.out = 101)
 
+  cleaned_stat_name <- gsub("_", " ", stat_name)
+  title_cased_stat_name <- str_to_title(cleaned_stat_name)
+
   # Save the heatmap (optional)
   tryCatch({
   pheatmap(
@@ -114,7 +118,7 @@ for (csv_file in csv_files) {
      #annotation_position = c("row", "bottom"),
     show_rownames = TRUE,
     show_colnames = TRUE,
-    main = paste("Heatmap of", stat_name),
+    main = paste("Heatmap of", title_cased_stat_name),
     fontsize = 6,
     fontsize_row = 6,
     fontsize_col = 6,
@@ -147,7 +151,7 @@ for (csv_file in csv_files) {
   #      #annotation_position = c("row", "bottom"),
   #     show_rownames = TRUE,
   #     show_colnames = TRUE,
-  #     main = paste("Heatmap of", stat_name),
+  #     main = paste("Heatmap of", title_cased_stat_name),
   #     fontsize = 6,
   #     fontsize_row = 6,
   #     fontsize_col = 6,
