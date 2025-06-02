@@ -9,7 +9,8 @@ import pipestat
 
 #results_pep = sys.argv[1] # input pep for graphing
 
-results_pep = "donaldcampbelljr/human_seq_col_results:default"
+#results_pep = "donaldcampbelljr/human_seq_col_results:default"
+results_pep = "donaldcampbelljr/mouse_seq_col_results:default"
 
 
 
@@ -56,10 +57,29 @@ print(f"LEN unique_samples_col2: {len(unique_samples_col2)}")
 print(f"LEN union: {len(all_col_sample)}")
 print(f"LEN All Unique Samples: {len(all_unique_samples)}")
 
-for sample in all_col_sample:
-    print(sample)
+# for sample in all_col_sample:
+#     print(sample)
 
-# You can then perform comparisons between these sets
-# For example, to find samples present in all_unique_samples but not in unique_samples_col1:
-# diff_col1 = all_unique_samples - unique_samples_col1
-# print(f"Samples in all_unique_samples but not in unique_samples_col1: {diff_col1}")
+# jaccard_name_len
+
+samples_jaccard_name_len = []
+count_all = 0
+count_target = 0
+for index, row in pep_df.iterrows():
+    count_all+=1
+    if row['sample_name_1'] == row['sample_name_2']:
+        print("sample names the same, passing")
+        pass
+    else:
+        if row['jaccard_name_len'] == 1.0:
+            count_target+=1
+            samples_jaccard_name_len.append(row['sample_name_1'])
+            samples_jaccard_name_len.append(row['sample_name_2'])
+
+unique_samples_name_len = set(samples_jaccard_name_len)
+
+print(f"LEN unique_samples_name_len: {len(unique_samples_name_len)}")
+print(f"LEN All Unique Samples: {len(all_unique_samples)}")
+print(count_all)
+print(count_target)
+print((count_target/count_all)*100)
