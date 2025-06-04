@@ -9,8 +9,8 @@ import pipestat
 
 #results_pep = sys.argv[1] # input pep for graphing
 
-#results_pep = "donaldcampbelljr/human_seq_col_results:default"
-results_pep = "donaldcampbelljr/mouse_seq_col_results:default"
+results_pep = "donaldcampbelljr/human_seq_col_results:default"
+#results_pep = "donaldcampbelljr/mouse_seq_col_results:default"
 
 
 
@@ -83,3 +83,9 @@ print(f"LEN All Unique Samples: {len(all_unique_samples)}")
 print(count_all)
 print(count_target)
 print((count_target/count_all)*100)
+
+unique_digest1_values = pep_df['digest1'].unique()
+unique_digest2_values = pep_df['digest2'].unique()
+
+all_uniques = set(unique_digest1_values).union(set(unique_digest2_values))
+print(len(all_uniques))
