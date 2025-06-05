@@ -79,21 +79,21 @@ desired_order = None
 # "GRCh38.p14-fasta-full-analysis",
 # ]
 
-# target_samples = [
-# "hg19-p13-plusMT-masked-ucsc",
-# "hg19-p13-no-alt-analysis-ucsc",
-# "hg19-p13-full-analysis-ucsc",
-# "hg19-p13-plusMT-ucsc",
-# ]
-
 target_samples = [
-
-"hg38-toplevel-113-ensembl",
-"GRCh38-p14-47-gencode",
-"GRCh38.p14-fasta-genomic",
-"hg38-p14-ucsc",
-
+"hg19-p13-plusMT-masked-ucsc",
+"hg19-p13-no-alt-analysis-ucsc",
+"hg19-p13-full-analysis-ucsc",
+"hg19-p13-plusMT-ucsc",
 ]
+
+# target_samples = [
+
+# "hg38-toplevel-113-ensembl",
+# "GRCh38-p14-47-gencode",
+# "GRCh38.p14-fasta-genomic",
+# "hg38-p14-ucsc",
+
+# ]
 
 # target_samples =[
 
