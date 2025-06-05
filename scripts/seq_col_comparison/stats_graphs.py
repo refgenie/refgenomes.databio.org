@@ -52,18 +52,18 @@ pep_df = pep["_sample_df"]
 # --------------------------------------------
 desired_order = None
 
-# desired_order = [
-# "GRCh38.p0-fasta-genomic",
-# "GRCh38.p1-fasta-genomic",
-# "GRCh38.p2-fasta-genomic",
-# "GRCh38.p6-fasta-genomic",
-# "GRCh38.p7-fasta-genomic",
-# "GRCh38.p8-fasta-genomic",
-# "GRCh38.p12-fasta-genomic",
-# "GRCh38.p13-fasta-genomic",
-# "GRCh38.p14-fasta-genomic",
+desired_order = [
+"GRCh38.p0-fasta-genomic",
+"GRCh38.p1-fasta-genomic",
+"GRCh38.p2-fasta-genomic",
+"GRCh38.p6-fasta-genomic",
+"GRCh38.p7-fasta-genomic",
+"GRCh38.p8-fasta-genomic",
+"GRCh38.p12-fasta-genomic",
+"GRCh38.p13-fasta-genomic",
+"GRCh38.p14-fasta-genomic",
     
-# ]
+]
 
 #pep_df = pep_df.sort_values(by="ORDER")
 #print(pep_df)
@@ -79,12 +79,12 @@ desired_order = None
 # "GRCh38.p14-fasta-full-analysis",
 # ]
 
-target_samples = [
-"hg19-p13-plusMT-masked-ucsc",
-"hg19-p13-no-alt-analysis-ucsc",
-"hg19-p13-full-analysis-ucsc",
-"hg19-p13-plusMT-ucsc",
-]
+# target_samples = [
+# "hg19-p13-plusMT-masked-ucsc",
+# "hg19-p13-no-alt-analysis-ucsc",
+# "hg19-p13-full-analysis-ucsc",
+# "hg19-p13-plusMT-ucsc",
+# ]
 
 # target_samples = [
 
@@ -106,9 +106,9 @@ target_samples = [
 # ]
 
 # # # # Pre-filter the DataFrame
-pep_df = pep_df[
-    ((pep_df['sample_name_1'].isin(target_samples)) & (pep_df['sample_name_2'].isin(target_samples)))
-]
+# pep_df = pep_df[
+#     ((pep_df['sample_name_1'].isin(target_samples)) & (pep_df['sample_name_2'].isin(target_samples)))
+# ]
 #new_df = pep_df.copy()
 # --------------------------------------------
 
