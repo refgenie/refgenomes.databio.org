@@ -52,18 +52,18 @@ pep_df = pep["_sample_df"]
 # --------------------------------------------
 desired_order = None
 
-desired_order = [
-"GRCh38.p0-fasta-genomic",
-"GRCh38.p1-fasta-genomic",
-"GRCh38.p2-fasta-genomic",
-"GRCh38.p6-fasta-genomic",
-"GRCh38.p7-fasta-genomic",
-"GRCh38.p8-fasta-genomic",
-"GRCh38.p12-fasta-genomic",
-"GRCh38.p13-fasta-genomic",
-"GRCh38.p14-fasta-genomic",
+# desired_order = [
+# "GRCh38.p0-fasta-genomic",
+# "GRCh38.p1-fasta-genomic",
+# "GRCh38.p2-fasta-genomic",
+# "GRCh38.p6-fasta-genomic",
+# "GRCh38.p7-fasta-genomic",
+# "GRCh38.p8-fasta-genomic",
+# "GRCh38.p12-fasta-genomic",
+# "GRCh38.p13-fasta-genomic",
+# "GRCh38.p14-fasta-genomic",
     
-]
+# ]
 
 #pep_df = pep_df.sort_values(by="ORDER")
 #print(pep_df)
@@ -105,10 +105,20 @@ desired_order = [
 # "GRCh38.p14-fasta-no-alt-analysis",
 # ]
 
+#MOUSE TARGET SAMPLES
+
+target_samples=[
+"GRCm39-fasta-genomic",
+"GRCm39-toplevel-113-ensembl",
+"mm39-ucsc-initial-soft-masked",
+"GRCm39-all-M36-gencode",
+]     
+
+
 # # # # Pre-filter the DataFrame
-# pep_df = pep_df[
-#     ((pep_df['sample_name_1'].isin(target_samples)) & (pep_df['sample_name_2'].isin(target_samples)))
-# ]
+pep_df = pep_df[
+    ((pep_df['sample_name_1'].isin(target_samples)) & (pep_df['sample_name_2'].isin(target_samples)))
+]
 #new_df = pep_df.copy()
 # --------------------------------------------
 

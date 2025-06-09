@@ -12,7 +12,7 @@ library(stringr)
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ensembl1/"
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ncbi_grch38_patches/patches_with_svgs/"
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/28May2025/homo_sapiens/hg19p13/"
-results_dir <- "/home/drc/Downloads/refgenomes_pics_test/05june2025/ncbi_patches/"
+results_dir <- "/home/drc/Downloads/refgenomes_pics_test/09june2025/mus_musculus/4_providers/"
 
 if (!dir.exists(results_dir)) {
   stop(paste("Error: Directory does not exist:", results_dir))
