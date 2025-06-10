@@ -626,11 +626,18 @@ for stat_combination in stat_combinations:
     # Define the monochromatic colormap
     colors = ["lightgrey", "darkorange"]
     cmap = LinearSegmentedColormap.from_list("grey_to_orange", colors)
+    plot_extent = [0, 1, 0, 1]
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
 
     # Create the hexbin plot with linear scaling first
-    hb = ax.hexbin(x_values, y_values, gridsize=25, cmap=cmap, alpha=0.8)
+    hb = ax.hexbin(x_values, y_values, gridsize=25, cmap=cmap, alpha=0.8,extent=plot_extent)
     ax.scatter(x_values, y_values, alpha=.20, label='Data Points',color='darkblue', s=25)
     counts = hb.get_array()
+
+    # max_x_value = max(x_values)
+    # max_y_value = max(y_values)
+    # maxval = max(max_x_value,max_y_value)
 
     # Apply logarithmic scaling to the counts, handling zeros
     log_counts = np.log1p(counts)
@@ -652,8 +659,8 @@ for stat_combination in stat_combinations:
     ax.set_xlabel(bottom_stat)
     ax.set_ylabel(top_stat)
     ax.set_title(f'Hexbin Plot of {bottom_stat} vs {top_stat} (Log Scale)')
-    # ax.set_xlim(0, 1)
-    # ax.set_ylim(0, 1)
+    # ax.set_xlim(0, maxval)
+    # ax.set_ylim(0, maxval)
 
     plt.tight_layout()
     #output_path = os.path.join(results_dir, f'hexbin_monochromatic_logscale_{bottom_stat}_vs_{top_stat}')
