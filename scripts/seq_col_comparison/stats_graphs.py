@@ -95,14 +95,14 @@ desired_order = None
 # "hg19-p13-plusMT-ucsc",
 # ]
 
-target_samples = [
+# target_samples = [
 
-"hg38-toplevel-113-ensembl",
-"GRCh38-p14-47-gencode",
-"GRCh38.p14-fasta-genomic",
-"hg38-p14-ucsc",
+# "hg38-toplevel-113-ensembl",
+# "GRCh38-p14-47-gencode",
+# "GRCh38.p14-fasta-genomic",
+# "hg38-p14-ucsc",
 
-]
+# ]
 
 # target_samples =[
 
@@ -125,9 +125,9 @@ target_samples = [
 
 
 # # # # Pre-filter the DataFrame
-pep_df = pep_df[
-    ((pep_df['sample_name_1'].isin(target_samples)) & (pep_df['sample_name_2'].isin(target_samples)))
-]
+# pep_df = pep_df[
+#     ((pep_df['sample_name_1'].isin(target_samples)) & (pep_df['sample_name_2'].isin(target_samples)))
+# ]
 #new_df = pep_df.copy()
 # --------------------------------------------
 
