@@ -125,6 +125,7 @@ for (csv_file in csv_files) {
   #   fontsize_col = 6,
   #   cellheight = 20,
   #   cellwidth = 20,
+  #   fontfamily = "Arial",
   # )
   #   dev.copy(png, file.path(results_dir, paste0("pheatmap_", stat_name, ".png")), width = 1200, height = 1200, res = 300)
   #   # Create the heatmap with pheatmap, with ordered samples and column annotation
@@ -157,7 +158,8 @@ for (csv_file in csv_files) {
       fontsize_row = 6,
       fontsize_col = 6,
       cellheight = 7,
-      cellwidth = 7
+      cellwidth = 7,
+      fontfamily = "Arial",
     )
     dev.off()
     message(paste("Successfully saved SVG plot:", stat_name))

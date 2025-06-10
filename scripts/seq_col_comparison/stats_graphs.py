@@ -7,7 +7,16 @@ import pipestat
 from refget import fasta_to_digest, fasta_to_seqcol_dict, compare_seqcols, SequenceCollection
 from itertools import combinations
 from pprint import pprint
+#import matplotlib.font_manager as fm
 
+# Ensure we default to Arial font, may need to delete font cache json list
+# at location given by matplotlib.get_cachedir() so that it rebuilds the cache json
+# more general installing arial on Ubuntu -> https://askubuntu.com/questions/1349836/how-to-install-fonts-in-20-04
+import matplotlib
+matplotlib.rcParams["svg.fonttype"] = "none" # do not embed directly, instead the downstream program will view with system fonts
+matplotlib.rcParams["font.family"] = "sans-serif"
+matplotlib.rcParams["font.sans-serif"] = ["Arial"]
+matplotlib.rcParams["text.usetex"] = False # this should be default anyway, but ensures we are not ovverriding the above font choices.
 
 #results_pep = "donaldcampbelljr/test_seq_col_results:default"
 
