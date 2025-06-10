@@ -6,7 +6,7 @@ from pephubclient import PEPHubClient
 import pipestat
 
 RESULTS_PEP= "donaldcampbelljr/human_seq_col_results:default"
-#RESULTS_PEP= "donaldcampbelljr/mouse_seq_col_results:default"
+RESULTS_PEP= "donaldcampbelljr/mouse_seq_col_results:default"
 COMPARISON = 1.0 
 
 #results_pep = "donaldcampbelljr/test_seq_col_results:default"
@@ -23,8 +23,7 @@ pep_df = pep["_sample_df"]
 all_unique_samples = set(pep_df['sample_name_1']).union(set(pep_df['sample_name_2']))
 
 # Initialize lists to store sample names based on 'jaccard_name_len' condition
-samples_opa_name_len_in_col1 = []
-samples_opb_name_len_in_col2 = []
+
 
 
 # PICK OPA/OPB STats
@@ -36,6 +35,8 @@ stats = [("opa_name_len","opb_name_len", "name_len"), ("opa_lengths","opb_length
 
 # Iterate through the DataFrame rows
 for stat1, stat2, stat3 in stats:
+    samples_opa_name_len_in_col1 = []
+    samples_opb_name_len_in_col2 = []
     for index, row in pep_df.iterrows():
         if row['sample_name_1'] == row['sample_name_2']:
             print("sample names the same, passing")
