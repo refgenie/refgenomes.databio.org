@@ -95,14 +95,14 @@ desired_order = None
 # "hg19-p13-plusMT-ucsc",
 # ]
 
-# target_samples = [
+target_samples = [
 
-# "hg38-toplevel-113-ensembl",
-# "GRCh38-p14-47-gencode",
-# "GRCh38.p14-fasta-genomic",
-# "hg38-p14-ucsc",
+"hg38-toplevel-113-ensembl",
+"GRCh38-p14-47-gencode",
+"GRCh38.p14-fasta-genomic",
+"hg38-p14-ucsc",
 
-# ]
+]
 
 # target_samples =[
 
@@ -116,12 +116,12 @@ desired_order = None
 
 #MOUSE TARGET SAMPLES
 
-target_samples=[
-"GRCm39-fasta-genomic",
-"GRCm39-toplevel-113-ensembl",
-"mm39-ucsc-initial-soft-masked",
-"GRCm39-all-M36-gencode",
-]     
+# target_samples=[
+# "GRCm39-fasta-genomic",
+# "GRCm39-toplevel-113-ensembl",
+# "mm39-ucsc-initial-soft-masked",
+# "GRCm39-all-M36-gencode",
+# ]     
 
 
 # # # # Pre-filter the DataFrame
@@ -260,7 +260,8 @@ for all_relevant_stats in stats_groups:
 
     plt.suptitle(f'Comparison Heatmaps - {species_title}', fontsize=16, y=1.02)
     #plt.tight_layout(rect=[0, 0, 0.9, 0.96]) # Adjust layout to make space for the colorbar
-    output_path = os.path.join(results_dir, f'stacked_heatmap_single_cbar_{"_".join(all_relevant_stats)}.png')
+    #output_path = os.path.join(results_dir, f'stacked_heatmap_single_cbar_{"_".join(all_relevant_stats)}.png')
+    output_path = os.path.join(results_dir, f'stacked_heatmap_single_cbar_{"_".join(all_relevant_stats)}.svg')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
 
@@ -339,7 +340,8 @@ for all_relevant_stats in stats_groups:
 
     plt.suptitle(f'Comparison Heatmaps - {species_title}', fontsize=16, y=1.02)
     #plt.tight_layout(rect=[0, 0, 0.9, 0.96]) # Adjust layout to make space for the colorbar
-    output_path = os.path.join(results_dir, f'stacked_heatmap_by_authority_grouped_{"_".join(all_relevant_stats)}.png')
+    #output_path = os.path.join(results_dir, f'stacked_heatmap_by_authority_grouped_{"_".join(all_relevant_stats)}.png')
+    output_path = os.path.join(results_dir, f'stacked_heatmap_by_authority_grouped_{"_".join(all_relevant_stats)}.svg')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
 
@@ -397,7 +399,8 @@ for all_relevant_stats in stats_groups:
 
     plt.suptitle(f'Comparison Heatmaps - {species_title}', fontsize=16, y=1.02)
     #plt.tight_layout(rect=[0, 0, 0.9, 0.96]) # Adjust layout to make space for the colorbar
-    output_path = os.path.join(results_dir, f'stacked_heatmap_single_cbar_{"_".join(all_relevant_stats)}.png')
+    #output_path = os.path.join(results_dir, f'stacked_heatmap_single_cbar_{"_".join(all_relevant_stats)}.png')
+    output_path = os.path.join(results_dir, f'stacked_heatmap_single_cbar_{"_".join(all_relevant_stats)}.svg')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
 
@@ -498,7 +501,8 @@ for stat in stats:
     plt.ylim(bottom=0) # Ensure the y-axis starts at 0 to accommodate the labels
 
     plt.tight_layout()
-    output_path = os.path.join(results_dir, f'{stat}_counts')
+    #output_path = os.path.join(results_dir, f'{stat}_counts')
+    output_path = os.path.join(results_dir, f'{stat}_counts.svg')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
 
@@ -648,9 +652,12 @@ for stat_combination in stat_combinations:
     ax.set_xlabel(bottom_stat)
     ax.set_ylabel(top_stat)
     ax.set_title(f'Hexbin Plot of {bottom_stat} vs {top_stat} (Log Scale)')
+    # ax.set_xlim(0, 1)
+    # ax.set_ylim(0, 1)
 
     plt.tight_layout()
-    output_path = os.path.join(results_dir, f'hexbin_monochromatic_logscale_{bottom_stat}_vs_{top_stat}')
+    #output_path = os.path.join(results_dir, f'hexbin_monochromatic_logscale_{bottom_stat}_vs_{top_stat}')
+    output_path = os.path.join(results_dir, f'hexbin_monochromatic_logscale_{bottom_stat}_vs_{top_stat}.svg')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
 
@@ -710,7 +717,8 @@ for stat_combination in stat_combinations:
     ax.legend()
 
     fig.tight_layout()
-    output_path = os.path.join(results_dir, f'frequency_plot_{bottom_stat}_vs_{top_stat}')
+    #output_path = os.path.join(results_dir, f'frequency_plot_{bottom_stat}_vs_{top_stat}')
+    output_path = os.path.join(results_dir, f'frequency_plot_{bottom_stat}_vs_{top_stat}.svg')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     #plt.show()
     plt.close()
@@ -809,7 +817,8 @@ for primary_sample in primary_samples:
     create_comparison_dot_plot(data_from_df, labels, title=f"Comparison of {primary_sample} vs All Other Ref Genomes", x_limit=1.0, metric_markers=['o', 's', 'D', '^'])
     
     
-    output_path = os.path.join(results_dir, f'comparison_{primary_sample}_.png')
+    #output_path = os.path.join(results_dir, f'comparison_{primary_sample}_.png')
+    output_path = os.path.join(results_dir, f'comparison_{primary_sample}_.svg')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
     #plt.show()
@@ -888,6 +897,7 @@ for primary_sample in primary_samples:
     create_comparison_bar_graph(data_from_df, labels, title=f"Comparison of {primary_sample} vs All Other Ref Genomes",
                                  )
 
-    output_path = os.path.join(results_dir, f'comparison_bar_graph_{primary_sample}.png')
+    #output_path = os.path.join(results_dir, f'comparison_bar_graph_{primary_sample}.png')
+    output_path = os.path.join(results_dir, f'comparison_bar_graph_{primary_sample}.svg')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
