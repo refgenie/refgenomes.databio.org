@@ -30,6 +30,13 @@ PEPHUB_PATH_AUTHORITY = sys.argv[5] # a PEP that ties sample name to authority (
 # PEPHUB_PATH_AUTHORITY = "donaldcampbelljr/human_seqcol_digests:default" # this PEP associates digests/sample_names/authorities together
 # PEPHUB_PATH_AUTHORITY = "donaldcampbelljr/ncbi_38_seqcol_digests:default" # this PEP associates digests/sample_names/authorities together
 
+# results_dir = "/home/drc/Downloads/refgenomes_pics_test/jun112025/TEST/"
+# #results_pep = "donaldcampbelljr/human_seq_col_results:default"
+# results_pep = "donaldcampbelljr/ncbi_38_seqcol_results:default"
+# species_title = "human"
+# LOCAL_JSON_DIRECTORY = "/home/drc/Downloads/jsons_from_rivanna/json/"
+# #PEPHUB_PATH_AUTHORITY = "donaldcampbelljr/human_seqcol_digests:default"
+# PEPHUB_PATH_AUTHORITY = "donaldcampbelljr/ncbi_38_seqcol_digests:default"
 
 import pandas as pd
 import seaborn as sns
@@ -88,12 +95,12 @@ desired_order = None
 # "GRCh38.p14-fasta-full-analysis",
 # ]
 
-# target_samples = [
-# "hg19-p13-plusMT-masked-ucsc",
-# "hg19-p13-no-alt-analysis-ucsc",
-# "hg19-p13-full-analysis-ucsc",
-# "hg19-p13-plusMT-ucsc",
-# ]
+target_samples = [
+"hg19-p13-plusMT-masked-ucsc",
+"hg19-p13-no-alt-analysis-ucsc",
+"hg19-p13-full-analysis-ucsc",
+"hg19-p13-plusMT-ucsc",
+]
 
 # target_samples = [
 
@@ -125,9 +132,9 @@ desired_order = None
 
 
 # # # # Pre-filter the DataFrame
-# pep_df = pep_df[
-#     ((pep_df['sample_name_1'].isin(target_samples)) & (pep_df['sample_name_2'].isin(target_samples)))
-# ]
+pep_df = pep_df[
+    ((pep_df['sample_name_1'].isin(target_samples)) & (pep_df['sample_name_2'].isin(target_samples)))
+]
 #new_df = pep_df.copy()
 # --------------------------------------------
 
@@ -326,22 +333,22 @@ for pair_idx, all_relevant_stats in enumerate(stats_pairs): # Iterate through ea
                                     # If populating 'opa_X' heatmap, and original data is (sample1, sample2)
                                     # 'sample1' is sample_name_1, 'sample2' is sample_name_2.
                                     # User reports 'opa_X' is reversed, implying they want 'opb_X' for sample2.
-                                    similarity_score = comparison_forward['opb_' + base_stat_suffix].iloc[0]
+                                    similarity_score = comparison_forward['opa_' + base_stat_suffix].iloc[0]
                                 elif stat.startswith('opb_'):
                                     # If populating 'opb_X' heatmap, and original data is (sample1, sample2)
                                     # User reports 'opb_X' is reversed, implying they want 'opa_X' for sample1.
-                                    similarity_score = comparison_forward['opa_' + base_stat_suffix].iloc[0]
+                                    similarity_score = comparison_forward['opb_' + base_stat_suffix].iloc[0]
 
                             elif not comparison_backward.empty: # pep_df has (sample2, sample1)
                                 if stat.startswith('opa_'):
                                     # If populating 'opa_X' heatmap, and original data is (sample2, sample1)
                                     # 'sample2' is sample_name_1, 'sample1' is sample_name_2.
                                     # User reports 'opa_X' is reversed, implying they want 'opa_X' for sample2.
-                                    similarity_score = comparison_backward['opa_' + base_stat_suffix].iloc[0]
+                                    similarity_score = comparison_backward['opb_' + base_stat_suffix].iloc[0]
                                 elif stat.startswith('opb_'):
                                     # If populating 'opb_X' heatmap, and original data is (sample2, sample1)
                                     # User reports 'opb_X' is reversed, implying they want 'opb_X' for sample1.
-                                    similarity_score = comparison_backward['opb_' + base_stat_suffix].iloc[0]
+                                    similarity_score = comparison_backward['opa_' + base_stat_suffix].iloc[0]
 
                             heatmap_data.loc[sample1, sample2] = similarity_score
                     else:
