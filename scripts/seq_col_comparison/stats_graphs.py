@@ -59,20 +59,20 @@ pep_df = pep["_sample_df"]
 
 # FOR ORDERING OR SLECTING ONLY SOME SAMPLES
 # --------------------------------------------
-# desired_order = None
+desired_order = None
 
-desired_order = [
-"GRCh38.p0-fasta-genomic",
-"GRCh38.p1-fasta-genomic",
-"GRCh38.p2-fasta-genomic",
-"GRCh38.p6-fasta-genomic",
-"GRCh38.p7-fasta-genomic",
-"GRCh38.p8-fasta-genomic",
-"GRCh38.p12-fasta-genomic",
-"GRCh38.p13-fasta-genomic",
-"GRCh38.p14-fasta-genomic",
+# desired_order = [
+# "GRCh38.p0-fasta-genomic",
+# "GRCh38.p1-fasta-genomic",
+# "GRCh38.p2-fasta-genomic",
+# "GRCh38.p6-fasta-genomic",
+# "GRCh38.p7-fasta-genomic",
+# "GRCh38.p8-fasta-genomic",
+# "GRCh38.p12-fasta-genomic",
+# "GRCh38.p13-fasta-genomic",
+# "GRCh38.p14-fasta-genomic",
     
-]
+# ]
 
 #pep_df = pep_df.sort_values(by="ORDER")
 #print(pep_df)
@@ -277,20 +277,16 @@ for pair_idx, all_relevant_stats in enumerate(stats_pairs): # Iterate through ea
         num_plots = len(all_relevant_stats) # Should always be 2 for these pairs
         num_cols_subplot = 2 # Always 2 plots per figure
         num_rows_subplot = 1 # Always 1 row per figure for a pair of plots
-        all_samples_unsorted = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique().tolist()
-        all_samples = []
         if desired_order:
-            # Filter desired_order to only include samples present in the data
-            all_samples = [sample for sample in desired_order if sample in all_samples_unsorted]
-        else:
-            # Create a list of (sample, authority) tuples for sorting
-            sample_authority_list = [(sample, sample_authority.get(sample, '')) for sample in all_samples_unsorted]
-            # Sort based on authority, then alphabetically by sample name as a tie-breaker
-            sorted_sample_authority_tuples = sorted(sample_authority_list, key=lambda item: (item[1], item[0]))
-            all_samples = [item[0] for item in sorted_sample_authority_tuples]
+            all_samples = [sample for sample in desired_order if sample in all_samples]
+                # Create a list of (sample, authority) tuples
+        sample_authority_list = [(sample, sample_authority.get(sample)) for sample in all_samples]
 
-        # Get the unique authorities in the sorted order of samples for axis labels
-        ordered_authorities = [sample_authority.get(sample, sample) for sample in all_samples]
+        # Sort the list based on authority
+        sorted_sample_authority = sorted(sample_authority_list, key=lambda item: item[1])
+
+        # Extract the sorted sample names
+        all_samples = [item[0] for item in sorted_sample_authority]
 
         # Create a new figure for each pair of statistics
         fig, axes = plt.subplots(num_rows_subplot, num_cols_subplot, figsize=(14, 7), sharex=True, sharey=True)
@@ -323,38 +319,29 @@ for pair_idx, all_relevant_stats in enumerate(stats_pairs): # Iterate through ea
                             similarity_score = np.nan
                             # Determine the base stat name (e.g., 'names', 'lengths', 'name_len')
                             # Assumes 'opa_' or 'opb_' prefix is always 4 characters
-                            base_stat_name = stat[4:]
+                            base_stat_suffix = stat[4:]
 
-                            if not comparison_forward.empty:
-                                # If (sample1, sample2) is found in original data:
-                                # opa_X columns relate to sample_name_1, opb_X columns relate to sample_name_2.
-                                # For a cell (sample1, sample2) on the heatmap, we want the value associated with sample1.
+                            if not comparison_forward.empty: # pep_df has (sample1, sample2)
                                 if stat.startswith('opa_'):
-                                    similarity_score = comparison_forward[stat].iloc[0]
+                                    # If populating 'opa_X' heatmap, and original data is (sample1, sample2)
+                                    # 'sample1' is sample_name_1, 'sample2' is sample_name_2.
+                                    # User reports 'opa_X' is reversed, implying they want 'opb_X' for sample2.
+                                    similarity_score = comparison_forward['opb_' + base_stat_suffix].iloc[0]
                                 elif stat.startswith('opb_'):
-                                    # If stat is opb_X, but we are looking for sample1's value which was sample_name_1
-                                    # this case means the original data had (sample_name_1, sample_name_2) where sample1=sample_name_1
-                                    # and we are interested in sample2's (the column's) opb_X value for this cell.
-                                    # The previous logic was specifically for sample1's opb_name_len, which isn't the case here.
-                                    # We are filling cell (sample1, sample2).
-                                    # if stat is 'opb_name_len' and comparison_forward is (sample1, sample2)
-                                    # then 'opb_name_len' is for sample2.
-                                    similarity_score = comparison_forward[stat].iloc[0]
+                                    # If populating 'opb_X' heatmap, and original data is (sample1, sample2)
+                                    # User reports 'opb_X' is reversed, implying they want 'opa_X' for sample1.
+                                    similarity_score = comparison_forward['opa_' + base_stat_suffix].iloc[0]
 
-                            elif not comparison_backward.empty:
-                                # If (sample2, sample1) is found in original data:
-                                # Here, sample2 was sample_name_1, and sample1 was sample_name_2.
-                                # We are filling heatmap_data.loc[sample1, sample2]
+                            elif not comparison_backward.empty: # pep_df has (sample2, sample1)
                                 if stat.startswith('opa_'):
-                                    # We need the value for sample1 (which was sample_name_2 in this backward comparison)
-                                    # So we take the 'opb_' counterpart from the backward comparison.
-                                    opposite_stat = 'opb_' + base_stat_name
-                                    similarity_score = comparison_backward[opposite_stat].iloc[0]
+                                    # If populating 'opa_X' heatmap, and original data is (sample2, sample1)
+                                    # 'sample2' is sample_name_1, 'sample1' is sample_name_2.
+                                    # User reports 'opa_X' is reversed, implying they want 'opa_X' for sample2.
+                                    similarity_score = comparison_backward['opa_' + base_stat_suffix].iloc[0]
                                 elif stat.startswith('opb_'):
-                                    # We need the value for sample2 (which was sample_name_1 in this backward comparison)
-                                    # So we take the 'opa_' counterpart from the backward comparison.
-                                    opposite_stat = 'opa_' + base_stat_name
-                                    similarity_score = comparison_backward[opposite_stat].iloc[0]
+                                    # If populating 'opb_X' heatmap, and original data is (sample2, sample1)
+                                    # User reports 'opb_X' is reversed, implying they want 'opb_X' for sample1.
+                                    similarity_score = comparison_backward['opb_' + base_stat_suffix].iloc[0]
 
                             heatmap_data.loc[sample1, sample2] = similarity_score
                     else:
@@ -373,6 +360,9 @@ for pair_idx, all_relevant_stats in enumerate(stats_pairs): # Iterate through ea
             ax.set_yticks(np.arange(0.5, len(all_samples), 1))
 
             # Set tick labels using the ordered authorities
+
+        # Get the unique authorities in the sorted order of samples for axis labels
+            ordered_authorities = [sample_authority.get(sample, sample) for sample in all_samples]
             ax.set_yticklabels(ordered_authorities, rotation=0, fontsize=8)
             ax.set_xticklabels(ordered_authorities, rotation=90, fontsize=8)
             ax.tick_params(axis='both', which='major', labelsize=8)

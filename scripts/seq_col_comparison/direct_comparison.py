@@ -6,13 +6,17 @@ import json
 LOCAL_JSON_DIRECTORY = "/home/drc/Downloads/jsons_from_rivanna/json/"
 #sample1 = "t-g5olKSC0DsZHICbi3cYR3jF-7i4xaK" # p2
 #sample1 = "P33s5fSkktH60MccIpfLNHAA79fJyxlt" # p1
-sample1 = "9VlpW2Uty7rQNSBbYy-nYCNOHqyYoBTt" # p6
-sample1 = "e38absAQBVXM4If9Mp9UhrPrqNGOklZz" # p7
-sample2 = "d2GjQek3_I1_zkq4gLHTUI50BptQsoqZ" # p13
+# sample1 = "9VlpW2Uty7rQNSBbYy-nYCNOHqyYoBTt" # p6
+# sample1 = "e38absAQBVXM4If9Mp9UhrPrqNGOklZz" # p7
+# sample2 = "d2GjQek3_I1_zkq4gLHTUI50BptQsoqZ" # p13
 
-primary_sample = "d2GjQek3_I1_zkq4gLHTUI50BptQsoqZ" # p13
+# primary_sample = "d2GjQek3_I1_zkq4gLHTUI50BptQsoqZ" # p13
 
-samples_to_compare = ["P33s5fSkktH60MccIpfLNHAA79fJyxlt","t-g5olKSC0DsZHICbi3cYR3jF-7i4xaK", "9VlpW2Uty7rQNSBbYy-nYCNOHqyYoBTt", "e38absAQBVXM4If9Mp9UhrPrqNGOklZz", "d2GjQek3_I1_zkq4gLHTUI50BptQsoqZ"]
+# samples_to_compare = ["P33s5fSkktH60MccIpfLNHAA79fJyxlt","t-g5olKSC0DsZHICbi3cYR3jF-7i4xaK", "9VlpW2Uty7rQNSBbYy-nYCNOHqyYoBTt", "e38absAQBVXM4If9Mp9UhrPrqNGOklZz", "d2GjQek3_I1_zkq4gLHTUI50BptQsoqZ"]
+
+
+samples_to_compare = ["XemD97fxYMS4q-FBm_n5CHQgmzh1_67a"] # p0
+primary_sample = "u1HyLgIlq8M_XvEwy0oGqAvKGHJMGtxH" # p14
 
 def get_sequence_col_dict(digest):
 

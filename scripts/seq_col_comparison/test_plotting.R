@@ -5,7 +5,8 @@ library(stringr)
 
 # Set the directory where the CSV files are located
 
-results_dir <- "/home/drc/Downloads/refgenomes_pics_test/jun112025/ncbi_patches/"
+# results_dir <- "/home/drc/Downloads/refgenomes_pics_test/jun112025/ncbi_patches/"
+results_dir <- "/home/drc/Downloads/refgenomes_pics_test/jun112025/hg19p13/"
 
 if (!dir.exists(results_dir)) {
   stop(paste("Error: Directory does not exist:", results_dir))
