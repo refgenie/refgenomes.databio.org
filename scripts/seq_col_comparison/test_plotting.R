@@ -4,15 +4,8 @@ library(viridis)
 library(stringr)
 
 # Set the directory where the CSV files are located
-#results_dir <- "/home/drc/Downloads/refgenomes_pics_test/08May2025/heatmap_csvs/" # Replace with the actual path
-#results_dir <- "/home/drc/Downloads/refgenomes_pics_test/08May2025/hetamaps_r_test_02/"
-#results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/UCSChg19p13/"
-#results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ncbigrch38p14/"
-#results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ncbi_grch38_patches/"
-#results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ensembl1/"
-#results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/ncbi_grch38_patches/patches_with_svgs/"
-#results_dir <- "/home/drc/Downloads/refgenomes_pics_test/28May2025/homo_sapiens/hg19p13/"
-results_dir <- "/home/drc/Downloads/refgenomes_pics_test/10june2025/human/all_samples_human/"
+
+results_dir <- "/home/drc/Downloads/refgenomes_pics_test/jun112025/ncbi_patches/"
 
 if (!dir.exists(results_dir)) {
   stop(paste("Error: Directory does not exist:", results_dir))

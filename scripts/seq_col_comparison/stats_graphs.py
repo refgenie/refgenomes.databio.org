@@ -59,20 +59,20 @@ pep_df = pep["_sample_df"]
 
 # FOR ORDERING OR SLECTING ONLY SOME SAMPLES
 # --------------------------------------------
-desired_order = None
+# desired_order = None
 
-# desired_order = [
-# "GRCh38.p0-fasta-genomic",
-# "GRCh38.p1-fasta-genomic",
-# "GRCh38.p2-fasta-genomic",
-# "GRCh38.p6-fasta-genomic",
-# "GRCh38.p7-fasta-genomic",
-# "GRCh38.p8-fasta-genomic",
-# "GRCh38.p12-fasta-genomic",
-# "GRCh38.p13-fasta-genomic",
-# "GRCh38.p14-fasta-genomic",
+desired_order = [
+"GRCh38.p0-fasta-genomic",
+"GRCh38.p1-fasta-genomic",
+"GRCh38.p2-fasta-genomic",
+"GRCh38.p6-fasta-genomic",
+"GRCh38.p7-fasta-genomic",
+"GRCh38.p8-fasta-genomic",
+"GRCh38.p12-fasta-genomic",
+"GRCh38.p13-fasta-genomic",
+"GRCh38.p14-fasta-genomic",
     
-# ]
+]
 
 #pep_df = pep_df.sort_values(by="ORDER")
 #print(pep_df)
@@ -270,715 +270,573 @@ for all_relevant_stats in stats_groups:
 
 
 
-stats_groups = [['opa_names', 'opb_names', 'opa_lengths', 'opb_lengths', 'opa_sequences', 'opb_sequences', 'opa_name_len', 'opb_name_len']]
-
-for all_relevant_stats in stats_groups:
-    num_plots = len(all_relevant_stats)
-    num_rows = (num_plots + 1) // 2
-    fig, axes = plt.subplots(num_rows, 2, figsize=(14, 7 * num_rows), sharex=True, sharey=True)
-    axes = np.ravel(axes)
-
-    cbar_ax = fig.add_axes([0.92, 0.15, 0.03, 0.7])  # [left, bottom, width, height] for the colorbar
-
-    for i, stat in enumerate(all_relevant_stats):
-        pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
-        all_samples_unsorted = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
+#stats_groups = [['opa_names', 'opb_names', 'opa_lengths', 'opb_lengths', 'opa_sequences', 'opb_sequences', 'opa_name_len', 'opb_name_len']]
+#stats_groups = [['opa_name_len', 'opb_name_len']]
+stats_pairs = [['opa_names', 'opb_names'], ['opa_lengths', 'opb_lengths'], ['opa_sequences', 'opb_sequences'], ['opa_name_len', 'opb_name_len']]
+for pair_idx, all_relevant_stats in enumerate(stats_pairs): # Iterate through each pair
+        num_plots = len(all_relevant_stats) # Should always be 2 for these pairs
+        num_cols_subplot = 2 # Always 2 plots per figure
+        num_rows_subplot = 1 # Always 1 row per figure for a pair of plots
+        all_samples_unsorted = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique().tolist()
+        all_samples = []
         if desired_order:
-            all_samples_unsorted = [sample for sample in desired_order if sample in all_samples_unsorted]
+            # Filter desired_order to only include samples present in the data
+            all_samples = [sample for sample in desired_order if sample in all_samples_unsorted]
+        else:
+            # Create a list of (sample, authority) tuples for sorting
+            sample_authority_list = [(sample, sample_authority.get(sample, '')) for sample in all_samples_unsorted]
+            # Sort based on authority, then alphabetically by sample name as a tie-breaker
+            sorted_sample_authority_tuples = sorted(sample_authority_list, key=lambda item: (item[1], item[0]))
+            all_samples = [item[0] for item in sorted_sample_authority_tuples]
 
-        # Create a list of (sample, authority) tuples
-        sample_authority_list = [(sample, sample_authority.get(sample)) for sample in all_samples_unsorted]
+        # Get the unique authorities in the sorted order of samples for axis labels
+        ordered_authorities = [sample_authority.get(sample, sample) for sample in all_samples]
 
-        # Sort the list based on authority
-        sorted_sample_authority = sorted(sample_authority_list, key=lambda item: item[1])
+        # Create a new figure for each pair of statistics
+        fig, axes = plt.subplots(num_rows_subplot, num_cols_subplot, figsize=(14, 7), sharex=True, sharey=True)
+        # Flatten axes array for easy iteration
+        axes = np.ravel(axes)
 
-        # Extract the sorted sample names
-        all_samples = [item[0] for item in sorted_sample_authority]
+        # Define colorbar axis only for the first plot in the pair
+        cbar_ax = fig.add_axes([0.92, 0.15, 0.03, 0.7])  # [left, bottom, width, height] for the colorbar
 
-        # Create a DataFrame for the heatmap with the sorted samples
-        heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
-        for row_idx, sample1 in enumerate(all_samples):
-            for col_idx, sample2 in enumerate(all_samples):
-                if col_idx <= row_idx:
-                    if sample1 == sample2:
-                        heatmap_data.loc[sample1, sample2] = 1.0
-                    else:
-                        comparison = pep_df[
-                            ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
-                            ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
-                        ]
-                        if not comparison.empty:
-                            similarity_score = comparison[stat].iloc[0]
-                            heatmap_data.loc[sample1, sample2] = similarity_score
+        for i, stat in enumerate(all_relevant_stats):
+            # Convert stat column to numeric, coercing errors to NaN
+            # This needs to be done for each 'stat' in the current pair
+            if pep_df[stat].dtype == 'object': # Only convert if it's not already numeric
+                pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
+
+            # Create an empty DataFrame for the heatmap with sorted samples as index/columns
+            heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples, dtype=float)
+
+            # Populate the heatmap data (lower triangle + diagonal)
+            for row_idx, sample1 in enumerate(all_samples):
+                for col_idx, sample2 in enumerate(all_samples):
+                    if col_idx <= row_idx: # Populate only the lower triangle and diagonal
+                        if sample1 == sample2:
+                            heatmap_data.loc[sample1, sample2] = 1.0 # Diagonal value is 1.0
                         else:
-                            heatmap_data.loc[sample1, sample2] = np.nan
-                else:
-                    heatmap_data.loc[sample1, sample2] = np.nan
-        heatmap_data = heatmap_data.apply(pd.to_numeric, errors='coerce')
-        ax = axes[i]
-        sns.heatmap(heatmap_data, annot=False, cmap='viridis', fmt=".2f", linewidths=.2, cbar=i == 0, cbar_ax=cbar_ax if i == 0 else None, annot_kws={"size": 3}, vmin=0.0, vmax=1.0, ax=ax)
-        ax.set_title(f'{stat} Heatmap')
-        ax.set_xticks(np.arange(0.5, len(all_samples), 1))
-        ax.set_yticks(np.arange(0.5, len(all_samples), 1))
+                            # Find the comparison where sample1 and sample2 are involved
+                            comparison_forward = pep_df[(pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)]
+                            comparison_backward = pep_df[(pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1)]
 
-        # Get the unique authorities in the sorted order of samples
-        ordered_authorities = [sample_authority.get(sample) for sample in all_samples]
-        ax.set_yticklabels(ordered_authorities, rotation=0, fontsize=8)
-        ax.set_xticklabels(ordered_authorities, rotation=90, fontsize=8)
+                            similarity_score = np.nan
+                            # Determine the base stat name (e.g., 'names', 'lengths', 'name_len')
+                            # Assumes 'opa_' or 'opb_' prefix is always 4 characters
+                            base_stat_name = stat[4:]
 
-        ax.tick_params(axis='both', which='major', labelsize=8)
-        if i == 0:
-            cbar_ax.set_ylabel('Similarity Score', fontsize=12) # Set label only once
+                            if not comparison_forward.empty:
+                                # If (sample1, sample2) is found in original data:
+                                # opa_X columns relate to sample_name_1, opb_X columns relate to sample_name_2.
+                                # For a cell (sample1, sample2) on the heatmap, we want the value associated with sample1.
+                                if stat.startswith('opa_'):
+                                    similarity_score = comparison_forward[stat].iloc[0]
+                                elif stat.startswith('opb_'):
+                                    # If stat is opb_X, but we are looking for sample1's value which was sample_name_1
+                                    # this case means the original data had (sample_name_1, sample_name_2) where sample1=sample_name_1
+                                    # and we are interested in sample2's (the column's) opb_X value for this cell.
+                                    # The previous logic was specifically for sample1's opb_name_len, which isn't the case here.
+                                    # We are filling cell (sample1, sample2).
+                                    # if stat is 'opb_name_len' and comparison_forward is (sample1, sample2)
+                                    # then 'opb_name_len' is for sample2.
+                                    similarity_score = comparison_forward[stat].iloc[0]
+
+                            elif not comparison_backward.empty:
+                                # If (sample2, sample1) is found in original data:
+                                # Here, sample2 was sample_name_1, and sample1 was sample_name_2.
+                                # We are filling heatmap_data.loc[sample1, sample2]
+                                if stat.startswith('opa_'):
+                                    # We need the value for sample1 (which was sample_name_2 in this backward comparison)
+                                    # So we take the 'opb_' counterpart from the backward comparison.
+                                    opposite_stat = 'opb_' + base_stat_name
+                                    similarity_score = comparison_backward[opposite_stat].iloc[0]
+                                elif stat.startswith('opb_'):
+                                    # We need the value for sample2 (which was sample_name_1 in this backward comparison)
+                                    # So we take the 'opa_' counterpart from the backward comparison.
+                                    opposite_stat = 'opa_' + base_stat_name
+                                    similarity_score = comparison_backward[opposite_stat].iloc[0]
+
+                            heatmap_data.loc[sample1, sample2] = similarity_score
+                    else:
+                        heatmap_data.loc[sample1, sample2] = np.nan # Upper triangle remains NaN
+
+            # Convert to numeric again to ensure NaN handling, especially after assignments
+            heatmap_data = heatmap_data.apply(pd.to_numeric, errors='coerce')
+
+            ax = axes[i]
+            # Plot the heatmap
+            sns.heatmap(heatmap_data, annot=False, cmap='viridis', fmt=".2f", linewidths=.2,
+                        cbar=(i == 0), cbar_ax=cbar_ax if i == 0 else None,
+                        annot_kws={"size": 3}, vmin=0.0, vmax=1.0, ax=ax)
+            ax.set_title(f'{stat} Heatmap')
+            ax.set_xticks(np.arange(0.5, len(all_samples), 1)) # Center ticks between cells
+            ax.set_yticks(np.arange(0.5, len(all_samples), 1))
+
+            # Set tick labels using the ordered authorities
+            ax.set_yticklabels(ordered_authorities, rotation=0, fontsize=8)
+            ax.set_xticklabels(ordered_authorities, rotation=90, fontsize=8)
+            ax.tick_params(axis='both', which='major', labelsize=8)
+
+            if i == 0: # Only set colorbar label for the first plot in the pair
+                cbar_ax.set_ylabel('Similarity Score', fontsize=12)
+
             # Export the heatmap_data to a CSV file
-        output_path = os.path.join(results_dir, f'heatmap_data_{stat}.csv')
-        heatmap_data.index.name = 'sample_name'  # Set the index name
-        heatmap_data.to_csv(output_path,index=True, header=True) # Save the dataframe to a CSV
+            output_path_csv = os.path.join(results_dir, f'heatmap_data_{stat}.csv')
+            heatmap_data.index.name = 'sample_name'  # Set the index name
+            heatmap_data.to_csv(output_path_csv, index=True, header=True)
+            print(f"Saved heatmap data for {stat} to {output_path_csv}")
 
-    if num_plots < num_rows * 2:
-        for j in range(num_plots, num_rows * 2):
-            fig.delaxes(axes[j])
+        # --- Final Plot Adjustments and Saving for the current pair ---
+        plt.suptitle(f'Comparison Heatmaps ({all_relevant_stats[0].split("_")[0]} vs {all_relevant_stats[1].split("_")[0]}) - {species_title}', fontsize=16, y=1.02)
+        plt.subplots_adjust(right=0.9, wspace=0.3, hspace=0.3)
 
-    plt.suptitle(f'Comparison Heatmaps - {species_title}', fontsize=16, y=1.02)
-    #plt.tight_layout(rect=[0, 0, 0.9, 0.96]) # Adjust layout to make space for the colorbar
-    #output_path = os.path.join(results_dir, f'stacked_heatmap_by_authority_grouped_{"_".join(all_relevant_stats)}.png')
-    output_path = os.path.join(results_dir, f'stacked_heatmap_by_authority_grouped_{"_".join(all_relevant_stats)}.svg')
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    plt.close()
+        # Use a more descriptive filename for the combined plot of the pair
+        output_filename = f'stacked_heatmap_by_authority_grouped_{all_relevant_stats[0]}_and_{all_relevant_stats[1]}.svg'
+        output_path_svg = os.path.join(results_dir, output_filename)
+        plt.savefig(output_path_svg, dpi=300, bbox_inches='tight')
+        plt.close(fig) # Close the figure to free memory
+        print(f"Saved heatmap plot for {all_relevant_stats[0]} and {all_relevant_stats[1]} to {output_path_svg}")
 
 
-# PLOT OPA AND OPB
+# # PLOT MOW MEDIAN CHANGES BASED ON JACCARD_NAME_LEN
 
-stats_groups = [['opa_names', 'opb_names', 'opa_lengths', 'opb_lengths', 'opa_sequences','opb_sequences','opa_name_len', 'opb_name_len']]
+# # TODO PUT COUNTS ALL AT THE TOP OR THE BOTTOM
+# df = pep_df.copy()
 
-for all_relevant_stats in stats_groups:
-    num_plots = len(all_relevant_stats)
-    num_rows = (num_plots + 1) // 2
-    fig, axes = plt.subplots(num_rows, 2, figsize=(14, 7 * num_rows), sharex=True, sharey=True)
-    axes = np.ravel(axes)
+# stats = ["Mean", "Median"]
 
-    cbar_ax = fig.add_axes([0.92, 0.15, 0.03, 0.7])  # [left, bottom, width, height] for the colorbar
+# for stat in stats:
+#     # --- Calculate and Plot Statistic ---
+#     plt.figure(figsize=(10, 6))  # Adjust figure size as needed
 
-    for i, stat in enumerate(all_relevant_stats):
-        pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
-        
-        if desired_order:
-            all_samples = [sample for sample in desired_order if sample in all_samples]
-        heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
-        for row_idx, sample1 in enumerate(all_samples):
-            for col_idx, sample2 in enumerate(all_samples):
-                if col_idx <= row_idx:
-                    if sample1 == sample2:
-                        heatmap_data.loc[sample1, sample2] = 1.0
-                    else:
-                        comparison = pep_df[
-                            ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
-                            ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
-                        ]
-                        if not comparison.empty:
-                            similarity_score = comparison[stat].iloc[0]
-                            heatmap_data.loc[sample1, sample2] = similarity_score
-                        else:
-                            heatmap_data.loc[sample1, sample2] = np.nan
-                else:
-                    heatmap_data.loc[sample1, sample2] = np.nan
-        heatmap_data = heatmap_data.apply(pd.to_numeric, errors='coerce')
-        ax = axes[i]
-        sns.heatmap(heatmap_data, annot=False, cmap='viridis', fmt=".2f", linewidths=.2, cbar=i == 0, cbar_ax=cbar_ax if i == 0 else None, annot_kws={"size": 3}, vmin=0.0, vmax=1.0, ax=ax)
-        ax.set_title(f'{stat} Heatmap')
-        ax.set_xticks(np.arange(0.5, len(all_samples), 1))
-        ax.set_yticks(np.arange(0.5, len(all_samples), 1))
-        ax.set_yticklabels(all_samples, rotation=0, fontsize=8)
-        ax.tick_params(axis='both', which='major', labelsize=8)
-        ax.set_xticklabels(all_samples, rotation=90, fontsize=8)
-        if i == 0:
-            cbar_ax.set_ylabel('Similarity Score', fontsize=12) # Set label only once
+#     unique_jaccard_lengths = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+#     calculated_stats = []
+#     counts = []  # Store the counts for each bin
 
-    if num_plots < num_rows * 2:
-        for j in range(num_plots, num_rows * 2):
-            fig.delaxes(axes[j])
+#     for length in unique_jaccard_lengths:
+#         lower_bound = length - 0.05
+#         upper_bound = length + 0.05
+#         bin_data = df[(df['jaccard_name_len'] > lower_bound) & (df['jaccard_name_len'] <= upper_bound)]['jaccard_sequences']
+#         if stat == "Median":
+#             calculated_stats.append(bin_data.median())
+#         elif stat == "Mean":
+#             calculated_stats.append(bin_data.mean())
+#         counts.append(len(bin_data))  # Count the data points
 
-    plt.suptitle(f'Comparison Heatmaps - {species_title}', fontsize=16, y=1.02)
-    #plt.tight_layout(rect=[0, 0, 0.9, 0.96]) # Adjust layout to make space for the colorbar
-    #output_path = os.path.join(results_dir, f'stacked_heatmap_single_cbar_{"_".join(all_relevant_stats)}.png')
-    output_path = os.path.join(results_dir, f'stacked_heatmap_single_cbar_{"_".join(all_relevant_stats)}.svg')
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    plt.close()
+#     # Create the bar plot
+#     bars = plt.bar(unique_jaccard_lengths, calculated_stats, width=0.08)
+
+#     # Add count labels at the bottom of the bars
+#     for bar, count in zip(bars, counts):
+#         yval = 0.05  # Position the text at the bottom (y=0)
+#         plt.text(bar.get_x() + bar.get_width()/2, yval, "n="+str(count), ha='center', va='top',color='white', fontweight='bold')
+
+#     # Add labels and title
+#     plt.xlabel('Jaccard Similarity of Name Len Pairs')
+#     plt.ylabel(f'{stat} Jaccard Similarity of Sequences')
+#     plt.title(f'{stat} Jaccard Sequence Similarity vs. Jaccard Name Length Pair Similarity')
+#     plt.xticks(unique_jaccard_lengths)  # Ensure all unique lengths are shown on x-axis
+#     plt.ylim(bottom=0) # Ensure the y-axis starts at 0 to accommodate the labels
+
+#     plt.tight_layout()
+#     #output_path = os.path.join(results_dir, f'{stat}_counts')
+#     output_path = os.path.join(results_dir, f'{stat}_counts.svg')
+#     plt.savefig(output_path, dpi=300, bbox_inches='tight')
+#     plt.close()
 
 
 
+# # # Plot Hexbin ScatterPlot
 
-#CREATE A SPECIAL LOOK AT JACCARD_SEQUENCES when JACCARD_NAME_LEN is perfect
+# # # Assuming pep_df, results_dir, and species_title are defined elsewhere
 
-df = pep["_sample_df"].copy()
+# #relevant_stats = [('jaccard_sequences', 'jaccard_name_len')]
+# relevant_stats = ['jaccard_sequences', 'jaccard_name_len', 'jaccard_lengths', 'jaccard_names']
+# stat_combinations = combinations(iterable=relevant_stats,r=2)
 
-all_relevant_stats = ['jaccard_sequences']
+# for stat_combination in stat_combinations:
+#     fig, ax = plt.subplots(figsize=(10, 8))  # Adjust figure size
 
-CUTOFF = .60
-
-for stat in all_relevant_stats[:]:
-    df = pep["_sample_df"].copy()
-    similarity_df_sorted = df.sort_values(by=stat, ascending=False).copy()
-    similarity_df_sorted = similarity_df_sorted[similarity_df_sorted['jaccard_name_len'] >= CUTOFF].copy()
-
-
-    # 2. Create an empty DataFrame for the heatmap, initialized with NaN
-    heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples, dtype='float')
-
-    for row_idx, sample1 in enumerate(all_samples):
-        for col_idx, sample2 in enumerate(all_samples):
-            if col_idx <= row_idx:  # Condition to select the lower triangle (including diagonal)
-                if sample1 == sample2:
-                    heatmap_data.loc[sample1, sample2] = 1.0
-                else:
-                    comparison = similarity_df_sorted[
-                        ((similarity_df_sorted['sample_name_1'] == sample1) & (similarity_df_sorted['sample_name_2'] == sample2)) |
-                        ((similarity_df_sorted['sample_name_1'] == sample2) & (similarity_df_sorted['sample_name_2'] == sample1))
-                    ]
-                    if not comparison.empty:
-                        similarity_score = comparison[stat].iloc[0]
-                        heatmap_data.loc[sample1, sample2] = similarity_score
-                    else:
-                        heatmap_data.loc[sample1, sample2] = np.nan
-            else:
-                heatmap_data.loc[sample1, sample2] = np.nan
-
-    # Create a custom colormap
-    cmap = 'viridis' # go back to original cmap
-    cmap = plt.get_cmap(cmap) #needed to use set_bad
-    cmap.set_bad('lightgrey')  # Set NaN color to light grey
-
-    grid_kws = {"width_ratios": (.95, .05), "wspace": .05} # Adjust width ratios and spacing
-    fig, (ax, cbar_ax) = plt.subplots(1, 2, figsize=(22, 18), gridspec_kw=grid_kws)
-
-    sns.heatmap(heatmap_data, annot=True, cmap=cmap, fmt=".2f", linewidths=.5, cbar=True, cbar_ax=cbar_ax, ax=ax, cbar_kws={'label': stat},annot_kws={"size": 8},vmin=0.0, vmax=1.0)
-
-    fig.suptitle(f'({stat}) where jaccard_name_len > {CUTOFF}', x=0.5, y=0.95, ha='left', va='top',fontweight='bold') # Use fig.suptitle
-
-    output_path = os.path.join(results_dir,stat+'_vs_name_len1')
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    #plt.show()
-    plt.close()
-
-
-# PLOT MOW MEDIAN CHANGES BASED ON JACCARD_NAME_LEN
-
-# TODO PUT COUNTS ALL AT THE TOP OR THE BOTTOM
-df = pep_df.copy()
-
-stats = ["Mean", "Median"]
-
-for stat in stats:
-    # --- Calculate and Plot Statistic ---
-    plt.figure(figsize=(10, 6))  # Adjust figure size as needed
-
-    unique_jaccard_lengths = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-    calculated_stats = []
-    counts = []  # Store the counts for each bin
-
-    for length in unique_jaccard_lengths:
-        lower_bound = length - 0.05
-        upper_bound = length + 0.05
-        bin_data = df[(df['jaccard_name_len'] > lower_bound) & (df['jaccard_name_len'] <= upper_bound)]['jaccard_sequences']
-        if stat == "Median":
-            calculated_stats.append(bin_data.median())
-        elif stat == "Mean":
-            calculated_stats.append(bin_data.mean())
-        counts.append(len(bin_data))  # Count the data points
-
-    # Create the bar plot
-    bars = plt.bar(unique_jaccard_lengths, calculated_stats, width=0.08)
-
-    # Add count labels at the bottom of the bars
-    for bar, count in zip(bars, counts):
-        yval = 0.05  # Position the text at the bottom (y=0)
-        plt.text(bar.get_x() + bar.get_width()/2, yval, "n="+str(count), ha='center', va='top',color='white', fontweight='bold')
-
-    # Add labels and title
-    plt.xlabel('Jaccard Similarity of Name Len Pairs')
-    plt.ylabel(f'{stat} Jaccard Similarity of Sequences')
-    plt.title(f'{stat} Jaccard Sequence Similarity vs. Jaccard Name Length Pair Similarity')
-    plt.xticks(unique_jaccard_lengths)  # Ensure all unique lengths are shown on x-axis
-    plt.ylim(bottom=0) # Ensure the y-axis starts at 0 to accommodate the labels
-
-    plt.tight_layout()
-    #output_path = os.path.join(results_dir, f'{stat}_counts')
-    output_path = os.path.join(results_dir, f'{stat}_counts.svg')
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    plt.close()
-
-
-
-
-# #### PLOT OVERLAP_COEFFICIENT vs OVERLAP_MAX
-
-#TODO CHANGE STATS, PLOT IN SEPARATE FIGURES FOR NOW
-
-# relevant_stats = [("overlap_coefficient_sequences", "overlap_coefficient_sequences_max")]
-# #relevant_stats = [("overlap_coefficient_sequences", "overlap_coefficient_sequences_max"),("overlap_coefficient_sequences", "jaccard_sequences")]
-
-# for stat in relevant_stats:
-
-#     fig, ax = plt.subplots(figsize=(14, 12))  # Create a single subplot
-
-#     bottom_stat, top_stat = stat  # Get the stats
+#     bottom_stat, top_stat = stat_combination  # Get the stats
 
 #     pep_df[bottom_stat] = pd.to_numeric(pep_df[bottom_stat], errors='coerce')
 #     pep_df[top_stat] = pd.to_numeric(pep_df[top_stat], errors='coerce')
 
-#     # 1. Get all unique sample names
-#     all_samples = pd.concat([pep_df['sample_name_1'], pep_df['sample_name_2']]).unique()
+#     # Create lists to store the paired data points
+#     x_values = []
+#     y_values = []
 
-#     if desired_order:
-#         all_samples = [sample for sample in desired_order if sample in all_samples]
 
-#     num_samples = len(all_samples)
+#     for i in range(len(all_samples)):
+#         for j in range(i + 1, len(all_samples)):
+#             sample1 = all_samples[i]
+#             sample2 = all_samples[j]
 
-#     # 2. Create an empty DataFrame for the combined heatmap
-#     combined_heatmap_data = pd.DataFrame(index=all_samples, columns=all_samples)
+#             comparison = pep_df[
+#                 ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+#                 ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+#             ]
 
-#     for row_idx, sample1 in enumerate(all_samples):
-#         for col_idx, sample2 in enumerate(all_samples):
-#             if col_idx >= row_idx:  # Upper triangle (including diagonal)
-#                 if sample1 == sample2:
-#                     combined_heatmap_data.loc[sample1, sample2] = np.nan  # White diagonal
-#                 else:
-#                     comparison = pep_df[
-#                         ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
-#                         ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
-#                     ]
-#                     if not comparison.empty:
-#                         similarity_score = comparison[top_stat].iloc[0]
-#                         combined_heatmap_data.loc[sample1, sample2] = similarity_score
-#                     else:
-#                         combined_heatmap_data.loc[sample1, sample2] = np.nan
-#             else:  # Lower triangle
-#                 if sample1 == sample2:
-#                     combined_heatmap_data.loc[sample1, sample2] = 1.0  # Different diagonal value if needed
-#                 else:
-#                     comparison = pep_df[
-#                         ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
-#                         ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
-#                     ]
-#                     if not comparison.empty:
-#                         similarity_score = comparison[bottom_stat].iloc[0]
-#                         combined_heatmap_data.loc[sample1, sample2] = similarity_score
-#                     else:
-#                         combined_heatmap_data.loc[sample1, sample2] = np.nan
+#             if not comparison.empty:
+#                 x_values.append(comparison[bottom_stat].iloc[0])
+#                 y_values.append(comparison[top_stat].iloc[0])
 
-#     combined_heatmap_data = combined_heatmap_data.apply(pd.to_numeric, errors='coerce')
+#     # Define the monochromatic colormap
+#     colors = ["lightgrey", "darkorange"]
+#     cmap = LinearSegmentedColormap.from_list("grey_to_orange", colors)
+#     plot_extent = [0, 1, 0, 1]
+#     ax.set_xlim(0, 1)
+#     ax.set_ylim(0, 1)
 
-#     # Create the heatmap
-#     sns.heatmap(combined_heatmap_data, annot=False, cmap='viridis', fmt=".2f", linewidths=.2,
-#                 cbar_kws={'label': f'{bottom_stat} (Lower), {top_stat} (Upper)'},
-#                 annot_kws={"size": 9}, vmin=0.0, vmax=1.0, ax=ax)
-#     ax.set_title(f'Combined Comparison Heatmap: {bottom_stat} (Lower), {top_stat} (Upper)')
+#     # Create the hexbin plot with linear scaling first
+#     hb = ax.hexbin(x_values, y_values, gridsize=25, cmap=cmap, alpha=0.8,extent=plot_extent)
+#     ax.scatter(x_values, y_values, alpha=.20, label='Data Points',color='darkblue', s=25)
+#     counts = hb.get_array()
 
-#     # Center the ticks
-#     ax.set_xticks(np.arange(num_samples) + 0.5)
-#     ax.set_yticks(np.arange(num_samples) + 0.5)
+#     # max_x_value = max(x_values)
+#     # max_y_value = max(y_values)
+#     # maxval = max(max_x_value,max_y_value)
 
-#     # Set the labels to correspond to the new tick positions
-#     ax.set_xticklabels(all_samples, rotation=90, fontsize=8, ha='center')
-#     ax.set_yticklabels(all_samples, rotation=0, fontsize=8, va='center')
-#     ax.tick_params(axis='both', which='major', labelsize=8)
+#     # Apply logarithmic scaling to the counts, handling zeros
+#     log_counts = np.log1p(counts)
 
-#     plt.suptitle(f'Comparison Heatmap - {species_title}', fontsize=16, y=1.02)
-#     plt.tight_layout(rect=[0, 0, 1, 0.96])
-#     output_path = os.path.join(results_dir, f'combined_overlap_heatmap'+bottom_stat+top_stat)
+#     # Normalize the logarithmic counts for the colormap
+#     norm = plt.Normalize(vmin=log_counts.min(), vmax=log_counts.max())
+#     colored_values = cmap(norm(log_counts))
+
+#     # Set the facecolors of the hexbins based on the normalized log counts
+#     hb.set_array(log_counts)  # Directly set the array to the log-transformed counts
+#     hb.set_norm(norm)        # Set the normalization for the colormap
+
+#     # Add a colorbar for the logarithmic scale
+#     cb = fig.colorbar(hb, ax=ax, ticks=np.log1p([1, 10, 100, 1000]))  # Example ticks
+#     cb.set_label('Counts (Log Scale)')
+#     cb.ax.set_yticklabels([1, 10, 100, 1000])  # Label the ticks
+
+#     # Set labels and title
+#     ax.set_xlabel(bottom_stat)
+#     ax.set_ylabel(top_stat)
+#     ax.set_title(f'Hexbin Plot of {bottom_stat} vs {top_stat} (Log Scale)')
+#     # ax.set_xlim(0, maxval)
+#     # ax.set_ylim(0, maxval)
+
+#     plt.tight_layout()
+#     #output_path = os.path.join(results_dir, f'hexbin_monochromatic_logscale_{bottom_stat}_vs_{top_stat}')
+#     output_path = os.path.join(results_dir, f'hexbin_monochromatic_logscale_{bottom_stat}_vs_{top_stat}.svg')
 #     plt.savefig(output_path, dpi=300, bbox_inches='tight')
-#     plt.show()
+#     plt.close()
 
-# # Plot Hexbin ScatterPlot
+# # Plot bar graph freq distribution
+# #TODO change stats
+# #relevant_stats = [('jaccard_sequences', 'jaccard_name_len')]
+# relevant_stats = ['jaccard_sequences', 'jaccard_name_len', 'jaccard_lengths', 'jaccard_names']
+# stat_combinations = combinations(iterable=relevant_stats,r=2)
+# for stat_combination in stat_combinations:
+#     fig, ax = plt.subplots(figsize=(10, 6))  # Adjust figure size
 
-# # Assuming pep_df, results_dir, and species_title are defined elsewhere
+#     bottom_stat, top_stat = stat_combination
+#     pep_df[bottom_stat] = pd.to_numeric(pep_df[bottom_stat], errors='coerce')
+#     pep_df[top_stat] = pd.to_numeric(pep_df[top_stat], errors='coerce')
 
-#relevant_stats = [('jaccard_sequences', 'jaccard_name_len')]
-relevant_stats = ['jaccard_sequences', 'jaccard_name_len', 'jaccard_lengths', 'jaccard_names']
-stat_combinations = combinations(iterable=relevant_stats,r=2)
+#     # Collect all values for both statistics
+#     bottom_values = []
+#     top_values = []
 
-for stat_combination in stat_combinations:
-    fig, ax = plt.subplots(figsize=(10, 8))  # Adjust figure size
+#     for i in range(len(all_samples)):
+#         for j in range(i + 1, len(all_samples)):
+#             sample1 = all_samples[i]
+#             sample2 = all_samples[j]
 
-    bottom_stat, top_stat = stat_combination  # Get the stats
+#             comparison = pep_df[
+#                 ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+#                 ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+#             ]
 
-    pep_df[bottom_stat] = pd.to_numeric(pep_df[bottom_stat], errors='coerce')
-    pep_df[top_stat] = pd.to_numeric(pep_df[top_stat], errors='coerce')
+#             if not comparison.empty:
+#                 bottom_values.append(comparison[bottom_stat].iloc[0])
+#                 top_values.append(comparison[top_stat].iloc[0])
 
-    # Create lists to store the paired data points
-    x_values = []
-    y_values = []
+#     # Define bins for the frequency plot
+#     bins = np.linspace(0, 1, 21)  # Create 20 bins from 0 to 1
 
+#     # Calculate frequencies for both statistics
+#     freq_bottom, _ = np.histogram(bottom_values, bins=bins)
+#     freq_top, _ = np.histogram(top_values, bins=bins)
 
-    for i in range(len(all_samples)):
-        for j in range(i + 1, len(all_samples)):
-            sample1 = all_samples[i]
-            sample2 = all_samples[j]
+#     # Set the width of the bars
+#     width = 0.35
 
-            comparison = pep_df[
-                ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
-                ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
-            ]
+#     # Set the positions of the bars on the x-axis
+#     x = np.arange(len(freq_bottom))
 
-            if not comparison.empty:
-                x_values.append(comparison[bottom_stat].iloc[0])
-                y_values.append(comparison[top_stat].iloc[0])
+#     # Create the bar plot
+#     rects1 = ax.bar(x - width/2, freq_bottom, width, label=bottom_stat, color='skyblue')
+#     rects2 = ax.bar(x + width/2, freq_top, width, label=top_stat, color='salmon')
 
-    # Define the monochromatic colormap
-    colors = ["lightgrey", "darkorange"]
-    cmap = LinearSegmentedColormap.from_list("grey_to_orange", colors)
-    plot_extent = [0, 1, 0, 1]
-    ax.set_xlim(0, 1)
-    ax.set_ylim(0, 1)
+#     # Add labels, title, and legend
+#     ax.set_xlabel('Overlap Coefficient')
+#     ax.set_ylabel('Frequency')
+#     ax.set_title(f'Frequency Distribution of {bottom_stat} and {top_stat}')
+#     ax.set_xticks(x)
+#     ax.set_xticklabels([f'{b:.2f}-{(b + (bins[1] - bins[0])):.2f}' for b in bins[:-1]], rotation=45, ha='right')
+#     ax.legend()
 
-    # Create the hexbin plot with linear scaling first
-    hb = ax.hexbin(x_values, y_values, gridsize=25, cmap=cmap, alpha=0.8,extent=plot_extent)
-    ax.scatter(x_values, y_values, alpha=.20, label='Data Points',color='darkblue', s=25)
-    counts = hb.get_array()
-
-    # max_x_value = max(x_values)
-    # max_y_value = max(y_values)
-    # maxval = max(max_x_value,max_y_value)
-
-    # Apply logarithmic scaling to the counts, handling zeros
-    log_counts = np.log1p(counts)
-
-    # Normalize the logarithmic counts for the colormap
-    norm = plt.Normalize(vmin=log_counts.min(), vmax=log_counts.max())
-    colored_values = cmap(norm(log_counts))
-
-    # Set the facecolors of the hexbins based on the normalized log counts
-    hb.set_array(log_counts)  # Directly set the array to the log-transformed counts
-    hb.set_norm(norm)        # Set the normalization for the colormap
-
-    # Add a colorbar for the logarithmic scale
-    cb = fig.colorbar(hb, ax=ax, ticks=np.log1p([1, 10, 100, 1000]))  # Example ticks
-    cb.set_label('Counts (Log Scale)')
-    cb.ax.set_yticklabels([1, 10, 100, 1000])  # Label the ticks
-
-    # Set labels and title
-    ax.set_xlabel(bottom_stat)
-    ax.set_ylabel(top_stat)
-    ax.set_title(f'Hexbin Plot of {bottom_stat} vs {top_stat} (Log Scale)')
-    # ax.set_xlim(0, maxval)
-    # ax.set_ylim(0, maxval)
-
-    plt.tight_layout()
-    #output_path = os.path.join(results_dir, f'hexbin_monochromatic_logscale_{bottom_stat}_vs_{top_stat}')
-    output_path = os.path.join(results_dir, f'hexbin_monochromatic_logscale_{bottom_stat}_vs_{top_stat}.svg')
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    plt.close()
-
-# Plot bar graph freq distribution
-#TODO change stats
-#relevant_stats = [('jaccard_sequences', 'jaccard_name_len')]
-relevant_stats = ['jaccard_sequences', 'jaccard_name_len', 'jaccard_lengths', 'jaccard_names']
-stat_combinations = combinations(iterable=relevant_stats,r=2)
-for stat_combination in stat_combinations:
-    fig, ax = plt.subplots(figsize=(10, 6))  # Adjust figure size
-
-    bottom_stat, top_stat = stat_combination
-    pep_df[bottom_stat] = pd.to_numeric(pep_df[bottom_stat], errors='coerce')
-    pep_df[top_stat] = pd.to_numeric(pep_df[top_stat], errors='coerce')
-
-    # Collect all values for both statistics
-    bottom_values = []
-    top_values = []
-
-    for i in range(len(all_samples)):
-        for j in range(i + 1, len(all_samples)):
-            sample1 = all_samples[i]
-            sample2 = all_samples[j]
-
-            comparison = pep_df[
-                ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
-                ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
-            ]
-
-            if not comparison.empty:
-                bottom_values.append(comparison[bottom_stat].iloc[0])
-                top_values.append(comparison[top_stat].iloc[0])
-
-    # Define bins for the frequency plot
-    bins = np.linspace(0, 1, 21)  # Create 20 bins from 0 to 1
-
-    # Calculate frequencies for both statistics
-    freq_bottom, _ = np.histogram(bottom_values, bins=bins)
-    freq_top, _ = np.histogram(top_values, bins=bins)
-
-    # Set the width of the bars
-    width = 0.35
-
-    # Set the positions of the bars on the x-axis
-    x = np.arange(len(freq_bottom))
-
-    # Create the bar plot
-    rects1 = ax.bar(x - width/2, freq_bottom, width, label=bottom_stat, color='skyblue')
-    rects2 = ax.bar(x + width/2, freq_top, width, label=top_stat, color='salmon')
-
-    # Add labels, title, and legend
-    ax.set_xlabel('Overlap Coefficient')
-    ax.set_ylabel('Frequency')
-    ax.set_title(f'Frequency Distribution of {bottom_stat} and {top_stat}')
-    ax.set_xticks(x)
-    ax.set_xticklabels([f'{b:.2f}-{(b + (bins[1] - bins[0])):.2f}' for b in bins[:-1]], rotation=45, ha='right')
-    ax.legend()
-
-    fig.tight_layout()
-    #output_path = os.path.join(results_dir, f'frequency_plot_{bottom_stat}_vs_{top_stat}')
-    output_path = os.path.join(results_dir, f'frequency_plot_{bottom_stat}_vs_{top_stat}.svg')
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    #plt.show()
-    plt.close()
+#     fig.tight_layout()
+#     #output_path = os.path.join(results_dir, f'frequency_plot_{bottom_stat}_vs_{top_stat}')
+#     output_path = os.path.join(results_dir, f'frequency_plot_{bottom_stat}_vs_{top_stat}.svg')
+#     plt.savefig(output_path, dpi=300, bbox_inches='tight')
+#     #plt.show()
+#     plt.close()
 
 
-# Attempt frequency plot for all 4 stats in one plot
-fig_width_mm = 170
-fig_width_inches = fig_width_mm / 25.4
-fig_height_inches = fig_width_inches * (0.6) # Adjust this ratio as needed
+# # Attempt frequency plot for all 4 stats in one plot
+# fig_width_mm = 170
+# fig_width_inches = fig_width_mm / 25.4
+# fig_height_inches = fig_width_inches * (0.6) # Adjust this ratio as needed
 
-fig, ax = plt.subplots(figsize=(fig_width_inches, fig_height_inches))
-#fig, ax = plt.subplots(figsize=(12, 7)) # Adjust figure size for more bars
+# fig, ax = plt.subplots(figsize=(fig_width_inches, fig_height_inches))
+# #fig, ax = plt.subplots(figsize=(12, 7)) # Adjust figure size for more bars
 
-relevant_stats = ['jaccard_sequences', 'jaccard_name_len', 'jaccard_lengths', 'jaccard_names']
-colors = ['skyblue', 'salmon', 'lightgreen', 'plum'] # Define distinct colors for each stat
+# relevant_stats = ['jaccard_sequences', 'jaccard_name_len', 'jaccard_lengths', 'jaccard_names']
+# colors = ['skyblue', 'salmon', 'lightgreen', 'plum'] # Define distinct colors for each stat
 
-# Convert all relevant stat columns to numeric
-for stat in relevant_stats:
-    pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
+# # Convert all relevant stat columns to numeric
+# for stat in relevant_stats:
+#     pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
 
-# Define bins for the frequency plot
-bins = np.linspace(0, 1, 21)  # Create 20 bins from 0 to 1
+# # Define bins for the frequency plot
+# bins = np.linspace(0, 1, 21)  # Create 20 bins from 0 to 1
 
-# Calculate frequencies for each statistic
-all_freqs = {}
-for stat in relevant_stats:
-    # Collect all values for the current statistic
-    current_values = []
-    for i in range(len(all_samples)):
-        for j in range(i + 1, len(all_samples)):
-            sample1 = all_samples[i]
-            sample2 = all_samples[j]
+# # Calculate frequencies for each statistic
+# all_freqs = {}
+# for stat in relevant_stats:
+#     # Collect all values for the current statistic
+#     current_values = []
+#     for i in range(len(all_samples)):
+#         for j in range(i + 1, len(all_samples)):
+#             sample1 = all_samples[i]
+#             sample2 = all_samples[j]
 
-            comparison = pep_df[
-                ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
-                ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
-            ]
+#             comparison = pep_df[
+#                 ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+#                 ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+#             ]
 
-            if not comparison.empty:
-                current_values.append(comparison[stat].iloc[0])
+#             if not comparison.empty:
+#                 current_values.append(comparison[stat].iloc[0])
     
-    # Filter out NaN values before calculating histogram
-    current_values = [val for val in current_values if not pd.isna(val)]
+#     # Filter out NaN values before calculating histogram
+#     current_values = [val for val in current_values if not pd.isna(val)]
     
-    freq, _ = np.histogram(current_values, bins=bins)
-    all_freqs[stat] = freq
+#     freq, _ = np.histogram(current_values, bins=bins)
+#     all_freqs[stat] = freq
 
-# Set the width of each individual bar
-num_stats = len(relevant_stats)
-bar_width = 0.8 / num_stats # Adjust bar width based on number of stats to prevent overlap
+# # Set the width of each individual bar
+# num_stats = len(relevant_stats)
+# bar_width = 0.8 / num_stats # Adjust bar width based on number of stats to prevent overlap
 
-# Set the base positions for each group of bars
-x_base = np.arange(len(bins) - 1)
+# # Set the base positions for each group of bars
+# x_base = np.arange(len(bins) - 1)
 
-# Plot bars for each statistic
-rects = []
-for i, stat in enumerate(relevant_stats):
-    # Calculate the offset for each bar within a group
-    offset = (i - (num_stats - 1) / 2) * bar_width
-    bars = ax.bar(x_base + offset, all_freqs[stat], bar_width, label=stat, color=colors[i])
-    rects.append(bars)
+# # Plot bars for each statistic
+# rects = []
+# for i, stat in enumerate(relevant_stats):
+#     # Calculate the offset for each bar within a group
+#     offset = (i - (num_stats - 1) / 2) * bar_width
+#     bars = ax.bar(x_base + offset, all_freqs[stat], bar_width, label=stat, color=colors[i])
+#     rects.append(bars)
 
-# Add labels, title, and legend
-ax.set_xlabel('Overlap Coefficient')
-ax.set_ylabel('Frequency')
-ax.set_title('Frequency Distribution of All Relevant Statistics')
-ax.set_xticks(x_base)
-ax.set_xticklabels([f'{b:.2f}-{(b + (bins[1] - bins[0])):.2f}' for b in bins[:-1]], rotation=45, ha='right')
-ax.legend()
+# # Add labels, title, and legend
+# ax.set_xlabel('Overlap Coefficient')
+# ax.set_ylabel('Frequency')
+# ax.set_title('Frequency Distribution of All Relevant Statistics')
+# ax.set_xticks(x_base)
+# ax.set_xticklabels([f'{b:.2f}-{(b + (bins[1] - bins[0])):.2f}' for b in bins[:-1]], rotation=45, ha='right')
+# ax.legend()
 
-fig.tight_layout()
-output_path = os.path.join(results_dir, 'frequency_plot_all_stats.svg')
-plt.savefig(output_path, dpi=300, bbox_inches='tight')
-plt.close()
+# fig.tight_layout()
+# output_path = os.path.join(results_dir, 'frequency_plot_all_stats.svg')
+# plt.savefig(output_path, dpi=300, bbox_inches='tight')
+# plt.close()
 
-print(f"Frequency plot saved to {output_path}")
+# print(f"Frequency plot saved to {output_path}")
 
 
 
-# PLOT DOT CHART
-# TODO also plot bar graphs
+# # PLOT DOT CHART
+# # TODO also plot bar graphs
 
-def create_comparison_dot_plot(data, labels, title="Comparison Dot Plot", x_limit=10,
-                               metric_colors=None, metric_markers=None):
-    """
-    Creates a comparison dot plot using Matplotlib.
+# def create_comparison_dot_plot(data, labels, title="Comparison Dot Plot", x_limit=10,
+#                                metric_colors=None, metric_markers=None):
+#     """
+#     Creates a comparison dot plot using Matplotlib.
 
-    Args:
-        data (dict): A dictionary where keys are sample names (e.g., 'Sample 1')
-                      and values are lists of 4 values.
-        labels (list): A list of label names (e.g., ['Metric A', 'Metric B', 'Metric C', 'Metric D']).
-        title (str, optional): The title of the dot plot. Defaults to "Comparison Dot Plot".
-        x_limit (int, optional): The maximum value for the x-axis. Defaults to 10.
-        metric_colors (list, optional): A list of colors for each metric. If None, default colors are used.
-        metric_markers (list, optional): A list of markers for each metric. If None, default markers are used.
+#     Args:
+#         data (dict): A dictionary where keys are sample names (e.g., 'Sample 1')
+#                       and values are lists of 4 values.
+#         labels (list): A list of label names (e.g., ['Metric A', 'Metric B', 'Metric C', 'Metric D']).
+#         title (str, optional): The title of the dot plot. Defaults to "Comparison Dot Plot".
+#         x_limit (int, optional): The maximum value for the x-axis. Defaults to 10.
+#         metric_colors (list, optional): A list of colors for each metric. If None, default colors are used.
+#         metric_markers (list, optional): A list of markers for each metric. If None, default markers are used.
 
-    Returns:
-        None: Displays the plot.
-    """
-    num_vars = len(labels)
-    if num_vars != 4:
-        raise ValueError("Number of labels must be 4 for this comparison dot plot.")
+#     Returns:
+#         None: Displays the plot.
+#     """
+#     num_vars = len(labels)
+#     if num_vars != 4:
+#         raise ValueError("Number of labels must be 4 for this comparison dot plot.")
 
-    fig, ax = plt.subplots(figsize=(8, 10))  # Adjust figure size as needed
-    y_positions = np.arange(len(data))  # Create y positions for the samples
+#     fig, ax = plt.subplots(figsize=(8, 10))  # Adjust figure size as needed
+#     y_positions = np.arange(len(data))  # Create y positions for the samples
 
-    # Default colors and markers
-    default_colors = metric_colors = ['#1f77b4', '#ff7f0e', '#9467bd', '#8c564b']
-    default_markers = ['o', 's', 'D', '^']
-    sample_color = 'k'  # set a default sample color
+#     # Default colors and markers
+#     default_colors = metric_colors = ['#1f77b4', '#ff7f0e', '#9467bd', '#8c564b']
+#     default_markers = ['o', 's', 'D', '^']
+#     sample_color = 'k'  # set a default sample color
 
-    # Use provided colors and markers or defaults
-    if metric_colors is None:
-        metric_colors = default_colors
-    if metric_markers is None:
-        metric_markers = default_markers
+#     # Use provided colors and markers or defaults
+#     if metric_colors is None:
+#         metric_colors = default_colors
+#     if metric_markers is None:
+#         metric_markers = default_markers
 
-    for i, (sample_name, values) in enumerate(data.items()):
-        if len(values) != num_vars:
-            raise ValueError(f"Sample '{sample_name}' must have 4 values.")
-        ax.plot(values, [i] * num_vars, linestyle='-', color='k', alpha=0.3)  # Connect points with a line
-        for j, value in enumerate(values):
-            ax.plot(value, i, marker=metric_markers[j],
-                    markersize=8, alpha=0.7, label=labels[j], color=metric_colors[j])  # Use color and marker
+#     for i, (sample_name, values) in enumerate(data.items()):
+#         if len(values) != num_vars:
+#             raise ValueError(f"Sample '{sample_name}' must have 4 values.")
+#         ax.plot(values, [i] * num_vars, linestyle='-', color='k', alpha=0.3)  # Connect points with a line
+#         for j, value in enumerate(values):
+#             ax.plot(value, i, marker=metric_markers[j],
+#                     markersize=8, alpha=0.7, label=labels[j], color=metric_colors[j])  # Use color and marker
 
-    ax.set_yticks(y_positions)
-    ax.set_yticklabels(list(data.keys()))  # Set sample names as y-axis labels
-    ax.set_xlim(0, x_limit)  # Set x-axis limits
-    #ax.set_xlabel("Metric Value")
-    ax.set_ylabel("Ref Genomes")
-    ax.set_title(title, fontsize=14)
-    # Create a single legend for the samples
-    handles, labels = ax.get_legend_handles_labels()
-    unique_labels = list(dict.fromkeys(labels))  # remove duplicate labels
-    unique_handles = [handles[labels.index(label)] for label in unique_labels]
-    ax.legend(unique_handles, unique_labels, loc='upper right')
-    ax.grid(True, axis='x', linestyle='--', alpha=0.6)  # Add grid lines
+#     ax.set_yticks(y_positions)
+#     ax.set_yticklabels(list(data.keys()))  # Set sample names as y-axis labels
+#     ax.set_xlim(0, x_limit)  # Set x-axis limits
+#     #ax.set_xlabel("Metric Value")
+#     ax.set_ylabel("Ref Genomes")
+#     ax.set_title(title, fontsize=14)
+#     # Create a single legend for the samples
+#     handles, labels = ax.get_legend_handles_labels()
+#     unique_labels = list(dict.fromkeys(labels))  # remove duplicate labels
+#     unique_handles = [handles[labels.index(label)] for label in unique_labels]
+#     ax.legend(unique_handles, unique_labels, loc='upper right')
+#     ax.grid(True, axis='x', linestyle='--', alpha=0.6)  # Add grid lines
 
-    plt.tight_layout()
-    #plt.show()
+#     plt.tight_layout()
+#     #plt.show()
     
 
 
 
-primary_samples = ["hg19-initial-ucsc", "GRCh38.p14-fasta-genomic"]
+# primary_samples = ["hg19-initial-ucsc", "GRCh38.p14-fasta-genomic"]
 
-metrics = ['jaccard_names', 'jaccard_lengths', 'jaccard_sequences', 'jaccard_name_len']
+# metrics = ['jaccard_names', 'jaccard_lengths', 'jaccard_sequences', 'jaccard_name_len']
 
 
-for primary_sample in primary_samples:
+# for primary_sample in primary_samples:
 
-    new_df = pep_df.copy()
+#     new_df = pep_df.copy()
 
-    # Filter the DataFrame
-    filtered_df = new_df[(new_df['sample_name_1'] == primary_sample) | (new_df['sample_name_2'] == primary_sample)]
+#     # Filter the DataFrame
+#     filtered_df = new_df[(new_df['sample_name_1'] == primary_sample) | (new_df['sample_name_2'] == primary_sample)]
 
-    # Convert the filtered DataFrame to the dictionary format
-    data_from_df = {}
-    for _, row in filtered_df.iterrows():
-        if row['sample_name_1'] == primary_sample:
-            sample_name = row['sample_name_2']
-        else:
-            sample_name = row['sample_name_1']
-        if sample_name not in data_from_df:
-            data_from_df[sample_name] = []
-        data_from_df[sample_name] = [row[metrics[0]], row[metrics[1]], row[metrics[2]], row[metrics[3]]]
+#     # Convert the filtered DataFrame to the dictionary format
+#     data_from_df = {}
+#     for _, row in filtered_df.iterrows():
+#         if row['sample_name_1'] == primary_sample:
+#             sample_name = row['sample_name_2']
+#         else:
+#             sample_name = row['sample_name_1']
+#         if sample_name not in data_from_df:
+#             data_from_df[sample_name] = []
+#         data_from_df[sample_name] = [row[metrics[0]], row[metrics[1]], row[metrics[2]], row[metrics[3]]]
 
-    #Use the columns f10_names, f10_lengths, f10_sequences, f10_name_len_pairs
-    labels = metrics
-    create_comparison_dot_plot(data_from_df, labels, title=f"Comparison of {primary_sample} vs All Other Ref Genomes", x_limit=1.0, metric_markers=['o', 's', 'D', '^'])
+#     #Use the columns f10_names, f10_lengths, f10_sequences, f10_name_len_pairs
+#     labels = metrics
+#     create_comparison_dot_plot(data_from_df, labels, title=f"Comparison of {primary_sample} vs All Other Ref Genomes", x_limit=1.0, metric_markers=['o', 's', 'D', '^'])
     
     
-    #output_path = os.path.join(results_dir, f'comparison_{primary_sample}_.png')
-    output_path = os.path.join(results_dir, f'comparison_{primary_sample}_.svg')
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    plt.close()
-    #plt.show()
+#     #output_path = os.path.join(results_dir, f'comparison_{primary_sample}_.png')
+#     output_path = os.path.join(results_dir, f'comparison_{primary_sample}_.svg')
+#     plt.savefig(output_path, dpi=300, bbox_inches='tight')
+#     plt.close()
+#     #plt.show()
 
 
-def create_comparison_bar_graph(data, labels, title="Comparison Bar Graph",
-                               metric_colors=None):
-    """
-    Creates a grouped bar graph using Matplotlib.
+# def create_comparison_bar_graph(data, labels, title="Comparison Bar Graph",
+#                                metric_colors=None):
+#     """
+#     Creates a grouped bar graph using Matplotlib.
 
-    Args:
-        data (dict): A dictionary where keys are sample names (e.g., 'Sample 1')
-                      and values are lists of 4 values.
-        labels (list): A list of label names (e.g., ['Metric A', 'Metric B', 'Metric C', 'Metric D']).
-        title (str, optional): The title of the bar graph. Defaults to "Comparison Bar Graph".
-        metric_colors (list, optional): A list of colors for each metric. If None, default colors are used.
+#     Args:
+#         data (dict): A dictionary where keys are sample names (e.g., 'Sample 1')
+#                       and values are lists of 4 values.
+#         labels (list): A list of label names (e.g., ['Metric A', 'Metric B', 'Metric C', 'Metric D']).
+#         title (str, optional): The title of the bar graph. Defaults to "Comparison Bar Graph".
+#         metric_colors (list, optional): A list of colors for each metric. If None, default colors are used.
 
-    Returns:
-        None: Displays the plot.
-    """
-    num_metrics = len(labels)
-    if num_metrics != 4:
-        raise ValueError("Number of labels must be 4 for this comparison bar graph.")
+#     Returns:
+#         None: Displays the plot.
+#     """
+#     num_metrics = len(labels)
+#     if num_metrics != 4:
+#         raise ValueError("Number of labels must be 4 for this comparison bar graph.")
 
-    if metric_colors is None:
-        metric_colors = ['#1f77b4', '#ff7f0e', '#9467bd', '#8c564b']  # Default colors
+#     if metric_colors is None:
+#         metric_colors = ['#1f77b4', '#ff7f0e', '#9467bd', '#8c564b']  # Default colors
 
-    fig, ax = plt.subplots(figsize=(10, 8))  # Adjust figure size as needed
-    num_samples = len(data)
-    bar_width = 0.2  # Width of each individual bar
-    group_width = num_metrics * bar_width  # Total width of a group of bars
-    index = np.arange(num_samples)  # Positions for the group centers
+#     fig, ax = plt.subplots(figsize=(10, 8))  # Adjust figure size as needed
+#     num_samples = len(data)
+#     bar_width = 0.2  # Width of each individual bar
+#     group_width = num_metrics * bar_width  # Total width of a group of bars
+#     index = np.arange(num_samples)  # Positions for the group centers
 
-    for i, (sample_name, values) in enumerate(data.items()):
-        if len(values) != num_metrics:
-            raise ValueError(f"Sample '{sample_name}' must have {num_metrics} values.")
-        for j, value in enumerate(values):
-            x_position = index[i] + (j * bar_width) - (group_width / 2) + (bar_width / 2) # Calculate the x position for each bar
-            ax.bar(x_position, value, bar_width, color=metric_colors[j], label=labels[j] if i == 0 else "")
+#     for i, (sample_name, values) in enumerate(data.items()):
+#         if len(values) != num_metrics:
+#             raise ValueError(f"Sample '{sample_name}' must have {num_metrics} values.")
+#         for j, value in enumerate(values):
+#             x_position = index[i] + (j * bar_width) - (group_width / 2) + (bar_width / 2) # Calculate the x position for each bar
+#             ax.bar(x_position, value, bar_width, color=metric_colors[j], label=labels[j] if i == 0 else "")
 
-    ax.set_xticks(index)
-    ax.set_xticklabels(list(data.keys()), rotation=90, ha="right", fontsize=8)  # Sample names as x-axis labels
-    ax.set_ylabel("Metric Value")
-    ax.set_title(title, fontsize=14)
-    ax.legend(loc='upper right')
-    ax.grid(True, axis='y', linestyle='--', alpha=0.6)
+#     ax.set_xticks(index)
+#     ax.set_xticklabels(list(data.keys()), rotation=90, ha="right", fontsize=8)  # Sample names as x-axis labels
+#     ax.set_ylabel("Metric Value")
+#     ax.set_title(title, fontsize=14)
+#     ax.legend(loc='upper right')
+#     ax.grid(True, axis='y', linestyle='--', alpha=0.6)
 
-    plt.tight_layout()
-    #plt.show()
+#     plt.tight_layout()
+#     #plt.show()
 
-# --- Example Usage ---
-# Assuming pep_df and results_dir are defined elsewhere
+# # --- Example Usage ---
+# # Assuming pep_df and results_dir are defined elsewhere
 
-primary_samples = ["hg19-initial-ucsc", "GRCh38.p14-fasta-genomic"]
-metrics = ['jaccard_names', 'jaccard_lengths', 'jaccard_sequences', 'jaccard_name_len']
+# primary_samples = ["hg19-initial-ucsc", "GRCh38.p14-fasta-genomic"]
+# metrics = ['jaccard_names', 'jaccard_lengths', 'jaccard_sequences', 'jaccard_name_len']
 
-for primary_sample in primary_samples:
-    new_df = pep_df.copy()
+# for primary_sample in primary_samples:
+#     new_df = pep_df.copy()
 
-    # Filter the DataFrame
-    filtered_df = new_df[(new_df['sample_name_1'] == primary_sample) | (new_df['sample_name_2'] == primary_sample)]
+#     # Filter the DataFrame
+#     filtered_df = new_df[(new_df['sample_name_1'] == primary_sample) | (new_df['sample_name_2'] == primary_sample)]
 
-    # Convert the filtered DataFrame to the dictionary format
-    data_from_df = {}
-    for _, row in filtered_df.iterrows():
-        if row['sample_name_1'] == primary_sample:
-            sample_name = row['sample_name_2']
-        else:
-            sample_name = row['sample_name_1']
-        if sample_name not in data_from_df:
-            data_from_df[sample_name] = []
-        data_from_df[sample_name] = [row[metrics[0]], row[metrics[1]], row[metrics[2]], row[metrics[3]]]
+#     # Convert the filtered DataFrame to the dictionary format
+#     data_from_df = {}
+#     for _, row in filtered_df.iterrows():
+#         if row['sample_name_1'] == primary_sample:
+#             sample_name = row['sample_name_2']
+#         else:
+#             sample_name = row['sample_name_1']
+#         if sample_name not in data_from_df:
+#             data_from_df[sample_name] = []
+#         data_from_df[sample_name] = [row[metrics[0]], row[metrics[1]], row[metrics[2]], row[metrics[3]]]
 
-    # Use the columns f10_names, f10_lengths, f10_sequences, f10_name_len_pairs
-    labels = metrics
-    create_comparison_bar_graph(data_from_df, labels, title=f"Comparison of {primary_sample} vs All Other Ref Genomes",
-                                 )
+#     # Use the columns f10_names, f10_lengths, f10_sequences, f10_name_len_pairs
+#     labels = metrics
+#     create_comparison_bar_graph(data_from_df, labels, title=f"Comparison of {primary_sample} vs All Other Ref Genomes",
+#                                  )
 
-    #output_path = os.path.join(results_dir, f'comparison_bar_graph_{primary_sample}.png')
-    output_path = os.path.join(results_dir, f'comparison_bar_graph_{primary_sample}.svg')
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    plt.close()
+#     #output_path = os.path.join(results_dir, f'comparison_bar_graph_{primary_sample}.png')
+#     output_path = os.path.join(results_dir, f'comparison_bar_graph_{primary_sample}.svg')
+#     plt.savefig(output_path, dpi=300, bbox_inches='tight')
+#     plt.close()
