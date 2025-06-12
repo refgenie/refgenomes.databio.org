@@ -24,7 +24,6 @@ hg38-primary-rm-113-ensembl, homo_sapiens, hg38, ensembl, https://ftp.ensembl.or
 hg38-alt-sm-113-ensembl, homo_sapiens, hg38, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_sm.alt.fa.gz, fasta, alt sm sites fasta of GRCh38 release 113
 hg38-toplevel-sm-113-ensembl, homo_sapiens, hg38, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_sm.toplevel.fa.gz, fasta, top level sm fasta of GRCh38 release 113
 hg38-primary-sm-113-ensembl, homo_sapiens, hg38, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz, fasta,  primary fasta sm fasta of GRCh38 release 113
-GRCh38-ena, homo_sapiens, hg38, ENA, https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_000001405.29?download=true&gzip=true, fasta, ref genome hosted on ENA
 GRCh38-p14-47-gencode, homo_sapiens, hg38, gencode, https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_47/GRCh38.p14.genome.fa.gz, fasta, release 47 of gencode GRCh38
 GRCh38-primary-assembly-47-gencode, homo_sapiens, hg38, gencode, https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_47/GRCh38.primary_assembly.genome.fa.gz, fasta, release 47 of gencode primary assembly GRCh38
 GRCh37-primary-assembly-47-gencode, homo_sapiens, hg19, gencode, https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_47/GRCh37_mapping/GRCh37.primary_assembly.genome.fa.gz, fasta, release 47 of gencode primary assembly GRCh37

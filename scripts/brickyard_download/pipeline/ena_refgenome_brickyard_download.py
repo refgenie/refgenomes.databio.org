@@ -46,7 +46,7 @@ def download_fasta_stream(url, output_filename, download_dir="downloads"):
         # Check if the file already exists
         if os.path.exists(full_output_path):
             print(f"File already exists: {full_output_path}. Skipping download for {url}")
-            return
+            return full_output_path
 
         # Initiate the GET request with stream=True to handle large files efficiently
         print(f"Starting download from: {url}")
@@ -66,13 +66,29 @@ def download_fasta_stream(url, output_filename, download_dir="downloads"):
                     if chunk:  # Filter out keep-alive new chunks
                         f.write(chunk)
             print(f"Successfully downloaded to: {full_output_path}")
+            return full_output_path
 
     except requests.exceptions.RequestException as e:
         print(f"Network or HTTP error occurred for {url}: {e}")
+        return None
     except IOError as e:
         print(f"File system error occurred while writing or reading for {full_output_path}: {e}")
+        return None
     except Exception as e:
         print(f"An unexpected error occurred for {url}: {e}")
+        return None
+
+pypiper_logs = os.path.join(looper_output_dir, "pipeline_results",sample_name)
+
+pm = pypiper.PipelineManager(
+    name="FASTA_DOWLOADER",
+    outfolder=pypiper_logs,
+    pipestat_record_identifier=sample_name,
+    recover=True,
+)
+
+pm.start_pipeline()
+
 
 download_path = os.path.join(download_location, species, authority, common_genome_name, file_type)
 
@@ -95,11 +111,29 @@ else:
     local_fasta_filename = f"{base_filename}.fa"
 
 # Call the download function with the URL, generated filename, and the specified download directory
-download_fasta_stream(ftp_url, local_fasta_filename, download_dir=download_path)
-print("-" * 50) # Separator for clarity between downloads
+filepath = download_fasta_stream(ftp_url, local_fasta_filename, download_dir=download_path)
 
 
+#report final digest and path to a pep on pephub
 
+if filepath:
+    digest = fasta_to_digest(filepath, inherent_attrs=['names', 'sequences'])
+
+    # seq_col_dict = fasta_to_seqcol_dict(filepath) # 'sorted_name_length_pairs`` is a list of bytes data and is NOT json serializable, so it cannot be uploaded to pephub via pipestat
+    # print(type(seq_col_dict))
+
+    # print(f"Here is the digest: {digest}")
+    # print(f"Here is the seq_col_dict: {seq_col_dict}")
+
+    psm = pipestat.PipestatManager(pephub_path=pephub_path)
+
+    psm.report(record_identifier=sample_name, values={"top_level_digest":digest, "brickyard_location":filepath, "original_file_name":filename, "authority": authority})
+    pm.report_result("top_level_digest", digest)
+    pm.report_result("brickyard_location",filepath)
+else:
+    print("No local filepath returned. No digest calcualted nor reported.")
+pm.stop_pipeline()
+#psm.set_status(record_identifier=filename, status_identifier='completed')
 
 # print(f"HERE IS THE FILE PATH:{ftp_url}")
 
@@ -107,16 +141,7 @@ print("-" * 50) # Separator for clarity between downloads
 
 # # Make digest here and now and download it
 
-# pypiper_logs = os.path.join(looper_output_dir, "pipeline_results",sample_name)
 
-# pm = pypiper.PipelineManager(
-#     name="FASTA_DOWLOADER",
-#     outfolder=pypiper_logs,
-#     pipestat_record_identifier=sample_name,
-#     recover=True,
-# )
-
-# pm.start_pipeline()
 
 # download_path = os.path.join(download_location, species, authority, common_genome_name, file_type)
 
@@ -144,20 +169,3 @@ print("-" * 50) # Separator for clarity between downloads
 # except Exception as e:
 #     print(f"An unexpected error occurred while downloading {ftp_url}: {e}")
 
-# #report final digest and path to a pep on pephub
-
-# digest = fasta_to_digest(filepath,inherent_attrs=['names', 'sequences'])
-
-# # seq_col_dict = fasta_to_seqcol_dict(filepath) # 'sorted_name_length_pairs`` is a list of bytes data and is NOT json serializable, so it cannot be uploaded to pephub via pipestat
-# # print(type(seq_col_dict))
-
-# # print(f"Here is the digest: {digest}")
-# # print(f"Here is the seq_col_dict: {seq_col_dict}")
-
-# psm = pipestat.PipestatManager(pephub_path=pephub_path)
-
-# psm.report(record_identifier=sample_name, values={"top_level_digest":digest, "brickyard_location":filepath, "original_file_name":filename, "authority": authority})
-# pm.report_result("top_level_digest", digest)
-# pm.report_result("brickyard_location",filepath)
-# pm.stop_pipeline()
-# #psm.set_status(record_identifier=filename, status_identifier='completed')
