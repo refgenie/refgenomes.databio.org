@@ -125,28 +125,28 @@ for combination in all_combinations:
     # print(pprint(compare_seqcols(reloaded_dict1,reloaded_dict2),indent=4))
     comparison = compare_seqcols(reloaded_dict1,reloaded_dict2)
 
-    print(f"Reality Check: {comparison['array_elements']['a_and_b']['names']}  {comparison['array_elements']['a']['names']+ comparison['array_elements']['b']['names'] - comparison['array_elements']['a_and_b']['names']}")
+    #print(f"Reality Check: {comparison['array_elements']['a_and_b']['names']}  {comparison['array_elements']['a']['names']+ comparison['array_elements']['b']['names'] - comparison['array_elements']['a_and_b']['names']}")
     # overlap for names
-    overlap_coefficient_names = calc_overlap_coeff(comparison['array_elements']['a']['names'],comparison['array_elements']['b']['names'],comparison['array_elements']['a_and_b']['names'])
-    print(f"Here is the overlap coefficient for names: {overlap_coefficient_names}")
-    overlap_coefficient_names_max = calc_overlap_coeff_MAX(comparison['array_elements']['a']['names'],comparison['array_elements']['b']['names'],comparison['array_elements']['a_and_b']['names'])
+    #overlap_coefficient_names = calc_overlap_coeff(comparison['array_elements']['a']['names'],comparison['array_elements']['b']['names'],comparison['array_elements']['a_and_b']['names'])
+    #print(f"Here is the overlap coefficient for names: {overlap_coefficient_names}")
+    #overlap_coefficient_names_max = calc_overlap_coeff_MAX(comparison['array_elements']['a']['names'],comparison['array_elements']['b']['names'],comparison['array_elements']['a_and_b']['names'])
     opa_names = overlap_proportion(comparison['array_elements']['a_and_b']['names'], comparison['array_elements']['a']['names'])
     opb_names = overlap_proportion(comparison['array_elements']['a_and_b']['names'], comparison['array_elements']['b']['names'])
 
     # overlap for lengths
-    overlap_coefficient_lengths = calc_overlap_coeff(comparison['array_elements']['a']['lengths'],comparison['array_elements']['b']['lengths'],comparison['array_elements']['a_and_b']['lengths'])
-    print(f"Here is the overlap coefficient for lengths: {overlap_coefficient_names}")
-    overlap_coefficient_lengths_max = calc_overlap_coeff_MAX(comparison['array_elements']['a']['lengths'],comparison['array_elements']['b']['lengths'],comparison['array_elements']['a_and_b']['lengths'])
+    #overlap_coefficient_lengths = calc_overlap_coeff(comparison['array_elements']['a']['lengths'],comparison['array_elements']['b']['lengths'],comparison['array_elements']['a_and_b']['lengths'])
+    #print(f"Here is the overlap coefficient for lengths: {overlap_coefficient_names}")
+    #overlap_coefficient_lengths_max = calc_overlap_coeff_MAX(comparison['array_elements']['a']['lengths'],comparison['array_elements']['b']['lengths'],comparison['array_elements']['a_and_b']['lengths'])
     opa_lengths = overlap_proportion(comparison['array_elements']['a_and_b']['lengths'], comparison['array_elements']['a']['lengths'])
     opb_lengths = overlap_proportion(comparison['array_elements']['a_and_b']['lengths'], comparison['array_elements']['b']['lengths'])
 
     # jaccard similarity for names, intersection over union where we can find the union -> A+B-ABintersection
     jaccard_names = calc_jaccard_similarity(comparison['array_elements']['a_and_b']['names'],(comparison['array_elements']['a']['names']+comparison['array_elements']['b']['names']-comparison['array_elements']['a_and_b']['names']))
-    print(f"Here is the jaccard similarity for names: {jaccard_names}")
+    #print(f"Here is the jaccard similarity for names: {jaccard_names}")
 
     # jaccard similarity for lengths, intersection over union where we can find the union -> A+B-ABintersection
     jaccard_lengths = calc_jaccard_similarity(comparison['array_elements']['a_and_b']['lengths'],(comparison['array_elements']['a']['lengths']+comparison['array_elements']['b']['lengths']-comparison['array_elements']['a_and_b']['lengths']))
-    print(f"Here is the jaccard similarity for lengths: {jaccard_lengths}")
+    #print(f"Here is the jaccard similarity for lengths: {jaccard_lengths}")
 
     # Get sequences and calculate overlaps for sequences
     set_sequences_1 = set(reloaded_dict1['sorted_sequences'])
@@ -159,13 +159,13 @@ for combination in all_combinations:
 
 
     jaccard_sequences = calc_jaccard_similarity(sequences_intersection_length,sequences_union_length)
-    overlap_coeff_sequences = calc_overlap_coeff(len(set_sequences_1),len(set_sequences_2),sequences_intersection_length)
-    overlap_coeff_sequences_max =calc_overlap_coeff_MAX(len(set_sequences_1),len(set_sequences_2),sequences_intersection_length)
+    #overlap_coeff_sequences = calc_overlap_coeff(len(set_sequences_1),len(set_sequences_2),sequences_intersection_length)
+    #overlap_coeff_sequences_max =calc_overlap_coeff_MAX(len(set_sequences_1),len(set_sequences_2),sequences_intersection_length)
     opa_sequences = overlap_proportion(sequences_intersection_length,len(set_sequences_1))
     opb_sequences = overlap_proportion(sequences_intersection_length,len(set_sequences_2))
 
-    print(f"Here is the jaccard similarity for sequences: {jaccard_sequences}")
-    print(f"Here is the overlap coeff for sequences: {overlap_coeff_sequences}")
+    #print(f"Here is the jaccard similarity for sequences: {jaccard_sequences}")
+    #print(f"Here is the overlap coeff for sequences: {overlap_coeff_sequences}")
 
     # Build sets for calculating weighted jaccard score
 
@@ -186,7 +186,7 @@ for combination in all_combinations:
     lengths_intersection = set1_l.intersection(set2_l)
     lengths_union = set1_l.union(set2_l)
 
-    print(f"names intersection length: {len(names_intersection)}, names_union_length: {len(names_union)}")
+    #print(f"names intersection length: {len(names_intersection)}, names_union_length: {len(names_union)}")
 
     list_intersection_lengths = []
     list_union_lengths = []
@@ -203,10 +203,10 @@ for combination in all_combinations:
 
     list_union_lengths_new_list = [x for x in list_union_lengths if x is not None]
 
-    print(f"The union lengths vs names union: {len(list_union_lengths_new_list)} vs {len(names_union)}") 
-    print(f"The intersection lengths vs names intersection: {len(list_intersection_lengths)} vs {len(names_intersection)}") 
-    jaccard_similarity_weighted_length = calc_weighted_jaccard(list_intersection_lengths, list_union_lengths_new_list)
-    print(f"Here is the weighted jaccard similarity: {jaccard_similarity_weighted_length}")
+    #print(f"The union lengths vs names union: {len(list_union_lengths_new_list)} vs {len(names_union)}") 
+    #print(f"The intersection lengths vs names intersection: {len(list_intersection_lengths)} vs {len(names_intersection)}") 
+    #jaccard_similarity_weighted_length = calc_weighted_jaccard(list_intersection_lengths, list_union_lengths_new_list)
+    #print(f"Here is the weighted jaccard similarity: {jaccard_similarity_weighted_length}")
 
 
     # create set of name_length_pairs
@@ -218,23 +218,23 @@ for combination in all_combinations:
     name_len_pairs_union = set_of_name_len_pairs_1.union(set_of_name_len_pairs_2)
 
     jaccard_name_len = calc_jaccard_similarity(len(name_len_pairs_intersection),len(name_len_pairs_union))
-    overlap_coeff_name_len = calc_overlap_coeff(len(set_of_name_len_pairs_1),len(set_of_name_len_pairs_2),len(name_len_pairs_intersection))
-    overlap_coeff_name_len_max = calc_overlap_coeff_MAX(len(set_of_name_len_pairs_1),len(set_of_name_len_pairs_2),len(name_len_pairs_intersection))
+    #overlap_coeff_name_len = calc_overlap_coeff(len(set_of_name_len_pairs_1),len(set_of_name_len_pairs_2),len(name_len_pairs_intersection))
+    #overlap_coeff_name_len_max = calc_overlap_coeff_MAX(len(set_of_name_len_pairs_1),len(set_of_name_len_pairs_2),len(name_len_pairs_intersection))
 
     opa_name_len = overlap_proportion(len(name_len_pairs_intersection),len(set_of_name_len_pairs_1))
     opb_name_len = overlap_proportion(len(name_len_pairs_intersection),len(set_of_name_len_pairs_2))
 
     print(f"Here is the jaccard similarity for sequences: {jaccard_sequences}")
-    print(f"Here is the overlap coeff for sequences: {overlap_coeff_sequences}")
+    #print(f"Here is the overlap coeff for sequences: {overlap_coeff_sequences}")
 
     
     # Calculate F1 scores 
 
-    f1_names = 2*jaccard_names/(jaccard_names+1)
-    f1_lengths = 2*jaccard_lengths/(jaccard_lengths+1)
-    f1_sequences = 2*jaccard_sequences/(jaccard_sequences+1)
-    f1_weighted_lengths = 2*jaccard_similarity_weighted_length/(jaccard_similarity_weighted_length+1)
-    f1_name_len_pairs = 2*jaccard_name_len/(jaccard_name_len+1)
+    # f1_names = 2*jaccard_names/(jaccard_names+1)
+    # f1_lengths = 2*jaccard_lengths/(jaccard_lengths+1)
+    # f1_sequences = 2*jaccard_sequences/(jaccard_sequences+1)
+    # f1_weighted_lengths = 2*jaccard_similarity_weighted_length/(jaccard_similarity_weighted_length+1)
+    # f1_name_len_pairs = 2*jaccard_name_len/(jaccard_name_len+1)
 
     # Test generalized f1 score
     #f1_gen_names = f_beta_score(1,len(names_intersection),len(set1.difference(set2)),len(set2.difference(set1)))
@@ -242,37 +242,38 @@ for combination in all_combinations:
     #print(f1_names==f1_gen_names==f1_gen_names_2)
 
     # Calculate F10 Scores
-    f10_names = f_beta_score(10,len(names_intersection),len(set1.difference(set2)),len(set2.difference(set1)))
-    f10_lengths = f_beta_score(10,len(lengths_intersection),len(set1_l.difference(set2_l)),len(set2_l.difference(set1_l)))
-    f10_sequences = f_beta_score(10,len(sequences_intersections),len(set_sequences_1.difference(set_sequences_2)),len(set_sequences_2.difference(set_sequences_1)))
-    #f10_weighted_lengths = 
-    f10_name_len_pairs = f_beta_score(10,len(name_len_pairs_intersection),len(set_of_name_len_pairs_1.difference(set_of_name_len_pairs_2)),len(set_of_name_len_pairs_2.difference(set_of_name_len_pairs_1)))
+    # f10_names = f_beta_score(10,len(names_intersection),len(set1.difference(set2)),len(set2.difference(set1)))
+    # f10_lengths = f_beta_score(10,len(lengths_intersection),len(set1_l.difference(set2_l)),len(set2_l.difference(set1_l)))
+    # f10_sequences = f_beta_score(10,len(sequences_intersections),len(set_sequences_1.difference(set_sequences_2)),len(set_sequences_2.difference(set_sequences_1)))
+    # #f10_weighted_lengths = 
+    # f10_name_len_pairs = f_beta_score(10,len(name_len_pairs_intersection),len(set_of_name_len_pairs_1.difference(set_of_name_len_pairs_2)),len(set_of_name_len_pairs_2.difference(set_of_name_len_pairs_1)))
 
     comparison_str = combination[0] +"_vs_" + combination[1]
     psm_output.report(record_identifier=comparison_str, values={"digest1":digest1,"sample_name_1":combination[0],
                                                                 "digest2":digest2,"sample_name_2":combination[1], 
-                                                                "overlap_coefficient_names":overlap_coefficient_names,
-                                                                "overlap_coefficient_lengths":overlap_coefficient_lengths, 
-                                                                "jaccard_names":jaccard_names, "jaccard_lengths":jaccard_lengths, 
-                                                                "jaccard_similarity_weighted_length":jaccard_similarity_weighted_length, 
+                                                                #"overlap_coefficient_names":overlap_coefficient_names,
+                                                                #"overlap_coefficient_lengths":overlap_coefficient_lengths, 
+                                                                "jaccard_names":jaccard_names, 
+                                                                "jaccard_lengths":jaccard_lengths, 
+                                                                #"jaccard_similarity_weighted_length":jaccard_similarity_weighted_length, 
                                                                 "jaccard_sequences": jaccard_sequences, 
-                                                                "overlap_coefficient_sequences": overlap_coeff_sequences,
+                                                                #"overlap_coefficient_sequences": overlap_coeff_sequences,
                                                                 "jaccard_name_len":jaccard_name_len,
-                                                                "overlap_coeff_name_len":overlap_coeff_name_len,
-                                                                "f1_names":f1_names,
-                                                                "f1_lengths":f1_lengths,
-                                                                "f1_sequences":f1_sequences,
-                                                                "f1_weighted_lengths":f1_weighted_lengths,
-                                                                "f1_name_len_pairs":f1_name_len_pairs,
-                                                                "overlap_coefficient_names_max":overlap_coefficient_names_max,
-                                                                "overlap_coefficient_lengths_max":overlap_coefficient_lengths_max,
-                                                                "overlap_coefficient_sequences_max": overlap_coeff_sequences_max, 
-                                                                "overlap_coeff_name_len_max":overlap_coeff_name_len_max,
-                                                                "f10_names":f10_names,
-                                                                "f10_lengths":f10_lengths,
-                                                                "f10_sequences":f10_sequences,
+                                                                #"overlap_coeff_name_len":overlap_coeff_name_len,
+                                                                #"f1_names":f1_names,
+                                                                #"f1_lengths":f1_lengths,
+                                                                #"f1_sequences":f1_sequences,
+                                                                #"f1_weighted_lengths":f1_weighted_lengths,
+                                                                #"f1_name_len_pairs":f1_name_len_pairs,
+                                                                #"overlap_coefficient_names_max":overlap_coefficient_names_max,
+                                                                #"overlap_coefficient_lengths_max":overlap_coefficient_lengths_max,
+                                                                #"overlap_coefficient_sequences_max": overlap_coeff_sequences_max, 
+                                                                #"overlap_coeff_name_len_max":overlap_coeff_name_len_max,
+                                                                #"f10_names":f10_names,
+                                                                #"f10_lengths":f10_lengths,
+                                                                #"f10_sequences":f10_sequences,
                                                                 #"f10_weighted_lengths":f1_weighted_lengths,
-                                                                "f10_name_len_pairs":f10_name_len_pairs,
+                                                                #"f10_name_len_pairs":f10_name_len_pairs,
                                                                 "opa_names":opa_names,
                                                                 "opb_names":opb_names,
                                                                 "opa_lengths":opa_lengths,
