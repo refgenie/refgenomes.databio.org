@@ -1,0 +1,7 @@
+sample_name,species,common_genome_name,authority,ftp_file_path,file_type,description
+GRCh38-ena-29, homo_sapiens, hg38, ENA, "https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_000001405.29?download=true&gzip=true", fasta, ref genome hosted on ENA Genome Reference Consortium Human Build 38 patch release 14 (GRCh38.p14)
+GRCh38-ena-28, homo_sapiens, hg38, ENA, "https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_000001405.28?download=true&gzip=true", fasta, ref genome hosted on ENA Genome Reference Consortium Human Build 38 patch release 13 (GRCh38.p13)
+GRCh38-ena-27, homo_sapiens, hg38, ENA, "https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_000001405.27?download=true&gzip=true", fasta, ref genome hosted on ENA Genome Reference Consortium Human Build 38 patch release 12 (GRCh38.p12)
+GRCh38-ena-15, homo_sapiens, hg38, ENA, "https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_000001405.15?download=true&gzip=true", fasta, ref genome hosted on ENA Genome Reference Consortium Human Build 38 (GRCh38.p0)
+GRCh37-ena-14, homo_sapiens, hg19, ENA, "https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_000001405.14?download=true&gzip=true", fasta, ref genome hosted on ENA Genome Reference Consortium Human Build 37 patch release 13 (GRCh37.p13)
+GRCh37-ena-01, homo_sapiens, hg19, ENA, "https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_000001405.1?download=true&gzip=true", fasta, ref genome hosted on ENA Genome Reference Consortium Human Build 37 (GRCh37.p0)

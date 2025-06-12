@@ -1,0 +1,7 @@
+pep_config: metadata/pep_config_ena.yaml
+output_dir: ${RESULTS}
+pipeline_interfaces:
+  - pipeline/pipeline_interface_ena.yaml
+pipestat:
+  pephub_path: donaldcampbelljr/human_seqcol_digests:default #donaldcampbelljr/human_seqcol_digests_local:default
+  #flag_file_dir: ${RESULTS}/flags
