@@ -1,0 +1,5 @@
+sample_name,species,common_genome_name,authority,ftp_file_path,file_type,description
+GRCm39-ena-09, mus_musculus, mm39, ENA, "https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_000001635.9?download=true&gzip=true", fasta, ref genome hosted on ENA Genome Reference Consortium Mouse Build 39
+GRCm39-ena-03, mus_musculus, mm38, ENA, "https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_000001635.3?download=true&gzip=true", fasta, ref genome hosted on ENA Genome Reference Consortium Mouse Build 38 patch release 1 (GRCm38.p1)
+GRCm39-ena-02, mus_musculus, mm38, ENA, "https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_000001635.2?download=true&gzip=true", fasta, ref genome hosted on ENA Genome Reference Consortium Mouse Build 38
+MGSCv37-ena-01, mus_musculus, mm9, ENA, "https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_000001635.1?download=true&gzip=true", fasta, ref genome hosted on ENA Genome MGSCv37 assembly for Mus musculus

@@ -1,0 +1,5 @@
+pep_version: 2.1.0
+sample_table: ena_mus_musculus.csv
+sample_modifiers:
+  append:
+    download_location: $BRICKYARD_DOWNLOAD_LOCATION

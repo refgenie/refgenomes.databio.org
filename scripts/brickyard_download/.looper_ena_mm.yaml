@@ -1,0 +1,6 @@
+pep_config: metadata/pep_config_ena_mm.yaml
+output_dir: ${RESULTS}
+pipeline_interfaces:
+  - pipeline/pipeline_interface_ena.yaml
+pipestat:
+  pephub_path: donaldcampbelljr/mouse_seqcol_digests:default
