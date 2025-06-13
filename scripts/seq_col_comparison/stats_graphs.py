@@ -672,6 +672,73 @@ print(f"Frequency plot saved to {output_path}")
 
 
 
+fig_width_mm = 170
+fig_width_inches = fig_width_mm / 25.4
+# Adjust height for heatmap, it can be taller if many bins
+fig_height_inches = fig_width_inches * (0.8) # Adjusted for better heatmap display
+
+# Initialize the plot
+fig, ax = plt.subplots(figsize=(fig_width_inches, fig_height_inches))
+
+relevant_stats = ['jaccard_sequences', 'jaccard_name_len', 'jaccard_lengths', 'jaccard_names']
+
+# Convert all relevant stat columns to numeric
+for stat in relevant_stats:
+    pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
+
+# Define bins for the frequency plot (20 bins from 0 to 1)
+bins = np.linspace(0, 1, 21)
+
+# Calculate frequencies for each statistic and store in a dictionary
+all_freqs_data = {}
+for stat in relevant_stats:
+    current_values = []
+    for i in range(len(all_samples)):
+        for j in range(i + 1, len(all_samples)):
+            sample1 = all_samples[i]
+            sample2 = all_samples[j]
+
+            comparison = pep_df[
+                ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+                ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+            ]
+
+            if not comparison.empty:
+                current_values.append(comparison[stat].iloc[0])
+
+    # Filter out NaN values before calculating histogram
+    current_values = [val for val in current_values if not pd.isna(val)]
+
+    # Calculate frequency for the current stat using the defined bins
+    freq, _ = np.histogram(current_values, bins=bins)
+    all_freqs_data[stat] = freq
+
+# Create a DataFrame for the heatmap
+# Rows will be the bin labels, columns will be the statistics
+heatmap_df = pd.DataFrame(all_freqs_data)
+
+# Create labels for the y-axis (bins)
+bin_labels = [f'{bins[i]:.2f}-{bins[i+1]:.2f}' for i in range(len(bins) - 1)]
+heatmap_df.index = bin_labels
+
+# Plot the heatmap
+sns.heatmap(heatmap_df, annot=True, fmt="d", cmap="viridis", ax=ax, cbar_kws={'label': 'Frequency'})
+
+# Add labels and title
+ax.set_xlabel('Jaccard Statistic')
+ax.set_ylabel('Overlap Coefficient Bins')
+ax.set_title('Frequency Distribution of Jaccard Statistics Across Overlap Bins')
+
+fig.tight_layout()
+
+# Save the heatmap plot
+output_path = os.path.join(results_dir, 'jaccard_heatmap_all_stats.svg')
+plt.savefig(output_path, dpi=300, bbox_inches='tight')
+plt.close()
+
+print(f"Heatmap saved to {output_path}")
+
+
 # # PLOT DOT CHART
 # # TODO also plot bar graphs
 
