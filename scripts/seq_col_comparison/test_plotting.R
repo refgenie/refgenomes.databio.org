@@ -6,7 +6,7 @@ library(stringr)
 # Set the directory where the CSV files are located
 
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/jun112025/ncbi_patches/"
-results_dir <- "/home/drc/Downloads/refgenomes_pics_test/jun112025/hg19p13/"
+results_dir <- "/home/drc/Downloads/refgenomes_pics_test/13june2025/main_6_comparison/"
 
 if (!dir.exists(results_dir)) {
   stop(paste("Error: Directory does not exist:", results_dir))
@@ -131,7 +131,7 @@ for (csv_file in csv_files) {
 
   # Save the heatmap as SVG
   tryCatch({
-    svg(file.path(results_dir, paste0("pheatmap_", stat_name, ".svg")), width = 8, height = 8) # Adjust width and height as needed
+    svg(file.path(results_dir, paste0("pheatmap_", stat_name, ".svg")), width = 9, height = 9) # Adjust width and height as needed
     pheatmap(
       mat = heatmap_matrix_ordered,
       color = my_color(100),

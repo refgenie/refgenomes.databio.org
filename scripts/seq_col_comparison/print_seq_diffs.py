@@ -39,7 +39,7 @@ def create_dataframe(data_list, columns):
 
 looper_config = "donaldcampbelljr/human_seqcol_digests:default"
 LOCAL_JSON_DIRECTORY = "/home/drc/Downloads/jsons_from_rivanna/json/"
-output_folder ="/home/drc/Downloads/csv_output/"
+output_folder ="/home/drc/Downloads/refgenomes_pics_test/13june2025/CSV/"
 
 phc = PEPHubClient()
 pep = phc.load_project(looper_config)
@@ -54,7 +54,21 @@ target_samples = [
 "GRCh38-p14-47-gencode",
 "GRCh38.p14-fasta-genomic",
 "hg38-p14-ucsc",
+"hg38-ddbj",
+"GRCh38-ena-29",
 ]
+
+# target_samples = [
+# "hg38-toplevel-113-ensembl",
+# "GRCh38.p14-fasta-full-analysis",
+# "GRCh38.p14-fasta-full-analysis-plus-hs38d1",
+# "hg19-p13-full-analysis-ucsc",
+# "hg19-p13-plusMT-ucsc",
+# "hg38-alt-113-ensembl",
+# "GRCh38-full-decoy-hla-ddbj",
+# "homo-sapiens-assembly38-ddbj",
+# "hg38-ddbj",
+# ]
 
 # # # # Pre-filter the DataFrame
 pep_df = pep_df[
@@ -81,14 +95,14 @@ for index, row in pep_df.iterrows():
 
 
 
-for i in range(len(sample_name)):
-    all_string_rows = []
-    for k in range(len(names[i])):
-        new_string = str(names[k]) + str(lengths[k]) + str(seqs[k])+ str(coords[k])
-        all_string_rows.append(new_string)
-    strings.append(all_string_rows)
+# for i in range(len(sample_name)):
+#     all_string_rows = []
+#     for k in range(len(names[i])):
+#         new_string = str(names[k]) + str(lengths[k]) + str(seqs[k])+ str(coords[k])
+#         all_string_rows.append(new_string)
+#     strings.append(all_string_rows)
 
-print(strings)
+# print(strings)
 
 
 names_df = create_dataframe(names, sample_name)

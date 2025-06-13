@@ -95,12 +95,12 @@ desired_order = None
 # "GRCh38.p14-fasta-full-analysis",
 # ]
 
-target_samples = [
-"hg19-p13-plusMT-masked-ucsc",
-"hg19-p13-no-alt-analysis-ucsc",
-"hg19-p13-full-analysis-ucsc",
-"hg19-p13-plusMT-ucsc",
-]
+# target_samples = [
+# "hg19-p13-plusMT-masked-ucsc",
+# "hg19-p13-no-alt-analysis-ucsc",
+# "hg19-p13-full-analysis-ucsc",
+# "hg19-p13-plusMT-ucsc",
+# ]
 
 # target_samples = [
 
@@ -110,6 +110,18 @@ target_samples = [
 # "hg38-p14-ucsc",
 
 # ]
+
+
+target_samples = [
+
+"hg38-toplevel-113-ensembl",
+"GRCh38-p14-47-gencode",
+"GRCh38.p14-fasta-genomic",
+"hg38-p14-ucsc",
+"hg38-ddbj",
+"GRCh38-ena-29",
+
+]
 
 # target_samples =[
 
@@ -586,77 +598,77 @@ for pair_idx, all_relevant_stats in enumerate(stats_pairs): # Iterate through ea
 #     plt.close()
 
 
-# # Attempt frequency plot for all 4 stats in one plot
-# fig_width_mm = 170
-# fig_width_inches = fig_width_mm / 25.4
-# fig_height_inches = fig_width_inches * (0.6) # Adjust this ratio as needed
+# Attempt frequency plot for all 4 stats in one plot
+fig_width_mm = 170
+fig_width_inches = fig_width_mm / 25.4
+fig_height_inches = fig_width_inches * (0.6) # Adjust this ratio as needed
 
-# fig, ax = plt.subplots(figsize=(fig_width_inches, fig_height_inches))
-# #fig, ax = plt.subplots(figsize=(12, 7)) # Adjust figure size for more bars
+fig, ax = plt.subplots(figsize=(fig_width_inches, fig_height_inches))
+#fig, ax = plt.subplots(figsize=(12, 7)) # Adjust figure size for more bars
 
-# relevant_stats = ['jaccard_sequences', 'jaccard_name_len', 'jaccard_lengths', 'jaccard_names']
-# colors = ['skyblue', 'salmon', 'lightgreen', 'plum'] # Define distinct colors for each stat
+relevant_stats = ['jaccard_sequences', 'jaccard_name_len', 'jaccard_lengths', 'jaccard_names']
+colors = ['skyblue', 'salmon', 'lightgreen', 'plum'] # Define distinct colors for each stat
 
-# # Convert all relevant stat columns to numeric
-# for stat in relevant_stats:
-#     pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
+# Convert all relevant stat columns to numeric
+for stat in relevant_stats:
+    pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
 
-# # Define bins for the frequency plot
-# bins = np.linspace(0, 1, 21)  # Create 20 bins from 0 to 1
+# Define bins for the frequency plot
+bins = np.linspace(0, 1, 21)  # Create 20 bins from 0 to 1
 
-# # Calculate frequencies for each statistic
-# all_freqs = {}
-# for stat in relevant_stats:
-#     # Collect all values for the current statistic
-#     current_values = []
-#     for i in range(len(all_samples)):
-#         for j in range(i + 1, len(all_samples)):
-#             sample1 = all_samples[i]
-#             sample2 = all_samples[j]
+# Calculate frequencies for each statistic
+all_freqs = {}
+for stat in relevant_stats:
+    # Collect all values for the current statistic
+    current_values = []
+    for i in range(len(all_samples)):
+        for j in range(i + 1, len(all_samples)):
+            sample1 = all_samples[i]
+            sample2 = all_samples[j]
 
-#             comparison = pep_df[
-#                 ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
-#                 ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
-#             ]
+            comparison = pep_df[
+                ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+                ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+            ]
 
-#             if not comparison.empty:
-#                 current_values.append(comparison[stat].iloc[0])
+            if not comparison.empty:
+                current_values.append(comparison[stat].iloc[0])
     
-#     # Filter out NaN values before calculating histogram
-#     current_values = [val for val in current_values if not pd.isna(val)]
+    # Filter out NaN values before calculating histogram
+    current_values = [val for val in current_values if not pd.isna(val)]
     
-#     freq, _ = np.histogram(current_values, bins=bins)
-#     all_freqs[stat] = freq
+    freq, _ = np.histogram(current_values, bins=bins)
+    all_freqs[stat] = freq
 
-# # Set the width of each individual bar
-# num_stats = len(relevant_stats)
-# bar_width = 0.8 / num_stats # Adjust bar width based on number of stats to prevent overlap
+# Set the width of each individual bar
+num_stats = len(relevant_stats)
+bar_width = 0.8 / num_stats # Adjust bar width based on number of stats to prevent overlap
 
-# # Set the base positions for each group of bars
-# x_base = np.arange(len(bins) - 1)
+# Set the base positions for each group of bars
+x_base = np.arange(len(bins) - 1)
 
-# # Plot bars for each statistic
-# rects = []
-# for i, stat in enumerate(relevant_stats):
-#     # Calculate the offset for each bar within a group
-#     offset = (i - (num_stats - 1) / 2) * bar_width
-#     bars = ax.bar(x_base + offset, all_freqs[stat], bar_width, label=stat, color=colors[i])
-#     rects.append(bars)
+# Plot bars for each statistic
+rects = []
+for i, stat in enumerate(relevant_stats):
+    # Calculate the offset for each bar within a group
+    offset = (i - (num_stats - 1) / 2) * bar_width
+    bars = ax.bar(x_base + offset, all_freqs[stat], bar_width, label=stat, color=colors[i])
+    rects.append(bars)
 
-# # Add labels, title, and legend
-# ax.set_xlabel('Overlap Coefficient')
-# ax.set_ylabel('Frequency')
-# ax.set_title('Frequency Distribution of All Relevant Statistics')
-# ax.set_xticks(x_base)
-# ax.set_xticklabels([f'{b:.2f}-{(b + (bins[1] - bins[0])):.2f}' for b in bins[:-1]], rotation=45, ha='right')
-# ax.legend()
+# Add labels, title, and legend
+ax.set_xlabel('Overlap Coefficient')
+ax.set_ylabel('Frequency')
+ax.set_title('Frequency Distribution of All Relevant Statistics')
+ax.set_xticks(x_base)
+ax.set_xticklabels([f'{b:.2f}-{(b + (bins[1] - bins[0])):.2f}' for b in bins[:-1]], rotation=45, ha='right')
+ax.legend()
 
-# fig.tight_layout()
-# output_path = os.path.join(results_dir, 'frequency_plot_all_stats.svg')
-# plt.savefig(output_path, dpi=300, bbox_inches='tight')
-# plt.close()
+fig.tight_layout()
+output_path = os.path.join(results_dir, 'frequency_plot_all_stats.svg')
+plt.savefig(output_path, dpi=300, bbox_inches='tight')
+plt.close()
 
-# print(f"Frequency plot saved to {output_path}")
+print(f"Frequency plot saved to {output_path}")
 
 
 

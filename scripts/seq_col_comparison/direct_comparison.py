@@ -15,8 +15,12 @@ LOCAL_JSON_DIRECTORY = "/home/drc/Downloads/jsons_from_rivanna/json/"
 # samples_to_compare = ["P33s5fSkktH60MccIpfLNHAA79fJyxlt","t-g5olKSC0DsZHICbi3cYR3jF-7i4xaK", "9VlpW2Uty7rQNSBbYy-nYCNOHqyYoBTt", "e38absAQBVXM4If9Mp9UhrPrqNGOklZz", "d2GjQek3_I1_zkq4gLHTUI50BptQsoqZ"]
 
 
-samples_to_compare = ["XemD97fxYMS4q-FBm_n5CHQgmzh1_67a"] # p0
-primary_sample = "u1HyLgIlq8M_XvEwy0oGqAvKGHJMGtxH" # p14
+# samples_to_compare = ["XemD97fxYMS4q-FBm_n5CHQgmzh1_67a"] # p0
+# primary_sample = "u1HyLgIlq8M_XvEwy0oGqAvKGHJMGtxH" # p14
+
+samples_to_compare = ["6pxZqxG0TYtyVb8yp14ONpaxZ8msQqKr"] # hg19-p13-plusMT-ucsc
+primary_sample = "svwHqvgassl0loigdqVIQJdjo7NWDIx3" # hg19-p13-no-alt-analysis-ucsc
+
 
 def get_sequence_col_dict(digest):
 
