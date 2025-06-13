@@ -106,9 +106,9 @@ base_filename = os.path.splitext(base_filename)[0]
 
 # Determine the desired final filename based on whether 'gzip=true' is in the URL query parameters
 if "gzip=true" in parsed_url.query:
-    local_fasta_filename = f"{base_filename}.fa.gz"
+    local_fasta_filename = f"{sample_name}_{base_filename}.fa.gz"
 else:
-    local_fasta_filename = f"{base_filename}.fa"
+    local_fasta_filename = f"{sample_name}_{base_filename}.fa"
 
 # Call the download function with the URL, generated filename, and the specified download directory
 filepath = download_fasta_stream(ftp_url, local_fasta_filename, download_dir=download_path)
