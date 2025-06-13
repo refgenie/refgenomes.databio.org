@@ -671,11 +671,11 @@ plt.close()
 print(f"Frequency plot saved to {output_path}")
 
 
-
-fig_width_mm = 170
+# Heat Map of frequencies
+fig_width_mm = 110
 fig_width_inches = fig_width_mm / 25.4
 # Adjust height for heatmap, it can be taller if many bins
-fig_height_inches = fig_width_inches * (0.8) # Adjusted for better heatmap display
+fig_height_inches = fig_width_inches * (0.7) # Adjusted for better heatmap display
 
 # Initialize the plot
 fig, ax = plt.subplots(figsize=(fig_width_inches, fig_height_inches))
@@ -687,7 +687,7 @@ for stat in relevant_stats:
     pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
 
 # Define bins for the frequency plot (20 bins from 0 to 1)
-bins = np.linspace(0, 1, 21)
+bins = np.linspace(0, 1, 5)
 
 # Calculate frequencies for each statistic and store in a dictionary
 all_freqs_data = {}
@@ -717,17 +717,24 @@ for stat in relevant_stats:
 # Rows will be the bin labels, columns will be the statistics
 heatmap_df = pd.DataFrame(all_freqs_data)
 
-# Create labels for the y-axis (bins)
-bin_labels = [f'{bins[i]:.2f}-{bins[i+1]:.2f}' for i in range(len(bins) - 1)]
-heatmap_df.index = bin_labels
+# Normalize frequencies to proportions for smoother representation
+# Divide each column by its sum
+heatmap_df_normalized = heatmap_df.apply(lambda x: x / x.sum(), axis=0)
 
-# Plot the heatmap
-sns.heatmap(heatmap_df, annot=True, fmt="d", cmap="viridis", ax=ax, cbar_kws={'label': 'Frequency'})
+
+# Create labels for the x-axis (bins)
+bin_labels = [f'{bins[i]:.2f}-{bins[i+1]:.2f}' for i in range(len(bins) - 1)]
+# No need to set index here if we are transposing later, as the original column names become index after transpose
+
+# Plot the heatmap (swapping x and y axes by transposing the DataFrame)
+# The `T` attribute transposes the DataFrame
+sns.heatmap(heatmap_df_normalized.T, fmt=".2f", cmap="viridis", ax=ax, cbar_kws={'label': 'Proportion'})
 
 # Add labels and title
-ax.set_xlabel('Jaccard Statistic')
-ax.set_ylabel('Overlap Coefficient Bins')
-ax.set_title('Frequency Distribution of Jaccard Statistics Across Overlap Bins')
+ax.set_xlabel('Jaccard Score')
+ax.set_ylabel('Jaccard Similarities')
+ax.set_title('Proportion Distribution of Jaccard Stats')
+ax.set_xticklabels(bin_labels, rotation=45, ha='right') # Set x-axis labels after transpose
 
 fig.tight_layout()
 
