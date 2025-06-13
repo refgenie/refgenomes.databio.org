@@ -687,7 +687,7 @@ for stat in relevant_stats:
     pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
 
 # Define bins for the frequency plot (20 bins from 0 to 1)
-bins = np.linspace(0, 1, 5)
+bins = np.linspace(0, 1,6)
 
 # Calculate frequencies for each statistic and store in a dictionary
 all_freqs_data = {}
@@ -723,7 +723,8 @@ heatmap_df_normalized = heatmap_df.apply(lambda x: x / x.sum(), axis=0)
 
 
 # Create labels for the x-axis (bins)
-bin_labels = [f'{bins[i]:.2f}-{bins[i+1]:.2f}' for i in range(len(bins) - 1)]
+#bin_labels = [f'{bins[i]:.2f}-{bins[i+1]:.2f}' for i in range(len(bins) - 1)]
+bin_labels =["0%","25%", "50%", "75%", "100%"]
 # No need to set index here if we are transposing later, as the original column names become index after transpose
 
 # Plot the heatmap (swapping x and y axes by transposing the DataFrame)
@@ -734,7 +735,7 @@ sns.heatmap(heatmap_df_normalized.T, fmt=".2f", cmap="viridis", ax=ax, cbar_kws=
 ax.set_xlabel('Jaccard Score')
 ax.set_ylabel('Jaccard Similarities')
 ax.set_title('Proportion Distribution of Jaccard Stats')
-ax.set_xticklabels(bin_labels, rotation=45, ha='right') # Set x-axis labels after transpose
+ax.set_xticklabels(bin_labels, rotation=90, ha='right') # Set x-axis labels after transpose
 
 fig.tight_layout()
 
