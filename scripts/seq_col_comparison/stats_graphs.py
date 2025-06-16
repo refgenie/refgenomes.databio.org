@@ -112,16 +112,16 @@ desired_order = None
 # ]
 
 
-target_samples = [
+# target_samples = [
 
-"hg38-toplevel-113-ensembl",
-"GRCh38-p14-47-gencode",
-"GRCh38.p14-fasta-genomic",
-"hg38-p14-ucsc",
-"hg38-ddbj",
-"GRCh38-ena-29",
+# "hg38-toplevel-113-ensembl",
+# "GRCh38-p14-47-gencode",
+# "GRCh38.p14-fasta-genomic",
+# "hg38-p14-ucsc",
+# "hg38-ddbj",
+# "GRCh38-ena-29",
 
-]
+# ]
 
 # target_samples =[
 
@@ -144,9 +144,9 @@ target_samples = [
 
 
 # # # # Pre-filter the DataFrame
-pep_df = pep_df[
-    ((pep_df['sample_name_1'].isin(target_samples)) & (pep_df['sample_name_2'].isin(target_samples)))
-]
+# pep_df = pep_df[
+#     ((pep_df['sample_name_1'].isin(target_samples)) & (pep_df['sample_name_2'].isin(target_samples)))
+# ]
 #new_df = pep_df.copy()
 # --------------------------------------------
 
@@ -406,6 +406,84 @@ for pair_idx, all_relevant_stats in enumerate(stats_pairs): # Iterate through ea
         plt.close(fig) # Close the figure to free memory
         print(f"Saved heatmap plot for {all_relevant_stats[0]} and {all_relevant_stats[1]} to {output_path_svg}")
 
+
+# Heat Map of frequencies using KDE
+from scipy.stats import gaussian_kde
+fig_width_mm = 170 # Increased width to accommodate more x-axis points
+fig_width_inches = fig_width_mm / 25.4
+# Adjust height for heatmap, it can be taller if many bins
+fig_height_inches = fig_width_inches * (0.4) # Adjusted for better heatmap display with many points
+
+# Initialize the plot
+fig, ax = plt.subplots(figsize=(fig_width_inches, fig_height_inches))
+
+relevant_stats = ['jaccard_sequences', 'jaccard_name_len', 'jaccard_lengths', 'jaccard_names']
+
+# Convert all relevant stat columns to numeric
+for stat in relevant_stats:
+    pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
+
+# Define a high-resolution spectrum from 0 to 1
+x_spectrum = np.linspace(0, 1, 100) # 200 points for a smoother spectrum
+
+# Calculate smoothed densities for each statistic
+all_densities_data = {}
+for stat in relevant_stats:
+    current_values = []
+    for i in range(len(all_samples)):
+        for j in range(i + 1, len(all_samples)):
+            sample1 = all_samples[i]
+            sample2 = all_samples[j]
+
+            comparison = pep_df[
+                ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+                ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+            ]
+
+            if not comparison.empty:
+                current_values.append(comparison[stat].iloc[0])
+
+    # Filter out NaN values before calculating KDE
+    current_values = np.array([val for val in current_values if not pd.isna(val)])
+
+    if len(current_values) > 1: # KDE requires at least 2 points
+        # Perform Kernel Density Estimation
+        kde = gaussian_kde(current_values)
+        # Evaluate the KDE on our defined spectrum
+        densities = kde(x_spectrum)
+    else: # Handle cases with insufficient data for KDE
+        densities = np.zeros_like(x_spectrum) # Or some other default
+
+    all_densities_data[stat] = densities
+
+# Create a DataFrame for the heatmap using the smoothed densities
+heatmap_df = pd.DataFrame(all_densities_data, index=x_spectrum).T
+
+# Plot the heatmap (Jaccard Similarities on Y, Jaccard Score Spectrum on X)
+# annot=False for smoother representation as there are too many points
+sns.heatmap(heatmap_df, annot=False, cmap="viridis", ax=ax, cbar_kws={'label': 'Density'})
+
+# Add labels and title
+ax.set_xlabel('Jaccard Score')
+ax.set_ylabel('Jaccard Similarities')
+ax.set_title('Density Distribution of Jaccard Similarities Across Score Spectrum')
+
+# Set x-axis ticks and labels to represent the spectrum clearly
+# Show only a few ticks for clarity, e.g., every 0.1 or 0.2
+tick_positions = np.arange(0, len(x_spectrum), len(x_spectrum) // 10) # Roughly 10 ticks
+tick_labels = [f'{x_spectrum[int(p)]:.1f}' for p in tick_positions]
+
+ax.set_xticks(tick_positions)
+ax.set_xticklabels(tick_labels, rotation=45, ha='right')
+
+fig.tight_layout()
+
+# Save the heatmap plot
+output_path = os.path.join(results_dir, 'jaccard_heatmap_spectrum.svg') # New filename
+plt.savefig(output_path, dpi=300, bbox_inches='tight')
+plt.close()
+
+print(f"Heatmap saved to {output_path}")
 
 # # PLOT MOW MEDIAN CHANGES BASED ON JACCARD_NAME_LEN
 
@@ -687,7 +765,7 @@ for stat in relevant_stats:
     pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
 
 # Define bins for the frequency plot (20 bins from 0 to 1)
-bins = np.linspace(0, 1,6)
+bins = np.linspace(0, 1,20)
 
 # Calculate frequencies for each statistic and store in a dictionary
 all_freqs_data = {}
@@ -723,8 +801,8 @@ heatmap_df_normalized = heatmap_df.apply(lambda x: x / x.sum(), axis=0)
 
 
 # Create labels for the x-axis (bins)
-#bin_labels = [f'{bins[i]:.2f}-{bins[i+1]:.2f}' for i in range(len(bins) - 1)]
-bin_labels =["0%","25%", "50%", "75%", "100%"]
+bin_labels = [f'{bins[i]:.2f}-{bins[i+1]:.2f}' for i in range(len(bins) - 1)]
+#bin_labels =["0%","25%", "50%", "75%", "100%"]
 # No need to set index here if we are transposing later, as the original column names become index after transpose
 
 # Plot the heatmap (swapping x and y axes by transposing the DataFrame)

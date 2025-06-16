@@ -9,6 +9,8 @@ GRCh37.p13-fasta-full-analysis, homo_sapiens, hg19, ncbi, https://ftp.ncbi.nlm.n
 GRCh37.p13-fasta-genomic, homo_sapiens, hg19, ncbi, https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.25_GRCh37.p13/GCF_000001405.25_GRCh37.p13_genomic.fna.gz, fasta, GCF_000001405.25_GRCh37.p13_genomic from NCBI
 hg38-initial-ucsc, homo_sapiens, hg38, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz, fasta, hg38 from UCSC representing initial 2013 release
 hg38-p14-ucsc, homo_sapiens, hg38, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/p14/hg38.p14.fa.gz, fasta, hg38 from UCSC patch 14
+hg38-p14-masked-ucsc, homo_sapiens, hg38, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/p14/hg38.p14.fa.masked.gz, fasta, hg38 masked from UCSC patch 14
+hg38-p14-analysisSet-ucsc, homo_sapiens, hg38, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/analysisSet/hg38.analysisSet.fa.gz, fasta, hg38 analysisSet from UCSC patch 14               
 hg19-initial-ucsc, homo_sapiens, hg19, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz, fasta, hg19 from UCSC representing initial 2009 release
 hg19-masked-ucsc, homo_sapiens, hg19, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.masked.gz, fasta, masked hg19 from UCSC representing initial 2009 release
 hg19-p13-full-analysis-ucsc, homo_sapiens, hg19, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/analysisSet/hg19.p13.plusMT.full_analysis_set.fa.gz, fasta, full analysis set hg19 p13 from ucsc
@@ -49,4 +51,3 @@ hg19-refgenie, homo_sapiens, hg19, refgenie, http://refgenomes.databio.org/v3/as
 GRCh38-full-decoy-hla-ddbj, homo_sapiens, hg38, ddbj, https://ddbj.nig.ac.jp/public/public-human-genomes/GRCh38/fasta/GRCh38_full_analysis_set_plus_decoy_hla.fa, fasta, ddbj GRCh38_full_analysis_set_plus_decoy_hla.fa
 homo-sapiens-assembly38-ddbj, homo_sapiens, hg38, ddbj, https://ddbj.nig.ac.jp/public/public-human-genomes/GRCh38/fasta/Homo_sapiens_assembly38.fasta, fasta, ddbj Homo_sapiens_assembly38.fasta
 hg38-ddbj, homo_sapiens, hg38, ddbj, https://ddbj.nig.ac.jp/public/public-human-genomes/GRCh38/fasta/hg38.fa.gz, fasta, ddbj hg38.fa.gz
-hs37d5.fa, homo_sapiens, hg19, ddbj, https://ddbj.nig.ac.jp/public/public-human-genomes/GRCh38/fasta_old/hs37d5.fa, fasta, ddbj hs37d5.fa
