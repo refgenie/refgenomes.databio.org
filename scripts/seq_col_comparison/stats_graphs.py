@@ -157,19 +157,10 @@ desired_order = None
 
 
 all_relevant_stats = [
-                    #   'overlap_coefficient_names',	
-                    #   'overlap_coefficient_lengths',
-                    #   'overlap_coefficient_sequences',
-                    #   'overlap_coeff_name_len',	
                       'jaccard_names', 
                       'jaccard_lengths', 
                       'jaccard_sequences',
                       'jaccard_name_len', 
-                    #   'f1_names',
-                    #   'f1_lengths',
-                    #   'f1_sequences',
-                    #   'f1_weighted_lengths',
-                    #   'f1_name_len_pairs'
                       ]
 
 
@@ -202,15 +193,6 @@ sample_authority_df.to_csv(sample_authority_file, index=False)  # index=False pr
 
 #### PLOT MULTIPLE SUBPLOTS
 
-# stats_groups = [['f1_names',
-#                       'f1_lengths',
-#                       'f1_sequences',
-#                       'f1_name_len_pairs',
-#                       ],['f10_names',
-#                       'f10_lengths',
-#                       'f10_sequences',
-#                       'f10_name_len_pairs',
-#                       ]]
 stats_groups = [['jaccard_names', 'jaccard_lengths', 'jaccard_sequences', 'jaccard_name_len']]
 
 for all_relevant_stats in stats_groups:
@@ -287,10 +269,6 @@ for all_relevant_stats in stats_groups:
 
 # PLOT OPA AND OPB
 
-
-
-#stats_groups = [['opa_names', 'opb_names', 'opa_lengths', 'opb_lengths', 'opa_sequences', 'opb_sequences', 'opa_name_len', 'opb_name_len']]
-#stats_groups = [['opa_name_len', 'opb_name_len']]
 stats_pairs = [['opa_names', 'opb_names'], ['opa_lengths', 'opb_lengths'], ['opa_sequences', 'opb_sequences'], ['opa_name_len', 'opb_name_len']]
 for pair_idx, all_relevant_stats in enumerate(stats_pairs): # Iterate through each pair
         num_plots = len(all_relevant_stats) # Should always be 2 for these pairs
@@ -342,24 +320,14 @@ for pair_idx, all_relevant_stats in enumerate(stats_pairs): # Iterate through ea
 
                             if not comparison_forward.empty: # pep_df has (sample1, sample2)
                                 if stat.startswith('opa_'):
-                                    # If populating 'opa_X' heatmap, and original data is (sample1, sample2)
-                                    # 'sample1' is sample_name_1, 'sample2' is sample_name_2.
-                                    # User reports 'opa_X' is reversed, implying they want 'opb_X' for sample2.
                                     similarity_score = comparison_forward['opa_' + base_stat_suffix].iloc[0]
                                 elif stat.startswith('opb_'):
-                                    # If populating 'opb_X' heatmap, and original data is (sample1, sample2)
-                                    # User reports 'opb_X' is reversed, implying they want 'opa_X' for sample1.
                                     similarity_score = comparison_forward['opb_' + base_stat_suffix].iloc[0]
 
                             elif not comparison_backward.empty: # pep_df has (sample2, sample1)
                                 if stat.startswith('opa_'):
-                                    # If populating 'opa_X' heatmap, and original data is (sample2, sample1)
-                                    # 'sample2' is sample_name_1, 'sample1' is sample_name_2.
-                                    # User reports 'opa_X' is reversed, implying they want 'opa_X' for sample2.
                                     similarity_score = comparison_backward['opb_' + base_stat_suffix].iloc[0]
                                 elif stat.startswith('opb_'):
-                                    # If populating 'opb_X' heatmap, and original data is (sample2, sample1)
-                                    # User reports 'opb_X' is reversed, implying they want 'opb_X' for sample1.
                                     similarity_score = comparison_backward['opa_' + base_stat_suffix].iloc[0]
 
                             heatmap_data.loc[sample1, sample2] = similarity_score
@@ -378,9 +346,8 @@ for pair_idx, all_relevant_stats in enumerate(stats_pairs): # Iterate through ea
             ax.set_xticks(np.arange(0.5, len(all_samples), 1)) # Center ticks between cells
             ax.set_yticks(np.arange(0.5, len(all_samples), 1))
 
-            # Set tick labels using the ordered authorities
 
-        # Get the unique authorities in the sorted order of samples for axis labels
+            # Get the unique authorities in the sorted order of samples for axis labels
             ordered_authorities = [sample_authority.get(sample, sample) for sample in all_samples]
             ax.set_yticklabels(ordered_authorities, rotation=0, fontsize=8)
             ax.set_xticklabels(ordered_authorities, rotation=90, fontsize=8)
@@ -424,7 +391,7 @@ for stat in relevant_stats:
     pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
 
 # Define a high-resolution spectrum from 0 to 1
-x_spectrum = np.linspace(0, 1, 100) # 200 points for a smoother spectrum
+x_spectrum = np.linspace(0, 1, 40) 
 
 # Calculate smoothed densities for each statistic
 all_densities_data = {}
@@ -692,7 +659,7 @@ for stat in relevant_stats:
     pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
 
 # Define bins for the frequency plot
-bins = np.linspace(0, 1, 21)  # Create 20 bins from 0 to 1
+bins = np.linspace(0, 1, 51)  
 
 # Calculate frequencies for each statistic
 all_freqs = {}
@@ -750,79 +717,79 @@ print(f"Frequency plot saved to {output_path}")
 
 
 # Heat Map of frequencies
-fig_width_mm = 110
-fig_width_inches = fig_width_mm / 25.4
-# Adjust height for heatmap, it can be taller if many bins
-fig_height_inches = fig_width_inches * (0.7) # Adjusted for better heatmap display
+# fig_width_mm = 110
+# fig_width_inches = fig_width_mm / 25.4
+# # Adjust height for heatmap, it can be taller if many bins
+# fig_height_inches = fig_width_inches * (0.7) # Adjusted for better heatmap display
 
-# Initialize the plot
-fig, ax = plt.subplots(figsize=(fig_width_inches, fig_height_inches))
+# # Initialize the plot
+# fig, ax = plt.subplots(figsize=(fig_width_inches, fig_height_inches))
 
-relevant_stats = ['jaccard_sequences', 'jaccard_name_len', 'jaccard_lengths', 'jaccard_names']
+# relevant_stats = ['jaccard_sequences', 'jaccard_name_len', 'jaccard_lengths', 'jaccard_names']
 
-# Convert all relevant stat columns to numeric
-for stat in relevant_stats:
-    pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
+# # Convert all relevant stat columns to numeric
+# for stat in relevant_stats:
+#     pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
 
-# Define bins for the frequency plot (20 bins from 0 to 1)
-bins = np.linspace(0, 1,20)
+# # Define bins for the frequency plot (20 bins from 0 to 1)
+# bins = np.linspace(0, 1, 21)
 
-# Calculate frequencies for each statistic and store in a dictionary
-all_freqs_data = {}
-for stat in relevant_stats:
-    current_values = []
-    for i in range(len(all_samples)):
-        for j in range(i + 1, len(all_samples)):
-            sample1 = all_samples[i]
-            sample2 = all_samples[j]
+# # Calculate frequencies for each statistic and store in a dictionary
+# all_freqs_data = {}
+# for stat in relevant_stats:
+#     current_values = []
+#     for i in range(len(all_samples)):
+#         for j in range(i + 1, len(all_samples)):
+#             sample1 = all_samples[i]
+#             sample2 = all_samples[j]
 
-            comparison = pep_df[
-                ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
-                ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
-            ]
+#             comparison = pep_df[
+#                 ((pep_df['sample_name_1'] == sample1) & (pep_df['sample_name_2'] == sample2)) |
+#                 ((pep_df['sample_name_1'] == sample2) & (pep_df['sample_name_2'] == sample1))
+#             ]
 
-            if not comparison.empty:
-                current_values.append(comparison[stat].iloc[0])
+#             if not comparison.empty:
+#                 current_values.append(comparison[stat].iloc[0])
 
-    # Filter out NaN values before calculating histogram
-    current_values = [val for val in current_values if not pd.isna(val)]
+#     # Filter out NaN values before calculating histogram
+#     current_values = [val for val in current_values if not pd.isna(val)]
 
-    # Calculate frequency for the current stat using the defined bins
-    freq, _ = np.histogram(current_values, bins=bins)
-    all_freqs_data[stat] = freq
+#     # Calculate frequency for the current stat using the defined bins
+#     freq, _ = np.histogram(current_values, bins=bins)
+#     all_freqs_data[stat] = freq
 
-# Create a DataFrame for the heatmap
-# Rows will be the bin labels, columns will be the statistics
-heatmap_df = pd.DataFrame(all_freqs_data)
+# # Create a DataFrame for the heatmap
+# # Rows will be the bin labels, columns will be the statistics
+# heatmap_df = pd.DataFrame(all_freqs_data)
 
-# Normalize frequencies to proportions for smoother representation
-# Divide each column by its sum
-heatmap_df_normalized = heatmap_df.apply(lambda x: x / x.sum(), axis=0)
+# # Normalize frequencies to proportions for smoother representation
+# # Divide each column by its sum
+# heatmap_df_normalized = heatmap_df.apply(lambda x: x / x.sum(), axis=0)
 
 
-# Create labels for the x-axis (bins)
-bin_labels = [f'{bins[i]:.2f}-{bins[i+1]:.2f}' for i in range(len(bins) - 1)]
-#bin_labels =["0%","25%", "50%", "75%", "100%"]
-# No need to set index here if we are transposing later, as the original column names become index after transpose
+# # Create labels for the x-axis (bins)
+# bin_labels = [f'{bins[i]:.2f}-{bins[i+1]:.2f}' for i in range(len(bins) - 1)]
+# #bin_labels =["0%","25%", "50%", "75%", "100%"]
+# # No need to set index here if we are transposing later, as the original column names become index after transpose
 
-# Plot the heatmap (swapping x and y axes by transposing the DataFrame)
-# The `T` attribute transposes the DataFrame
-sns.heatmap(heatmap_df_normalized.T, fmt=".2f", cmap="viridis", ax=ax, cbar_kws={'label': 'Proportion'})
+# # Plot the heatmap (swapping x and y axes by transposing the DataFrame)
+# # The `T` attribute transposes the DataFrame
+# sns.heatmap(heatmap_df_normalized.T, fmt=".2f", cmap="viridis", ax=ax, cbar_kws={'label': 'Proportion'})
 
-# Add labels and title
-ax.set_xlabel('Jaccard Score')
-ax.set_ylabel('Jaccard Similarities')
-ax.set_title('Proportion Distribution of Jaccard Stats')
-ax.set_xticklabels(bin_labels, rotation=90, ha='right') # Set x-axis labels after transpose
+# # Add labels and title
+# ax.set_xlabel('Jaccard Score')
+# ax.set_ylabel('Jaccard Similarities')
+# ax.set_title('Proportion Distribution of Jaccard Stats')
+# ax.set_xticklabels(bin_labels, rotation=90, ha='right') # Set x-axis labels after transpose
 
-fig.tight_layout()
+# fig.tight_layout()
 
-# Save the heatmap plot
-output_path = os.path.join(results_dir, 'jaccard_heatmap_all_stats.svg')
-plt.savefig(output_path, dpi=300, bbox_inches='tight')
-plt.close()
+# # Save the heatmap plot
+# output_path = os.path.join(results_dir, 'jaccard_heatmap_all_stats.svg')
+# plt.savefig(output_path, dpi=300, bbox_inches='tight')
+# plt.close()
 
-print(f"Heatmap saved to {output_path}")
+# print(f"Heatmap saved to {output_path}")
 
 
 # # PLOT DOT CHART
