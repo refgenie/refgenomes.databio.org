@@ -17,8 +17,11 @@ pipestat:
 - .looper.yaml -> for running main set of initially curated files (human)
 - .looper_ncbi_38.yaml -> only hg38 samples acquired from NCBI
 - .looper_mm.yaml -> initial mouse set
-- .looper_local.yaml -> for files that could not be downloaded with the original pipeline but were instead manually downloaded (e.g. via web browser on HPC) and then processed (human)
+- .looper_local.yaml -> for files that could not be downloaded with the original pipeline but were instead manually downloaded (e.g. via web browser on HPC) and then processed (Homo sapiens)
+- .looper_local_mm.yaml -> for files that could not be downloaded with the original pipeline but were instead manually downloaded (e.g. via web browser on HPC) and then processed (Mus musculus)
 - .looper_ensembl -> only Ensembl hg38 samples
+- .looper_ena -> ENA files that require a slightly different download pipeline (Homo sapiens) 
+- .looper_ena_mm -> ENA files that require a slightly different download pipeline (Mus musculus) 
 
 #### Example commands to run on HPC:
 
@@ -27,7 +30,7 @@ Some env variables to set before execution:
 RESULTS -> where looper will put its results
 BRICKYARD_DOWNLOAD_LOCATION -> if the pipeline downloads fasta files, it needs to know where to store them
 
-##### load miniforge and conda env with require packages
+##### load miniforge and a conda env with require packages
 ```
 module load miniforge
 conda activate seqcolwork
