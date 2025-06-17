@@ -1,10 +1,9 @@
 import sys
 import pipestat
 import json
-from refget import fasta_to_digest, fasta_to_seqcol_dict,fasta_to_seq_digests,compare_seqcols
+from refget import compare_seqcols
 from pephubclient import PEPHubClient
 from itertools import combinations
-from pprint import pprint
 
 looper_config = sys.argv[1]  
 results_pep = sys.argv[2]
@@ -15,18 +14,6 @@ print(f"here is the looper config: {looper_config}")
 
 
 # Calculation Functions
-def calc_overlap_coeff(A,B, A_B_intersection):
-    minimum_value = min(abs(A),abs(B))
-    overlap = abs(A_B_intersection)/minimum_value
-    return overlap
-
-
-def calc_overlap_coeff_MAX(A,B, A_B_intersection):
-    minimum_value = max(abs(A),abs(B))
-    overlap = abs(A_B_intersection)/minimum_value
-    return overlap
-
-
 def calc_jaccard_similarity(A_B_intersection, A_B_union):
     jaccard = abs(A_B_intersection)/abs(A_B_union)
     return jaccard
@@ -35,37 +22,6 @@ def overlap_proportion(A_B_intersection, a_or_b):
     # calculate the intersection OVER one of the two sets used to calculate the intersection
     proportion = abs(A_B_intersection)/abs(a_or_b)
     return proportion
-
-
-def f_beta_score(beta,tp,fp,fn):
-    # tp = a = the number of attributes that equal 1 for both objects i and j
-    # fp = b = the number of attributes that equal 0 for object i but equal 1 for object j
-    # fn = c = the number of attributes that equal 1 for object i but equal 0 for object j
-    # d = the number of attributes that equal 0 for both objects i and j but we do not need to consider these.
-
-    precision = tp/(tp+fp)
-    recall = tp/(tp+fn)
-
-    try:
-        f_beta = ((1+beta**2)*precision*recall)/(((beta**2)*precision)+recall)
-    except ZeroDivisionError:
-        f_beta = 0
-
-    return f_beta
-
-def calc_weighted_jaccard(list_intersection_lengths, list_union_lengths):
-    intersection_total = 0
-    union_total = 0
-
-    for length in list_intersection_lengths:
-        if length:
-            intersection_total += length
-    
-    for length in list_union_lengths:
-        if length:
-            union_total += length
-
-    return intersection_total/union_total
 
 # initiate pephubclient object
 phc = PEPHubClient()
@@ -159,21 +115,6 @@ for combination in all_combinations:
     lengths_intersection = set1_l.intersection(set2_l)
     lengths_union = set1_l.union(set2_l)
 
-
-    list_intersection_lengths = []
-    list_union_lengths = []
-
-    for name in names_intersection:
-        if reloaded_dict1_name_length_dict.get(name)==reloaded_dict2_name_length_dict.get(name):
-            list_intersection_lengths.append(reloaded_dict1_name_length_dict.get(name))
-        else:
-            pass
-
-    for name in names_union:
-        list_union_lengths.append(reloaded_dict1_name_length_dict.get(name))
-        list_union_lengths.append(reloaded_dict2_name_length_dict.get(name))
-
-    list_union_lengths_new_list = [x for x in list_union_lengths if x is not None]
 
     # create set of name_length_pairs
     set_of_name_len_pairs_1 = {tuple(d.values()) for d in reloaded_dict1['name_length_pairs']}
