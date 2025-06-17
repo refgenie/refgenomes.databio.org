@@ -47,14 +47,26 @@ all_combinations = combinations(iterable=all_samples,r=2)
 # psm_input = pipestat.PipestatManager(pephub_path=looper_config)
 psm_output = pipestat.PipestatManager(pephub_path=results_pep)
 
+ALL_SEQ_COL_DATA = {}
+
 combination_count = 0
 for combination in all_combinations:
     json_fp_1=sample_json_path[combination[0]]
     json_fp_2=sample_json_path[combination[1]]
-    with open(json_fp_1, "r") as f:
-        reloaded_dict1 = json.load(fp=f)
-    with open(json_fp_2, "r") as f:
-        reloaded_dict2 = json.load(fp=f)
+
+    if ALL_SEQ_COL_DATA.get(combination[0]):
+        reloaded_dict1 = ALL_SEQ_COL_DATA[combination[0]]
+    else:
+        with open(json_fp_1, "r") as f:
+            reloaded_dict1 = json.load(fp=f)
+            ALL_SEQ_COL_DATA[combination[0]] = reloaded_dict1
+    
+    if ALL_SEQ_COL_DATA.get(combination[1]):
+        reloaded_dict2 =  ALL_SEQ_COL_DATA[combination[1]]
+    else:
+        with open(json_fp_2, "r") as f:
+            reloaded_dict2 = json.load(fp=f)
+            ALL_SEQ_COL_DATA[combination[1]] = reloaded_dict2
  
     digest1 = key_digest_sample_name[combination[0]]
     digest2 = key_digest_sample_name[combination[1]]
