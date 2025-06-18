@@ -67,6 +67,7 @@ pep_df = pep["_sample_df"]
 # FOR ORDERING OR SLECTING ONLY SOME SAMPLES
 # --------------------------------------------
 desired_order = None
+target_samples = None
 
 # desired_order = [
 # "GRCh38.p0-fasta-genomic",
@@ -144,9 +145,12 @@ desired_order = None
 
 
 # # # # Pre-filter the DataFrame
-# pep_df = pep_df[
-#     ((pep_df['sample_name_1'].isin(target_samples)) & (pep_df['sample_name_2'].isin(target_samples)))
-# ]
+if target_samples:
+    pep_df = pep_df[
+        ((pep_df['sample_name_1'].isin(target_samples)) & (pep_df['sample_name_2'].isin(target_samples)))
+    ]
+else:
+    pass
 #new_df = pep_df.copy()
 # --------------------------------------------
 
@@ -415,7 +419,7 @@ for stat in relevant_stats:
 
     if len(current_values) > 1: # KDE requires at least 2 points
         # Perform Kernel Density Estimation
-        kde = gaussian_kde(current_values)
+        kde = gaussian_kde(current_values,bw_method=0.10) # ~ 0.10 seems to be a good bet to be less smooth
         # Evaluate the KDE on our defined spectrum
         densities = kde(x_spectrum)
     else: # Handle cases with insufficient data for KDE
