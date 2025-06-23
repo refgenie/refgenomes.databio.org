@@ -1,7 +1,7 @@
-sample_name,species,common_genome_name,authority,ftp_file_path,file_type,description
-hg38-toplevel-113-ensembl, homo_sapiens, hg38, ensembl, https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz, fasta, top level fasta of GRCh38 release 113
-GRCh38-p14-47-gencode, homo_sapiens, hg38, gencode, https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_47/GRCh38.p14.genome.fa.gz, fasta, release 47 of gencode GRCh38
-GRCh38.p14-fasta-genomic, homo_sapiens, hg38, ncbi, https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz, fasta, GCF_000001405.40_GRCh38.p14_genomic from NCBI
-hg38-p14-ucsc, homo_sapiens, hg38, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/p14/hg38.p14.fa.gz, fasta, hg38 from UCSC patch 14
-hg38-ddbj, homo_sapiens, hg38, ddbj, https://ddbj.nig.ac.jp/public/public-human-genomes/GRCh38/fasta/hg38.fa.gz, fasta, ddbj hg38.fa.gz
-GRCh38-ena-29, homo_sapiens, hg38, ENA, "https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_000001405.29?download=true&gzip=true", fasta, ref genome hosted on ENA Genome Reference Consortium Human Build 38 patch release 14 (GRCh38.p14)
+sample_name,common_genome_name,authority,description
+hg38-toplevel-113-ensembl, hg38, ensembl, top level fasta of GRCh38 release 113
+GRCh38-p14-47-gencode, hg38, gencode, release 47 of gencode GRCh38
+GRCh38.p14-fasta-genomic, hg38, ncbi, GCF_000001405.40_GRCh38.p14_genomic from NCBI
+hg38-p14-ucsc, hg38, ucsc, hg38 from UCSC patch 14
+hg38-ddbj, hg38, ddbj, ddbj hg38.fa.gz
+GRCh38-ena-29, hg38, ENA, ref genome hosted on ENA Genome Reference Consortium Human Build 38 patch release 14 (GRCh38.p14)
