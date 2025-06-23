@@ -10,8 +10,6 @@ For each sample in your PEP:
 
 Calculate stats for all samples in the PEP including, jaccard similarities for names, lengths, name_len_pairs, sequences.
 
-Future optimization: this project-level pipeline is currently inefficient and take several minutes for N>45
-
 ### Plotting statistics figures
 After running project pipeline and calculating statistics, you can plot figures. 
 

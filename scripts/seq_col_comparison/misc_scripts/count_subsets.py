@@ -1,4 +1,3 @@
-
 # COUNT SUBSETS VIA OPA/OPB as well as get percentage of stats that are 1.0 similarity
 
 import sys
