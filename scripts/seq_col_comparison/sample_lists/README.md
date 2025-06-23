@@ -1,0 +1,1 @@
+This folder contains a csv for sample tables to be exported SVG tables for publication.
