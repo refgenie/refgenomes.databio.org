@@ -1,0 +1,10 @@
+sample_name,species,common_genome_name,authority,ftp_file_path,file_type,description
+GRCh38.p0-fasta-genomic, homo_sapiens, hg38, ncbi, https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/GCF_000001405.26_GRCh38_genomic.fna.gz, fasta, GCF_000001405.26_GRCh38_genomic from NCBI
+GRCh38.p1-fasta-genomic, homo_sapiens, hg38, ncbi, https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.27_GRCh38.p1/GCF_000001405.27_GRCh38.p1_genomic.fna.gz, fasta, GCF_000001405.27_GRCh38.p1_genomic from NCBI
+GRCh38.p2-fasta-genomic, homo_sapiens, hg38, ncbi, https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.28_GRCh38.p2/GCF_000001405.28_GRCh38.p2_genomic.fna.gz, fasta, GCF_000001405.28_GRCh38.p2_genomic from NCBI
+GRCh38.p6-fasta-genomic, homo_sapiens, hg38, ncbi, https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.32_GRCh38.p6/GCF_000001405.32_GRCh38.p6_genomic.fna.gz, fasta, GCF_000001405.32_GRCh38.p6_genomic from NCBI
+GRCh38.p7-fasta-genomic, homo_sapiens, hg38, ncbi, https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.33_GRCh38.p7/GCF_000001405.33_GRCh38.p7_genomic.fna.gz, fasta, GCF_000001405.33_GRCh38.p7_genomic from NCBI
+GRCh38.p8-fasta-genomic, homo_sapiens, hg38, ncbi, https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.34_GRCh38.p8/GCF_000001405.34_GRCh38.p8_genomic.fna.gz, fasta, GCF_000001405.34_GRCh38.p8_genomic from NCBI
+GRCh38.p12-fasta-genomic, homo_sapiens, hg38, ncbi, https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.38_GRCh38.p12/GCF_000001405.38_GRCh38.p12_genomic.fna.gz, fasta, GCF_000001405.38_GRCh38.p12_genomic from NCBI
+GRCh38.p13-fasta-genomic, homo_sapiens, hg38, ncbi, https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.39_GRCh38.p13/GCF_000001405.39_GRCh38.p13_genomic.fna.gz, fasta, GCF_000001405.39_GRCh38.p13_genomic from NCBI
+GRCh38.p14-fasta-genomic, homo_sapiens, hg38, ncbi, https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz, fasta, GCF_000001405.40_GRCh38.p14_genomic from NCBI

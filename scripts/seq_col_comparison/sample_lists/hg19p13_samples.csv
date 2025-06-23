@@ -1,0 +1,5 @@
+sample_name,species,common_genome_name,authority,ftp_file_path,file_type,description
+hg19-p13-plusMT-masked-ucsc, homo_sapiens, hg19, ucsc, https://hgdownload.gi.ucsc.edu/goldenPath/hg19/bigZips/p13.plusMT/hg19.p13.plusMT.fa.masked.gz, fasta, hg19 p13 plusMT masked from ucsc
+hg19-p13-no-alt-analysis-ucsc, homo_sapiens, hg19, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/analysisSet/hg19.p13.plusMT.no_alt_analysis_set.fa.gz, fasta, no alt analysis set hg19 p13 from ucsc
+hg19-p13-full-analysis-ucsc, homo_sapiens, hg19, ucsc, https://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/analysisSet/hg19.p13.plusMT.full_analysis_set.fa.gz, fasta, full analysis set hg19 p13 from ucsc
+hg19-p13-plusMT-ucsc, homo_sapiens, hg19, ucsc, https://hgdownload.gi.ucsc.edu/goldenPath/hg19/bigZips/p13.plusMT/hg19.p13.plusMT.fa.gz, fasta, hg19 p13 plusMT from ucsc
