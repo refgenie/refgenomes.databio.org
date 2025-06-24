@@ -5,7 +5,7 @@ library(stringr)
 library(RColorBrewer)
 
 # Set the directory where the CSV file is located
-results_dir <- "/home/drc/Downloads/refgenomes_pics_test/12May2025/full_sequence_comparisons/attempt_by_name_len_pairs/"
+results_dir <- "/home/drc/Downloads/refgenomes_pics_test/17june2025/seq_presence/test/"
 csv_file <- file.path(results_dir, "sequence_presence_matrix.csv")
 
 

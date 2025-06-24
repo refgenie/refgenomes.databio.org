@@ -12,9 +12,9 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-OUTPUT_PATH = "/home/drc/Downloads/refgenomes_pics_test/17june2025/seq_presence/"
+OUTPUT_PATH = "/home/drc/Downloads/refgenomes_pics_test/17june2025/seq_presence/test/"
 
-psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/human_seqcol_digests_easier_labels:default")
+psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/human_seqcol_digests:default")
 
 # psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/ncbi_38_seqcol_digests:default")
 # psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/ncbi_subset_digests:default")
