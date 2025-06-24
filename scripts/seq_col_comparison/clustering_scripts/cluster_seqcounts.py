@@ -98,18 +98,18 @@ df = pd.DataFrame(data, index=sorted_sequences_by_frequency, columns=sorted_file
 # Export the df DataFrame to a CSV file
 df.to_csv(os.path.join(OUTPUT_PATH, 'sequence_presence_matrix.csv'), index=True)  # IMPORTANT: index=True
 print(f"Sequence presence matrix exported to: {os.path.join(OUTPUT_PATH, 'sequence_presence_matrix.csv')}")
-num_all_seqs = len(all_sequences_union) # Assuming this is defined
+# num_all_seqs = len(all_sequences_union) # Assuming this is defined
 
-plt.figure(figsize=(24, 10))
-sns.heatmap(df.T, cmap="viridis", cbar=False)  # Transpose the DataFrame
-plt.title("Sequences Present in Reference Genomes (Sorted by Frequency, Rows by Sequence Count)")
-plt.ylabel("Reference Genomes (Sorted by Sequence Count)")  # Updated label
-plt.xlabel(f"Sequences (Sorted by Frequency), n={num_all_seqs}")
-plt.xticks([])
-plt.yticks(rotation=0)
-plt.tight_layout()
-output_path = os.path.join(OUTPUT_PATH, 'sequences_presence_sorted_frequency_rows_by_count')
-plt.savefig(output_path, dpi=300, bbox_inches='tight')
+# plt.figure(figsize=(24, 10))
+# sns.heatmap(df.T, cmap="viridis", cbar=False)  # Transpose the DataFrame
+# plt.title("Sequences Present in Reference Genomes (Sorted by Frequency, Rows by Sequence Count)")
+# plt.ylabel("Reference Genomes (Sorted by Sequence Count)")  # Updated label
+# plt.xlabel(f"Sequences (Sorted by Frequency), n={num_all_seqs}")
+# plt.xticks([])
+# plt.yticks(rotation=0)
+# plt.tight_layout()
+# output_path = os.path.join(OUTPUT_PATH, 'sequences_presence_sorted_frequency_rows_by_count')
+# plt.savefig(output_path, dpi=300, bbox_inches='tight')
 
 
 # # CLUSTERING BY NAME_LENGTHS
