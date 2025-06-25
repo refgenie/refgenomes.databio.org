@@ -167,16 +167,16 @@ for (current_group_name in target_groups) {
   )
 
   # Save as PNG
-  output_png_file <- file.path(results_dir, paste0("sequence_presence_heatmap_r_WITH_GROUPS_", tolower(current_group_name), "_grouped_authority.png"))
-  png(output_png_file, width = 2400, height = 1000, res = 150)
-  print(heatmap_plot)
-  dev.off()
-  message(paste0("Heatmap for group '", current_group_name, "' exported to: ", output_png_file))
-
-  # # Save as SVG (optional)
-  # output_svg_file <- file.path(results_dir, paste0("sequence_presence_heatmap_r_", tolower(current_group_name), "_grouped_authority.svg"))
-  # svg(output_svg_file, width = 24, height = 10)
+  # output_png_file <- file.path(results_dir, paste0("sequence_presence_heatmap_r_WITH_GROUPS_", tolower(current_group_name), "_grouped_authority.png"))
+  # png(output_png_file, width = 2400, height = 1000, res = 150)
   # print(heatmap_plot)
   # dev.off()
-  # message(paste0("SVG for group '", current_group_name, "' exported to: ", output_svg_file))
+  # message(paste0("Heatmap for group '", current_group_name, "' exported to: ", output_png_file))
+
+  # # Save as SVG (optional)
+  output_svg_file <- file.path(results_dir, paste0("sequence_presence_heatmap_r_", tolower(current_group_name), "_grouped_authority.svg"))
+  svg(output_svg_file, width = 24, height = 10)
+  print(heatmap_plot)
+  dev.off()
+  message(paste0("SVG for group '", current_group_name, "' exported to: ", output_svg_file))
 }
