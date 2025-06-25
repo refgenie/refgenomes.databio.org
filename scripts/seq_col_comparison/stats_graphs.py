@@ -796,104 +796,104 @@ print(f"Frequency plot saved to {output_path}")
 # print(f"Heatmap saved to {output_path}")
 
 
-# # PLOT DOT CHART
-# # TODO also plot bar graphs
+# PLOT DOT CHART
+# TODO also plot bar graphs
 
-# def create_comparison_dot_plot(data, labels, title="Comparison Dot Plot", x_limit=10,
-#                                metric_colors=None, metric_markers=None):
-#     """
-#     Creates a comparison dot plot using Matplotlib.
+def create_comparison_dot_plot(data, labels, title="Comparison Dot Plot", x_limit=10,
+                               metric_colors=None, metric_markers=None):
+    """
+    Creates a comparison dot plot using Matplotlib.
 
-#     Args:
-#         data (dict): A dictionary where keys are sample names (e.g., 'Sample 1')
-#                       and values are lists of 4 values.
-#         labels (list): A list of label names (e.g., ['Metric A', 'Metric B', 'Metric C', 'Metric D']).
-#         title (str, optional): The title of the dot plot. Defaults to "Comparison Dot Plot".
-#         x_limit (int, optional): The maximum value for the x-axis. Defaults to 10.
-#         metric_colors (list, optional): A list of colors for each metric. If None, default colors are used.
-#         metric_markers (list, optional): A list of markers for each metric. If None, default markers are used.
+    Args:
+        data (dict): A dictionary where keys are sample names (e.g., 'Sample 1')
+                      and values are lists of 4 values.
+        labels (list): A list of label names (e.g., ['Metric A', 'Metric B', 'Metric C', 'Metric D']).
+        title (str, optional): The title of the dot plot. Defaults to "Comparison Dot Plot".
+        x_limit (int, optional): The maximum value for the x-axis. Defaults to 10.
+        metric_colors (list, optional): A list of colors for each metric. If None, default colors are used.
+        metric_markers (list, optional): A list of markers for each metric. If None, default markers are used.
 
-#     Returns:
-#         None: Displays the plot.
-#     """
-#     num_vars = len(labels)
-#     if num_vars != 4:
-#         raise ValueError("Number of labels must be 4 for this comparison dot plot.")
+    Returns:
+        None: Displays the plot.
+    """
+    num_vars = len(labels)
+    if num_vars != 4:
+        raise ValueError("Number of labels must be 4 for this comparison dot plot.")
 
-#     fig, ax = plt.subplots(figsize=(8, 10))  # Adjust figure size as needed
-#     y_positions = np.arange(len(data))  # Create y positions for the samples
+    fig, ax = plt.subplots(figsize=(8, 10))  # Adjust figure size as needed
+    y_positions = np.arange(len(data))  # Create y positions for the samples
 
-#     # Default colors and markers
-#     default_colors = metric_colors = ['#1f77b4', '#ff7f0e', '#9467bd', '#8c564b']
-#     default_markers = ['o', 's', 'D', '^']
-#     sample_color = 'k'  # set a default sample color
+    # Default colors and markers
+    default_colors = metric_colors = ['#1f77b4', '#ff7f0e', '#9467bd', '#8c564b']
+    default_markers = ['o', 's', 'D', '^']
+    sample_color = 'k'  # set a default sample color
 
-#     # Use provided colors and markers or defaults
-#     if metric_colors is None:
-#         metric_colors = default_colors
-#     if metric_markers is None:
-#         metric_markers = default_markers
+    # Use provided colors and markers or defaults
+    if metric_colors is None:
+        metric_colors = default_colors
+    if metric_markers is None:
+        metric_markers = default_markers
 
-#     for i, (sample_name, values) in enumerate(data.items()):
-#         if len(values) != num_vars:
-#             raise ValueError(f"Sample '{sample_name}' must have 4 values.")
-#         ax.plot(values, [i] * num_vars, linestyle='-', color='k', alpha=0.3)  # Connect points with a line
-#         for j, value in enumerate(values):
-#             ax.plot(value, i, marker=metric_markers[j],
-#                     markersize=8, alpha=0.7, label=labels[j], color=metric_colors[j])  # Use color and marker
+    for i, (sample_name, values) in enumerate(data.items()):
+        if len(values) != num_vars:
+            raise ValueError(f"Sample '{sample_name}' must have 4 values.")
+        ax.plot(values, [i] * num_vars, linestyle='-', color='k', alpha=0.3)  # Connect points with a line
+        for j, value in enumerate(values):
+            ax.plot(value, i, marker=metric_markers[j],
+                    markersize=8, alpha=0.7, label=labels[j], color=metric_colors[j])  # Use color and marker
 
-#     ax.set_yticks(y_positions)
-#     ax.set_yticklabels(list(data.keys()))  # Set sample names as y-axis labels
-#     ax.set_xlim(0, x_limit)  # Set x-axis limits
-#     #ax.set_xlabel("Metric Value")
-#     ax.set_ylabel("Ref Genomes")
-#     ax.set_title(title, fontsize=14)
-#     # Create a single legend for the samples
-#     handles, labels = ax.get_legend_handles_labels()
-#     unique_labels = list(dict.fromkeys(labels))  # remove duplicate labels
-#     unique_handles = [handles[labels.index(label)] for label in unique_labels]
-#     ax.legend(unique_handles, unique_labels, loc='upper right')
-#     ax.grid(True, axis='x', linestyle='--', alpha=0.6)  # Add grid lines
+    ax.set_yticks(y_positions)
+    ax.set_yticklabels(list(data.keys()))  # Set sample names as y-axis labels
+    ax.set_xlim(0, x_limit)  # Set x-axis limits
+    #ax.set_xlabel("Metric Value")
+    ax.set_ylabel("Ref Genomes")
+    ax.set_title(title, fontsize=14)
+    # Create a single legend for the samples
+    handles, labels = ax.get_legend_handles_labels()
+    unique_labels = list(dict.fromkeys(labels))  # remove duplicate labels
+    unique_handles = [handles[labels.index(label)] for label in unique_labels]
+    ax.legend(unique_handles, unique_labels, loc='upper right')
+    ax.grid(True, axis='x', linestyle='--', alpha=0.6)  # Add grid lines
 
-#     plt.tight_layout()
-#     #plt.show()
+    plt.tight_layout()
+    #plt.show()
     
 
 
 
-# primary_samples = ["hg19-initial-ucsc", "GRCh38.p14-fasta-genomic"]
+primary_samples = ["hg19-initial-ucsc", "GRCh38.p14-fasta-genomic"]
 
-# metrics = ['jaccard_names', 'jaccard_lengths', 'jaccard_sequences', 'jaccard_name_len']
+metrics = ['jaccard_names', 'jaccard_lengths', 'jaccard_sequences', 'jaccard_name_len']
 
 
-# for primary_sample in primary_samples:
+for primary_sample in primary_samples:
 
-#     new_df = pep_df.copy()
+    new_df = pep_df.copy()
 
-#     # Filter the DataFrame
-#     filtered_df = new_df[(new_df['sample_name_1'] == primary_sample) | (new_df['sample_name_2'] == primary_sample)]
+    # Filter the DataFrame
+    filtered_df = new_df[(new_df['sample_name_1'] == primary_sample) | (new_df['sample_name_2'] == primary_sample)]
 
-#     # Convert the filtered DataFrame to the dictionary format
-#     data_from_df = {}
-#     for _, row in filtered_df.iterrows():
-#         if row['sample_name_1'] == primary_sample:
-#             sample_name = row['sample_name_2']
-#         else:
-#             sample_name = row['sample_name_1']
-#         if sample_name not in data_from_df:
-#             data_from_df[sample_name] = []
-#         data_from_df[sample_name] = [row[metrics[0]], row[metrics[1]], row[metrics[2]], row[metrics[3]]]
+    # Convert the filtered DataFrame to the dictionary format
+    data_from_df = {}
+    for _, row in filtered_df.iterrows():
+        if row['sample_name_1'] == primary_sample:
+            sample_name = row['sample_name_2']
+        else:
+            sample_name = row['sample_name_1']
+        if sample_name not in data_from_df:
+            data_from_df[sample_name] = []
+        data_from_df[sample_name] = [row[metrics[0]], row[metrics[1]], row[metrics[2]], row[metrics[3]]]
 
-#     #Use the columns f10_names, f10_lengths, f10_sequences, f10_name_len_pairs
-#     labels = metrics
-#     create_comparison_dot_plot(data_from_df, labels, title=f"Comparison of {primary_sample} vs All Other Ref Genomes", x_limit=1.0, metric_markers=['o', 's', 'D', '^'])
+    #Use the columns f10_names, f10_lengths, f10_sequences, f10_name_len_pairs
+    labels = metrics
+    create_comparison_dot_plot(data_from_df, labels, title=f"Comparison of {primary_sample} vs All Other Ref Genomes", x_limit=1.0, metric_markers=['o', 's', 'D', '^'])
     
     
-#     #output_path = os.path.join(results_dir, f'comparison_{primary_sample}_.png')
-#     output_path = os.path.join(results_dir, f'comparison_{primary_sample}_.svg')
-#     plt.savefig(output_path, dpi=300, bbox_inches='tight')
-#     plt.close()
-#     #plt.show()
+    #output_path = os.path.join(results_dir, f'comparison_{primary_sample}_.png')
+    output_path = os.path.join(results_dir, f'comparison_{primary_sample}_.svg')
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()
+    #plt.show()
 
 
 # def create_comparison_bar_graph(data, labels, title="Comparison Bar Graph",
