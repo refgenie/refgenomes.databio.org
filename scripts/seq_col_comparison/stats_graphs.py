@@ -816,17 +816,26 @@ def create_comparison_dot_plot(data, labels, title="Comparison Dot Plot", x_limi
     Returns:
         None: Displays the plot.
     """
+
+    
     num_vars = len(labels)
     if num_vars != 4:
         raise ValueError("Number of labels must be 4 for this comparison dot plot.")
 
-    fig, ax = plt.subplots(figsize=(8, 10))  # Adjust figure size as needed
+    #fig_width_mm = 170
+    # fig_width_inches = fig_width_mm / 25.4
+    # fig_height_inches = fig_width_inches * (0.6) # Adjust this ratio as needed
+
+    # fig, ax = plt.subplots(figsize=(fig_width_inches, fig_height_inches))
+    fig, ax = plt.subplots(figsize=(5, 6))  # Adjust figure size as needed
     y_positions = np.arange(len(data))  # Create y positions for the samples
 
     # Default colors and markers
     default_colors = metric_colors = ['#1f77b4', '#ff7f0e', '#9467bd', '#8c564b']
     default_markers = ['o', 's', 'D', '^']
     sample_color = 'k'  # set a default sample color
+
+    
 
     # Use provided colors and markers or defaults
     if metric_colors is None:
@@ -865,13 +874,13 @@ primary_samples = ["hg19-initial-ucsc", "GRCh38.p14-fasta-genomic"]
 
 metrics = ['jaccard_names', 'jaccard_lengths', 'jaccard_sequences', 'jaccard_name_len']
 
-
 for primary_sample in primary_samples:
 
     new_df = pep_df.copy()
 
     # Filter the DataFrame
     filtered_df = new_df[(new_df['sample_name_1'] == primary_sample) | (new_df['sample_name_2'] == primary_sample)]
+    filtered_df = filtered_df.head(10)
 
     # Convert the filtered DataFrame to the dictionary format
     data_from_df = {}
@@ -884,10 +893,8 @@ for primary_sample in primary_samples:
             data_from_df[sample_name] = []
         data_from_df[sample_name] = [row[metrics[0]], row[metrics[1]], row[metrics[2]], row[metrics[3]]]
 
-    #Use the columns f10_names, f10_lengths, f10_sequences, f10_name_len_pairs
     labels = metrics
     create_comparison_dot_plot(data_from_df, labels, title=f"Comparison of {primary_sample} vs All Other Ref Genomes", x_limit=1.0, metric_markers=['o', 's', 'D', '^'])
-    
     
     #output_path = os.path.join(results_dir, f'comparison_{primary_sample}_.png')
     output_path = os.path.join(results_dir, f'comparison_{primary_sample}_.svg')
