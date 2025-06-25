@@ -8,27 +8,12 @@ RESULTS_PEP= "donaldcampbelljr/human_seq_col_results:default"
 RESULTS_PEP= "donaldcampbelljr/mouse_seq_col_results:default"
 COMPARISON = 1.0 
 
-#results_pep = "donaldcampbelljr/test_seq_col_results:default"
-#results_pep = sys.argv[1] # input pep for graphing
-#results_pep = "donaldcampbelljr/mouse_seq_col_results:default"
-
-
 
 phc = PEPHubClient()
 pep = phc.load_project(RESULTS_PEP)
-#print(pep["_sample_df"])
 
 pep_df = pep["_sample_df"]
 all_unique_samples = set(pep_df['sample_name_1']).union(set(pep_df['sample_name_2']))
-
-# Initialize lists to store sample names based on 'jaccard_name_len' condition
-
-
-
-# PICK OPA/OPB STats
-STAT_NAME = "name_len"
-stat1 = "opa_name_len"
-stat2 = "opb_name_len"
 
 stats = [("opa_name_len","opb_name_len", "name_len"), ("opa_lengths","opb_lengths", "lengths"), ("opa_sequences","opb_sequences", "sequences"), ("opa_names","opb_names", "names")]
 
