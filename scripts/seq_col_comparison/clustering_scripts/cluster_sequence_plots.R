@@ -5,7 +5,13 @@ library(stringr)
 library(RColorBrewer)
 
 # Set the directory where the CSV file is located
-results_dir <- "/home/drc/Downloads/refgenomes_pics_test/17june2025/seq_presence/test/"
+#results_dir <- "/home/drc/Downloads/refgenomes_pics_test/17june2025/seq_presence/test/"
+results_dir <- "/home/drc/Downloads/refgenomes_pics_test/17june2025/MOUSE/seq_presence/"
+
+# Define the groups you want to iterate through
+#target_groups <- c("hg38", "hg19", "hg18") # Updated target groups
+target_groups <- c("m38", "m39", "mm10", "mm9")
+
 csv_file <- file.path(results_dir, "sequence_presence_matrix.csv")
 
 # YOU MUST MAKE THIS ANNOTATION FILE MANUALLY, UPDATE IT IF YOU CHANGE THE INPUT SAMPLES.
@@ -36,8 +42,7 @@ if (!"authority" %in% colnames(annotation_df_all)) {
   stop("Error: 'authority' column is missing from the annotation file (used for heatmap annotation).")
 }
 
-# Define the groups you want to iterate through
-target_groups <- c("hg38", "hg19", "hg18") # Updated target groups
+
 
 # Loop through each target group to generate separate heatmaps
 for (current_group_name in target_groups) {
@@ -167,16 +172,16 @@ for (current_group_name in target_groups) {
   )
 
   # Save as PNG
-  # output_png_file <- file.path(results_dir, paste0("sequence_presence_heatmap_r_WITH_GROUPS_", tolower(current_group_name), "_grouped_authority.png"))
-  # png(output_png_file, width = 2400, height = 1000, res = 150)
-  # print(heatmap_plot)
-  # dev.off()
-  # message(paste0("Heatmap for group '", current_group_name, "' exported to: ", output_png_file))
-
-  # # Save as SVG (optional)
-  output_svg_file <- file.path(results_dir, paste0("sequence_presence_heatmap_r_", tolower(current_group_name), "_grouped_authority.svg"))
-  svg(output_svg_file, width = 24, height = 10)
+  output_png_file <- file.path(results_dir, paste0("sequence_presence_heatmap_r_WITH_GROUPS_", tolower(current_group_name), "_grouped_authority.png"))
+  png(output_png_file, width = 2400, height = 1000, res = 150)
   print(heatmap_plot)
   dev.off()
-  message(paste0("SVG for group '", current_group_name, "' exported to: ", output_svg_file))
+  message(paste0("Heatmap for group '", current_group_name, "' exported to: ", output_png_file))
+
+  # # Save as SVG (optional)
+  # output_svg_file <- file.path(results_dir, paste0("sequence_presence_heatmap_r_", tolower(current_group_name), "_grouped_authority.svg"))
+  # svg(output_svg_file, width = 24, height = 10)
+  # print(heatmap_plot)
+  # dev.off()
+  # message(paste0("SVG for group '", current_group_name, "' exported to: ", output_svg_file))
 }

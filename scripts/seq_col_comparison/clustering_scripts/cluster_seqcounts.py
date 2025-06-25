@@ -9,9 +9,12 @@ import numpy as np
 
 # FOR CLUSTERING SEQUENCES
 # -------------------------
-OUTPUT_PATH = "/home/drc/Downloads/refgenomes_pics_test/17june2025/seq_presence/test/"
+OUTPUT_PATH = "/home/drc/Downloads/refgenomes_pics_test/17june2025/MOUSE/seq_presence/"
+#JSON_DIR = "/home/drc/Downloads/jsons_from_rivanna/json/" # HUMAN JSONS
+JSON_DIR = "/home/drc/Downloads/mouse_jsons_from_rivanna/json/" # MOUSE JSONS
 
-psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/human_seqcol_digests:default")
+#psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/human_seqcol_digests:default")
+psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/mouse_seqcol_digests:default")
 
 results = psm.select_records()
 
@@ -23,11 +26,11 @@ for result in results['records']:
     all_digests.append(result['top_level_digest'])
 
 json_files = []
-if os.path.isdir("/home/drc/Downloads/jsons_from_rivanna/json/"):
-    for filename in os.listdir("/home/drc/Downloads/jsons_from_rivanna/json/"):
+if os.path.isdir(JSON_DIR):
+    for filename in os.listdir(JSON_DIR):
         if os.path.splitext(filename)[0] in all_digests:
             if filename.endswith(".json"):
-                full_path = os.path.join("/home/drc/Downloads/jsons_from_rivanna/json/", filename)
+                full_path = os.path.join(JSON_DIR, filename)
                 json_files.append(full_path)
 
 all_sequences_union = set()
