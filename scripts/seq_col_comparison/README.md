@@ -15,6 +15,8 @@ After running project pipeline and calculating statistics, you can plot figures.
 
 You need to provide the PEPhub path for the PEP with stats results, species (for figure titles), PEPhub path that links sample_name with authority, path to local directory with jsons of sequence collection information.
 
+You must also have a folder of json representations of each of the reference genomes you wish to analyze and plot (these jsons are created via the above sample-level pipeline).
+
 Example command
 ```
 python3 stats_graphs.py /home/drc/Downloads/refgenomes_pics_test/22may2025/mus_musculus/ donaldcampbelljr/mouse_seq_col_results:default mus_musculus /home/drc/Downloads/mouse_jsons_from_rivanna/json/ donaldcampbelljr/mouse_seqcol_digests:default 
@@ -23,7 +25,7 @@ python3 stats_graphs.py /home/drc/Downloads/refgenomes_pics_test/22may2025/mus_m
 There is also an R script, `test_plotting.R`. You must add the path to the output folder for the above python script (it produces csvs for plotting)
 
 #### plotting clustered sequence frequency
-- run script `cluster_seqcounts.py` and then point `cluster_sequence_plots.R` to its output and run to produce a figure of sequences clustered by frequency.
+- run script `cluster_seqcounts.py` in the clustering_scripts folder and then point `cluster_sequence_plots.R` to its output and run to produce a figure of sequences clustered by frequency.
 
 
 ### ENV Variables to Set before execution
