@@ -148,12 +148,12 @@ print(custom_sorted_files)
 
 
 
-data = []
-for seq in sorted_sequences_by_frequency:  # Iterate through the sorted sequences
-    row = [1 if file in seq_samples_name[seq] else 0 for file in sorted_files_by_row_count]
-    data.append(row)
+# data = []
+# for seq in sorted_sequences_by_frequency:  # Iterate through the sorted sequences
+#     row = [1 if file in seq_samples_name[seq] else 0 for file in sorted_files_by_row_count]
+#     data.append(row)
 
-df = pd.DataFrame(data, index=sorted_sequences_by_frequency, columns=sorted_files_by_row_count)
+# df = pd.DataFrame(data, index=sorted_sequences_by_frequency, columns=sorted_files_by_row_count)
 # Export the df DataFrame to a CSV file
 # df.to_csv(os.path.join(OUTPUT_PATH, 'sequence_presence_matrix.csv'), index=True)  # IMPORTANT: index=True
 # print(f"Sequence presence matrix exported to: {os.path.join(OUTPUT_PATH, 'sequence_presence_matrix.csv')}")
@@ -176,14 +176,30 @@ for seq in sorted_sequences_by_frequency:  # Iterate through the sorted sequence
     row = [1 if file in seq_samples_name[seq] else 0 for file in custom_sorted_files]
     data.append(row)
 
+
 df = pd.DataFrame(data, index=sorted_sequences_by_frequency, columns=custom_sorted_files)
+
+df = df.astype(int)
+
+# Get the current row labels (sequence IDs)
+current_sequence_labels = df.index.tolist()
+
+sorted_sequence_labels_by_binary_pattern = sorted(
+    current_sequence_labels,
+    key=lambda seq_label: tuple(df.loc[seq_label, :]),
+    reverse=True
+)
+
+# Reindex the DataFrame using this new row order
+df_final_sorted = df.reindex(index=sorted_sequence_labels_by_binary_pattern)
+
 # Export the df DataFrame to a CSV file
-df.to_csv(os.path.join(OUTPUT_PATH, 'sequence_presence_matrix.csv'), index=True)  # IMPORTANT: index=True
+df_final_sorted.to_csv(os.path.join(OUTPUT_PATH, 'sequence_presence_matrix.csv'), index=True)  # IMPORTANT: index=True
 print(f"Sequence presence matrix exported to: {os.path.join(OUTPUT_PATH, 'sequence_presence_matrix.csv')}")
 # num_all_seqs = len(all_sequences_union) # Assuming this is defined
 
 plt.figure(figsize=(24, 20))
-sns.heatmap(df.T, cmap="viridis", cbar=False)  # Transpose the DataFrame
+sns.heatmap(df_final_sorted.T, cmap="viridis", cbar=False)  # Transpose the DataFrame
 plt.title("Sequences Present in Reference Genomes (Sorted by Frequency, Rows by Sequence Count)")
 plt.ylabel("Reference Genomes (Sorted by Sequence Count)")  # Updated label
 plt.xlabel(f"Sequences (Sorted by Frequency), n={num_all_seqs}")
