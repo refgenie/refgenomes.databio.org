@@ -35,9 +35,9 @@ GRCh37-igenomes-ensembl,Homo_sapiens_Ensembl_GRCh37_genome.fa,igenomes,hg19
 GRCh38-igenomes-decoy-ncbi,Homo_sapiens_NCBI_GRCh38Decoy_genome.fa,igenomes,hg38
 GRCh38-igenomes-build36-3-ncbi,Homo_sapiens_NCBI_build36_3_genome.fa,igenomes,hg38
 GRCh38-igenomes-ncbi,Homo_sapiens_NCBI_GRCh38_genome.fa,igenomes,hg38
-GRCh38-igenomes-build37-1-ncbi,Homo_sapiens_NCBI_build37_1_genome.fa,igenomes,hg19
+GRCh38-igenomes-build37-1-ncbi,Homo_sapiens_NCBI_build37_1_genome.fa,igenomes,hg38
 hg19-igenomes-ucsc,Homo_sapiens_UCSC_hg19_genome.fa,igenomes,hg19
-GRCh38-igenomes-build37-2-ncbi,Homo_sapiens_NCBI_build37_2_genome.fa,igenomes,hg19
+GRCh38-igenomes-build37-2-ncbi,Homo_sapiens_NCBI_build37_2_genome.fa,igenomes,hg38
 hg18-igenomes-ucsc,Homo_sapiens_UCSC_hg18_genome.fa,igenomes,hg18
 hg38-refgenie,2230c535660fb4774114bfa966a62f823fdb6d21acf138d4.fa,refgenie,hg38
 hg38-igenomes-ucsc,Homo_sapiens_UCSC_hg38_genome.fa,igenomes,hg38
