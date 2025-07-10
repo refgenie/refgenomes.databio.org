@@ -6,11 +6,12 @@ library(RColorBrewer)
 
 # Set the directory where the CSV file is located
 #results_dir <- "/home/drc/Downloads/refgenomes_pics_test/17june2025/seq_presence/test/"
-results_dir <- "/home/drc/Downloads/refgenomes_pics_test/17june2025/MOUSE/seq_presence/"
+#results_dir <- "/home/drc/Downloads/refgenomes_pics_test/17june2025/MOUSE/seq_presence/"
+results_dir <- "/home/drc/Downloads/refgenomes_pics_test/09jul2025/seq_presence_testing/"
 
 # Define the groups you want to iterate through
-#target_groups <- c("hg38", "hg19", "hg18") # Updated target groups
-target_groups <- c("m38", "m39", "mm10", "mm9")
+target_groups <- c("hg38", "hg19", "hg18") # Updated target groups
+#target_groups <- c("m38", "m39", "mm10", "mm9")
 
 csv_file <- file.path(results_dir, "sequence_presence_matrix.csv")
 
