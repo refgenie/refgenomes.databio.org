@@ -10,12 +10,13 @@ import numpy as np
 
 # FOR CLUSTERING SEQUENCES
 # -------------------------
-OUTPUT_PATH = "/home/drc/Downloads/refgenomes_pics_test/09jul2025/seq_presence_testing/"
-JSON_DIR = "/home/drc/Downloads/jsons_from_rivanna/json/" # HUMAN JSONS
-#JSON_DIR = "/home/drc/Downloads/mouse_jsons_from_rivanna/json/" # MOUSE JSONS
+# OUTPUT_PATH = "/home/drc/Downloads/refgenomes_pics_test/09jul2025/seq_presence_testing/"'
+OUTPUT_PATH = "/home/drc/Downloads/refgenomes_pics_test/09jul2025/mouse_seq_presence/"
+# JSON_DIR = "/home/drc/Downloads/jsons_from_rivanna/json/" # HUMAN JSONS
+JSON_DIR = "/home/drc/Downloads/mouse_jsons_from_rivanna/json/" # MOUSE JSONS
 
-psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/human_seqcol_digests:default")
-#psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/mouse_seqcol_digests:default")
+#psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/human_seqcol_digests:default")
+psm = pipestat.PipestatManager(pephub_path="donaldcampbelljr/mouse_seqcol_digests:default")
 
 results = psm.select_records()
 
