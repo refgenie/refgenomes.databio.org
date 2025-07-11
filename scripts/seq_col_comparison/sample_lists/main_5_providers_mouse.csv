@@ -1,0 +1,6 @@
+sample_name,common_genome_name,authority,description
+GRCm39-fasta-genomic, mm39, ncbi, GCF_000001635.27_GRCm39_genomic from NCBI
+GRCm39-toplevel-113-ensembl, mm39, ensembl, ensembl 113 top level
+mm39-ucsc-initial-soft-masked, mm39, ucsc, mm39 initial ucsc soft masked
+GRCm39-all-M36-gencode,mm39, gencode, gencode all release m36 mm39
+GRCm39-ena-09, mm39, ENA, ref genome hosted on ENA Genome Reference Consortium Mouse Build 39
