@@ -1,14 +1,14 @@
 import sys
 import pipestat
 import json
-from refget import compare_seqcols
+from refget import compare_seqcols, calc_jaccard_similarities
 from pephubclient import PEPHubClient
 from itertools import combinations
 
-looper_config = sys.argv[1]  
-results_pep = sys.argv[2]
-# looper_config = "donaldcampbelljr/human_seqcol_digests_local:default"  # input PEP
-# results_pep = "donaldcampbelljr/test_seq_col_results:default"
+#looper_config = sys.argv[1]  
+#results_pep = sys.argv[2]
+looper_config = "donaldcampbelljr/human_seqcol_digests_local:default"  # input PEP
+results_pep = "donaldcampbelljr/test_seq_col_results:default"
 
 print(f"here is the looper config: {looper_config}")
 
@@ -74,7 +74,7 @@ for combination in all_combinations:
 
     # print(pprint(compare_seqcols(reloaded_dict1,reloaded_dict2),indent=4))
     comparison = compare_seqcols(reloaded_dict1,reloaded_dict2)
-
+    calculated_jaccards = calc_jaccard_similarities(reloaded_dict1,reloaded_dict2)
     #print(f"Reality Check: {comparison['array_elements']['a_and_b']['names']}  {comparison['array_elements']['a']['names']+ comparison['array_elements']['b']['names'] - comparison['array_elements']['a_and_b']['names']}")
     # OPA/OPB Names
     opa_names = overlap_proportion(comparison['array_elements']['a_and_b']['names'], comparison['array_elements']['a']['names'])
