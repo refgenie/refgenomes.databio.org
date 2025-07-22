@@ -5,7 +5,7 @@ from pephubclient import PEPHubClient
 import pipestat
 
 RESULTS_PEP= "donaldcampbelljr/human_seq_col_results:default"
-RESULTS_PEP= "donaldcampbelljr/mouse_seq_col_results:default"
+#RESULTS_PEP= "donaldcampbelljr/mouse_seq_col_results:default"
 COMPARISON = 1.0 
 
 
