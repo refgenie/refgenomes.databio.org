@@ -13,9 +13,13 @@ matplotlib.rcParams["text.usetex"] = False
 
 
 # Change items here
-SPECIES = "human" # or "mouse"
-identical_percentages =  [28, 75, 87, 63, 67] # human numbers
-subset_data = [85, 98, 82, 88] # human numbers
+# SPECIES = "human" # or "mouse"
+# identical_percentages =  [28, 75, 87, 63, 67] # human numbers
+# subset_data = [85, 98, 82, 88] # human numbers
+# results_dir = "/home/drc/Downloads/refgenomes_pics_test/21jul2025/fix_the_density_maps/"
+SPECIES = "mouse"
+identical_percentages =  [22, 81, 94, 81, 78] # human numbers
+subset_data = [81, 97, 86, 81] # human numbers
 results_dir = "/home/drc/Downloads/refgenomes_pics_test/21jul2025/fix_the_density_maps/"
 
 # Data for "Identical to" / "Duplicates"
