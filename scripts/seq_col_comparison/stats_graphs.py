@@ -113,16 +113,16 @@ target_samples = None
 # ]
 
 
-# target_samples = [
+target_samples = [
 
-# "hg38-toplevel-113-ensembl",
-# "GRCh38-p14-47-gencode",
-# "GRCh38.p14-fasta-genomic",
-# "hg38-p14-ucsc",
-# "hg38-ddbj",
-# "GRCh38-ena-29",
+"hg38-toplevel-113-ensembl",
+"GRCh38-p14-47-gencode",
+"GRCh38.p14-fasta-genomic",
+"hg38-p14-ucsc",
+"hg38-ddbj",
+"GRCh38-ena-29",
 
-# ]
+]
 
 # target_samples =[
 
@@ -395,11 +395,15 @@ relevant_stats = ['jaccard_sequences', 'jaccard_name_len', 'jaccard_lengths', 'j
 for stat in relevant_stats:
     pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
 
-# Define a high-resolution spectrum from 0 to 1
-x_spectrum = np.linspace(0, 1, 40) 
+# Define histogram bins
+# You'll want to choose an appropriate number of bins.
+# For scores from 0 to 1, 10 bins would be 0.1 wide, 20 bins 0.05 wide, etc.
+num_bins = 20 # You can adjust this for more or less detail/granularity
+bins = np.linspace(0, 1, num_bins + 1) # +1 because np.linspace includes start and end
 
-# Calculate smoothed densities for each statistic
-all_densities_data = {}
+# Create a list to store histogram data for each statistic
+all_hist_data = {}
+
 for stat in relevant_stats:
     current_values = []
     for i in range(len(all_samples)):
@@ -415,48 +419,53 @@ for stat in relevant_stats:
             if not comparison.empty:
                 current_values.append(comparison[stat].iloc[0])
 
-    # Filter out NaN values before calculating KDE
+    # Filter out NaN values before calculating histogram
     current_values = np.array([val for val in current_values if not pd.isna(val)])
 
-    if len(current_values) > 1: # KDE requires at least 2 points
-        # Perform Kernel Density Estimation
-        kde = gaussian_kde(current_values,bw_method=0.10) # ~ 0.10 seems to be a good bet to be less smooth
-        # Evaluate the KDE on our defined spectrum
-        densities = kde(x_spectrum)
-    else: # Handle cases with insufficient data for KDE
-        densities = np.zeros_like(x_spectrum) # Or some other default
+    if len(current_values) > 0:
+        # Calculate histogram frequencies
+        # density=False means counts, density=True would normalize to sum to 1
+        hist_counts, _ = np.histogram(current_values, bins=bins, density=False)
+    else:
+        hist_counts = np.zeros(num_bins) # No data, so all counts are zero
 
-    all_densities_data[stat] = densities
+    all_hist_data[stat] = hist_counts
 
-# Create a DataFrame for the heatmap using the smoothed densities
-heatmap_df = pd.DataFrame(all_densities_data, index=x_spectrum).T
+# Create a DataFrame for the heatmap using the histogram counts
+# The index will represent the center of the bins or the start of the bins.
+# Let's use the start of the bins for clarity.
+bin_labels = [f'{bins[i]:.2f}-{bins[i+1]:.2f}' for i in range(num_bins)]
+heatmap_df = pd.DataFrame(all_hist_data, index=bin_labels).T
 
-# Plot the heatmap (Jaccard Similarities on Y, Jaccard Score Spectrum on X)
-# annot=False for smoother representation as there are too many points
-sns.heatmap(heatmap_df, annot=False, cmap="viridis", ax=ax, cbar_kws={'label': 'Density'})
+# Plot the heatmap (Jaccard Similarities on Y, Jaccard Score Bins on X)
+# Use a sequential colormap for bright to dark hits (higher counts = darker)
+# For example, 'Blues' will make higher counts darker blue.
+sns.heatmap(heatmap_df, annot=False, cmap="Greens", ax=ax, cbar_kws={'label': 'Frequency (Counts)'})
 
 # Add labels and title
-ax.set_xlabel('Jaccard Score')
+ax.set_xlabel('Jaccard Score Bin')
 ax.set_ylabel('Jaccard Similarities')
-ax.set_title('Density Distribution of Jaccard Similarities Across Score Spectrum')
+ax.set_title('Frequency Distribution of Jaccard Similarities Across Score Bins')
 
-# Set x-axis ticks and labels to represent the spectrum clearly
-# Show only a few ticks for clarity, e.g., every 0.1 or 0.2
-tick_positions = np.arange(0, len(x_spectrum), len(x_spectrum) // 10) # Roughly 10 ticks
-tick_labels = [f'{x_spectrum[int(p)]:.1f}' for p in tick_positions]
-
-ax.set_xticks(tick_positions)
-ax.set_xticklabels(tick_labels, rotation=45, ha='right')
+# Set x-axis ticks and labels to represent the bins clearly
+# Using the bin labels directly makes it clear which range each column represents.
+ax.set_xticks(np.arange(num_bins) + 0.5) # Center ticks in the middle of the bins
+ax.set_xticklabels(bin_labels, rotation=90, ha='center', fontsize=8) # Rotate for readability
 
 fig.tight_layout()
 
 # Save the heatmap plot
-output_path = os.path.join(results_dir, 'jaccard_heatmap_spectrum.svg') # New filename
+output_path = os.path.join(results_dir, 'jaccard_heatmap_histogram.svg') # New filename
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
 plt.close()
 
 print(f"Heatmap saved to {output_path}")
 
+# Save the histogram numbers
+hist_file = os.path.join(results_dir, "histogram_counts.csv")
+heatmap_df.to_csv(hist_file, index=True) # index=True to keep bin labels
+
+print(f"Histogram counts saved to {hist_file}")
 # # PLOT MOW MEDIAN CHANGES BASED ON JACCARD_NAME_LEN
 
 # # TODO PUT COUNTS ALL AT THE TOP OR THE BOTTOM
