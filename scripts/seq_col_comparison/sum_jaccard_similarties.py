@@ -4,13 +4,13 @@ import seaborn as sns
 import numpy as np
 import os
 
-
+# MUST POINT THIS TO THE SAME DIRECTORY AS THEstats_graphs.py output
 results_dir = "/home/drc/Downloads/refgenomes_pics_test/21jul2025/TESTING_PROVIDER_GROUPING/"
 
 
 stats_list = ['jaccard_sequences', 'jaccard_names', 'jaccard_lengths', 'jaccard_name_len']
 
-stats_list = ['jaccard_name_len']
+#stats_list = ['jaccard_name_len']
 
 for stat in stats_list:
     # Load the heatmap data
@@ -46,6 +46,7 @@ for stat in stats_list:
 
     # Create a dictionary for sample to authority mapping
     sample_to_authority = dict(zip(authority_df['sample_name'], authority_df['authority']))
+    #print(sample_to_authority.values())
 
     # Initialize a dictionary to store summed jaccard scores per provider
     provider_jaccard_sums = {}
@@ -78,9 +79,11 @@ for stat in stats_list:
 
     # Convert the results to a DataFrame for plotting
     summed_jaccard_df = pd.DataFrame(list(provider_jaccard_sums.items()), columns=['Provider', 'Summed Jaccard Score'])
+    #print(summed_jaccard_df.head(11))
 
     # Create the bar graph only if summed_jaccard_df is not empty
     if not summed_jaccard_df.empty:
+        
         # Sort for better visualization
         summed_jaccard_df = summed_jaccard_df.sort_values(by='Summed Jaccard Score', ascending=False)
 
@@ -91,8 +94,10 @@ for stat in stats_list:
         plt.ylabel('Summed Jaccard Score')
         plt.xticks(rotation=45, ha='right')
         plt.tight_layout()
-        # plt.savefig('summed_jaccard_scores_by_provider_barplot.png')
+        save_path = os.path.join(results_dir,f'bargraph_{stat}_SUMS.png' )
+        plt.savefig(save_path)
+        plt.close()
+        # plt.show()
         # plt.close()
-        plt.show()
     else:
         print("\nNo within-provider Jaccard scores found to plot a bar graph.")
