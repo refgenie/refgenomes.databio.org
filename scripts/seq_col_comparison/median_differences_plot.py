@@ -144,7 +144,7 @@ if all_inter_provider_averages:
         kind='bar',
         col_wrap=2, # Wrap columns after 2 plots
         height=plot_height_per_facet,
-        aspect=1.0, # Adjust aspect ratio for wider bars
+        aspect=1.25, # Adjust aspect ratio for wider bars
         palette='vlag', # Diverging color palette for positive/negative differences
     )
 
@@ -157,7 +157,7 @@ if all_inter_provider_averages:
     g.set_titles(col_template="{col_name}") # Set title for each facet to just the statistic name
 
     plt.suptitle('Median Difference Plots: Each Provider vs. Statistic-Specific Median', y=1.02) # Overall title
-    plt.tight_layout(rect=[0, 0, 1, 0.98]) # Adjust layout to make space for suptitle
+    #plt.tight_layout(rect=[0, 0, 1, 0.98]) # Adjust layout to make space for suptitle
 
     # Save the plot with a distinct name
     save_path_faceted_median_diff_plot = os.path.join(results_dir, 'faceted_median_difference_plots_ALL_STATS.svg')
