@@ -5,11 +5,11 @@ import numpy as np
 import os
 
 # MUST POINT THIS TO THE SAME DIRECTORY AS THEstats_graphs.py output
+# Using the original file path provided by the user
 results_dir = "/home/drc/Downloads/refgenomes_pics_test/21jul2025/TESTING_PROVIDER_GROUPING/"
 
 #stats_list = ['jaccard_sequences', 'jaccard_names', 'jaccard_lengths', 'jaccard_name_len']
 stats_list = ['jaccard_lengths', 'jaccard_sequences', 'jaccard_names', 'jaccard_name_len']
-
 # List to store DataFrames for each statistic for combined plotting
 all_inter_provider_averages = []
 
@@ -41,9 +41,9 @@ for stat in stats_list:
         authority_df = pd.read_csv(authority_filepath)
     except FileNotFoundError:
         print(f"Error: Sample authority file not found at {authority_filepath}. Cannot process without it.")
-        continue # Skip to the next statistic if file is not found
+        exit() # Exit if the authority file is missing, as it's critical
 
-    # --- Debugging Sample Name Mismatches ---
+    # --- Debugging Sample Name Mismatches (kept for user's diagnostic purposes) ---
     jaccard_samples = set(jaccard_df.index.tolist())
     authority_samples = set(authority_df['sample_name'].tolist())
 
@@ -79,7 +79,6 @@ for stat in stats_list:
     all_samples = list(common_samples)
     print(f"\nProcessing {len(all_samples)} common samples.")
 
-    # Iterate through unique pairs of samples (i < j to avoid duplicates and self-comparisons)
     found_any_inter_matching_pairs = False
     for i in range(len(all_samples)):
         for j in range(i + 1, len(all_samples)):
@@ -128,32 +127,37 @@ for stat in stats_list:
         print(f"\nNo inter-provider Jaccard averages found for {stat}.")
 
 
+# --- Combined Plotting of All Inter-Provider Averages as a Dot Plot ---
 if all_inter_provider_averages:
     combined_df = pd.concat(all_inter_provider_averages)
-    print(combined_df.head(60))
 
-    # --- Start of new/modified code ---
-    # 1. Explicitly order the 'Statistic' column as a categorical type
+    # Ensure the order of statistics on the y-axis is consistent
     combined_df['Statistic'] = pd.Categorical(combined_df['Statistic'], categories=stats_list, ordered=True)
+    combined_df = combined_df.sort_values(by=['Statistic', 'Provider'], ascending=[True, True])
 
-    # 2. Sort by Provider alphabetically for the x-axis, and then by Statistic for consistent grouping within bars
-    combined_df = combined_df.sort_values(by=['Provider', 'Statistic'], ascending=[True, True])
-    # --- End of new/modified code ---
-
-    print(combined_df.head(60))
-    plt.figure(figsize=(15, 8)) # Adjust figure size as needed
-    sns.barplot(x='Provider', y='Average Jaccard Score', hue='Statistic', data=combined_df, palette='viridis')
-    plt.title('Average Jaccard Scores: Each Provider vs. All Other Providers (All Statistics Combined)')
-    plt.xlabel('Provider')
-    plt.ylabel('Average Jaccard Score')
-    plt.xticks(rotation=45, ha='right')
-    plt.legend(title='Statistic')
-    plt.tight_layout() # Ensure labels are not cut off
-    save_path_combined_avg = os.path.join(results_dir,'bargraph_ALL_STATS_COMBINED_AVERAGES_VS_OTHERS.png')
-    plt.savefig(save_path_combined_avg)
-    plt.close() # Close the plot to free memory
-    print(f"\nSaved combined bar graph: {save_path_combined_avg}")
+    plt.figure(figsize=(12, 7)) # Adjust figure size as needed for a dot plot
+    sns.scatterplot(
+        x='Average Jaccard Score',
+        y='Statistic',
+        hue='Provider',
+        data=combined_df,
+        s=100, # Size of the dots
+        palette='tab10', # A distinct color palette
+        alpha=0.8 # Transparency of the dots
+    )
+    plt.title('Average Jaccard Scores: Each Provider vs. All Other Providers (Dot Plot)')
+    plt.xlabel('Average Jaccard Score')
+    plt.ylabel('Jaccard Statistic')
+    plt.xlim(0, 1.0) # Set x-axis limit from 0 to 1.0
+    plt.legend(title='Provider', bbox_to_anchor=(1.05, 1), loc='upper left') # Place legend outside the plot
+    plt.grid(True, linestyle='--', alpha=0.6) # Add a grid for readability
+    plt.tight_layout()
+    # Save the plot with a distinct name
+    save_path_combined_avg_dot_plot = os.path.join(results_dir,'dotplot_ALL_STATS_COMBINED_AVERAGES_VS_OTHERS_fixed.png')
+    plt.savefig(save_path_combined_avg_dot_plot)
+    plt.close()
+    print(f"\nSaved combined dot plot: {save_path_combined_avg_dot_plot}")
 else:
-    print("\nNo data to generate a combined bar graph.")
+    print("\nNo data to generate a combined dot plot.")
 
 print(f"\nAll processing complete. Results saved to: {results_dir}")

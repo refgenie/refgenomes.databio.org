@@ -113,16 +113,16 @@ target_samples = None
 # ]
 
 
-target_samples = [
+# target_samples = [
 
-"hg38-toplevel-113-ensembl",
-"GRCh38-p14-47-gencode",
-"GRCh38.p14-fasta-genomic",
-"hg38-p14-ucsc",
-"hg38-ddbj",
-"GRCh38-ena-29",
+# "hg38-toplevel-113-ensembl",
+# "GRCh38-p14-47-gencode",
+# "GRCh38.p14-fasta-genomic",
+# "hg38-p14-ucsc",
+# "hg38-ddbj",
+# "GRCh38-ena-29",
 
-]
+# ]
 
 # target_samples =[
 
