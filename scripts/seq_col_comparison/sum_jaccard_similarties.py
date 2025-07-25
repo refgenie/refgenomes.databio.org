@@ -10,7 +10,8 @@ results_dir = "/home/drc/Downloads/refgenomes_pics_test/21jul2025/TESTING_PROVID
 
 stats_list = ['jaccard_sequences', 'jaccard_names', 'jaccard_lengths', 'jaccard_name_len']
 
-#stats_list = ['jaccard_name_len'] # Uncomment this line to run only one statistic
+# List to store DataFrames for each statistic for combined plotting
+all_inter_provider_averages = []
 
 for stat in stats_list:
     # Load the heatmap data
@@ -44,7 +45,6 @@ for stat in stats_list:
             print(f"  - {sample}")
     # --- End Debugging Sample Name Mismatches ---
 
-
     # Create a dictionary for sample to authority mapping
     sample_to_authority = dict(zip(authority_df['sample_name'], authority_df['authority']))
 
@@ -56,7 +56,6 @@ for stat in stats_list:
     # Use only common samples to avoid issues with .get() returning None
     all_samples = list(common_samples)
     print(f"\nProcessing {len(all_samples)} common samples.")
-
 
     # Iterate through unique pairs of samples (i < j to avoid duplicates and self-comparisons)
     found_any_inter_matching_pairs = False
@@ -95,29 +94,37 @@ for stat in stats_list:
     print("Provider Jaccard Averages (vs. Others):", provider_jaccard_averages_vs_others)
     # --- End Calculate Averages ---
 
-
-    # --- Plotting Averages for Inter-Provider Scores ---
     # Convert the results to a DataFrame for plotting INTER-PROVIDER AVERAGES
-    inter_provider_averaged_df = pd.DataFrame(list(provider_jaccard_averages_vs_others.items()), columns=['Provider', 'Average Jaccard Score vs. Others'])
+    inter_provider_averaged_df = pd.DataFrame(list(provider_jaccard_averages_vs_others.items()), columns=['Provider', 'Average Jaccard Score'])
+    inter_provider_averaged_df['Statistic'] = stat # Add a column to identify the statistic
 
-    # Create the bar graph for inter-provider averages only if dataframe is not empty
+    # Append to the list for combined plotting
     if not inter_provider_averaged_df.empty:
-        # Sort for better visualization
-        inter_provider_averaged_df = inter_provider_averaged_df.sort_values(by='Average Jaccard Score vs. Others', ascending=False)
-
-        plt.figure(figsize=(12, 7))
-        sns.barplot(x='Provider', y='Average Jaccard Score vs. Others', data=inter_provider_averaged_df, palette='viridis')
-        plt.title(f'Average Jaccard Scores: Each Provider vs. All Other Providers ({stat})')
-        plt.xlabel('Provider')
-        plt.ylabel('Average Jaccard Score')
-        plt.xticks(rotation=45, ha='right')
-        plt.tight_layout()
-        save_path_avg_vs_others = os.path.join(results_dir,f'bargraph_{stat}_AVERAGES_VS_OTHERS.png' )
-        plt.savefig(save_path_avg_vs_others)
-        plt.close()
-        print(f"Saved: {save_path_avg_vs_others}")
+        all_inter_provider_averages.append(inter_provider_averaged_df)
     else:
-        print(f"\nNo inter-provider Jaccard averages found for {stat} to plot a bar graph.")
-    # --- End Plotting Averages ---
+        print(f"\nNo inter-provider Jaccard averages found for {stat}.")
 
-print(f"\nAll inter-provider average plots saved to: {results_dir}")
+
+# --- Combined Plotting of All Inter-Provider Averages ---
+if all_inter_provider_averages:
+    combined_df = pd.concat(all_inter_provider_averages)
+
+    # Sort by Provider alphabetically for the x-axis
+    combined_df = combined_df.sort_values(by='Provider', ascending=True)
+
+    plt.figure(figsize=(15, 8)) # Adjust figure size as needed
+    sns.barplot(x='Provider', y='Average Jaccard Score', hue='Statistic', data=combined_df, palette='viridis')
+    plt.title('Average Jaccard Scores: Each Provider vs. All Other Providers (All Statistics Combined)')
+    plt.xlabel('Provider')
+    plt.ylabel('Average Jaccard Score')
+    plt.xticks(rotation=45, ha='right')
+    plt.legend(title='Statistic')
+    plt.tight_layout()
+    save_path_combined_avg = os.path.join(results_dir,'bargraph_ALL_STATS_COMBINED_AVERAGES_VS_OTHERS.png')
+    plt.savefig(save_path_combined_avg)
+    plt.close()
+    print(f"\nSaved combined bar graph: {save_path_combined_avg}")
+else:
+    print("\nNo data to generate a combined bar graph.")
+
+print(f"\nAll processing complete. Results saved to: {results_dir}")
