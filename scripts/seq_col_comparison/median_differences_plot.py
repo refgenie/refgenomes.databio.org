@@ -13,6 +13,7 @@ matplotlib.rcParams["text.usetex"] = False
 # MUST POINT THIS TO THE SAME DIRECTORY AS THE stats_graphs.py output
 # Using the original file path provided by the user
 results_dir = "/home/drc/Downloads/refgenomes_pics_test/21jul2025/TESTING_PROVIDER_GROUPING/"
+results_dir = "/home/drc/Downloads/refgenomes_pics_test/21jul2025/testing_determinism/"
 
 stats_list = ['jaccard_lengths', 'jaccard_sequences', 'jaccard_names', 'jaccard_name_len']
 # List to store DataFrames for each statistic for combined plotting
@@ -143,7 +144,7 @@ if all_inter_provider_averages:
         kind='bar',
         col_wrap=2, # Wrap columns after 2 plots
         height=plot_height_per_facet,
-        aspect=1.8, # Adjust aspect ratio for wider bars
+        aspect=1.0, # Adjust aspect ratio for wider bars
         palette='vlag', # Diverging color palette for positive/negative differences
     )
 

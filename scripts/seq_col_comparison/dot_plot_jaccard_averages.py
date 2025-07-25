@@ -145,16 +145,16 @@ if all_inter_provider_averages:
     max_jaccard_score = combined_df['Average Jaccard Score'].max()
     x_axis_upper_limit = max_jaccard_score * 1.05 # Add a 5% buffer for aesthetics
 
-    plt.figure(figsize=(14, 4)) # Adjust figure size as needed for a dot plot
+    plt.figure(figsize=(8, 4)) # Adjust figure size as needed for a dot plot
     sns.scatterplot(
         x='Average Jaccard Score',
         y='Statistic',
         hue='Provider',
         style='Provider',
         data=combined_df,
-        s=100, # Size of the dots
+        s=125, # Size of the dots
         palette='tab10', # A distinct color palette
-        alpha=0.60, # Transparency of the dots
+        alpha=0.90, # Transparency of the dots
         markers=True
 
     )
