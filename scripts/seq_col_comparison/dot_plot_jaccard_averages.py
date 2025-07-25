@@ -4,6 +4,13 @@ import seaborn as sns
 import numpy as np
 import os
 
+
+import matplotlib
+matplotlib.rcParams["svg.fonttype"] = "none" # do not embed directly, instead the downstream program will view with system fonts
+matplotlib.rcParams["font.family"] = "sans-serif"
+matplotlib.rcParams["font.sans-serif"] = ["Arial"]
+matplotlib.rcParams["text.usetex"] = False 
+
 # MUST POINT THIS TO THE SAME DIRECTORY AS THEstats_graphs.py output
 # Using the original file path provided by the user
 results_dir = "/home/drc/Downloads/refgenomes_pics_test/21jul2025/TESTING_PROVIDER_GROUPING/"
@@ -162,7 +169,7 @@ if all_inter_provider_averages:
     plt.grid(True, linestyle='--', alpha=0.6) # Add a grid for readability
     plt.tight_layout()
     # Save the plot with a distinct name
-    save_path_combined_avg_dot_plot = os.path.join(results_dir,'dotplot_ALL_STATS_COMBINED_AVERAGES_VS_OTHERS_fixed.png')
+    save_path_combined_avg_dot_plot = os.path.join(results_dir,'dotplot_ALL_STATS_COMBINED_AVERAGES_VS_OTHERS_fixed.svg')
     plt.savefig(save_path_combined_avg_dot_plot)
     plt.close()
     print(f"\nSaved combined dot plot: {save_path_combined_avg_dot_plot}")
