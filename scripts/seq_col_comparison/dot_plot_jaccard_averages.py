@@ -135,20 +135,29 @@ if all_inter_provider_averages:
     combined_df['Statistic'] = pd.Categorical(combined_df['Statistic'], categories=stats_list, ordered=True)
     combined_df = combined_df.sort_values(by=['Statistic', 'Provider'], ascending=[True, True])
 
-    plt.figure(figsize=(12, 7)) # Adjust figure size as needed for a dot plot
+    max_jaccard_score = combined_df['Average Jaccard Score'].max()
+    x_axis_upper_limit = max_jaccard_score * 1.05 # Add a 5% buffer for aesthetics
+
+    plt.figure(figsize=(14, 4)) # Adjust figure size as needed for a dot plot
     sns.scatterplot(
         x='Average Jaccard Score',
         y='Statistic',
         hue='Provider',
+        style='Provider',
         data=combined_df,
         s=100, # Size of the dots
         palette='tab10', # A distinct color palette
-        alpha=0.8 # Transparency of the dots
+        alpha=0.60, # Transparency of the dots
+        markers=True
+
     )
     plt.title('Average Jaccard Scores: Each Provider vs. All Other Providers (Dot Plot)')
     plt.xlabel('Average Jaccard Score')
     plt.ylabel('Jaccard Statistic')
-    plt.xlim(0, 1.0) # Set x-axis limit from 0 to 1.0
+
+    # # CURRENT DATA IS LESS THAN 0.4!!
+    # plt.xlim(0, 1.0) # Set x-axis limit from 0 to 1.0
+    plt.xlim(0, x_axis_upper_limit) # Set x-axis limit dynamically
     plt.legend(title='Provider', bbox_to_anchor=(1.05, 1), loc='upper left') # Place legend outside the plot
     plt.grid(True, linestyle='--', alpha=0.6) # Add a grid for readability
     plt.tight_layout()
