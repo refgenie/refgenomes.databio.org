@@ -1,37 +1,37 @@
-sample_name,common_genome_name,authority,description
-GRCm39-fasta-full-analysis, mm39, ncbi, GCA_000001635.9_GRCm39_full_analysis_set from NCBI
-GRCm39-fasta-genomic, mm39, ncbi, GCF_000001635.27_GRCm39_genomic from NCBI
-GRCm38.p6-fasta-genomic, mm38, ncbi, GCF_000001635.26_GRCm38.p6_genomic from NCBI
-GRCm38.p6-fasta-genomic-GCA,mm38, ncbi, GCA_000001635.8_GRCm38.p6_genomic.fna.gz from NCIBI
-GRCm39-fasta-genomic-GCA, mm39, ncbi, GCA_000001635.9_GRCm39_genomic.fna.gz from NCBI
-GRCm39-fasta-full-analysis-ucsc-ids, mm39, ncbi, GCA_000001635.9_GRCm39_full_analysis_set.fna.gz with ucsc ids from NCBI
-mm10-ucsc-initial-soft-masked, mm10, ucsc, mm10 from ucsc representing the 2012 release soft masked
-mm10-ucsc-initial-hard-masked, mm10, ucsc, mm10 from ucsc representing the 2012 release hard masked
-mm10-ucsc-p6-soft-masked, mm10, ucsc, mm10 p6 from ucsc soft masked
-mm10-ucsc-p6-hard-masked, mm10, ucsc, mm10 p6 from ucsc hard masked
-mm39-ucsc-initial-soft-masked, mm39, ucsc, mm39 initial ucsc soft masked
-mm39-ucsc-initial-hard-masked, mm39, ucsc, mm39 initial ucsc hard masked
-mm9-ucsc-initial, mm9,ucsc, mm9 initial 2007
-GRCm39-primary-113-ensembl, mm39, ensembl, ensembl 113 primary assembly
-GRCm39-primary-rm-113-ensembl, mm39, ensembl, ensembl 113 primary assembly rm
-GRCm39-toplevel-113-ensembl, mm39, ensembl, ensembl 113 top level
-GRCm39-toplevel-rm-113-ensembl, mm39, ensembl, ensembl 113 top level rm
-GRCm39-primary-sm-113-ensembl, mm39, ensembl, ensembl 113 primary sm
-GRCm39-toplevel-sm-113-ensembl, mm39, ensembl, ensembl 113 top level sm
-GRCm39-toplevel-65-ensembl, mm9, ensembl, ensembl NCBIM37.65 top level
-GRCm39-toplevel-rm-65-ensembl, mm9, ensembl, ensembl NCBIM37.65 rm top level
-GRCm39-primary-M36-gencode, mm39, gencode, gencode primary release m36 mm39
-GRCm39-all-M36-gencode,mm39, gencode, gencode all release m36 mm39
-GRCm39-all-M1-gencode,mm9, gencode, gencode all M1 mm9 corresponds to Ensembl version 65
-mm10-refgenie-ncbi, mm10, refgenie, refgenie's GCA_000001635.5 seqs_for_alignment_pipelines from NCBI 
-mm10-refgenie-ucsc,mm10, refgenie, refgenie's UCSC mm10 assembly with primary chromosomes only 
-GRCm38-igenomes-ensembl, mm38, igenomes, igenomes's GRCm38 from Ensembl
-NCBIM37-igenomes-ensembl, mm37, igenomes, igenomes's NCBIM37 from Ensembl
-mm37-build37.1-igenomes-ncbi, mm37, igenomes, igenomes's ncbi build 37.1 for mm37
-mm37-build37.2-igenomes-ncbi, mm37, igenomes, igenomes's ncbi build 37.2 for mm37
-mm38-igenomes-ncbi, mm38, igenomes, igenomes's NCBI GRCm38
-mm9-igenomes-ucsc, mm9, igenomes, igenomes's UCSC mm9
-mm10-igenomes-ucsc, mm10, igenomes, igenomes's UCSC mm10
-GRCm39-ena-09, mm39, ENA, ref genome hosted on ENA Genome Reference Consortium Mouse Build 39
-GRCm39-ena-03, mm38, ENA, ref genome hosted on ENA Genome Reference Consortium Mouse Build 38 patch release 1 (GRCm38.p1)
-GRCm39-ena-02, mm38, ENA, ref genome hosted on ENA Genome Reference Consortium Mouse Build 38
+sample_name,common_genome_name,authority,description,Top Level Digest,Number of Sequences
+GRCm39-fasta-full-analysis, mm39, ncbi, GCA_000001635.9_GRCm39_full_analysis_set from NCBI,-e70JAQq4NJDg8-1Ab2XhHu6yYjeW-zu,61
+GRCm39-fasta-genomic, mm39, ncbi, GCF_000001635.27_GRCm39_genomic from NCBI,fXjBOJjw-DYsSnnfDBl5vtZu1N7lbnUl,61
+GRCm38.p6-fasta-genomic, mm38, ncbi, GCF_000001635.26_GRCm38.p6_genomic from NCBI,jpOqOhddb15iOm2SIdJSjsf-U5Uu7Def,239
+GRCm38.p6-fasta-genomic-GCA,mm38, ncbi, GCA_000001635.8_GRCm38.p6_genomic.fna.gz from NCIBI,JL56x8L1q1Fs_-jHvZxBG01Vitac-CmO,239
+GRCm39-fasta-genomic-GCA, mm39, ncbi, GCA_000001635.9_GRCm39_genomic.fna.gz from NCBI,PM8ODmBlTISp4Onv0aSBFaAfi3QVCGzx,61
+GRCm39-fasta-full-analysis-ucsc-ids, mm39, ncbi, GCA_000001635.9_GRCm39_full_analysis_set.fna.gz with ucsc ids from NCBI,-e70JAQq4NJDg8-1Ab2XhHu6yYjeW-zu,61
+mm10-ucsc-initial-soft-masked, mm10, ucsc, mm10 from ucsc representing the 2012 release soft masked,99TjKCwZJJLjpBqkLpTgC2E_Y3OgKtMz,66
+mm10-ucsc-initial-hard-masked, mm10, ucsc, mm10 from ucsc representing the 2012 release hard masked,FTBYBUoMhkOJ_-8lWpERVTxe62kstAol,66
+mm10-ucsc-p6-soft-masked, mm10, ucsc, mm10 p6 from ucsc soft masked,M7ZWnvUTT06JREJnMb_7UGwgGaG0-13s,239
+mm10-ucsc-p6-hard-masked, mm10, ucsc, mm10 p6 from ucsc hard masked,9k1WrFA4Ys2fPifOOVswhOEdurvsaLfI,239
+mm39-ucsc-initial-soft-masked, mm39, ucsc, mm39 initial ucsc soft masked,KPagVaXI4XwQ1D0L0EW4eEuVl-otaAtX,61
+mm39-ucsc-initial-hard-masked, mm39, ucsc, mm39 initial ucsc hard masked,3MS1-4k87pZ0-C80QDoUvhFmC0usPH28,61
+mm9-ucsc-initial, mm9,ucsc, mm9 initial 2007,vygX07e7feibvucSnWj6hRScGMfc7B6P,35
+GRCm39-primary-113-ensembl, mm39, ensembl, ensembl 113 primary assembly,2Ls1P5eUdKbvtOhjJx3s2R5r0_I-IB5Z,61
+GRCm39-primary-rm-113-ensembl, mm39, ensembl, ensembl 113 primary assembly rm,D-6wf8dsOttiVNnLSImSglRJvw_8Zr_j,61
+GRCm39-toplevel-113-ensembl, mm39, ensembl, ensembl 113 top level,XVhfRj6PCzLoGiEeXjpFv7vriVN02aPc,61
+GRCm39-toplevel-rm-113-ensembl, mm39, ensembl, ensembl 113 top level rm,qcT5VVX5G3mN2O9OqeFR-F0POVuY2oGw,61
+GRCm39-primary-sm-113-ensembl, mm39, ensembl, ensembl 113 primary sm,2Ls1P5eUdKbvtOhjJx3s2R5r0_I-IB5Z,61
+GRCm39-toplevel-sm-113-ensembl, mm39, ensembl, ensembl 113 top level sm,XVhfRj6PCzLoGiEeXjpFv7vriVN02aPc,61
+GRCm39-toplevel-65-ensembl, mm9, ensembl, ensembl NCBIM37.65 top level,3rgz8-_XPSiTUYPamUTRF3DArhAhTint,211
+GRCm39-toplevel-rm-65-ensembl, mm9, ensembl, ensembl NCBIM37.65 rm top level,JPyo8AqZzCyVaUx1lAkk6LbpyQPX4VUB,211
+GRCm39-primary-M36-gencode, mm39, gencode, gencode primary release m36 mm39,WsOG-InFnIta0rqSy1KUBjrFrukbnE5j,61
+GRCm39-all-M36-gencode,mm39, gencode, gencode all release m36 mm39,WsOG-InFnIta0rqSy1KUBjrFrukbnE5j,61
+GRCm39-all-M1-gencode,mm9, gencode, gencode all M1 mm9 corresponds to Ensembl version 65,qtPKGcXii2OuiyIoDA9K0jSKR62qCyzd,211
+mm10-refgenie-ncbi, mm10, refgenie, refgenie's GCA_000001635.5 seqs_for_alignment_pipelines from NCBI ,wsDErYxgCXiPnb2FWZ4sXtx3B0YyruRu,66
+mm10-refgenie-ucsc,mm10, refgenie, refgenie's UCSC mm10 assembly with primary chromosomes only ,dMjpOU7EvpeZVb0gpPoZ7prNaxOu88Ta,22
+GRCm38-igenomes-ensembl, mm38, igenomes, igenomes's GRCm38 from Ensembl,TQORtixTJqM3Su9dmtACKc7hNHAceE4I,22
+NCBIM37-igenomes-ensembl, mm37, igenomes, igenomes's NCBIM37 from Ensembl,6-UTIAyR94-nanfrhd_sAF6oHLyMd0zH,22
+mm37-build37.1-igenomes-ncbi, mm37, igenomes, igenomes's ncbi build 37.1 for mm37,6-UTIAyR94-nanfrhd_sAF6oHLyMd0zH,22
+mm37-build37.2-igenomes-ncbi, mm37, igenomes, igenomes's ncbi build 37.2 for mm37,6-UTIAyR94-nanfrhd_sAF6oHLyMd0zH,22
+mm38-igenomes-ncbi, mm38, igenomes, igenomes's NCBI GRCm38,TQORtixTJqM3Su9dmtACKc7hNHAceE4I,22
+mm9-igenomes-ucsc, mm9, igenomes, igenomes's UCSC mm9,4mvptys3ckGgiUCcly4HOHB40IhpwwVT,22
+mm10-igenomes-ucsc, mm10, igenomes, igenomes's UCSC mm10,hW3Ba5zoufl3-MGXQESlWXjsW56R5vPG,22
+GRCm39-ena-09, mm39, ENA, ref genome hosted on ENA Genome Reference Consortium Mouse Build 39,ABEupc6KHmxtHGarfWFXTmu9mUcNnfoM,40
+GRCm39-ena-03, mm38, ENA, ref genome hosted on ENA Genome Reference Consortium Mouse Build 38 patch release 1 (GRCm38.p1),bLbjXXCz_5qAonaDXcVuadx65QZkC7mb,50
+GRCm39-ena-02, mm38, ENA, ref genome hosted on ENA Genome Reference Consortium Mouse Build 38,bLbjXXCz_5qAonaDXcVuadx65QZkC7mb,50

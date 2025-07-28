@@ -1,62 +1,61 @@
-sample_name,common_genome_name,authority,description
-GRCh38.p14-fasta-no-alt-analysis, hg38, ncbi, GCA_000001405.15 GRCh38_no_alt_analysis from NCBI
-GRCh38.p14-fasta-full-analysis, hg38, ncbi, GCA_000001405.15_GRCh38_full_analysis_set from NCBI
-GRCh38.p14-fasta-genomic, hg38, ncbi, GCF_000001405.40_GRCh38.p14_genomic from NCBI
-GRCh38.p14-fasta-full-analysis-plus-hs38d1, hg38, ncbi, GCA_000001405.15_GRCh38_full_analysis_set from NCBI plus hs38d1 decoy sequences
-GRCh38.p14-fasta-no-alt-plus-hs38d1, hg38, ncbi, GCA_000001405.15_GRCh38_no_alt_plus_hs38d1_analysis_set from NCBI plus hs38d1 decoy sequences
-GRCh37.p13-fasta-no-alt-analysis, hg19, ncbi, GCA_000001405.14_GRCh37.p13_no_alt_analysis from NCBI
-GRCh37.p13-fasta-full-analysis, hg19, ncbi, GCA_000001405.14_GRCh37.p13_full_analysis_set from NCBI
-GRCh37.p13-fasta-genomic, hg19, ncbi, GCF_000001405.25_GRCh37.p13_genomic from NCBI
-hg38-initial-ucsc, hg38, ucsc, hg38 from UCSC representing initial 2013 release
-hg38-p14-ucsc, hg38, ucsc, hg38 from UCSC patch 14
-hg38-p14-masked-ucsc, hg38, ucsc, hg38 masked from UCSC patch 14
-hg38-p14-analysisSet-ucsc, hg38, ucsc, hg38 analysisSet from UCSC patch 14               
-hg19-initial-ucsc, hg19, ucsc, hg19 from UCSC representing initial 2009 release
-hg19-masked-ucsc, hg19, ucsc, masked hg19 from UCSC representing initial 2009 release
-hg19-p13-full-analysis-ucsc, hg19, ucsc, full analysis set hg19 p13 from ucsc
-hg19-p13-no-alt-analysis-ucsc, hg19, ucsc, no alt analysis set hg19 p13 from ucsc
-hg19-p13-plusMT-ucsc, hg19, ucsc, hg19 p13 plusMT from ucsc
-hg19-p13-plusMT-masked-ucsc, hg19, ucsc, hg19 p13 plusMT masked from ucsc
-hg38-primary-113-ensembl, hg38, ensembl, primary fasta of GRCh38 release 113
-hg38-toplevel-113-ensembl, hg38, ensembl, top level fasta of GRCh38 release 113
-hg38-alt-113-ensembl, hg38, ensembl, alt sites fasta of GRCh38 release 113
-hg38-alt-rm-113-ensembl, hg38, ensembl, alt rm sites fasta of GRCh38 release 113
-hg38-toplevel-rm-113-ensembl, hg38, ensembl, top level rm fasta of GRCh38 release 113
-hg38-primary-rm-113-ensembl, hg38, ensembl,  primary fasta rm fasta of GRCh38 release 113
-hg38-alt-sm-113-ensembl, hg38, ensembl, alt sm sites fasta of GRCh38 release 113
-hg38-toplevel-sm-113-ensembl, hg38, ensembl, top level sm fasta of GRCh38 release 113
-hg38-primary-sm-113-ensembl, hg38, ensembl,  primary fasta sm fasta of GRCh38 release 113
-GRCh38-p14-47-gencode, hg38, gencode, release 47 of gencode GRCh38
-GRCh38-primary-assembly-47-gencode, hg38, gencode, release 47 of gencode primary assembly GRCh38
-GRCh37-primary-assembly-47-gencode, hg19, gencode, release 47 of gencode primary assembly GRCh37
-GRCh38-p14-46-gencode, hg38, gencode, release 46 of gencode GRCh38
-GRCh38-primary-assembly-46-gencode, hg38, gencode, release 46 of gencode primary assembly GRCh38
-GRCh37-primary-assembly-46-gencode, hg19, gencode, release 46 of gencode primary assembly GRCh37
-hg18-ucsc,hg18,ucsc, 2006 release of hg18 ucsc
-GRCh38-full-decoy-hla-ddbj, hg38, ddbj, ddbj GRCh38_full_analysis_set_plus_decoy_hla.fa
-homo-sapiens-assembly38-ddbj, hg38, ddbj, ddbj Homo_sapiens_assembly38.fasta
-hg38-ddbj, hg38, ddbj, ddbj hg38.fa.gz
-GRCh38-ena-29, hg38, ENA, ref genome hosted on ENA Genome Reference Consortium Human Build 38 patch release 14 (GRCh38.p14)
-GRCh38-ena-15, hg38, ENA, ref genome hosted on ENA Genome Reference Consortium Human Build 38 (GRCh38.p0)
-hg38-igenomes-ucsc, hg38, igenomes, igenomes hosted hg38
-hg19-igenomes-ucsc, hg19, igenomes, igenomes hosted hg19
-hg18-igenomes-ucsc, hg18, igenomes, igenomes hosted hg18
-hs37-1kg-ncbi, hg19, ncbi, hs37-1kg genome referenced on HL blog 2017
-hs37d5-ncbi, hg19, ncbi, hs37d5 genome referenced on HL blog 2017
-hg38-refgenie, hg38, refgenie, refgenie's The GCA_000001405.15 GRCh38_no_alt_analysis_set from NCBI 
-hg38-primary-refgenie, hg38, refgenie, refgenie's UCSC hg38 assembly with primary chromosomes only
-hg18-refgenie, hg18, refgenie, refgenie's NCBI36 reference sequence from UCSC. The individual chromosome files were concatenated prior to the asset building 
-hg19-refgenie, hg19, refgenie, refgenie's he GRCh37 reference sequence from UCSC 
-hg38-broad, hg38, broad, broad institute hosted hg38
-hg38-noALT-noHLA-noDecoy-broad, hg38, broad, broad institute hosted hg38-noALT-noHLA-noDecoy
-b37-broad, hg19, broad, broad institute b37
-GRCh37-igenomes-ensembl, hg19, igenomes, igenomes hosted GRCh37 
-GRCh38-igenomes-ncbi, hg38, igenomes, igenomes hosted GRCh38 
-GRCh38-igenomes-build37-2-ncbi, hg38, igenomes, igenomes hosted GRCh38 build 37.2 
-GRCh38-igenomes-build37-1-ncbi, hg38, igenomes, igenomes hosted GRCh38 build 37.1 
-GRCh38-igenomes-build36-3-ncbi, hg38, igenomes, igenomes hosted GRCh38 build 36.3 
-GRCh38-igenomes-decoy-ncbi, hg38, igenomes, igenomes hosted GRCh38 decoy 
-hs37-1kg, hg19, 1000genomes, hs37-1kg genome referenced on HL blog 2017 1000 Genomes Project (1000G) reference in 2010
-hs37d5, hg19, 1000genomes, hs37d5 genome referenced on HL blog 2017 hs37 with decoy (recommended GRCh37)
-hs38, hg38, ncbi, GRCh38 no-alt analysis set (recommended GRCh38)
-hs38DH, hg38, 1000genomes, GRCh38 with ALT decoy and HLA genes (not recommended)
+sample_name,common_genome_name,authority,description,Top Level Digest,Number of Sequences
+GRCh38.p14-fasta-no-alt-analysis, hg38, ncbi, GCA_000001405.15 GRCh38_no_alt_analysis from NCBI,EiFob05aCWgVU_B_Ae0cypnQut3cxUP1,195
+GRCh38.p14-fasta-full-analysis, hg38, ncbi, GCA_000001405.15_GRCh38_full_analysis_set from NCBI,EGlYk1stOsAjmTALWkqKDqtZOSkyA_YH,456
+GRCh38.p14-fasta-genomic, hg38, ncbi, GCF_000001405.40_GRCh38.p14_genomic from NCBI,u1HyLgIlq8M_XvEwy0oGqAvKGHJMGtxH,705
+GRCh38.p14-fasta-full-analysis-plus-hs38d1, hg38, ncbi, GCA_000001405.15_GRCh38_full_analysis_set from NCBI plus hs38d1 decoy sequences,MkXYxV2-83BEcPmzskEVGJsJ7Qkb--gX,2841
+GRCh38.p14-fasta-no-alt-plus-hs38d1, hg38, ncbi, GCA_000001405.15_GRCh38_no_alt_plus_hs38d1_analysis_set from NCBI plus hs38d1 decoy sequences,7hP7E8o-q6H8qcqMHBEIYdbAK49PoEUZ,2580
+GRCh37.p13-fasta-no-alt-analysis, hg19, ncbi, GCA_000001405.14_GRCh37.p13_no_alt_analysis from NCBI,DvAlkUMPq7CRnTYAfXGkQmAOfFqVMZHE,85
+GRCh37.p13-fasta-full-analysis, hg19, ncbi, GCA_000001405.14_GRCh37.p13_full_analysis_set from NCBI,kgTizBhIBf5BeEMTqBuyzRBi2AlwTRj6,298
+GRCh37.p13-fasta-genomic, hg19, ncbi, GCF_000001405.25_GRCh37.p13_genomic from NCBI,XJWKh8nsSqBFfcU0DIHMZohYyCWF-vcA,297
+hg38-initial-ucsc, hg38, ucsc, hg38 from UCSC representing initial 2013 release,NTeQ1GQMt2ocCFkS8Z3_qkvetZjabWSt,455
+hg38-p14-ucsc, hg38, ucsc, hg38 from UCSC patch 14,a_WL8OC7sFJfjux5m11M2bKl0dYepA1x,711
+hg38-p14-masked-ucsc, hg38, ucsc, hg38 masked from UCSC patch 14,xEg2q8K9gV4027DMTCiaUGLCcrqySglR,455
+hg38-p14-analysisSet-ucsc, hg38, ucsc, hg38 analysisSet from UCSC patch 14               ,jFm0Uca8a7vK2cbuIQgBopjBilgCFheD,195
+hg19-initial-ucsc, hg19, ucsc, hg19 from UCSC representing initial 2009 release,ThZcNYiLuWWL86NdJ8dvvJG15K9mW3Fo,93
+hg19-masked-ucsc, hg19, ucsc, masked hg19 from UCSC representing initial 2009 release,H3RA3Jez6oqMOW87LGuwtSgKQqTgWVxx,93
+hg19-p13-full-analysis-ucsc, hg19, ucsc, full analysis set hg19 p13 from ucsc,-qU7PUmse_-pilikFDTJKyrt2_QJvUFy,298
+hg19-p13-no-alt-analysis-ucsc, hg19, ucsc, no alt analysis set hg19 p13 from ucsc,svwHqvgassl0loigdqVIQJdjo7NWDIx3,85
+hg19-p13-plusMT-ucsc, hg19, ucsc, hg19 p13 plusMT from ucsc,6pxZqxG0TYtyVb8yp14ONpaxZ8msQqKr,298
+hg19-p13-plusMT-masked-ucsc, hg19, ucsc, hg19 p13 plusMT masked from ucsc,q5Gn6dl5HbkZe6sRs9CZVGwGd1-XwyAq,298
+hg38-primary-113-ensembl, hg38, ensembl, primary fasta of GRCh38 release 113,oLfPx0NOBKKXMIngGeQ4YewtU4Ge_wKz,194
+hg38-toplevel-113-ensembl, hg38, ensembl, top level fasta of GRCh38 release 113,5ryrHdbJHIgyZuE29h5uzITRL4kinZWG,706
+hg38-alt-113-ensembl, hg38, ensembl, alt sites fasta of GRCh38 release 113,0OgP0NkIM22lVYT5AMmkbb9knKDhk4I6,512
+hg38-alt-rm-113-ensembl, hg38, ensembl, alt rm sites fasta of GRCh38 release 113,h_kOcvPobU9it_QR1LjPqeNpM56xjEJQ,512
+hg38-toplevel-rm-113-ensembl, hg38, ensembl, top level rm fasta of GRCh38 release 113,F9zeFn6M4EN4KGAJush7rZEU3GROoeNP,706
+hg38-primary-rm-113-ensembl, hg38, ensembl,  primary fasta rm fasta of GRCh38 release 113,RGSkyOkQ4qnSLhjrR_e3AI51Ac-RohAL,194
+hg38-alt-sm-113-ensembl, hg38, ensembl, alt sm sites fasta of GRCh38 release 113,0OgP0NkIM22lVYT5AMmkbb9knKDhk4I6,512
+hg38-toplevel-sm-113-ensembl, hg38, ensembl, top level sm fasta of GRCh38 release 113,5ryrHdbJHIgyZuE29h5uzITRL4kinZWG,706
+hg38-primary-sm-113-ensembl, hg38, ensembl,  primary fasta sm fasta of GRCh38 release 113,oLfPx0NOBKKXMIngGeQ4YewtU4Ge_wKz,194
+GRCh38-p14-47-gencode, hg38, gencode, release 47 of gencode GRCh38,tkRdBlSp5hewK4OpEJC87J9pw-ac0vOa,706
+GRCh38-primary-assembly-47-gencode, hg38, gencode, release 47 of gencode primary assembly GRCh38,tmnbiAyj2fke68d_TYjq2g487US8C15r,194
+GRCh37-primary-assembly-47-gencode, hg19, gencode, release 47 of gencode primary assembly GRCh37,k4mLJvbFzZiw3o6SL8hh63V2u7AjDMrE,84
+GRCh38-p14-46-gencode, hg38, gencode, release 46 of gencode GRCh38,tkRdBlSp5hewK4OpEJC87J9pw-ac0vOa,706
+GRCh38-primary-assembly-46-gencode, hg38, gencode, release 46 of gencode primary assembly GRCh38,tmnbiAyj2fke68d_TYjq2g487US8C15r,194
+GRCh37-primary-assembly-46-gencode, hg19, gencode, release 46 of gencode primary assembly GRCh37,k4mLJvbFzZiw3o6SL8hh63V2u7AjDMrE,84
+hg18-ucsc,hg18,ucsc, 2006 release of hg18 ucsc,H9er8ocYfIN2TOfyf6zMyeXXm7trXGP7,49
+GRCh38-full-decoy-hla-ddbj, hg38, ddbj, ddbj GRCh38_full_analysis_set_plus_decoy_hla.fa,gHcfbUVnFzHv3QSqz2sSqVHdUQbDO8N5,3366
+homo-sapiens-assembly38-ddbj, hg38, ddbj, ddbj Homo_sapiens_assembly38.fasta,gHcfbUVnFzHv3QSqz2sSqVHdUQbDO8N5,3366
+hg38-ddbj, hg38, ddbj, ddbj hg38.fa.gz,NTeQ1GQMt2ocCFkS8Z3_qkvetZjabWSt,455
+GRCh38-ena-29, hg38, ENA, ref genome hosted on ENA Genome Reference Consortium Human Build 38 patch release 14 (GRCh38.p14),lWRRNMNypacEjnJCy-AYiDNUPy1brQGC,68
+GRCh38-ena-15, hg38, ENA, ref genome hosted on ENA Genome Reference Consortium Human Build 38 (GRCh38.p0),6chutju9QVJW0rdA-wgubHbtoTQ42o-6,67
+hg38-igenomes-ucsc, hg38, igenomes, igenomes hosted hg38,jFm0Uca8a7vK2cbuIQgBopjBilgCFheD,195
+hg19-igenomes-ucsc, hg19, igenomes, igenomes hosted hg19,GOIHeGSorDrbznRxihs5rIb6vTiTKaw7,25
+hg18-igenomes-ucsc, hg18, igenomes, igenomes hosted hg18,ieWVCws5MC2QFRKgH9QcN3u5_Y_3hPG6,25
+hg38-refgenie, hg38, refgenie, refgenie's The GCA_000001405.15 GRCh38_no_alt_analysis_set from NCBI ,EiFob05aCWgVU_B_Ae0cypnQut3cxUP1,195
+hg38-primary-refgenie, hg38, refgenie, refgenie's UCSC hg38 assembly with primary chromosomes only,Ba88PY52_qeifhJrgUXyin6UITdXNsg3,25
+hg18-refgenie, hg18, refgenie, refgenie's NCBI36 reference sequence from UCSC. The individual chromosome files were concatenated prior to the asset building ,YfZ0rklv8KY9DCtqG0iIX16zsgbuBgmM,49
+hg19-refgenie, hg19, refgenie, refgenie's he GRCh37 reference sequence from UCSC ,ThZcNYiLuWWL86NdJ8dvvJG15K9mW3Fo,93
+hg38-broad, hg38, broad, broad institute hosted hg38,gHcfbUVnFzHv3QSqz2sSqVHdUQbDO8N5,3366
+hg38-noALT-noHLA-noDecoy-broad, hg38, broad, broad institute hosted hg38-noALT-noHLA-noDecoy,EiFob05aCWgVU_B_Ae0cypnQut3cxUP1,195
+b37-broad, hg19, broad, broad institute b37,eN7J_gZz_meakMCeXXBEvY_njignMPxl,85
+GRCh37-igenomes-ensembl, hg19, igenomes, igenomes hosted GRCh37 ,lXa-sGAmSafYXHN4iEwup0EsQh5F1krA,25
+GRCh38-igenomes-ncbi, hg38, igenomes, igenomes hosted GRCh38 ,EiFob05aCWgVU_B_Ae0cypnQut3cxUP1,195
+GRCh38-igenomes-build37-2-ncbi, hg38, igenomes, igenomes hosted GRCh38 build 37.2 ,Dx_M8skbJqROkfXhhQRtWejcCyewRbdL,25
+GRCh38-igenomes-build37-1-ncbi, hg38, igenomes, igenomes hosted GRCh38 build 37.1 ,wdpZbFN0pd92H2VeKZBAp3riQN4nJXkK,25
+GRCh38-igenomes-build36-3-ncbi, hg38, igenomes, igenomes hosted GRCh38 build 36.3 ,vRjC5qM1Tc-fFjJo0TGRw4CVjFhmLG0f,25
+GRCh38-igenomes-decoy-ncbi, hg38, igenomes, igenomes hosted GRCh38 decoy ,FnbS0xDAGOePD7lp6Xt0vnbcASzkk3gk,2580
+hs37-1kg, hg19, 1000genomes, hs37-1kg genome referenced on HL blog 2017 1000 Genomes Project (1000G) reference in 2010,5SdkZCnuZL2YIptqjSBZfupo_O7HpD_B,84
+hs37d5, hg19, 1000genomes, hs37d5 genome referenced on HL blog 2017 hs37 with decoy (recommended GRCh37),Q3xii3AkJDCTXSO6Vg13kjbOutQu0KP9,86
+hs38, hg38, ncbi, GRCh38 no-alt analysis set (recommended GRCh38),EiFob05aCWgVU_B_Ae0cypnQut3cxUP1,195
+hs38DH, hg38, 1000genomes, GRCh38 with ALT decoy and HLA genes (not recommended),gHcfbUVnFzHv3QSqz2sSqVHdUQbDO8N5,3366
+hs37d5.fa,hg19,ddbj,ddbj hs37d5.fa,Q3xii3AkJDCTXSO6Vg13kjbOutQu0KP9,86

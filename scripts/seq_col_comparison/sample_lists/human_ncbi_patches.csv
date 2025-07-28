@@ -1,10 +1,10 @@
-sample_name,common_genome_name,authority,description
-GRCh38.p0-fasta-genomic, hg38, ncbi, GCF_000001405.26_GRCh38_genomic from NCBI
-GRCh38.p1-fasta-genomic, hg38, ncbi, GCF_000001405.27_GRCh38.p1_genomic from NCBI
-GRCh38.p2-fasta-genomic, hg38, ncbi, GCF_000001405.28_GRCh38.p2_genomic from NCBI
-GRCh38.p6-fasta-genomic, hg38, ncbi, GCF_000001405.32_GRCh38.p6_genomic from NCBI
-GRCh38.p7-fasta-genomic, hg38, ncbi, GCF_000001405.33_GRCh38.p7_genomic from NCBI
-GRCh38.p8-fasta-genomic, hg38, ncbi, GCF_000001405.34_GRCh38.p8_genomic from NCBI
-GRCh38.p12-fasta-genomic, hg38, ncbi, GCF_000001405.38_GRCh38.p12_genomic from NCBI
-GRCh38.p13-fasta-genomic, hg38, ncbi, GCF_000001405.39_GRCh38.p13_genomic from NCBI
-GRCh38.p14-fasta-genomic, hg38, ncbi, GCF_000001405.40_GRCh38.p14_genomic from NCBI
+sample_name,common_genome_name,authority,description,Top Level Digest,Number of Sequences
+GRCh38.p0-fasta-genomic, hg38, ncbi, GCF_000001405.26_GRCh38_genomic from NCBI,XemD97fxYMS4q-FBm_n5CHQgmzh1_67a,455
+GRCh38.p1-fasta-genomic, hg38, ncbi, GCF_000001405.27_GRCh38.p1_genomic from NCBI,P33s5fSkktH60MccIpfLNHAA79fJyxlt,471
+GRCh38.p2-fasta-genomic, hg38, ncbi, GCF_000001405.28_GRCh38.p2_genomic from NCBI,t-g5olKSC0DsZHICbi3cYR3jF-7i4xaK,486
+GRCh38.p6-fasta-genomic, hg38, ncbi, GCF_000001405.32_GRCh38.p6_genomic from NCBI,9VlpW2Uty7rQNSBbYy-nYCNOHqyYoBTt,521
+GRCh38.p7-fasta-genomic, hg38, ncbi, GCF_000001405.33_GRCh38.p7_genomic from NCBI,e38absAQBVXM4If9Mp9UhrPrqNGOklZz,525
+GRCh38.p8-fasta-genomic, hg38, ncbi, GCF_000001405.34_GRCh38.p8_genomic from NCBI,41Q6kDYWPOs4h-tpnmW0xyNosJFgX8tH,543
+GRCh38.p12-fasta-genomic, hg38, ncbi, GCF_000001405.38_GRCh38.p12_genomic from NCBI,CbeNHqwFVEdeNKe6Obm77fX6U9-fzVUL,594
+GRCh38.p13-fasta-genomic, hg38, ncbi, GCF_000001405.39_GRCh38.p13_genomic from NCBI,d2GjQek3_I1_zkq4gLHTUI50BptQsoqZ,639
+GRCh38.p14-fasta-genomic, hg38, ncbi, GCF_000001405.40_GRCh38.p14_genomic from NCBI,u1HyLgIlq8M_XvEwy0oGqAvKGHJMGtxH,705

@@ -1,5 +1,5 @@
-sample_name,common_genome_name,authority,description
-hg19-p13-plusMT-masked-ucsc, hg19, ucsc, hg19 p13 plusMT masked from ucsc
-hg19-p13-no-alt-analysis-ucsc, hg19, ucsc, no alt analysis set hg19 p13 from ucsc
-hg19-p13-full-analysis-ucsc, hg19, ucsc, full analysis set hg19 p13 from ucsc
-hg19-p13-plusMT-ucsc, hg19, ucsc, hg19 p13 plusMT from ucsc
+sample_name,common_genome_name,authority,description,Top Level Digest,Number of Sequences
+hg19-p13-plusMT-masked-ucsc, hg19, ucsc, hg19 p13 plusMT masked from ucsc,q5Gn6dl5HbkZe6sRs9CZVGwGd1-XwyAq,298
+hg19-p13-no-alt-analysis-ucsc, hg19, ucsc, no alt analysis set hg19 p13 from ucsc,svwHqvgassl0loigdqVIQJdjo7NWDIx3,85
+hg19-p13-full-analysis-ucsc, hg19, ucsc, full analysis set hg19 p13 from ucsc,-qU7PUmse_-pilikFDTJKyrt2_QJvUFy,298
+hg19-p13-plusMT-ucsc, hg19, ucsc, hg19 p13 plusMT from ucsc,6pxZqxG0TYtyVb8yp14ONpaxZ8msQqKr,298

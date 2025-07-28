@@ -1,6 +1,6 @@
-sample_name,common_genome_name,authority,description
-GRCm39-fasta-genomic, mm39, ncbi, GCF_000001635.27_GRCm39_genomic from NCBI
-GRCm39-toplevel-113-ensembl, mm39, ensembl, ensembl 113 top level
-mm39-ucsc-initial-soft-masked, mm39, ucsc, mm39 initial ucsc soft masked
-GRCm39-all-M36-gencode,mm39, gencode, gencode all release m36 mm39
-GRCm39-ena-09, mm39, ENA, ref genome hosted on ENA Genome Reference Consortium Mouse Build 39
+sample_name,common_genome_name,authority,description,Top Level Digest,Number of Sequences
+GRCm39-fasta-genomic, mm39, ncbi, GCF_000001635.27_GRCm39_genomic from NCBI,fXjBOJjw-DYsSnnfDBl5vtZu1N7lbnUl,61
+GRCm39-toplevel-113-ensembl, mm39, ensembl, ensembl 113 top level,XVhfRj6PCzLoGiEeXjpFv7vriVN02aPc,61
+mm39-ucsc-initial-soft-masked, mm39, ucsc, mm39 initial ucsc soft masked,KPagVaXI4XwQ1D0L0EW4eEuVl-otaAtX,61
+GRCm39-all-M36-gencode,mm39, gencode, gencode all release m36 mm39,WsOG-InFnIta0rqSy1KUBjrFrukbnE5j,61
+GRCm39-ena-09, mm39, ENA, ref genome hosted on ENA Genome Reference Consortium Mouse Build 39,ABEupc6KHmxtHGarfWFXTmu9mUcNnfoM,40

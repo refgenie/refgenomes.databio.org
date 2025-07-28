@@ -12,14 +12,19 @@ def get_sequence_length_local(digest):
     with open(json_fp_1, "r") as f:
         reloaded_dict1 = json.load(fp=f)
     
-    return len(reloaded_dict1['sorted_sequences'])
+    return int(len(reloaded_dict1['sorted_sequences']))
 
 
-LOCAL_JSON_DIRECTORY = "/home/drc/Downloads/jsons_from_rivanna/json/"
+#LOCAL_JSON_DIRECTORY = "/home/drc/Downloads/jsons_from_rivanna/json/"
+
+LOCAL_JSON_DIRECTORY = "/home/drc/Downloads/mouse_jsons_from_rivanna/json/"
+
 #PEPHUB_PATH_AUTHORITY = "donaldcampbelljr/human_seqcol_digests:default"
-PEPHUB_PATH_AUTHORITY = "donaldcampbelljr/ncbi_38_seqcol_digests:default"
+# PEPHUB_PATH_AUTHORITY = "donaldcampbelljr/ncbi_38_seqcol_digests:default"
+PEPHUB_PATH_AUTHORITY =  "donaldcampbelljr/mouse_seqcol_digests:default"
 
 results_dir = "/home/drc/Downloads/add_lengths_tables/human/"  # Replace with your directory path
+results_dir = "/home/drc/Downloads/add_lengths_tables/mouse/"
 
 psm = pipestat.PipestatManager(pephub_path=PEPHUB_PATH_AUTHORITY)
 

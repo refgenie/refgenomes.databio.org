@@ -1,7 +1,7 @@
-sample_name,common_genome_name,authority,description
-hg38-toplevel-113-ensembl, hg38, ensembl, top level fasta of GRCh38 release 113
-GRCh38-p14-47-gencode, hg38, gencode, release 47 of gencode GRCh38
-GRCh38.p14-fasta-genomic, hg38, ncbi, GCF_000001405.40_GRCh38.p14_genomic from NCBI
-hg38-p14-ucsc, hg38, ucsc, hg38 from UCSC patch 14
-hg38-ddbj, hg38, ddbj, ddbj hg38.fa.gz
-GRCh38-ena-29, hg38, ENA, ref genome hosted on ENA Genome Reference Consortium Human Build 38 patch release 14 (GRCh38.p14)
+sample_name,common_genome_name,authority,description,Top Level Digest,Number of Sequences
+hg38-toplevel-113-ensembl, hg38, ensembl, top level fasta of GRCh38 release 113,5ryrHdbJHIgyZuE29h5uzITRL4kinZWG,706
+GRCh38-p14-47-gencode, hg38, gencode, release 47 of gencode GRCh38,tkRdBlSp5hewK4OpEJC87J9pw-ac0vOa,706
+GRCh38.p14-fasta-genomic, hg38, ncbi, GCF_000001405.40_GRCh38.p14_genomic from NCBI,u1HyLgIlq8M_XvEwy0oGqAvKGHJMGtxH,705
+hg38-p14-ucsc, hg38, ucsc, hg38 from UCSC patch 14,a_WL8OC7sFJfjux5m11M2bKl0dYepA1x,711
+hg38-ddbj, hg38, ddbj, ddbj hg38.fa.gz,NTeQ1GQMt2ocCFkS8Z3_qkvetZjabWSt,455
+GRCh38-ena-29, hg38, ENA, ref genome hosted on ENA Genome Reference Consortium Human Build 38 patch release 14 (GRCh38.p14),lWRRNMNypacEjnJCy-AYiDNUPy1brQGC,68
