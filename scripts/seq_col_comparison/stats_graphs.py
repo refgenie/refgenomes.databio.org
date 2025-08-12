@@ -398,7 +398,7 @@ for stat in relevant_stats:
 # Define histogram bins
 # You'll want to choose an appropriate number of bins.
 # For scores from 0 to 1, 10 bins would be 0.1 wide, 20 bins 0.05 wide, etc.
-num_bins = 20 # You can adjust this for more or less detail/granularity
+num_bins = 40 # You can adjust this for more or less detail/granularity
 bins = np.linspace(0, 1, num_bins + 1) # +1 because np.linspace includes start and end
 
 # Create a list to store histogram data for each statistic
@@ -437,20 +437,51 @@ for stat in relevant_stats:
 bin_labels = [f'{bins[i]:.2f}-{bins[i+1]:.2f}' for i in range(num_bins)]
 heatmap_df = pd.DataFrame(all_hist_data, index=bin_labels).T
 
-# Plot the heatmap (Jaccard Similarities on Y, Jaccard Score Bins on X)
-# Use a sequential colormap for bright to dark hits (higher counts = darker)
-# For example, 'Blues' will make higher counts darker blue.
-sns.heatmap(heatmap_df, annot=False, cmap="Greens", ax=ax, cbar_kws={'label': 'Frequency (Counts)'})
+global_max_val = heatmap_df.values.max()
+
+# Create a new DataFrame for the normalized data
+normalized_heatmap_df = heatmap_df.copy()
+
+if global_max_val > 0:
+    # Normalize the entire DataFrame by the global maximum
+    normalized_heatmap_df = normalized_heatmap_df / global_max_val
+else:
+    # Handle the case where all counts are zero
+    normalized_heatmap_df = normalized_heatmap_df * 0
+
+# Plot the heatmap using the normalized DataFrame
+sns.heatmap(normalized_heatmap_df, annot=False, cmap="Greens", ax=ax, cbar_kws={'label': 'Normalized Frequency'})
+#sns.heatmap(heatmap_df, annot=False, cmap="Greens", ax=ax, cbar_kws={'label': 'Frequency (Counts)'})
 
 # Add labels and title
 ax.set_xlabel('Jaccard Score Bin')
 ax.set_ylabel('Jaccard Similarities')
 ax.set_title('Frequency Distribution of Jaccard Similarities Across Score Bins')
 
-# Set x-axis ticks and labels to represent the bins clearly
-# Using the bin labels directly makes it clear which range each column represents.
-ax.set_xticks(np.arange(num_bins) + 0.5) # Center ticks in the middle of the bins
-ax.set_xticklabels(bin_labels, rotation=90, ha='center', fontsize=8) # Rotate for readability
+# # Set x-axis ticks and labels to represent the bins clearly
+# # Using the bin labels directly makes it clear which range each column represents.
+# ax.set_xticks(np.arange(num_bins) + 0.5) # Center ticks in the middle of the bins
+# ax.set_xticklabels(bin_labels, rotation=90, ha='center', fontsize=8) # Rotate for readability
+
+# Create a list of labels showing only the left edge of each bin
+short_bin_labels = [f'{b:.2f}' for b in bins[:-1]]
+short_bin_labels[0] = '0.00'  # Explicitly set the first label for clarity
+
+# Define the step for how many ticks to show (e.g., show every 4th tick)
+tick_step = 4
+num_labels = len(short_bin_labels)
+
+# Select the ticks and labels based on the step, ensuring the first and last are included
+# The first tick is always at position 0.5.
+# The selected tick positions are at the center of the relevant bins.
+tick_positions = np.arange(num_labels)
+selected_ticks = tick_positions[::tick_step]
+selected_labels = short_bin_labels[::tick_step]
+
+# Set the new ticks and labels
+ax.set_xticks(selected_ticks)
+ax.set_xticklabels(selected_labels, rotation=45, ha='center', fontsize=8) # Rotate for readability
+
 
 fig.tight_layout()
 
@@ -484,7 +515,7 @@ for stat in relevant_stats:
     pep_df[stat] = pd.to_numeric(pep_df[stat], errors='coerce')
 
 # Define a high-resolution spectrum from 0 to 1
-x_spectrum = np.linspace(0, 1, 40) 
+x_spectrum = np.linspace(0, 1, 20) 
 
 # Calculate smoothed densities for each statistic
 all_densities_data = {}
@@ -510,21 +541,8 @@ for stat in relevant_stats:
     #x_spectrum = np.linspace(0, 1, actual_count_for_this_stat) 
 
     if actual_count_for_this_stat > 1: # KDE requires at least 2 points
-            kde = gaussian_kde(current_values, bw_method=0.10)
-            densities = kde(x_spectrum)
-            dx = x_spectrum[1] - x_spectrum[0] # The spacing between points in x_spectrum
-            approx_integral_of_densities = np.sum(densities * dx)
-            print(f"Approximate integral of densities for {stat}: {approx_integral_of_densities}")
-
-            # If the approximate integral is meaningful (not zero or very small)
-            if approx_integral_of_densities > 1e-9: # Avoid division by zero/near-zero
-                sum_of_current_densities = np.sum(densities)
-                if sum_of_current_densities > 0:
-                    densities = densities * (actual_count_for_this_stat / sum_of_current_densities)
-                else: # If all densities are zero (e.g., if KDE somehow failed and returned all zeros)
-                    densities = np.zeros_like(x_spectrum) # Or handle as per your requirement
-            else: # If no meaningful densities generated
-                densities = np.zeros_like(x_spectrum)
+        kde = gaussian_kde(current_values, bw_method=0.10)
+        densities = kde(x_spectrum)
     else: # Handle cases with insufficient data for KDE
         densities = np.zeros_like(x_spectrum)
     
@@ -533,6 +551,8 @@ for stat in relevant_stats:
 # Create a DataFrame for the heatmap using the smoothed densities
 
 heatmap_df = pd.DataFrame(all_densities_data, index=x_spectrum).T
+output_path_csv = os.path.join(results_dir, f'heatmap_data_kde.csv')
+heatmap_df.to_csv(output_path_csv, index=True, header=True)
 
 # Plot the heatmap (Jaccard Similarities on Y, Jaccard Score Spectrum on X)
 # annot=False for smoother representation as there are too many points
